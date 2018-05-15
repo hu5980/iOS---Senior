@@ -638,12 +638,14 @@ void objc_setAssociatedObject_gc(id object, const void *key, id value, objc_Asso
 
 #else
 
-id 
+//通过key值获取 object 的关联值
+id
 objc_getAssociatedObject(id object, const void *key) 
 {
     return objc_getAssociatedObject_non_gc(object, key);
 }
 
+// 通过key与value建立关联关系 然后通过设置关联策略 关联到object上
 void 
 objc_setAssociatedObject(id object, const void *key, id value, 
                          objc_AssociationPolicy policy) 
@@ -653,7 +655,7 @@ objc_setAssociatedObject(id object, const void *key, id value,
 
 #endif
 
-
+//移除所有的关联值
 void objc_removeAssociatedObjects(id object) 
 {
 #if SUPPORT_GC

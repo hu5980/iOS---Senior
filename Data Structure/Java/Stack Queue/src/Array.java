@@ -73,7 +73,7 @@ public class Array<E> {
         return get(size - 1);
     }
 
-    public E getFirsh(){
+    public E getFirst(){
         return get(0);
     }
 

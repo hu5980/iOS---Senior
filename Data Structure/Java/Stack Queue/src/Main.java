@@ -10,14 +10,27 @@ public class Main {
 //        System.out.println(stack);
 
 
-        ArrayQueue<Integer> queue = new ArrayQueue<>(11);
+//        ArrayQueue<Integer> queue = new ArrayQueue<>(11);
+//
+//        for (int i = 0 ;i  < 10 ;i++){
+//            queue.enqueue(i);
+//            System.out.println(queue);
+//        }
+//        queue.dequeue();
+
+        LoopQueue<Integer> queue = new LoopQueue<>(11);
 
         for (int i = 0 ;i  < 10 ;i++){
             queue.enqueue(i);
             System.out.println(queue);
         }
 
-        queue.dequeue();
+        for (int i = 0; i < 9;i++){
+            queue.dequeue();
+        }
 
+        System.out.println(queue);
+        System.out.println(String .format("capacity = %d",queue.getCapacity()));
+        System.out.println(String.format("size = %d",queue.getSize()));
     }
 }

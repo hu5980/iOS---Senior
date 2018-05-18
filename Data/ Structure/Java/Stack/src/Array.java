@@ -12,7 +12,7 @@ public class Array<E> {
 
     //无参数的构造函数
     public Array(){
-       this(5);
+        this(5);
     }
 
     public  int getSize(){
@@ -67,6 +67,14 @@ public class Array<E> {
     public E get(int index){
         if (index < 0 || index >= size) throw new IllegalArgumentException("Get failed,index is Illegal");
         return data[index];
+    }
+
+    public E getLast(){
+        return get(size - 1);
+    }
+
+    public E getFirsh(){
+        return get(0);
     }
 
     public void set(int index , E e){
@@ -135,7 +143,7 @@ public class Array<E> {
     private void resize(int newCapacity){
         E[] newdata = (E[]) new Object[newCapacity];
         for (int i = 0; i < size ;i++)
-                newdata[i] = data[i];
+            newdata[i] = data[i];
 
         data = newdata;
     }

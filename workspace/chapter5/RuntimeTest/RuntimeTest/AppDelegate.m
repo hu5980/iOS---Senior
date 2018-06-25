@@ -23,10 +23,10 @@
     // 调用test方法，只有声明，没有实现
     [obj test];
     
-    Account *account = [[Account alloc] init];
-    account.name = @"imooc";
-    account.sex = @"男";
-    account.birthday = @"2017-01-01";
+//    Account *account = [[Account alloc] init];
+//    account.name = @"imooc";
+//    account.sex = @"男";
+//    account.birthday = @"2017-01-01";
     
     return YES;
 }

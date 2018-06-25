@@ -11,6 +11,4 @@
 @implementation Account
 @dynamic name, sex, birthday;
 
-
-
 @end

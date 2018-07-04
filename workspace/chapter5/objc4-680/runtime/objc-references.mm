@@ -265,16 +265,32 @@ struct ReleaseValue {
     }
 };
 
+
+//关联关系的视线逻辑
+
+/**
+ 关联关系的视线逻辑
+
+ @param object 准备被关联的对象
+ @param key    要关联的值对应的标识
+ @param value  准备关联的值
+ @param policy 关联策略
+ */
 void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
     // retain the new value (if any) outside the lock.
     ObjcAssociation old_association(0, nil);
     id new_value = value ? acquireValue(value, policy) : nil;
     {
+        //关联对象的管理类 C++实现的一个类
         AssociationsManager manager;
+        //获取其维护的一个Hashmap 我们可以理解为一个字典
+        //是一个全局容器
         AssociationsHashMap &associations(manager.associations());
+        //将被关联的对象的地址取反 作为AssociationsHashMap中的key值
         disguised_ptr_t disguised_object = DISGUISE(object);
         if (new_value) {
             // break any existing association.
+            //根据对象指针查找对应的一个ObjectAssociationMap结构的map
             AssociationsHashMap::iterator i = associations.find(disguised_object);
             if (i != associations.end()) {
                 // secondary table exists
@@ -301,6 +317,7 @@ void _object_set_associative_reference(id object, void *key, id value, uintptr_t
                 ObjectAssociationMap::iterator j = refs->find(key);
                 if (j != refs->end()) {
                     old_association = j->second;
+                    //擦除操作
                     refs->erase(j);
                 }
             }

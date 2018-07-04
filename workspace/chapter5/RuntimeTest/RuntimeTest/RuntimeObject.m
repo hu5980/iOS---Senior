@@ -18,7 +18,6 @@ void testImp (void)
 + (BOOL)resolveInstanceMethod:(SEL)sel
 {
     // 如果是test方法 打印日志
-    
     if (sel == @selector(test)) {
         NSLog(@"resolveInstanceMethod:");
 
@@ -32,7 +31,6 @@ void testImp (void)
         return [super resolveInstanceMethod:sel];
     }
 }
-
 - (id)forwardingTargetForSelector:(SEL)aSelector
 {
     NSLog(@"forwardingTargetForSelector:");

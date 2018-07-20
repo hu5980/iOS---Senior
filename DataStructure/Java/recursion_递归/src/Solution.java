@@ -22,7 +22,6 @@ public class Solution {
             else
                 prev = prev.next;
         }
-
         return head;
     }
 

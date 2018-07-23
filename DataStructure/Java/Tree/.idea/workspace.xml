@@ -27,43 +27,16 @@
       <file leaf-file-name="BST.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-117">
-              <caret line="125" column="30" lean-forward="true" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
+            <state relative-caret-position="266">
+              <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
               <folding>
-                <element signature="e#382#383#0" expanded="true" />
-                <element signature="e#408#409#0" expanded="true" />
                 <element signature="e#432#433#0" expanded="true" />
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#1540#1541#0" expanded="true" />
-                <element signature="e#1565#1566#0" expanded="true" />
-                <element signature="e#1927#1928#0" expanded="true" />
-                <element signature="e#1953#1954#0" expanded="true" />
+                <element signature="e#464#465#0" expanded="true" />
                 <element signature="e#2203#2204#0" expanded="true" />
-                <element signature="e#2221#2222#0" expanded="true" />
+                <element signature="e#2233#2234#0" expanded="true" />
                 <element signature="e#2450#2451#0" expanded="true" />
-                <element signature="e#2477#2478#0" expanded="true" />
+                <element signature="e#2481#2482#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/String.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="1610" selection-start-line="1610" selection-end-line="1610" />
-              <folding>
-                <element signature="e#62916#62917#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Launcher.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/Launcher.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="233" selection-start-line="233" selection-end-line="233" />
             </state>
           </provider>
         </entry>
@@ -86,10 +59,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="535" />
-    <option name="y" value="95" />
-    <option name="width" value="1141" />
-    <option name="height" value="955" />
+    <option name="x" value="592" />
+    <option name="y" value="40" />
+    <option name="width" value="1121" />
+    <option name="height" value="1060" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -107,6 +80,12 @@
               <item name="Tree" type="b2602c69:ProjectViewProjectNode" />
               <item name="Tree" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Tree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Tree" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="BST" type="1a9f42e2:ClassTreeNode" />
             </path>
           </expand>
           <select />
@@ -181,7 +160,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="535" y="95" width="1141" height="955" extended-state="0" />
+    <frame x="592" y="40" width="1121" height="1060" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -193,17 +172,17 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32983682" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32983682" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2938733" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32983682" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913043" visible="true" weight="0.2565969" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.2613531" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" sideWeight="0.5008696" side_tool="true" visible="true" weight="0.2565969" />
+      <window_info id="Favorites" order="2" sideWeight="0.50147057" side_tool="true" visible="true" weight="0.2613531" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3146853" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -271,21 +250,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-117">
-          <caret line="125" column="30" lean-forward="true" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
+        <state relative-caret-position="266">
+          <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
           <folding>
-            <element signature="e#382#383#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
             <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#1540#1541#0" expanded="true" />
-            <element signature="e#1565#1566#0" expanded="true" />
-            <element signature="e#1927#1928#0" expanded="true" />
-            <element signature="e#1953#1954#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
             <element signature="e#2203#2204#0" expanded="true" />
-            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
             <element signature="e#2450#2451#0" expanded="true" />
-            <element signature="e#2477#2478#0" expanded="true" />
+            <element signature="e#2481#2482#0" expanded="true" />
           </folding>
         </state>
       </provider>

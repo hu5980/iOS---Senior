@@ -1,3 +1,4 @@
+import java.util.Stack;
 public class BST <E extends Comparable<E>> {
 
     private class Node {
@@ -101,6 +102,21 @@ public class BST <E extends Comparable<E>> {
     }
 
 
+    public void preOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if (cur.right != null)
+                stack.push(cur.right);
+            if (cur.left != null)
+                stack.push(cur.left);
+        }
+    }
+
+
     public void midOrder(){
         midOrder(root);
     }
@@ -143,14 +159,12 @@ public class BST <E extends Comparable<E>> {
         res.append(generateDepthString(depth) + node.e + "\n");
         generateBSTString(node.left,depth + 1,res);
         generateBSTString(node.right,depth + 1,res);
-
     }
 
     private String generateDepthString(int depth){
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < depth;i++){
             res.append("--");
-
         }
         return res.toString();
     }

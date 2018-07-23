@@ -8,6 +8,9 @@ public class Main {
         }
         System.out.println("前序遍历");
         bst.preOrder();
+        System.out.println();
+        System.out.println("前序非递归遍历");
+        bst.preOrderNR();
 
         System.out.println();
         System.out.println("中序遍历");

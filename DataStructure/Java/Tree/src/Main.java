@@ -10,6 +10,11 @@ public class Main {
         bst.preOrder();
 
         System.out.println();
+        System.out.println();
+        System.out.println("非递归前序遍历");
+        bst.preOredrNO();
+
+        System.out.println();
         System.out.println("中序遍历");
         //2分搜索树排序的结果 就是中序遍历
         bst.midOrder();
@@ -21,7 +26,12 @@ public class Main {
 
         System.out.println();
         System.out.println();
+        System.out.println("层序遍历");
+        bst.floorOrder();
 
-        System.out.println(bst.toString());
+        System.out.println("二叉树最小值");
+        bst.miniNumNo();`
+
+       // System.out.println(bst.toString());
     }
 }

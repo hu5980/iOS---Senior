@@ -1,3 +1,7 @@
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.Queue;
+
 public class BST <E extends Comparable<E>> {
 
     private class Node {
@@ -100,6 +104,21 @@ public class BST <E extends Comparable<E>> {
         preOrder(node.right);
     }
 
+    public void preOredrNO(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if (cur.right != null){
+                stack.push(cur.right);
+            }
+            if (cur.left != null){
+                stack.push(cur.left);
+            }
+        }
+    }
 
     public void midOrder(){
         midOrder(root);
@@ -127,6 +146,78 @@ public class BST <E extends Comparable<E>> {
         System.out.println(node.e);
 
     }
+
+    public void midSort(){
+        midSort(root);
+    }
+
+    private void midSort(Node node){
+        if (node == null){
+            return;
+        }
+        midSort(node.left);
+        System.out.println(node.e);
+        midSort(node.right);
+    }
+
+    public void floorOrder() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            Node cur = queue.poll();
+            System.out.println(cur.e);
+
+            if (cur.left != null){
+                queue.add(cur.left);
+            }
+
+            if (cur.right != null){
+                queue.add(cur.right);
+            }
+        }
+    }
+
+    public Node mininum(){
+        if (size == 0){
+            throw new IllegalArgumentException("BST is empty");
+        }
+        return mininum(root);
+    }
+
+    private Node mininum(Node node){
+        if (node.left == null) {
+            System.out.println(node.e);
+            return  node;
+        }
+        return mininum(node.left);
+    }
+
+    public Node miniNumNo() {
+        if (size == 0){
+            throw new IllegalArgumentException("BST is empty");
+        }
+        Node cur = root;
+        while (cur.left != null){
+            cur = cur.left;
+        }
+        System.out.println(cur.e);
+        return  cur;
+    }
+
+    public Node maxnum(){
+        if (size == 0){
+            throw new IllegalArgumentException("BST is empty");
+        }
+        return maxnum(root);
+    }
+
+    private Node maxnum(Node node){
+        if (node.right == null) {
+            return  node;
+        }
+        return maxnum(node.right);
+    }
+
 
     @Override
     public String toString() {

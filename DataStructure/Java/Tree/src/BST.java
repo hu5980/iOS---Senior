@@ -177,11 +177,11 @@ public class BST <E extends Comparable<E>> {
         }
     }
 
-    public Node mininum(){
+    public E mininum(){
         if (size == 0){
             throw new IllegalArgumentException("BST is empty");
         }
-        return mininum(root);
+        return mininum(root).e;
     }
 
     private Node mininum(Node node){
@@ -192,7 +192,7 @@ public class BST <E extends Comparable<E>> {
         return mininum(node.left);
     }
 
-    public Node miniNumNo() {
+    public E miniNumNo() {
         if (size == 0){
             throw new IllegalArgumentException("BST is empty");
         }
@@ -201,23 +201,57 @@ public class BST <E extends Comparable<E>> {
             cur = cur.left;
         }
         System.out.println(cur.e);
-        return  cur;
+        return  cur.e;
     }
 
-    public Node maxnum(){
+    public E maxnum(){
         if (size == 0){
             throw new IllegalArgumentException("BST is empty");
         }
         return maxnum(root);
     }
 
-    private Node maxnum(Node node){
+    private E maxnum(Node node){
         if (node.right == null) {
-            return  node;
+            return  node.e;
         }
         return maxnum(node.right);
     }
 
+    //从二分搜索树中删除最小值 并返回这个最小值
+    public  E removeMin() {
+        E ret = mininum();
+        root =  removeMin(root);
+        return ret;
+    }
+
+    private Node removeMin(Node node){
+        if (node.left == null){
+            Node rightNode = node.right;
+            node.right = null;
+            size --;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    public E removeMax(){
+        E ret = removeMax();
+        root = removeMax(root);
+        return  ret;
+    }
+
+    private Node removeMax(Node node){
+        if (node.right == null){
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+        node.right = removeMax(node.right);
+        return  node;
+    }
 
     @Override
     public String toString() {
@@ -235,6 +269,42 @@ public class BST <E extends Comparable<E>> {
         generateBSTString(node.left,depth + 1,res);
         generateBSTString(node.right,depth + 1,res);
 
+    }
+
+    public void remove(E e){
+        root = remove(root,e);
+    }
+    private Node remove(Node node,E e){
+        if (node == null){
+            return null;
+        }
+
+        if (e.compareTo(node.e) < 0){
+            node.left = remove(node.left,e);
+            return node.left;
+        }else if (e.compareTo(node.e) > 0){
+            node.right = remove(node.right,e);
+            return node.right;
+        }else{
+            if (node.left == null){
+                Node rightNode = node.right;
+                node.right = null;
+                size --;
+                return rightNode;
+            }else if (node.right == null){
+                Node leftNode = node.left;
+                node.left = null;
+                size --;
+                return leftNode;
+            }else{
+                Node successor = mininum(node.right);
+                successor.right = removeMin(node.right);
+                successor.left = node.left;
+
+                node.left = node.right = null;
+                return successor;
+            }
+        }
     }
 
     private String generateDepthString(int depth){

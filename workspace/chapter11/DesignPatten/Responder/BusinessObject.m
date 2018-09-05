@@ -17,8 +17,7 @@
         // 当前业务处理掉了，上抛结果
         if (handled) {
             result(self, handled);
-        }
-        else{
+        }else{
             // 沿着责任链，指派给下一个业务处理
             if (self.nextBusiness) {
                 [self.nextBusiness handle:result];

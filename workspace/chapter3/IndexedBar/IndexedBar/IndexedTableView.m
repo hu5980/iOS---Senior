@@ -66,7 +66,7 @@
         // 如果没有可重用的Button重新创建一个
         if (button == nil) {
             button = [[UIButton alloc] initWithFrame:CGRectZero];
-            button.backgroundColor = [UIColor whiteColor];
+            button.backgroundColor = [UIColor redColor];
             
             // 注册button到重用池当中
             [reusePool addUsingView:button];

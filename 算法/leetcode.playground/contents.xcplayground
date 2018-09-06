@@ -5,5 +5,6 @@
         <page name='两数之和'/>
         <page name='859. 亲密字符串'/>
         <page name='4. 两个排序数组的中位数'/>
+        <page name='384 字符串中第一个不同的字符'/>
     </pages>
 </playground>

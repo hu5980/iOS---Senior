@@ -42,8 +42,6 @@ func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
             break
         }
     }
-    
-    print(longNums)
     if longNums.count % 2 == 0 {
         return (Double(longNums[longNums.count / 2]) + Double(longNums[longNums.count / 2 - 1])) / 2.0
     } else {

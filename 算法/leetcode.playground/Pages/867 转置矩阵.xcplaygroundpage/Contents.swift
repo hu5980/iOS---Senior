@@ -24,9 +24,6 @@
 
 import Foundation
 
-print("AAA")
-
-
 func transpose(_ A: [[Int]]) -> [[Int]] {
     let R = A.count
     let C = A[0].count

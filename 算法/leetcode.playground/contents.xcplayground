@@ -7,5 +7,6 @@
         <page name='4. 两个排序数组的中位数'/>
         <page name='384 字符串中第一个不同的字符'/>
         <page name='88 合并两个有序数组'/>
+        <page name='Tree'/>
     </pages>
 </playground>

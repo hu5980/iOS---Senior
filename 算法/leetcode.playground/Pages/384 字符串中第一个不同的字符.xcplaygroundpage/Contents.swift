@@ -47,7 +47,7 @@ func firstUniqChar(_ s: String) -> Int {
     
     var arr = [Int]()
 
-    for i in 0..<26 {
+    for _ in 0..<26 {
         arr.append(0)
     }
 

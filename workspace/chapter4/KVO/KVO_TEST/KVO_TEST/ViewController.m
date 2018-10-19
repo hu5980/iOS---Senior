@@ -8,18 +8,19 @@
 
 #import "ViewController.h"
 
+#import <objc/runtime.h>
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     NSMutableArray *array = [NSMutableArray array];
     NSLog(@"%@",array);
+    
 }
 
 

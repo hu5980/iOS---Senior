@@ -19,6 +19,7 @@
     return self;
 }
 
+
 - (void)increase
 {
     //直接为成员变量赋值

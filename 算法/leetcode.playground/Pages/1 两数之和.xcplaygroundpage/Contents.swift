@@ -2,15 +2,6 @@
 
 import Cocoa
 
-var str = "Hello, playground"
-
-
-
-
-
-
-print(result)
-
 func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
     let count = nums.count
     

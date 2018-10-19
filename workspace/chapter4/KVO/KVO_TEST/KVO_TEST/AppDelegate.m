@@ -21,9 +21,13 @@
     MObject *obj = [[MObject alloc] init];
     MObserver *observer = [[MObserver alloc] init];
     
+    printf("%s", object_getClassName(obj));
+    
     //调用kvo方法监听obj的value属性的变化
     [obj addObserver:observer forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:NULL];
    
+    printf("%s", object_getClassName(obj));
+    
     //通过setter方法修改value
     obj.value = 1;
     

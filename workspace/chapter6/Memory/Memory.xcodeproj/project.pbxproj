@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		328D252B21816E53008B2749 /* ViewController_B.m in Sources */ = {isa = PBXBuildFile; fileRef = 328D252A21816E53008B2749 /* ViewController_B.m */; };
 		63C9D42E204C333A00B66251 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C9D42D204C333A00B66251 /* AppDelegate.m */; };
 		63C9D431204C333A00B66251 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C9D430204C333A00B66251 /* ViewController.m */; };
 		63C9D434204C333A00B66251 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C9D432204C333A00B66251 /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		328D252921816E53008B2749 /* ViewController_B.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController_B.h; sourceTree = "<group>"; };
+		328D252A21816E53008B2749 /* ViewController_B.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController_B.m; sourceTree = "<group>"; };
 		63C9D429204C333A00B66251 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C9D42C204C333A00B66251 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		63C9D42D204C333A00B66251 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 				63C9D42D204C333A00B66251 /* AppDelegate.m */,
 				63C9D42F204C333A00B66251 /* ViewController.h */,
 				63C9D430204C333A00B66251 /* ViewController.m */,
+				328D252921816E53008B2749 /* ViewController_B.h */,
+				328D252A21816E53008B2749 /* ViewController_B.m */,
 				63C9D432204C333A00B66251 /* Main.storyboard */,
 				63C9D435204C333A00B66251 /* Assets.xcassets */,
 				63C9D437204C333A00B66251 /* LaunchScreen.storyboard */,
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				328D252B21816E53008B2749 /* ViewController_B.m in Sources */,
 				63C9D455204C423300B66251 /* NSTimer+WeakTimer.m in Sources */,
 				63C9D431204C333A00B66251 /* ViewController.m in Sources */,
 				63C9D43C204C333A00B66251 /* main.m in Sources */,

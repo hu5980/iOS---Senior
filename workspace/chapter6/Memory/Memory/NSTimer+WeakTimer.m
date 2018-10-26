@@ -24,8 +24,7 @@
         if ([self.target respondsToSelector:self.selector]) {
             [self.target performSelector:self.selector withObject:timer.userInfo];
         }
-    }
-    else{
+    } else {
         [self.timer invalidate];
     }
 }

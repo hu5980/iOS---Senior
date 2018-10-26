@@ -10,21 +10,49 @@
 
 @implementation MCBlock
 
-// 全局变量
-int global_var = 4;
-// 静态全局变量
-static int static_global_var = 5;
+//// 全局变量
+//int global_var = 4;
+//// 静态全局变量
+//static int static_global_var = 5;
+//
+//- (void)method
+//{
+//    static int multiplier = 6;
+//    int(^Block)(int) = ^int(int num)
+//    {
+////        __block
+//        return num * multiplier;
+//    };
+//    multiplier = 4;
+//    NSLog(@"result is %d", Block(2));
+//}
+
+
+
 
 - (void)method
 {
     static int multiplier = 6;
     int(^Block)(int) = ^int(int num)
     {
-//        __block
         return num * multiplier;
     };
-    multiplier = 4;
-    NSLog(@"result is %d", Block(2));
+  
+    Block(2);
 }
+
+
+- (void)blockHowToRunInCpp {
+    
+    int  number = 1;
+
+    int (^testBlock) (int) = ^int(int num) {
+        return num * number;
+    };
+    
+    testBlock(5);
+}
+
+
 
 @end

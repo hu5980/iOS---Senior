@@ -12,4 +12,6 @@
 
 - (void)method;
 
+- (void)blockVariableMethod;
+
 @end

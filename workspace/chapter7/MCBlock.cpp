@@ -106,6 +106,12 @@ struct __AtAutoreleasePool {
 };
 
 #define __OFFSETOFIVAR__(TYPE, MEMBER) ((long long) &((TYPE *)0)->MEMBER)
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_0 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<\345\237\272\346\234\254\346\225\260\346\215\256\347\261\273\345\236\213>  var %d",40};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_1 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<__unsafe_unretained \345\257\271\350\261\241\347\261\273\345\236\213>  var %@",54};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_2 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217__strong \345\257\271\350\261\241\347\261\273\345\236\213>  var %@",42};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_3 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<\351\235\231\346\200\201\345\217\230\351\207\217>  var %d",34};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_4 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<\345\205\250\345\261\200\345\217\230\351\207\217>  var %d",34};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_5 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<\351\235\231\346\200\201\345\205\250\345\261\200\345\217\230\351\207\217>  var %d",40};
 
 
 
@@ -492,6 +498,7 @@ typedef __darwin_fsblkcnt_t fsblkcnt_t;
 typedef __darwin_fsfilcnt_t fsfilcnt_t;
 typedef __builtin_va_list va_list;
 typedef __builtin_va_list __gnuc_va_list;
+
 
 typedef int __darwin_nl_item;
 typedef int __darwin_wctrans_t;
@@ -1363,8 +1370,9 @@ struct rusage_info_v4 {
  uint64_t ri_cycles;
  uint64_t ri_billed_energy;
  uint64_t ri_serviced_energy;
+        uint64_t ri_interval_max_phys_footprint;
 
- uint64_t ri_unused[2];
+ uint64_t ri_unused[1];
 };
 
 typedef struct rusage_info_v4 rusage_info_current;
@@ -1474,6 +1482,19 @@ typedef struct {
 
 extern int __mb_cur_max;
 extern "C" {
+
+void *malloc(size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(1)));
+void *calloc(size_t __count, size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(1,2)));
+void free(void *);
+void *realloc(void *__ptr, size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(2)));
+
+void *valloc(size_t) __attribute__((alloc_size(1)));
+
+int posix_memalign(void **__memptr, size_t __alignment, size_t __size) __attribute__((availability(macosx,introduced=10.6)));
+
+}
+
+extern "C" {
 void abort(void) __attribute__((noreturn));
 int abs(int) __attribute__((const));
 int atexit(void (* _Nonnull)(void));
@@ -1486,10 +1507,10 @@ long long
 
 void *bsearch(const void *__key, const void *__base, size_t __nel,
      size_t __width, int (* _Nonnull __compar)(const void *, const void *));
-void *calloc(size_t __count, size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(1,2)));
+
 div_t div(int, int) __attribute__((const));
 void exit(int) __attribute__((noreturn));
-void free(void *);
+
 char *getenv(const char *);
 long labs(long) __attribute__((const));
 ldiv_t ldiv(long, long) __attribute__((const));
@@ -1498,15 +1519,15 @@ long long
   llabs(long long);
 lldiv_t lldiv(long long, long long);
 
-void *malloc(size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(1)));
+
 int mblen(const char *__s, size_t __n);
 size_t mbstowcs(wchar_t * , const char * , size_t);
 int mbtowc(wchar_t * , const char * , size_t);
-int posix_memalign(void **__memptr, size_t __alignment, size_t __size) __attribute__((availability(macosx,introduced=10.6)));
+
 void qsort(void *__base, size_t __nel, size_t __width,
      int (* _Nonnull __compar)(const void *, const void *));
 int rand(void) __attribute__((__availability__(swift, unavailable, message="Use arc4random instead.")));
-void *realloc(void *__ptr, size_t __size) __attribute__((__warn_unused_result__)) __attribute__((alloc_size(2)));
+
 void srand(unsigned) __attribute__((__availability__(swift, unavailable, message="Use arc4random instead.")));
 double strtod(const char *, char **) __asm("_" "strtod" );
 float strtof(const char *, char **) __asm("_" "strtof" );
@@ -1665,7 +1686,7 @@ unsigned long long
   strtouq(const char *__str, char **__endptr, int __base);
 
 extern char *suboptarg;
-void *valloc(size_t) __attribute__((alloc_size(1)));
+
 
 
 
@@ -2292,13 +2313,16 @@ extern long double fminl(long double, long double);
 extern float fmaf(float, float, float);
 extern double fma(double, double, double);
 extern long double fmal(long double, long double, long double);
-extern float __inff(void) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
-extern double __inf(void) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
-extern long double __infl(void) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
-
-extern float __nan(void) __attribute__((availability(macosx,introduced=10.0)));
-extern float __exp10f(float) __attribute__((availability(macosx,introduced=10.9)));
-extern double __exp10(double) __attribute__((availability(macosx,introduced=10.9)));
+extern float __inff(void)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="use `(float)INFINITY` instead"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern double __inf(void)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="use `INFINITY` instead"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern long double __infl(void)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="use `(long double)INFINITY` instead"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern float __nan(void)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.14,message="use `NAN` instead"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern float __exp10f(float) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern double __exp10(double) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -2306,12 +2330,12 @@ extern double __exp10(double) __attribute__((availability(macosx,introduced=10.9
 
 inline __attribute__ ((__always_inline__)) void __sincosf(float __x, float *__sinp, float *__cosp);
 inline __attribute__ ((__always_inline__)) void __sincos(double __x, double *__sinp, double *__cosp);
-extern float __cospif(float) __attribute__((availability(macosx,introduced=10.9)));
-extern double __cospi(double) __attribute__((availability(macosx,introduced=10.9)));
-extern float __sinpif(float) __attribute__((availability(macosx,introduced=10.9)));
-extern double __sinpi(double) __attribute__((availability(macosx,introduced=10.9)));
-extern float __tanpif(float) __attribute__((availability(macosx,introduced=10.9)));
-extern double __tanpi(double) __attribute__((availability(macosx,introduced=10.9)));
+extern float __cospif(float) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern double __cospi(double) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern float __sinpif(float) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern double __sinpi(double) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern float __tanpif(float) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern double __tanpi(double) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 inline __attribute__ ((__always_inline__)) void __sincospif(float __x, float *__sinp, float *__cosp);
 inline __attribute__ ((__always_inline__)) void __sincospi(double __x, double *__sinp, double *__cosp);
 
@@ -2354,25 +2378,31 @@ inline __attribute__ ((__always_inline__)) void __sincospi(double __x, double *_
 
 
 
-extern double j0(double) __attribute__((availability(macosx,introduced=10.0)));
-extern double j1(double) __attribute__((availability(macosx,introduced=10.0)));
-extern double jn(int, double) __attribute__((availability(macosx,introduced=10.0)));
-extern double y0(double) __attribute__((availability(macosx,introduced=10.0)));
-extern double y1(double) __attribute__((availability(macosx,introduced=10.0)));
-extern double yn(int, double) __attribute__((availability(macosx,introduced=10.0)));
+extern double j0(double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
+extern double j1(double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
+extern double jn(int, double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
+extern double y0(double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
+extern double y1(double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
+extern double yn(int, double) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=3.2)));
 extern double scalb(double, double);
 extern int signgam;
-extern long int rinttol(double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern long int rinttol(double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,replacement="lrint"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-extern long int roundtol(double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern long int roundtol(double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,replacement="lround"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-extern double drem(double, double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern double drem(double, double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,replacement="remainder"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-extern int finite(double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern int finite(double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="Use `isfinite((double)x)` instead."))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-extern double gamma(double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern double gamma(double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,replacement="tgamma"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-extern double significand(double) __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+extern double significand(double)
+__attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="Use `2*frexp( )` or `scalbn(x, -ilogb(x))` instead."))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 }
 typedef int jmp_buf[((9 * 2) + 3 + 16)];
 typedef int sigjmp_buf[((9 * 2) + 3 + 16) + 1];
@@ -3475,7 +3505,7 @@ CFAllocatorRef CFGetAllocator(CFTypeRef cf);
 
 
 extern
-CFTypeRef CFMakeCollectable(CFTypeRef cf) ;
+CFTypeRef CFMakeCollectable(CFTypeRef cf) __attribute__((unavailable("not available in automatic reference counting mode")));
 }
 extern "C" {
 typedef const void * (*CFArrayRetainCallBack)(CFAllocatorRef allocator, const void *value);
@@ -6743,7 +6773,21 @@ enum mach_port_guard_exception_codes {
  kGUARD_EXC_MOD_REFS = 1u << 1,
  kGUARD_EXC_SET_CONTEXT = 1u << 2,
  kGUARD_EXC_UNGUARDED = 1u << 3,
- kGUARD_EXC_INCORRECT_GUARD = 1u << 4
+ kGUARD_EXC_INCORRECT_GUARD = 1u << 4,
+
+ kGUARD_EXC_INVALID_RIGHT = 1u << 8,
+ kGUARD_EXC_INVALID_NAME = 1u << 9,
+ kGUARD_EXC_INVALID_VALUE = 1u << 10,
+ kGUARD_EXC_INVALID_ARGUMENT = 1u << 11,
+ kGUARD_EXC_RIGHT_EXISTS = 1u << 12,
+ kGUARD_EXC_KERN_NO_SPACE = 1u << 13,
+ kGUARD_EXC_KERN_FAILURE = 1u << 14,
+ kGUARD_EXC_KERN_RESOURCE = 1u << 15,
+ kGUARD_EXC_SEND_INVALID_REPLY = 1u << 16,
+ kGUARD_EXC_SEND_INVALID_VOUCHER = 1u << 16,
+ kGUARD_EXC_SEND_INVALID_RIGHT = 1u << 17,
+ kGUARD_EXC_RCV_INVALID_NAME = 1u << 18,
+ kGUARD_EXC_RCV_INVALID_NOTIFY = 1u << 19
 };
 
 
@@ -7019,8 +7063,6 @@ extern const CFStringRef kCFSocketRetrieveCommand;
 
 typedef void (*os_function_t)(void *_Nullable);
 typedef void (*os_block_t)(void);
-
-
 
 
 
@@ -7531,6 +7573,14 @@ int filesec_unset_property(filesec_t, filesec_property_t) __attribute__((availab
 
 
 
+
+
+
+
+
+
+
+
 typedef struct objc_class *Class;
 
 
@@ -7552,18 +7602,18 @@ typedef struct objc_selector *SEL;
 typedef id _Nullable (*IMP)(id _Nonnull, SEL _Nonnull, ...);
     typedef signed char BOOL;
 extern "C" __attribute__((visibility("default"))) const char * _Nonnull sel_getName(SEL _Nonnull sel)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) SEL _Nonnull sel_registerName(const char * _Nonnull str)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) const char * _Nonnull object_getClassName(id _Nullable obj)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) void * _Nullable object_getIndexedIvars(id _Nullable obj)
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)))
-                        ;
+    __attribute__((unavailable("not available in automatic reference counting mode")));
 extern "C" __attribute__((visibility("default"))) BOOL sel_isMapped(SEL _Nonnull sel)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) SEL _Nonnull sel_getUid(const char * _Nonnull str)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 
 typedef const void* objc_objectptr_t;
 
@@ -7571,11 +7621,20 @@ typedef const void* objc_objectptr_t;
 
 
 extern "C" __attribute__((visibility("default"))) id _Nullable objc_retainedObject(objc_objectptr_t _Nullable obj)
-    __attribute__((unavailable("use CFBridgingRelease() or a (__bridge_transfer id) cast instead")));
+
+    __attribute__((unavailable("use CFBridgingRelease() or a (__bridge_transfer id) cast instead")))
+
+    ;
 extern "C" __attribute__((visibility("default"))) id _Nullable objc_unretainedObject(objc_objectptr_t _Nullable obj)
-    __attribute__((unavailable("use a (__bridge id) cast instead")));
+
+    __attribute__((unavailable("use a (__bridge id) cast instead")))
+
+    ;
 extern "C" __attribute__((visibility("default"))) objc_objectptr_t _Nullable objc_unretainedPointer(id _Nullable obj)
-    __attribute__((unavailable("use a __bridge cast instead")));
+
+    __attribute__((unavailable("use a __bridge cast instead")))
+
+    ;
 typedef long NSInteger;
 typedef unsigned long NSUInteger;
 
@@ -7620,12 +7679,12 @@ typedef struct {} _objc_exc_NSInvocation;
 
 // - (BOOL)respondsToSelector:(SEL)aSelector;
 
-// - (instancetype)retain ;
-// - (oneway void)release ;
-// - (instancetype)autorelease ;
-// - (NSUInteger)retainCount ;
+// - (instancetype)retain __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (oneway void)release __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (instancetype)autorelease __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (NSUInteger)retainCount __attribute__((unavailable("not available in automatic reference counting mode")));
 
-// - (struct _NSZone *)zone ;
+// - (struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
 
 // @property (readonly, copy) NSString *description;
 /* @optional */
@@ -7646,7 +7705,7 @@ typedef struct {} _objc_exc_NSObject;
 #endif
 
 struct NSObject_IMPL {
-	Class isa;
+	__unsafe_unretained Class isa;
 };
 
 
@@ -7672,8 +7731,8 @@ struct NSObject_IMPL {
 // - (id)copy;
 // - (id)mutableCopy;
 
-// + (id)copyWithZone:(struct _NSZone *)zone ;
-// + (id)mutableCopyWithZone:(struct _NSZone *)zone ;
+// + (id)copyWithZone:(struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// + (id)mutableCopyWithZone:(struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
 
 // + (BOOL)instancesRespondToSelector:(SEL)aSelector;
 // + (BOOL)conformsToProtocol:(Protocol *)protocol;
@@ -7681,7 +7740,7 @@ struct NSObject_IMPL {
 // + (IMP)instanceMethodForSelector:(SEL)aSelector;
 // - (void)doesNotRecognizeSelector:(SEL)aSelector;
 
-// - (id)forwardingTargetForSelector:(SEL)aSelector __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+// - (id)forwardingTargetForSelector:(SEL)aSelector __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 // - (void)forwardInvocation:(NSInvocation *)anInvocation __attribute__((availability(swift, unavailable, message="")));
 // - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector __attribute__((availability(swift, unavailable, message="")));
 
@@ -7692,8 +7751,8 @@ struct NSObject_IMPL {
 
 // + (BOOL)isSubclassOfClass:(Class)aClass;
 
-// + (BOOL)resolveClassMethod:(SEL)sel __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
-// + (BOOL)resolveInstanceMethod:(SEL)sel __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
+// + (BOOL)resolveClassMethod:(SEL)sel __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
+// + (BOOL)resolveInstanceMethod:(SEL)sel __attribute__((availability(macosx,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 
 // + (NSUInteger)hash;
 // + (Class)superclass;
@@ -7751,6 +7810,11 @@ extern "C" {
 
 struct timespec;
 typedef uint64_t dispatch_time_t;
+
+enum {
+ DISPATCH_WALLTIME_NOW __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(tvos,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) = ~1ull,
+
+};
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__warn_unused_result__)) __attribute__((__nothrow__))
 dispatch_time_t
@@ -7765,16 +7829,11 @@ dispatch_walltime(const struct timespec *_Nullable when, int64_t delta);
 #pragma clang assume_nonnull begin
 // @protocol OS_dispatch_object <NSObject> /* @end */
  typedef NSObject/*<OS_dispatch_object>*/ * __attribute__((objc_independent_class)) dispatch_object_t;
-
-
-
-
-
-
 static __inline__ __attribute__((__always_inline__)) __attribute__((__nonnull__)) __attribute__((__nothrow__))
 void
-_dispatch_object_validate(dispatch_object_t object) {
- void *isa = *(void* volatile*)( void*)object;
+_dispatch_object_validate(dispatch_object_t object)
+{
+ void *isa = *(void *volatile*)(__bridge void*)object;
  (void)isa;
 }
 typedef void (*dispatch_block_t)(void);
@@ -7864,6 +7923,14 @@ qos_class_main(void);
 #pragma clang assume_nonnull begin
 // @protocol OS_dispatch_queue <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_queue>*/ * __attribute__((objc_independent_class)) dispatch_queue_t;
+// @protocol OS_dispatch_queue_global <OS_dispatch_queue> /* @end */
+ typedef NSObject/*<OS_dispatch_queue_global>*/ * __attribute__((objc_independent_class)) dispatch_queue_global_t;
+// @protocol OS_dispatch_queue_serial <OS_dispatch_queue> /* @end */
+ typedef NSObject/*<OS_dispatch_queue_serial>*/ * __attribute__((objc_independent_class)) dispatch_queue_serial_t;
+// @protocol OS_dispatch_queue_main <OS_dispatch_queue_serial> /* @end */
+ typedef NSObject/*<OS_dispatch_queue_main>*/ * __attribute__((objc_independent_class)) dispatch_queue_main_t;
+// @protocol OS_dispatch_queue_concurrent <OS_dispatch_queue> /* @end */
+ typedef NSObject/*<OS_dispatch_queue_concurrent>*/ * __attribute__((objc_independent_class)) dispatch_queue_concurrent_t;
 
 extern "C" {
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
@@ -7874,8 +7941,7 @@ __attribute__((availability(macos,introduced=10.6))) __attribute__((availability
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
 dispatch_async_f(dispatch_queue_t queue,
- void *_Nullable context,
- dispatch_function_t work);
+  void *_Nullable context, dispatch_function_t work);
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__)) __attribute__((__nothrow__))
 void
@@ -7884,31 +7950,32 @@ __attribute__((availability(macos,introduced=10.6))) __attribute__((availability
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
 dispatch_sync_f(dispatch_queue_t queue,
- void *_Nullable context,
- dispatch_function_t work);
+  void *_Nullable context, dispatch_function_t work);
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
-dispatch_apply(size_t iterations, dispatch_queue_t queue,
+dispatch_apply(size_t iterations,
+  dispatch_queue_t _Nullable queue,
   __attribute__((__noescape__)) void (^block)(size_t));
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(4))) __attribute__((__nothrow__))
 void
-dispatch_apply_f(size_t iterations, dispatch_queue_t queue,
- void *_Nullable context,
- void (*work)(void *_Nullable, size_t));
+dispatch_apply_f(size_t iterations,
+  dispatch_queue_t _Nullable queue,
+  void *_Nullable context, void (*work)(void *_Nullable, size_t));
 __attribute__((availability(macos,introduced=10.6,deprecated=10.9,message="unsupported interface"))) __attribute__((availability(ios,introduced=4.0,deprecated=6.0,message="unsupported interface")))
 extern __attribute__((visibility("default"))) __attribute__((__pure__)) __attribute__((__warn_unused_result__)) __attribute__((__nothrow__))
 dispatch_queue_t
 dispatch_get_current_queue(void);
 
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
-extern __attribute__((visibility("default"))) struct dispatch_queue_s _dispatch_main_q;
+extern __attribute__((visibility("default")))
+struct dispatch_queue_s _dispatch_main_q;
 static __inline__ __attribute__((__always_inline__)) __attribute__((__const__)) __attribute__((__nothrow__))
-dispatch_queue_t
+dispatch_queue_main_t
 dispatch_get_main_queue(void)
 {
- return (( dispatch_queue_t)&(_dispatch_main_q));
+ return ((__bridge dispatch_queue_main_t)&(_dispatch_main_q));
 }
 typedef long dispatch_queue_priority_t;
 
@@ -7920,7 +7987,7 @@ typedef long dispatch_queue_priority_t;
 typedef qos_class_t dispatch_qos_class_t;
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__const__)) __attribute__((__warn_unused_result__)) __attribute__((__nothrow__))
-dispatch_queue_t
+dispatch_queue_global_t
 dispatch_get_global_queue(long identifier, unsigned long flags);
 
 
@@ -7956,8 +8023,8 @@ extern __attribute__((visibility("default"))) __attribute__((__malloc__)) __attr
 __attribute__((__nothrow__))
 dispatch_queue_t
 dispatch_queue_create_with_target(const char *_Nullable label,
- dispatch_queue_attr_t _Nullable attr, dispatch_queue_t _Nullable target)
- __asm__("_" "dispatch_queue_create_with_target" "$V2");
+  dispatch_queue_attr_t _Nullable attr, dispatch_queue_t _Nullable target)
+  __asm__("_" "dispatch_queue_create_with_target" "$V2");
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__malloc__)) __attribute__((__ns_returns_retained__)) __attribute__((__warn_unused_result__))
 __attribute__((__nothrow__))
@@ -7985,16 +8052,13 @@ dispatch_main(void);
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(2))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
-dispatch_after(dispatch_time_t when,
- dispatch_queue_t queue,
- dispatch_block_t block);
+dispatch_after(dispatch_time_t when, dispatch_queue_t queue,
+  dispatch_block_t block);
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(2))) __attribute__((__nonnull__(4))) __attribute__((__nothrow__))
 void
-dispatch_after_f(dispatch_time_t when,
- dispatch_queue_t queue,
- void *_Nullable context,
- dispatch_function_t work);
+dispatch_after_f(dispatch_time_t when, dispatch_queue_t queue,
+  void *_Nullable context, dispatch_function_t work);
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.3)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__)) __attribute__((__nothrow__))
 void
@@ -8003,8 +8067,7 @@ __attribute__((availability(macos,introduced=10.7))) __attribute__((availability
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
 dispatch_barrier_async_f(dispatch_queue_t queue,
- void *_Nullable context,
- dispatch_function_t work);
+  void *_Nullable context, dispatch_function_t work);
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.3)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__)) __attribute__((__nothrow__))
 void
@@ -8014,13 +8077,12 @@ __attribute__((availability(macos,introduced=10.7))) __attribute__((availability
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
 dispatch_barrier_sync_f(dispatch_queue_t queue,
- void *_Nullable context,
- dispatch_function_t work);
+  void *_Nullable context, dispatch_function_t work);
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__nothrow__))
 void
 dispatch_queue_set_specific(dispatch_queue_t queue, const void *key,
- void *_Nullable context, dispatch_function_t _Nullable destructor);
+  void *_Nullable context, dispatch_function_t _Nullable destructor);
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1))) __attribute__((__pure__)) __attribute__((__warn_unused_result__))
 __attribute__((__nothrow__))
@@ -8034,7 +8096,7 @@ __attribute__((availability(macos,introduced=10.12))) __attribute__((availabilit
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1)))
 void
 dispatch_assert_queue(dispatch_queue_t queue)
- __asm__("_" "dispatch_assert_queue" "$V2");
+  __asm__("_" "dispatch_assert_queue" "$V2");
 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(tvos,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1)))
 void
@@ -8043,7 +8105,7 @@ __attribute__((availability(macos,introduced=10.12))) __attribute__((availabilit
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(1)))
 void
 dispatch_assert_queue_not(dispatch_queue_t queue)
- __asm__("_" "dispatch_assert_queue_not" "$V2");
+  __asm__("_" "dispatch_assert_queue_not" "$V2");
 }
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
@@ -8389,8 +8451,6 @@ extern kern_return_t mach_voucher_deallocate(
 
 
 }
-
-
 
 
 
@@ -8819,6 +8879,11 @@ dispatch_io_set_interval(dispatch_io_t channel,
 
 extern "C" {
 
+typedef struct {
+    CFIndex domain;
+    SInt32 error;
+} CFStreamError;
+
 typedef CFStringRef CFStreamPropertyKey __attribute__((swift_wrapper(struct)));
 
 typedef CFIndex CFStreamStatus; enum {
@@ -8843,17 +8908,17 @@ typedef CFOptionFlags CFStreamEventType; enum {
 
 typedef struct {
     CFIndex version;
-    void *info;
-    void *(*retain)(void *info);
-    void (*release)(void *info);
-    CFStringRef (*copyDescription)(void *info);
+    void * _Null_unspecified info;
+    void *_Null_unspecified(* _Null_unspecified retain)(void * _Null_unspecified info);
+    void (* _Null_unspecified release)(void * _Null_unspecified info);
+    CFStringRef _Null_unspecified (* _Null_unspecified copyDescription)(void * _Null_unspecified info);
 } CFStreamClientContext;
 
 typedef struct __attribute__((objc_bridge_mutable(NSInputStream))) __CFReadStream * CFReadStreamRef;
 typedef struct __attribute__((objc_bridge_mutable(NSOutputStream))) __CFWriteStream * CFWriteStreamRef;
 
-typedef void (*CFReadStreamClientCallBack)(CFReadStreamRef stream, CFStreamEventType type, void *clientCallBackInfo);
-typedef void (*CFWriteStreamClientCallBack)(CFWriteStreamRef stream, CFStreamEventType type, void *clientCallBackInfo);
+typedef void (*CFReadStreamClientCallBack)(CFReadStreamRef _Null_unspecified stream, CFStreamEventType type, void * _Null_unspecified clientCallBackInfo);
+typedef void (*CFWriteStreamClientCallBack)(CFWriteStreamRef _Null_unspecified stream, CFStreamEventType type, void * _Null_unspecified clientCallBackInfo);
 
 extern
 CFTypeID CFReadStreamGetTypeID(void);
@@ -8864,106 +8929,98 @@ CFTypeID CFWriteStreamGetTypeID(void);
 
 
 extern
-const CFStreamPropertyKey kCFStreamPropertyDataWritten;
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertyDataWritten;
 
 
 extern
-CFReadStreamRef CFReadStreamCreateWithBytesNoCopy(CFAllocatorRef alloc, const UInt8 *bytes, CFIndex length, CFAllocatorRef bytesDeallocator);
+CFReadStreamRef _Null_unspecified CFReadStreamCreateWithBytesNoCopy(CFAllocatorRef _Null_unspecified alloc, const UInt8 * _Null_unspecified bytes, CFIndex length, CFAllocatorRef _Null_unspecified bytesDeallocator);
 
 
 extern
-CFWriteStreamRef CFWriteStreamCreateWithBuffer(CFAllocatorRef alloc, UInt8 *buffer, CFIndex bufferCapacity);
+CFWriteStreamRef _Null_unspecified CFWriteStreamCreateWithBuffer(CFAllocatorRef _Null_unspecified alloc, UInt8 * _Null_unspecified buffer, CFIndex bufferCapacity);
 
 
 extern
-CFWriteStreamRef CFWriteStreamCreateWithAllocatedBuffers(CFAllocatorRef alloc, CFAllocatorRef bufferAllocator);
+CFWriteStreamRef _Null_unspecified CFWriteStreamCreateWithAllocatedBuffers(CFAllocatorRef _Null_unspecified alloc, CFAllocatorRef _Null_unspecified bufferAllocator);
 
 
 extern
-CFReadStreamRef CFReadStreamCreateWithFile(CFAllocatorRef alloc, CFURLRef fileURL);
+CFReadStreamRef _Null_unspecified CFReadStreamCreateWithFile(CFAllocatorRef _Null_unspecified alloc, CFURLRef _Null_unspecified fileURL);
 extern
-CFWriteStreamRef CFWriteStreamCreateWithFile(CFAllocatorRef alloc, CFURLRef fileURL);
-
-extern
-void CFStreamCreateBoundPair(CFAllocatorRef alloc, CFReadStreamRef *readStream, CFWriteStreamRef *writeStream, CFIndex transferBufferSize);
-
-
+CFWriteStreamRef _Null_unspecified CFWriteStreamCreateWithFile(CFAllocatorRef _Null_unspecified alloc, CFURLRef _Null_unspecified fileURL);
 
 extern
-const CFStreamPropertyKey kCFStreamPropertyAppendToFile;
-
-extern
-const CFStreamPropertyKey kCFStreamPropertyFileCurrentOffset;
-
-
+void CFStreamCreateBoundPair(CFAllocatorRef _Null_unspecified alloc, CFReadStreamRef _Null_unspecified * _Null_unspecified readStream, CFWriteStreamRef _Null_unspecified * _Null_unspecified writeStream, CFIndex transferBufferSize);
 
 
 
 extern
-const CFStreamPropertyKey kCFStreamPropertySocketNativeHandle;
-
-
-extern
-const CFStreamPropertyKey kCFStreamPropertySocketRemoteHostName;
-
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertyAppendToFile;
 
 extern
-const CFStreamPropertyKey kCFStreamPropertySocketRemotePortNumber;
-
-
-
-extern
-void CFStreamCreatePairWithSocket(CFAllocatorRef alloc, CFSocketNativeHandle sock, CFReadStreamRef *readStream, CFWriteStreamRef *writeStream);
-extern
-void CFStreamCreatePairWithSocketToHost(CFAllocatorRef alloc, CFStringRef host, UInt32 port, CFReadStreamRef *readStream, CFWriteStreamRef *writeStream);
-extern
-void CFStreamCreatePairWithPeerSocketSignature(CFAllocatorRef alloc, const CFSocketSignature *signature, CFReadStreamRef *readStream, CFWriteStreamRef *writeStream);
-
-
-
-
-extern
-CFStreamStatus CFReadStreamGetStatus(CFReadStreamRef stream);
-extern
-CFStreamStatus CFWriteStreamGetStatus(CFWriteStreamRef stream);
-
-
-extern
-CFErrorRef CFReadStreamCopyError(CFReadStreamRef stream) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-extern
-CFErrorRef CFWriteStreamCopyError(CFWriteStreamRef stream) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertyFileCurrentOffset;
 
 
 
 
 
 extern
-Boolean CFReadStreamOpen(CFReadStreamRef stream);
-extern
-Boolean CFWriteStreamOpen(CFWriteStreamRef stream);
-
-
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertySocketNativeHandle;
 
 
 extern
-void CFReadStreamClose(CFReadStreamRef stream);
-extern
-void CFWriteStreamClose(CFWriteStreamRef stream);
-
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertySocketRemoteHostName;
 
 
 extern
-Boolean CFReadStreamHasBytesAvailable(CFReadStreamRef stream);
-extern
-CFIndex CFReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferLength);
-extern
-const UInt8 *CFReadStreamGetBuffer(CFReadStreamRef stream, CFIndex maxBytesToRead, CFIndex *numBytesRead);
+const CFStreamPropertyKey _Null_unspecified kCFStreamPropertySocketRemotePortNumber;
+
+
+
+
+
+
+
+extern const int kCFStreamErrorDomainSOCKS __attribute__((availability(macosx,introduced=10_0)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSProxy __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSProxyHost __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSProxyPort __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSVersion __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamSocketSOCKSVersion4 __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamSocketSOCKSVersion5 __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSUser __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySOCKSPassword __attribute__((availability(macosx,introduced=10_2)));
+extern const int kCFStreamErrorDomainSSL __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertySocketSecurityLevel __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamSocketSecurityLevelNone __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamSocketSecurityLevelSSLv2 __attribute__((availability(macosx,introduced=10_2,deprecated=10_12,message="" )));
+extern const CFStringRef _Nonnull kCFStreamSocketSecurityLevelSSLv3 __attribute__((availability(macosx,introduced=10_2,deprecated=10_12,message="" )));
+extern const CFStringRef _Nonnull kCFStreamSocketSecurityLevelTLSv1 __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamSocketSecurityLevelNegotiatedSSL __attribute__((availability(macosx,introduced=10_2)));
+extern const CFStringRef _Nonnull kCFStreamPropertyShouldCloseNativeSocket __attribute__((availability(macosx,introduced=10_2)));
 
 
 
 extern
-Boolean CFWriteStreamCanAcceptBytes(CFWriteStreamRef stream);
+void CFStreamCreatePairWithSocket(CFAllocatorRef _Null_unspecified alloc, CFSocketNativeHandle sock, CFReadStreamRef _Null_unspecified * _Null_unspecified readStream, CFWriteStreamRef _Null_unspecified * _Null_unspecified writeStream);
+extern
+void CFStreamCreatePairWithSocketToHost(CFAllocatorRef _Null_unspecified alloc, CFStringRef _Null_unspecified host, UInt32 port, CFReadStreamRef _Null_unspecified * _Null_unspecified readStream, CFWriteStreamRef _Null_unspecified * _Null_unspecified writeStream);
+extern
+void CFStreamCreatePairWithPeerSocketSignature(CFAllocatorRef _Null_unspecified alloc, const CFSocketSignature * _Null_unspecified signature, CFReadStreamRef _Null_unspecified * _Null_unspecified readStream, CFWriteStreamRef _Null_unspecified * _Null_unspecified writeStream);
+
+
+
+
+extern
+CFStreamStatus CFReadStreamGetStatus(CFReadStreamRef _Null_unspecified stream);
+extern
+CFStreamStatus CFWriteStreamGetStatus(CFWriteStreamRef _Null_unspecified stream);
+
+
+extern
+CFErrorRef _Null_unspecified CFReadStreamCopyError(CFReadStreamRef _Null_unspecified stream) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+extern
+CFErrorRef _Null_unspecified CFWriteStreamCopyError(CFWriteStreamRef _Null_unspecified stream) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
 
 
@@ -8971,37 +9028,31 @@ Boolean CFWriteStreamCanAcceptBytes(CFWriteStreamRef stream);
 
 
 extern
-CFIndex CFWriteStreamWrite(CFWriteStreamRef stream, const UInt8 *buffer, CFIndex bufferLength);
+Boolean CFReadStreamOpen(CFReadStreamRef _Null_unspecified stream);
 extern
-CFTypeRef CFReadStreamCopyProperty(CFReadStreamRef stream, CFStreamPropertyKey propertyName);
+Boolean CFWriteStreamOpen(CFWriteStreamRef _Null_unspecified stream);
+
+
+
+
 extern
-CFTypeRef CFWriteStreamCopyProperty(CFWriteStreamRef stream, CFStreamPropertyKey propertyName);
+void CFReadStreamClose(CFReadStreamRef _Null_unspecified stream);
+extern
+void CFWriteStreamClose(CFWriteStreamRef _Null_unspecified stream);
 
 
 
 extern
-Boolean CFReadStreamSetProperty(CFReadStreamRef stream, CFStreamPropertyKey propertyName, CFTypeRef propertyValue);
+Boolean CFReadStreamHasBytesAvailable(CFReadStreamRef _Null_unspecified stream);
 extern
-Boolean CFWriteStreamSetProperty(CFWriteStreamRef stream, CFStreamPropertyKey propertyName, CFTypeRef propertyValue);
+CFIndex CFReadStreamRead(CFReadStreamRef _Null_unspecified stream, UInt8 * _Null_unspecified buffer, CFIndex bufferLength);
 extern
-Boolean CFReadStreamSetClient(CFReadStreamRef stream, CFOptionFlags streamEvents, CFReadStreamClientCallBack clientCB, CFStreamClientContext *clientContext);
-extern
-Boolean CFWriteStreamSetClient(CFWriteStreamRef stream, CFOptionFlags streamEvents, CFWriteStreamClientCallBack clientCB, CFStreamClientContext *clientContext);
+const UInt8 * _Null_unspecified CFReadStreamGetBuffer(CFReadStreamRef _Null_unspecified stream, CFIndex maxBytesToRead, CFIndex * _Null_unspecified numBytesRead);
+
+
 
 extern
-void CFReadStreamScheduleWithRunLoop(CFReadStreamRef stream, CFRunLoopRef runLoop, CFRunLoopMode runLoopMode);
-extern
-void CFWriteStreamScheduleWithRunLoop(CFWriteStreamRef stream, CFRunLoopRef runLoop, CFRunLoopMode runLoopMode);
-
-extern
-void CFReadStreamUnscheduleFromRunLoop(CFReadStreamRef stream, CFRunLoopRef runLoop, CFRunLoopMode runLoopMode);
-extern
-void CFWriteStreamUnscheduleFromRunLoop(CFWriteStreamRef stream, CFRunLoopRef runLoop, CFRunLoopMode runLoopMode);
-extern
-void CFReadStreamSetDispatchQueue(CFReadStreamRef stream, dispatch_queue_t q) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
-extern
-void CFWriteStreamSetDispatchQueue(CFWriteStreamRef stream, dispatch_queue_t q) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+Boolean CFWriteStreamCanAcceptBytes(CFWriteStreamRef _Null_unspecified stream);
 
 
 
@@ -9009,10 +9060,48 @@ void CFWriteStreamSetDispatchQueue(CFWriteStreamRef stream, dispatch_queue_t q) 
 
 
 extern
-dispatch_queue_t CFReadStreamCopyDispatchQueue(CFReadStreamRef stream) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+CFIndex CFWriteStreamWrite(CFWriteStreamRef _Null_unspecified stream, const UInt8 * _Null_unspecified buffer, CFIndex bufferLength);
+extern
+CFTypeRef _Null_unspecified CFReadStreamCopyProperty(CFReadStreamRef _Null_unspecified stream, CFStreamPropertyKey _Null_unspecified propertyName);
+extern
+CFTypeRef _Null_unspecified CFWriteStreamCopyProperty(CFWriteStreamRef _Null_unspecified stream, CFStreamPropertyKey _Null_unspecified propertyName);
+
+
 
 extern
-dispatch_queue_t CFWriteStreamCopyDispatchQueue(CFWriteStreamRef stream) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+Boolean CFReadStreamSetProperty(CFReadStreamRef _Null_unspecified stream, CFStreamPropertyKey _Null_unspecified propertyName, CFTypeRef _Null_unspecified propertyValue);
+extern
+Boolean CFWriteStreamSetProperty(CFWriteStreamRef _Null_unspecified stream, CFStreamPropertyKey _Null_unspecified propertyName, CFTypeRef _Null_unspecified propertyValue);
+extern
+Boolean CFReadStreamSetClient(CFReadStreamRef _Null_unspecified stream, CFOptionFlags streamEvents, CFReadStreamClientCallBack _Null_unspecified clientCB, CFStreamClientContext * _Null_unspecified clientContext);
+extern
+Boolean CFWriteStreamSetClient(CFWriteStreamRef _Null_unspecified stream, CFOptionFlags streamEvents, CFWriteStreamClientCallBack _Null_unspecified clientCB, CFStreamClientContext * _Null_unspecified clientContext);
+
+extern
+void CFReadStreamScheduleWithRunLoop(CFReadStreamRef _Null_unspecified stream, CFRunLoopRef _Null_unspecified runLoop, CFRunLoopMode _Null_unspecified runLoopMode);
+extern
+void CFWriteStreamScheduleWithRunLoop(CFWriteStreamRef _Null_unspecified stream, CFRunLoopRef _Null_unspecified runLoop, _Null_unspecified CFRunLoopMode runLoopMode);
+
+extern
+void CFReadStreamUnscheduleFromRunLoop(CFReadStreamRef _Null_unspecified stream, CFRunLoopRef _Null_unspecified runLoop, CFRunLoopMode _Null_unspecified runLoopMode);
+extern
+void CFWriteStreamUnscheduleFromRunLoop(CFWriteStreamRef _Null_unspecified stream, CFRunLoopRef _Null_unspecified runLoop, CFRunLoopMode _Null_unspecified runLoopMode);
+extern
+void CFReadStreamSetDispatchQueue(CFReadStreamRef _Null_unspecified stream, dispatch_queue_t _Null_unspecified q) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
+extern
+void CFWriteStreamSetDispatchQueue(CFWriteStreamRef _Null_unspecified stream, dispatch_queue_t _Null_unspecified q) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
+
+
+
+
+
+extern
+dispatch_queue_t _Null_unspecified CFReadStreamCopyDispatchQueue(CFReadStreamRef _Null_unspecified stream) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
+extern
+dispatch_queue_t _Null_unspecified CFWriteStreamCopyDispatchQueue(CFWriteStreamRef _Null_unspecified stream) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
 
 
@@ -9022,14 +9111,10 @@ typedef CFIndex CFStreamErrorDomain; enum {
     kCFStreamErrorDomainMacOSStatus
 };
 
-typedef struct {
-    CFIndex domain;
-    SInt32 error;
-} CFStreamError;
 extern
-CFStreamError CFReadStreamGetError(CFReadStreamRef stream);
+CFStreamError CFReadStreamGetError(CFReadStreamRef _Null_unspecified stream);
 extern
-CFStreamError CFWriteStreamGetError(CFWriteStreamRef stream);
+CFStreamError CFWriteStreamGetError(CFWriteStreamRef _Null_unspecified stream);
 
 
 }
@@ -11060,8 +11145,11 @@ extern "C" const char *NSGetSizeAndAlignment(const char *typePtr, NSUInteger * _
 
 extern "C" void NSLog(NSString *format, ...) __attribute__((format(__NSString__, 1, 2))) __attribute__((not_tail_called));
 extern "C" void NSLogv(NSString *format, va_list args) __attribute__((format(__NSString__, 1, 0))) __attribute__((not_tail_called));
-
-typedef NSInteger NSComparisonResult; enum {NSOrderedAscending = -1L, NSOrderedSame, NSOrderedDescending};
+typedef NSInteger NSComparisonResult; enum {
+    NSOrderedAscending = -1L,
+    NSOrderedSame,
+    NSOrderedDescending
+};
 
 
 typedef NSComparisonResult (*NSComparator)(id obj1, id obj2);
@@ -11077,21 +11165,11 @@ typedef NSUInteger NSSortOptions; enum {
     NSSortStable = (1UL << 4),
 };
 
-
 typedef NSInteger NSQualityOfService; enum {
-
     NSQualityOfServiceUserInteractive = 0x21,
-
-
     NSQualityOfServiceUserInitiated = 0x19,
-
-
     NSQualityOfServiceUtility = 0x11,
-
-
     NSQualityOfServiceBackground = 0x09,
-
-
     NSQualityOfServiceDefault = -1
 } __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
@@ -11152,12 +11230,12 @@ enum {
 
 extern "C" void *NSAllocateCollectable(NSUInteger size, NSUInteger options) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
 extern "C" void *NSReallocateCollectable(void * _Nullable ptr, NSUInteger size, NSUInteger options) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
-static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
+static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) __attribute__((unavailable("not available in automatic reference counting mode"))) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
 static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) {
 
+    return __null;
 
 
-    return (id)cf;
 
 }
 
@@ -11296,26 +11374,29 @@ __attribute__((unavailable))
 
 
 
-extern "C" id NSAllocateObject(Class aClass, NSUInteger extraBytes, NSZone * _Nullable zone) ;
+extern "C" id NSAllocateObject(Class aClass, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((unavailable("not available in automatic reference counting mode")));
 
-extern "C" void NSDeallocateObject(id object) ;
+extern "C" void NSDeallocateObject(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
 
-extern "C" id NSCopyObject(id object, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=6.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
+extern "C" id NSCopyObject(id object, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((unavailable("not available in automatic reference counting mode"))) __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=6.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
 
-extern "C" BOOL NSShouldRetainWithZone(id anObject, NSZone * _Nullable requestedZone) ;
+extern "C" BOOL NSShouldRetainWithZone(id anObject, NSZone * _Nullable requestedZone) __attribute__((unavailable("not available in automatic reference counting mode")));
 
-extern "C" void NSIncrementExtraRefCount(id object) ;
+extern "C" void NSIncrementExtraRefCount(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
 
-extern "C" BOOL NSDecrementExtraRefCountWasZero(id object) ;
+extern "C" BOOL NSDecrementExtraRefCountWasZero(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
 
-extern "C" NSUInteger NSExtraRefCount(id object) ;
+extern "C" NSUInteger NSExtraRefCount(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
+
+
+
+
 static __inline__ __attribute__((always_inline)) __attribute__((cf_returns_retained)) CFTypeRef _Nullable CFBridgingRetain(id _Nullable X) {
-    return X ? CFRetain((CFTypeRef)X) : __null;
+    return (__bridge_retained CFTypeRef)X;
 }
 
-
 static __inline__ __attribute__((always_inline)) id _Nullable CFBridgingRelease(CFTypeRef __attribute__((cf_consumed)) _Nullable X) {
-    return ((id (*)(id, SEL))(void *)objc_msgSend)((id)CFMakeCollectable(X), sel_registerName("autorelease"));
+    return (__bridge_transfer id)X;
 }
 #pragma clang assume_nonnull end
 
@@ -11804,7 +11885,7 @@ struct NSMutableArray_IMPL {
 
 #pragma clang assume_nonnull begin
 
-
+__attribute__((unavailable("not available in automatic reference counting mode")))
 
 #ifndef _REWRITER_typedef_NSAutoreleasePool
 #define _REWRITER_typedef_NSAutoreleasePool
@@ -12010,7 +12091,7 @@ struct NSItemProvider_IMPL {
 
 
 
-// @property (atomic, copy, nullable) NSString *suggestedName __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+// @property (atomic, copy, nullable) NSString *suggestedName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
 
 
@@ -13022,7 +13103,7 @@ typedef struct {} _objc_exc_NSCountedSet;
 
 struct NSCountedSet_IMPL {
 	struct NSMutableSet_IMPL NSMutableSet_IVARS;
-	id _table;
+	__strong id _table;
 	void *_reserved;
 };
 
@@ -13102,23 +13183,23 @@ struct NSProgress_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSProgress *__weak _parent;
 	int64_t _reserved4;
-	id _values;
+	__strong id _values;
 	void (*_resumingHandler)();
 	void (*_cancellationHandler)();
 	void (*_pausingHandler)();
 	void (*_prioritizationHandler)();
 	uint64_t _flags;
-	id _userInfoProxy;
-	NSString *_publisherID;
-	id _reserved5;
+	__strong id _userInfoProxy;
+	NSString *__strong _publisherID;
+	__strong id _reserved5;
 	NSInteger _reserved6;
 	NSInteger _reserved7;
 	NSInteger _reserved8;
-	NSMutableDictionary *_acknowledgementHandlersByLowercaseBundleID;
-	NSMutableDictionary *_lastNotificationTimesByKey;
-	NSMutableDictionary *_userInfoLastNotificationTimesByKey;
-	NSLock *_lock;
-	NSMutableSet *_children;
+	NSMutableDictionary *__strong _acknowledgementHandlersByLowercaseBundleID;
+	NSMutableDictionary *__strong _lastNotificationTimesByKey;
+	NSMutableDictionary *__strong _userInfoLastNotificationTimesByKey;
+	NSLock *__strong _lock;
+	NSMutableSet *__strong _children;
 };
 
 
@@ -13505,13 +13586,13 @@ typedef struct {} _objc_exc_NSBundle;
 struct NSBundle_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _flags;
-	id _cfBundle;
+	__strong id _cfBundle;
 	NSUInteger _reserved2;
-	Class _principalClass;
-	id _initialPath;
-	id _resolvedPath;
-	id _reserved3;
-	id _lock;
+	__unsafe_unretained Class _principalClass;
+	__strong id _initialPath;
+	__strong id _resolvedPath;
+	__unsafe_unretained Class _firstClass;
+	__strong id _lock;
 };
 
 
@@ -14582,8 +14663,8 @@ struct NSCoder_IMPL {
 // - (nullable id)decodePropertyList;
 
 
-// - (void)setObjectZone:(nullable NSZone *)zone ;
-// - (nullable NSZone *)objectZone ;
+// - (void)setObjectZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (nullable NSZone *)objectZone __attribute__((unavailable("not available in automatic reference counting mode")));
 
 // @property (readonly) unsigned int systemVersion;
 
@@ -15237,7 +15318,7 @@ typedef struct {} _objc_exc_NSDateFormatter;
 
 struct NSDateFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSMutableDictionary *_attributes;
+	NSMutableDictionary *__strong _attributes;
 	CFDateFormatterRef _formatter;
 	NSUInteger _counter;
 };
@@ -15385,17 +15466,17 @@ typedef struct {} _objc_exc_NSDateIntervalFormatter;
 
 struct NSDateIntervalFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSLocale *_locale;
-	NSCalendar *_calendar;
-	NSTimeZone *_timeZone;
-	NSString *_dateTemplate;
-	NSString *_dateTemplateFromStyles;
+	NSLocale *__strong _locale;
+	NSCalendar *__strong _calendar;
+	NSTimeZone *__strong _timeZone;
+	NSString *__strong _dateTemplate;
+	NSString *__strong _dateTemplateFromStyles;
 	void *_formatter;
 	NSDateIntervalFormatterStyle _dateStyle;
 	NSDateIntervalFormatterStyle _timeStyle;
 	BOOL _modified;
 	BOOL _useTemplate;
-	dispatch_semaphore_t _lock;
+	__strong dispatch_semaphore_t _lock;
 	void *_reserved[4];
 };
 
@@ -15486,7 +15567,7 @@ typedef struct {} _objc_exc_NSISO8601DateFormatter;
 struct NSISO8601DateFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
 	CFDateFormatterRef _formatter;
-	NSTimeZone *_timeZone;
+	NSTimeZone *__strong _timeZone;
 	NSISO8601DateFormatOptions _formatOptions;
 };
 
@@ -15762,7 +15843,7 @@ typedef struct {} _objc_exc_NSUnit;
 
 struct NSUnit_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_symbol;
+	NSString *__strong _symbol;
 };
 
 
@@ -15790,7 +15871,7 @@ typedef struct {} _objc_exc_NSDimension;
 struct NSDimension_IMPL {
 	struct NSUnit_IMPL NSUnit_IVARS;
 	NSUInteger _reserved;
-	NSUnitConverter *_converter;
+	NSUnitConverter *__strong _converter;
 };
 
 
@@ -16408,7 +16489,7 @@ typedef struct {} _objc_exc_NSMeasurement;
 
 struct NSMeasurement_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	UnitType _unit;
+	__strong UnitType _unit;
 	double _doubleValue;
 };
 
@@ -16515,11 +16596,11 @@ typedef struct {} _objc_exc_NSNumberFormatter;
 
 struct NSNumberFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSMutableDictionary *_attributes;
+	NSMutableDictionary *__strong _attributes;
 	CFNumberFormatterRef _formatter;
 	NSUInteger _counter;
 	NSNumberFormatterBehavior _behavior;
-	NSRecursiveLock *_lock;
+	NSRecursiveLock *__strong _lock;
 	unsigned long _stateBitMask;
 	NSInteger _cacheGeneration;
 	void *_reserved[8];
@@ -16937,7 +17018,7 @@ typedef struct {} _objc_exc_NSPersonNameComponents;
 
 struct NSPersonNameComponents_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private;
+	__strong id _private;
 };
 
 
@@ -17014,7 +17095,7 @@ typedef struct {} _objc_exc_NSPersonNameComponentsFormatter;
 
 struct NSPersonNameComponentsFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	id _private;
+	__strong id _private;
 };
 
 
@@ -17303,10 +17384,10 @@ typedef struct {} _objc_exc_NSException;
 
 struct NSException_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *name;
-	NSString *reason;
-	NSDictionary *userInfo;
-	id reserved;
+	NSString *__strong name;
+	NSString *__strong reason;
+	NSDictionary *__strong userInfo;
+	__strong id reserved;
 };
 
 
@@ -17613,8 +17694,8 @@ struct NSError_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_reserved;
 	NSInteger _code;
-	NSString *_domain;
-	NSDictionary *_userInfo;
+	NSString *__strong _domain;
+	NSDictionary *__strong _userInfo;
 };
 
 
@@ -17725,11 +17806,11 @@ typedef struct {} _objc_exc_NSRunLoop;
 
 struct NSRunLoop_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _rl;
-	id _dperf;
-	id _perft;
-	id _info;
-	id _ports;
+	__strong id _rl;
+	__strong id _dperf;
+	__strong id _perft;
+	__strong id _info;
+	__strong id _ports;
 	void *_reserved[6];
 };
 
@@ -18127,8 +18208,8 @@ typedef struct {} _objc_exc_NSURLHandle;
 
 struct NSURLHandle_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSMutableArray *_clients;
-	id _data;
+	NSMutableArray *__strong _clients;
+	__strong id _data;
 	NSURLHandleStatus _status;
 	NSInteger _reserved;
 };
@@ -18217,8 +18298,8 @@ typedef struct {} _objc_exc_NSURL;
 
 struct NSURL_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_urlString;
-	NSURL *_baseURL;
+	NSString *__strong _urlString;
+	NSURL *__strong _baseURL;
 	void *_clients;
 	void *_reserved;
 };
@@ -18639,8 +18720,8 @@ typedef struct {} _objc_exc_NSURLQueryItem;
 
 struct NSURLQueryItem_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_name;
-	NSString *_value;
+	NSString *__strong _name;
+	NSString *__strong _value;
 };
 
 // - (instancetype)initWithName:(NSString *)name value:(nullable NSString *)value __attribute__((objc_designated_initializer));
@@ -19335,9 +19416,9 @@ typedef struct {} _objc_exc_NSFileProviderService;
 
 struct NSFileProviderService_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSFileProviderServiceName _name;
-	id _endpointCreatingProxy;
-	dispatch_group_t _requestFinishedGroup;
+	__strong NSFileProviderServiceName _name;
+	__strong id _endpointCreatingProxy;
+	__strong dispatch_group_t _requestFinishedGroup;
 };
 
 // - (void)getFileProviderConnectionWithCompletionHandler:(void (^)(NSXPCConnection * _Nullable connection, NSError * _Nullable error))completionHandler;
@@ -19414,9 +19495,7 @@ typedef NSUInteger NSPointerFunctionsOptions; enum {
 
 
     NSPointerFunctionsStrongMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = (0UL << 0),
-
-    NSPointerFunctionsZeroingWeakMemory __attribute__((availability(macosx,introduced=10_5,deprecated=10_8,message="" ))) = (1UL << 0),
-
+    NSPointerFunctionsZeroingWeakMemory __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable))) = (1UL << 0),
     NSPointerFunctionsOpaqueMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = (2UL << 0),
     NSPointerFunctionsMallocMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = (3UL << 0),
     NSPointerFunctionsMachVirtualMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = (4UL << 0),
@@ -19502,9 +19581,7 @@ typedef struct {} _objc_exc_NSHashTable;
 
 
 static const NSPointerFunctionsOptions NSHashTableStrongMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsStrongMemory;
-
 static const NSPointerFunctionsOptions NSHashTableZeroingWeakMemory __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable))) = NSPointerFunctionsZeroingWeakMemory;
-
 static const NSPointerFunctionsOptions NSHashTableCopyIn __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsCopyIn;
 static const NSPointerFunctionsOptions NSHashTableObjectPointerPersonality __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsObjectPointerPersonality;
 static const NSPointerFunctionsOptions NSHashTableWeakMemory __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsWeakMemory;
@@ -19531,9 +19608,7 @@ struct NSHashTable_IMPL {
 
 // + (NSHashTable<ObjectType> *)hashTableWithOptions:(NSPointerFunctionsOptions)options;
 
-
 // + (id)hashTableWithWeakObjects __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
-
 
 // + (NSHashTable<ObjectType> *)weakObjectsHashTable __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
@@ -19567,13 +19642,6 @@ struct NSHashTable_IMPL {
 
 /* @end */
 
-#pragma clang assume_nonnull end
-
-
-
-
-
-#pragma clang assume_nonnull begin
 
 
 
@@ -19761,7 +19829,7 @@ typedef struct {} _objc_exc_NSHTTPCookie;
 
 struct NSHTTPCookie_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSHTTPCookieInternal *_cookiePrivate;
+	NSHTTPCookieInternal *__strong _cookiePrivate;
 };
 
 // - (nullable instancetype)initWithProperties:(NSDictionary<NSHTTPCookiePropertyKey, id> *)properties;
@@ -19876,7 +19944,7 @@ typedef struct {} _objc_exc_NSHTTPCookieStorage;
 
 struct NSHTTPCookieStorage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSHTTPCookieStorageInternal *_internal;
+	NSHTTPCookieStorageInternal *__strong _internal;
 };
 
 @property(class, readonly, strong) NSHTTPCookieStorage *sharedHTTPCookieStorage;
@@ -20146,8 +20214,8 @@ struct NSInvocation_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_frame;
 	void *_retdata;
-	id _signature;
-	id _container;
+	__strong id _signature;
+	__strong id _container;
 	uint8_t _retainedArgs;
 	uint8_t _reserved[15];
 };
@@ -20979,29 +21047,29 @@ typedef uint32_t CGRectEdge; enum {
 
 
 extern "C" const CGPoint CGPointZero
-      __attribute__((availability(macosx,introduced=10.0)));
+      __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const CGSize CGSizeZero
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const CGRect CGRectZero
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CGRect CGRectNull
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const CGRect CGRectInfinite
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21023,106 +21091,106 @@ static inline CGRect CGRectMake(CGFloat x, CGFloat y, CGFloat width,
 
 
 extern "C" CGFloat CGRectGetMinX(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetMidX(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetMaxX(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetMinY(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetMidY(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetMaxY(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetWidth(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGRectGetHeight(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGPointEqualToPoint(CGPoint point1, CGPoint point2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGSizeEqualToSize(CGSize size1, CGSize size2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGRectEqualToRect(CGRect rect1, CGRect rect2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGRect CGRectStandardize(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGRectIsEmpty(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGRectIsNull(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGRectIsInfinite(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGRect CGRectInset(CGRect rect, CGFloat dx, CGFloat dy)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGRect CGRectIntegral(CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGRect CGRectUnion(CGRect r1, CGRect r2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGRect CGRectIntersection(CGRect r1, CGRect r2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21132,26 +21200,26 @@ extern "C" CGRect CGRectOffset(CGRect rect, CGFloat dx, CGFloat dy)
 
 extern "C" void CGRectDivide(CGRect rect, CGRect * slice,
     CGRect * remainder, CGFloat amount, CGRectEdge edge)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGRectContainsPoint(CGRect rect, CGPoint point)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" bool CGRectContainsRect(CGRect rect1, CGRect rect2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" bool CGRectIntersectsRect(CGRect rect1, CGRect rect2)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21159,7 +21227,7 @@ extern "C" bool CGRectIntersectsRect(CGRect rect1, CGRect rect2)
 
 extern "C" CFDictionaryRef CGPointCreateDictionaryRepresentation(
     CGPoint point)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21167,12 +21235,12 @@ extern "C" CFDictionaryRef CGPointCreateDictionaryRepresentation(
 
 extern "C" bool CGPointMakeWithDictionaryRepresentation(
     CFDictionaryRef _Nullable dict, CGPoint * _Nullable point)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFDictionaryRef CGSizeCreateDictionaryRepresentation(CGSize size)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21180,12 +21248,12 @@ extern "C" CFDictionaryRef CGSizeCreateDictionaryRepresentation(CGSize size)
 
 extern "C" bool CGSizeMakeWithDictionaryRepresentation(
     CFDictionaryRef _Nullable dict, CGSize * _Nullable size)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFDictionaryRef CGRectCreateDictionaryRepresentation(CGRect)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21193,7 +21261,7 @@ extern "C" CFDictionaryRef CGRectCreateDictionaryRepresentation(CGRect)
 
 extern "C" bool CGRectMakeWithDictionaryRepresentation(
     CFDictionaryRef _Nullable dict, CGRect * _Nullable rect)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -21528,31 +21596,32 @@ struct NSKeyedArchiver_IMPL {
 	struct NSCoder_IMPL NSCoder_IVARS;
 	void *_stream;
 	NSUInteger _flags;
-	id _delegate;
-	id _containers;
-	id _objects;
-	id _objRefMap;
-	id _replacementMap;
-	id _classNameMap;
-	id _conditionals;
-	id _classes;
+	__strong id _delegate;
+	__strong id _containers;
+	__strong id _objects;
+	__strong id _objRefMap;
+	__strong id _replacementMap;
+	__strong id _classNameMap;
+	__strong id _conditionals;
+	__strong id _classes;
 	NSUInteger _genericKey;
 	void *_cache;
 	NSUInteger _cacheSize;
 	NSUInteger _estimatedCount;
 	void *_reserved2;
-	id _visited;
+	__strong id _visited;
 	void *_reserved0;
 };
 
+// - (instancetype)initRequiringSecureCoding:(BOOL)requiresSecureCoding __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0)));
+// + (nullable NSData *)archivedDataWithRootObject:(id)object requiringSecureCoding:(BOOL)requiresSecureCoding error:(NSError **)error __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0)));
 
 
-// - (instancetype)init __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
+// - (instancetype)init __attribute__((availability(macosx,introduced=10.12,deprecated=10.14,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(ios,introduced=10.0,deprecated=12.0,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(watchos,introduced=3.0,deprecated=5.0,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(tvos,introduced=10.0,deprecated=12.0,message="Use -initRequiringSecureCoding: instead")));
+// - (instancetype)initForWritingWithMutableData:(NSMutableData *)data __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use -initRequiringSecureCoding: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use -initRequiringSecureCoding: instead")));
 
-// + (NSData *)archivedDataWithRootObject:(id)rootObject;
-// + (BOOL)archiveRootObject:(id)rootObject toFile:(NSString *)path;
-
-// - (instancetype)initForWritingWithMutableData:(NSMutableData *)data;
+// + (NSData *)archivedDataWithRootObject:(id)rootObject __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead")));
+// + (BOOL)archiveRootObject:(id)rootObject toFile:(NSString *)path __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use +archivedDataWithRootObject:requiringSecureCoding:error: instead")));
 
 // @property (nullable, assign) id <NSKeyedArchiverDelegate> delegate;
 
@@ -21596,30 +21665,34 @@ typedef struct {} _objc_exc_NSKeyedUnarchiver;
 
 struct NSKeyedUnarchiver_IMPL {
 	struct NSCoder_IMPL NSCoder_IVARS;
-	id _delegate;
+	__strong id _delegate;
 	uint32_t _flags;
-	id _objRefMap;
-	id _replacementMap;
-	id _nameClassMap;
-	id _tmpRefObjMap;
-	id _refObjMap;
+	__strong id _objRefMap;
+	__strong id _replacementMap;
+	__strong id _nameClassMap;
+	__strong id _tmpRefObjMap;
+	__strong id _refObjMap;
 	int32_t _genericKey;
-	id _data;
+	__strong id _data;
 	void *_offsetData;
-	id _containers;
-	id _objects;
+	__strong id _containers;
+	__strong id _objects;
 	const uint8_t *_bytes;
 	uint64_t _len;
-	id _helper;
+	__strong id _helper;
 	void *_reserved0;
 };
 
+// - (nullable instancetype)initForReadingFromData:(NSData *)data error:(NSError **)error __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0)));
+// + (nullable id)unarchivedObjectOfClass:(Class)cls fromData:(NSData *)data error:(NSError **)error __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((swift_private));
+// + (nullable id)unarchivedObjectOfClasses:(NSSet<Class> *)classes fromData:(NSData *)data error:(NSError **)error __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((swift_private));
 
-// + (nullable id)unarchiveObjectWithData:(NSData *)data;
-// + (nullable id)unarchiveTopLevelObjectWithData:(NSData *)data error:(NSError **)error __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(swift, unavailable, message="Use 'unarchiveTopLevelObjectWithData(_:) throws' instead")));
-// + (nullable id)unarchiveObjectWithFile:(NSString *)path;
+// - (instancetype)init __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use -initForReadingFromData:error: instead")));
+// - (instancetype)initForReadingWithData:(NSData *)data __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use -initForReadingFromData:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use -initForReadingFromData:error: instead")));
 
-// - (instancetype)initForReadingWithData:(NSData *)data;
+// + (nullable id)unarchiveObjectWithData:(NSData *)data __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead")));
+// + (nullable id)unarchiveTopLevelObjectWithData:(NSData *)data error:(NSError **)error __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(swift, unavailable, message="Use 'unarchiveTopLevelObjectWithData(_:) throws' instead")));
+// + (nullable id)unarchiveObjectWithFile:(NSString *)path __attribute__((availability(macosx,introduced=10.2,deprecated=10.14,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,message="Use +unarchivedObjectOfClass:fromData:error: instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,message="Use +unarchivedObjectOfClass:fromData:error: instead")));
 
 // @property (nullable, assign) id <NSKeyedUnarchiverDelegate> delegate;
 
@@ -21878,9 +21951,7 @@ typedef struct {} _objc_exc_NSMapTable;
 
 
 static const NSPointerFunctionsOptions NSMapTableStrongMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsStrongMemory;
-
-static const NSPointerFunctionsOptions NSMapTableZeroingWeakMemory __attribute__((availability(macosx,introduced=10_5,deprecated=10_8,message="" ))) = NSPointerFunctionsZeroingWeakMemory;
-
+static const NSPointerFunctionsOptions NSMapTableZeroingWeakMemory __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable))) = NSPointerFunctionsZeroingWeakMemory;
 static const NSPointerFunctionsOptions NSMapTableCopyIn __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsCopyIn;
 static const NSPointerFunctionsOptions NSMapTableObjectPointerPersonality __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsObjectPointerPersonality;
 static const NSPointerFunctionsOptions NSMapTableWeakMemory __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsWeakMemory;
@@ -21904,7 +21975,6 @@ struct NSMapTable_IMPL {
 // - (instancetype)initWithKeyPointerFunctions:(NSPointerFunctions *)keyFunctions valuePointerFunctions:(NSPointerFunctions *)valueFunctions capacity:(NSUInteger)initialCapacity __attribute__((objc_designated_initializer));
 
 // + (NSMapTable<KeyType, ObjectType> *)mapTableWithKeyOptions:(NSPointerFunctionsOptions)keyOptions valueOptions:(NSPointerFunctionsOptions)valueOptions;
-
 
 // + (id)mapTableWithStrongToStrongObjects __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 // + (id)mapTableWithWeakToStrongObjects __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="GC no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
@@ -21936,13 +22006,7 @@ struct NSMapTable_IMPL {
 // - (NSDictionary<KeyType, ObjectType> *)dictionaryRepresentation;
 /* @end */
 
-#pragma clang assume_nonnull end
 
-
-
-
-
-#pragma clang assume_nonnull begin
 
 
 
@@ -22002,7 +22066,7 @@ extern "C" const NSMapTableKeyCallBacks NSNonOwnedPointerOrNullMapKeyCallBacks;
 extern "C" const NSMapTableKeyCallBacks NSNonRetainedObjectMapKeyCallBacks;
 extern "C" const NSMapTableKeyCallBacks NSObjectMapKeyCallBacks;
 extern "C" const NSMapTableKeyCallBacks NSOwnedPointerMapKeyCallBacks;
-extern "C" const NSMapTableKeyCallBacks NSIntMapKeyCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern "C" const NSMapTableKeyCallBacks NSIntMapKeyCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
 
 
 
@@ -22011,7 +22075,7 @@ extern "C" const NSMapTableValueCallBacks NSNonOwnedPointerMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSObjectMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSNonRetainedObjectMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSOwnedPointerMapValueCallBacks;
-extern "C" const NSMapTableValueCallBacks NSIntMapValueCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern "C" const NSMapTableValueCallBacks NSIntMapValueCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
 #pragma clang assume_nonnull end
 
 
@@ -22109,11 +22173,11 @@ typedef struct {} _objc_exc_NSNotificationQueue;
 
 struct NSNotificationQueue_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _notificationCenter;
-	id _asapQueue;
-	id _asapObs;
-	id _idleQueue;
-	id _idleObs;
+	__strong id _notificationCenter;
+	__strong id _asapQueue;
+	__strong id _asapObs;
+	__strong id _idleQueue;
+	__strong id _idleObs;
 };
 
 @property (class, readonly, strong) NSNotificationQueue *defaultQueue;
@@ -22188,7 +22252,7 @@ typedef struct {} _objc_exc_NSOperation;
 
 struct NSOperation_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private;
+	__strong id _private;
 	int32_t _private1;
 	int32_t _private1b;
 };
@@ -22246,7 +22310,7 @@ typedef struct {} _objc_exc_NSBlockOperation;
 
 struct NSBlockOperation_IMPL {
 	struct NSOperation_IMPL NSOperation_IVARS;
-	id _private2;
+	__strong id _private2;
 	void *_reserved2;
 };
 
@@ -22271,8 +22335,8 @@ typedef struct {} _objc_exc_NSInvocationOperation;
 
 struct NSInvocationOperation_IMPL {
 	struct NSOperation_IMPL NSOperation_IVARS;
-	id _inv;
-	id _exception;
+	__strong id _inv;
+	__strong id _exception;
 	void *_reserved2;
 };
 
@@ -22302,7 +22366,7 @@ typedef struct {} _objc_exc_NSOperationQueue;
 
 struct NSOperationQueue_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private;
+	__strong id _private;
 	void *_reserved;
 };
 
@@ -22597,7 +22661,7 @@ typedef struct {} _objc_exc_NSMachPort;
 
 struct NSMachPort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
-	id _delegate;
+	__strong id _delegate;
 	NSUInteger _flags;
 	uint32_t _machPort;
 	NSUInteger _reserved;
@@ -22655,7 +22719,7 @@ typedef struct {} _objc_exc_NSMessagePort;
 struct NSMessagePort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
 	void *_port;
-	id _delegate;
+	__strong id _delegate;
 };
 
 
@@ -22677,12 +22741,12 @@ typedef struct {} _objc_exc_NSSocketPort;
 struct NSSocketPort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
 	void *_receiver;
-	id _connectors;
+	__strong id _connectors;
 	void *_loops;
 	void *_data;
-	id _signature;
-	id _delegate;
-	id _lock;
+	__strong id _signature;
+	__strong id _delegate;
+	__strong id _lock;
 	NSUInteger _maxSize;
 	NSUInteger _useCount;
 	NSUInteger _reserved;
@@ -22761,10 +22825,10 @@ typedef struct {} _objc_exc_NSProcessInfo;
 
 struct NSProcessInfo_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSDictionary *environment;
-	NSArray *arguments;
-	NSString *hostName;
-	NSString *name;
+	NSDictionary *__strong environment;
+	NSArray *__strong arguments;
+	NSString *__strong hostName;
+	NSString *__strong name;
 	NSInteger automaticTerminationOptOutCounter;
 };
 
@@ -22943,12 +23007,12 @@ typedef struct {} _objc_exc_NSProxy;
 #endif
 
 struct NSProxy_IMPL {
-	Class isa;
+	__unsafe_unretained Class isa;
 };
 
 
 // + (id)alloc;
-// + (id)allocWithZone:(nullable NSZone *)zone ;
+// + (id)allocWithZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
 // + (Class)class;
 
 // - (void)forwardInvocation:(NSInvocation *)invocation;
@@ -23179,10 +23243,10 @@ typedef struct {} _objc_exc_NSRegularExpression;
 
 struct NSRegularExpression_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_pattern;
+	NSString *__strong _pattern;
 	NSUInteger _options;
 	void *_internal;
-	id _reserved1;
+	__strong id _reserved1;
 	int32_t _checkout;
 	int32_t _reserved2;
 };
@@ -23293,9 +23357,9 @@ typedef struct {} _objc_exc_NSSortDescriptor;
 struct NSSortDescriptor_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _sortDescriptorFlags;
-	NSString *_key;
+	NSString *__strong _key;
 	SEL _selector;
-	id _selectorOrBlock;
+	__strong id _selectorOrBlock;
 };
 
 
@@ -23692,7 +23756,7 @@ typedef struct {} _objc_exc_NSThread;
 
 struct NSThread_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private;
+	__strong id _private;
 	uint8_t _bytes[44];
 };
 
@@ -24052,7 +24116,7 @@ typedef struct {} _objc_exc_NSURLAuthenticationChallenge;
 
 struct NSURLAuthenticationChallenge_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLAuthenticationChallengeInternal *_internal;
+	NSURLAuthenticationChallengeInternal *__strong _internal;
 };
 
 // - (instancetype)initWithProtectionSpace:(NSURLProtectionSpace *)space proposedCredential:(nullable NSURLCredential *)credential previousFailureCount:(NSInteger)previousFailureCount failureResponse:(nullable NSURLResponse *)response error:(nullable NSError *)error sender:(id<NSURLAuthenticationChallengeSender>)sender;
@@ -24150,7 +24214,7 @@ typedef struct {} _objc_exc_NSCachedURLResponse;
 
 struct NSCachedURLResponse_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSCachedURLResponseInternal *_internal;
+	NSCachedURLResponseInternal *__strong _internal;
 };
 
 // - (instancetype)initWithResponse:(NSURLResponse *)response data:(NSData *)data;
@@ -24208,7 +24272,7 @@ typedef struct {} _objc_exc_NSURLCache;
 
 struct NSURLCache_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCacheInternal *_internal;
+	NSURLCacheInternal *__strong _internal;
 };
 
 @property (class, strong) NSURLCache *sharedURLCache;
@@ -24359,7 +24423,7 @@ typedef struct {} _objc_exc_NSURLConnection;
 
 struct NSURLConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLConnectionInternal *_internal;
+	NSURLConnectionInternal *__strong _internal;
 };
 
 
@@ -24483,40 +24547,39 @@ typedef struct __attribute__((objc_bridge(id))) OpaqueSecAccessControlRef *SecAc
 
 
 
-
-
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainRef *SecKeychainRef;
-
-
-
-
-
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainItemRef *SecKeychainItemRef;
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainRef *SecKeychainRef
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainSearchRef *SecKeychainSearchRef;
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainItemRef *SecKeychainItemRef __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef OSType SecKeychainAttrType;
-struct SecKeychainAttribute
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecKeychainSearchRef *SecKeychainSearchRef __attribute__((availability(ios,unavailable)));
+
+
+
+
+
+typedef OSType SecKeychainAttrType __attribute__((availability(ios,unavailable)));
+struct __attribute__((availability(ios,unavailable))) SecKeychainAttribute
 {
     SecKeychainAttrType tag;
     UInt32 length;
     void * _Nullable data;
 };
-typedef struct SecKeychainAttribute SecKeychainAttribute;
+typedef struct SecKeychainAttribute SecKeychainAttribute __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef SecKeychainAttribute *SecKeychainAttributePtr;
+typedef SecKeychainAttribute *SecKeychainAttributePtr __attribute__((availability(ios,unavailable)));
 
 
 
@@ -24524,49 +24587,49 @@ typedef SecKeychainAttribute *SecKeychainAttributePtr;
 
 
 
-struct SecKeychainAttributeList
+struct __attribute__((availability(ios,unavailable))) SecKeychainAttributeList
 {
     UInt32 count;
     SecKeychainAttribute * _Nullable attr;
 };
-typedef struct SecKeychainAttributeList SecKeychainAttributeList;
+typedef struct SecKeychainAttributeList SecKeychainAttributeList __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef UInt32 SecKeychainStatus;
+typedef UInt32 SecKeychainStatus __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecTrustedApplicationRef *SecTrustedApplicationRef;
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecTrustedApplicationRef *SecTrustedApplicationRef __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecAccessRef *SecAccessRef;
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecAccessRef *SecAccessRef __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecTrustRef *SecACLRef;
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecTrustRef *SecACLRef __attribute__((availability(ios,unavailable)));
 
 
 
 
 
-typedef struct __attribute__((objc_bridge(id))) OpaqueSecPasswordRef *SecPasswordRef;
-struct SecKeychainAttributeInfo
+typedef struct __attribute__((objc_bridge(id))) OpaqueSecPasswordRef *SecPasswordRef __attribute__((availability(ios,unavailable)));
+struct __attribute__((availability(ios,unavailable))) SecKeychainAttributeInfo
 {
     UInt32 count;
     UInt32 *tag;
     UInt32 * _Nullable format;
 };
-typedef struct SecKeychainAttributeInfo SecKeychainAttributeInfo;
+typedef struct SecKeychainAttributeInfo SecKeychainAttributeInfo __attribute__((availability(ios,unavailable)));
 _Nullable
 CFStringRef SecCopyErrorMessageString(OSStatus status, void * _Nullable reserved)
     __attribute__((availability(macosx,introduced=10.3)));
@@ -25113,7 +25176,7 @@ enum {
 
 typedef CSSM_SERVICE_MASK CSSM_SERVICE_TYPE;
 
-typedef struct cssm_subservice_uid {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_subservice_uid {
     CSSM_GUID Guid;
     CSSM_VERSION Version;
     uint32 SubserviceId;
@@ -25132,7 +25195,7 @@ typedef CSSM_RETURN ( *CSSM_API_ModuleEventHandler)
      void* AppNotifyCallbackCtx,
      uint32 SubserviceId,
      CSSM_SERVICE_TYPE ServiceType,
-     CSSM_MODULE_EVENT EventType);
+     CSSM_MODULE_EVENT EventType) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef uint32 CSSM_ATTACH_FLAGS;
 enum {
@@ -25167,7 +25230,7 @@ enum {
     CSSM_ADDR_NAME = 4
 };
 
-typedef struct cssm_net_address {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_net_address {
     CSSM_NET_ADDRESS_TYPE AddressType;
     CSSM_DATA Address;
 } CSSM_NET_ADDRESS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_NET_ADDRESS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25189,9 +25252,9 @@ enum {
 };
 
 typedef CSSM_RETURN ( *CSSM_CALLBACK)
-    (CSSM_DATA_PTR OutData, void *CallerCtx);
+    (CSSM_DATA_PTR OutData, void *CallerCtx) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_crypto_data {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_crypto_data {
     CSSM_DATA Param;
     CSSM_CALLBACK Callback;
     void *CallerCtx;
@@ -25358,7 +25421,7 @@ typedef struct cssm_list {
     CSSM_LIST_ELEMENT_PTR Tail;
 } CSSM_LIST __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_LIST_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_list_element {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_list_element {
     struct cssm_list_element *NextElement;
  CSSM_WORDID_TYPE WordID;
 
@@ -25367,9 +25430,9 @@ typedef struct cssm_list_element {
         CSSM_LIST Sublist;
         CSSM_DATA Word;
     } Element;
-} CSSM_LIST_ELEMENT;
+} CSSM_LIST_ELEMENT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) {
  CSSM_LIST Issuer;
  CSSM_LIST Subject;
  CSSM_BOOL Delegate;
@@ -25377,7 +25440,7 @@ typedef struct {
  CSSM_LIST ValidityPeriod;
 } CSSM_TUPLE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TUPLE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tuplegroup {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tuplegroup {
     uint32 NumberOfTuples;
     CSSM_TUPLE_PTR Tuples;
 } CSSM_TUPLEGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TUPLEGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25396,12 +25459,12 @@ enum {
  CSSM_SAMPLE_TYPE_THRESHOLD = CSSM_WORDID_THRESHOLD
 };
 
-typedef struct cssm_sample {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_sample {
     CSSM_LIST TypedSample;
     const CSSM_SUBSERVICE_UID *Verifier;
 } CSSM_SAMPLE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_SAMPLE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_samplegroup {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_samplegroup {
     uint32 NumberOfSamples;
     const CSSM_SAMPLE *Samples;
 } CSSM_SAMPLEGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_SAMPLEGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25432,14 +25495,14 @@ typedef struct cssm_memory_funcs {
     void *AllocRef;
 } CSSM_MEMORY_FUNCS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_MEMORY_FUNCS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef CSSM_MEMORY_FUNCS CSSM_API_MEMORY_FUNCS;
-typedef CSSM_API_MEMORY_FUNCS *CSSM_API_MEMORY_FUNCS_PTR;
+typedef CSSM_MEMORY_FUNCS CSSM_API_MEMORY_FUNCS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
+typedef CSSM_API_MEMORY_FUNCS *CSSM_API_MEMORY_FUNCS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef CSSM_RETURN ( * CSSM_CHALLENGE_CALLBACK)
     (const CSSM_LIST *Challenge,
      CSSM_SAMPLEGROUP_PTR Response,
      void *CallerCtx,
-     const CSSM_MEMORY_FUNCS *MemFuncs);
+     const CSSM_MEMORY_FUNCS *MemFuncs) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef uint32 CSSM_CERT_TYPE, *CSSM_CERT_TYPE_PTR;
 enum {
@@ -25480,7 +25543,7 @@ enum {
  CSSM_CL_CUSTOM_CERT_ENCODING = 0x8000
 };
 
-typedef struct cssm_encoded_cert {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_encoded_cert {
     CSSM_CERT_TYPE CertType;
     CSSM_CERT_ENCODING CertEncoding;
     CSSM_DATA CertBlob;
@@ -25512,7 +25575,7 @@ typedef struct cssm_parsed_cert {
     void *ParsedCert;
 } CSSM_PARSED_CERT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_PARSED_CERT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_cert_pair {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_cert_pair {
     CSSM_ENCODED_CERT EncodedCert;
     CSSM_PARSED_CERT ParsedCert;
 } CSSM_CERT_PAIR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CERT_PAIR_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25525,7 +25588,7 @@ enum {
  CSSM_CERTGROUP_CERT_PAIR = 0x03
 };
 
-typedef struct cssm_certgroup {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_certgroup {
     CSSM_CERT_TYPE CertType;
     CSSM_CERT_ENCODING CertEncoding;
     uint32 NumCerts;
@@ -25541,15 +25604,15 @@ typedef struct cssm_certgroup {
     CSSM_CERTGROUP_TYPE CertGroupType;
 
     void *Reserved;
-} CSSM_CERTGROUP, *CSSM_CERTGROUP_PTR;
+} CSSM_CERTGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CERTGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_base_certs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_base_certs {
     CSSM_TP_HANDLE TPHandle;
     CSSM_CL_HANDLE CLHandle;
     CSSM_CERTGROUP Certs;
 } CSSM_BASE_CERTS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_BASE_CERTS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_access_credentials {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_access_credentials {
     CSSM_STRING EntryTag;
     CSSM_BASE_CERTS BaseCerts;
     CSSM_SAMPLEGROUP Samples;
@@ -25609,12 +25672,12 @@ typedef struct cssm_authorizationgroup {
     CSSM_ACL_AUTHORIZATION_TAG *AuthTags;
 } CSSM_AUTHORIZATIONGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_AUTHORIZATIONGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_acl_validity_period {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_validity_period {
     CSSM_DATA StartDate;
     CSSM_DATA EndDate;
 } CSSM_ACL_VALIDITY_PERIOD __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_ACL_VALIDITY_PERIOD_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_acl_entry_prototype {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_entry_prototype {
     CSSM_LIST TypedSubject;
     CSSM_BOOL Delegate;
     CSSM_AUTHORIZATIONGROUP Authorization;
@@ -25622,7 +25685,7 @@ typedef struct cssm_acl_entry_prototype {
     CSSM_STRING EntryTag;
 } CSSM_ACL_ENTRY_PROTOTYPE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_ACL_ENTRY_PROTOTYPE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_acl_owner_prototype {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_owner_prototype {
     CSSM_LIST TypedSubject;
     CSSM_BOOL Delegate;
 } CSSM_ACL_OWNER_PROTOTYPE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_ACL_OWNER_PROTOTYPE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25631,22 +25694,22 @@ typedef CSSM_RETURN ( * CSSM_ACL_SUBJECT_CALLBACK)
     (const CSSM_LIST *SubjectRequest,
      CSSM_LIST_PTR SubjectResponse,
      void *CallerContext,
-     const CSSM_MEMORY_FUNCS *MemFuncs);
+     const CSSM_MEMORY_FUNCS *MemFuncs) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_acl_entry_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_entry_input {
     CSSM_ACL_ENTRY_PROTOTYPE Prototype;
     CSSM_ACL_SUBJECT_CALLBACK Callback;
     void *CallerContext;
 } CSSM_ACL_ENTRY_INPUT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_ACL_ENTRY_INPUT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_resource_control_context {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_resource_control_context {
     CSSM_ACCESS_CREDENTIALS_PTR AccessCred;
     CSSM_ACL_ENTRY_INPUT InitialAclEntry;
 } CSSM_RESOURCE_CONTROL_CONTEXT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_RESOURCE_CONTROL_CONTEXT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef CSSM_HANDLE CSSM_ACL_HANDLE;
 
-typedef struct cssm_acl_entry_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_entry_info {
     CSSM_ACL_ENTRY_PROTOTYPE EntryPublicInfo;
     CSSM_ACL_HANDLE EntryHandle;
 } CSSM_ACL_ENTRY_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_ACL_ENTRY_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -25658,7 +25721,7 @@ enum {
  CSSM_ACL_EDIT_MODE_REPLACE = 3
 };
 
-typedef struct cssm_acl_edit {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_acl_edit {
     CSSM_ACL_EDIT_MODE EditMode;
     CSSM_ACL_HANDLE OldEntryHandle;
     const CSSM_ACL_ENTRY_INPUT *NewEntry;
@@ -25957,7 +26020,7 @@ enum {
  CSSM_ALGMODE_VENDOR_DEFINED = CSSM_ALGMODE_NONE + 0x80000000
 };
 
-typedef struct cssm_keyheader {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_keyheader {
     CSSM_HEADERVERSION HeaderVersion;
     CSSM_GUID CspId;
     CSSM_KEYBLOB_TYPE BlobType;
@@ -25974,12 +26037,12 @@ typedef struct cssm_keyheader {
     uint32 Reserved;
 } CSSM_KEYHEADER __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KEYHEADER_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_key {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_key {
     CSSM_KEYHEADER KeyHeader;
     CSSM_DATA KeyData;
 } CSSM_KEY __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KEY_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef CSSM_KEY CSSM_WRAP_KEY, *CSSM_WRAP_KEY_PTR;
+typedef CSSM_KEY CSSM_WRAP_KEY __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_WRAP_KEY_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef uint32 CSSM_CSPTYPE;
 enum {
@@ -26093,10 +26156,10 @@ enum {
 
 typedef CSSM_ALGORITHMS CSSM_KEY_TYPE;
 
-typedef struct cssm_context_attribute {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_context_attribute {
     CSSM_ATTRIBUTE_TYPE AttributeType;
     uint32 AttributeLength;
-    union cssm_context_attribute_value {
+    union __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_context_attribute_value {
         char *String;
         uint32 Uint32;
         CSSM_ACCESS_CREDENTIALS_PTR AccessCredentials;
@@ -26110,9 +26173,9 @@ typedef struct cssm_context_attribute {
         CSSM_DL_DB_HANDLE_PTR DLDBHandle;
         struct cssm_kr_profile *KRProfile;
     } Attribute;
-} CSSM_CONTEXT_ATTRIBUTE, *CSSM_CONTEXT_ATTRIBUTE_PTR;
+} CSSM_CONTEXT_ATTRIBUTE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CONTEXT_ATTRIBUTE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_context {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_context {
     CSSM_CONTEXT_TYPE ContextType;
     CSSM_ALGORITHMS AlgorithmType;
     uint32 NumberOfAttributes;
@@ -26170,7 +26233,7 @@ enum {
  CSSM_PKCS_OAEP_PSOURCE_Pspecified = CSSM_PKCS_OAEP_PSOURCE_NONE + 1
 };
 
-typedef struct cssm_pkcs1_oaep_params {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_pkcs1_oaep_params {
     uint32 HashAlgorithm;
     CSSM_DATA HashParams;
     CSSM_PKCS_OAEP_MGF MGF;
@@ -26199,7 +26262,7 @@ enum {
  CSSM_VALUE_NOT_AVAILABLE = -1
 };
 
-typedef struct cssm_pkcs5_pbkdf1_params {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_pkcs5_pbkdf1_params {
     CSSM_DATA Passphrase;
     CSSM_DATA InitVector;
 } CSSM_PKCS5_PBKDF1_PARAMS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_PKCS5_PBKDF1_PARAMS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26209,12 +26272,12 @@ enum {
  CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1 = 0
 };
 
-typedef struct cssm_pkcs5_pbkdf2_params {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_pkcs5_pbkdf2_params {
  CSSM_DATA Passphrase;
  CSSM_PKCS5_PBKDF2_PRF PseudoRandomFunction;
 } CSSM_PKCS5_PBKDF2_PARAMS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_PKCS5_PBKDF2_PARAMS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_kea_derive_params {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_kea_derive_params {
     CSSM_DATA Rb;
     CSSM_DATA Yb;
 } CSSM_KEA_DERIVE_PARAMS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KEA_DERIVE_PARAMS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26222,7 +26285,7 @@ typedef struct cssm_kea_derive_params {
 
 
 
-typedef struct cssm_tp_authority_id {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_authority_id {
     CSSM_DATA *AuthorityCert;
     CSSM_NET_ADDRESS_PTR AuthorityLocation;
 } CSSM_TP_AUTHORITY_ID __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_AUTHORITY_ID_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26242,18 +26305,18 @@ enum {
 typedef CSSM_RETURN ( * CSSM_TP_VERIFICATION_RESULTS_CALLBACK)
  (CSSM_MODULE_HANDLE ModuleHandle,
   void *CallerCtx,
-  CSSM_DATA_PTR VerifiedCert);
+  CSSM_DATA_PTR VerifiedCert) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef CSSM_DATA CSSM_OID, *CSSM_OID_PTR;
+typedef CSSM_DATA CSSM_OID __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_OID_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_field {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_field {
     CSSM_OID FieldOid;
     CSSM_DATA FieldValue;
 } CSSM_FIELD __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_FIELD_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_tp_policyinfo {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_policyinfo {
     uint32 NumberOfPolicyIds;
     CSSM_FIELD_PTR PolicyIds;
     void *PolicyControl;
@@ -26285,13 +26348,13 @@ enum {
 typedef char *CSSM_TIMESTRING;
 
 
-typedef struct cssm_dl_db_list {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_dl_db_list {
     uint32 NumHandles;
     CSSM_DL_DB_HANDLE_PTR DLDBHandle;
 } CSSM_DL_DB_LIST __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DL_DB_LIST_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_tp_callerauth_context {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_callerauth_context {
     CSSM_TP_POLICYINFO Policy;
     CSSM_TIMESTRING VerifyTime;
     CSSM_TP_STOP_ON VerificationAbortOn;
@@ -26339,7 +26402,7 @@ enum {
     CSSM_CRL_ENCODING_MULTIPLE = 0x7FFE
 };
 
-typedef struct cssm_encoded_crl {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_encoded_crl {
     CSSM_CRL_TYPE CrlType;
     CSSM_CRL_ENCODING CrlEncoding;
     CSSM_DATA CrlBlob;
@@ -26353,7 +26416,7 @@ typedef struct cssm_parsed_crl {
     void *ParsedCrl;
 } CSSM_PARSED_CRL __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_PARSED_CRL_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_crl_pair {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_crl_pair {
     CSSM_ENCODED_CRL EncodedCrl;
     CSSM_PARSED_CRL ParsedCrl;
 } CSSM_CRL_PAIR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CRL_PAIR_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26366,7 +26429,7 @@ enum {
  CSSM_CRLGROUP_CRL_PAIR = 0x03
 };
 
-typedef struct cssm_crlgroup {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_crlgroup {
     CSSM_CRL_TYPE CrlType;
     CSSM_CRL_ENCODING CrlEncoding;
     uint32 NumberOfCrls;
@@ -26377,9 +26440,9 @@ typedef struct cssm_crlgroup {
         CSSM_CRL_PAIR_PTR PairCrlList;
     } GroupCrlList;
     CSSM_CRLGROUP_TYPE CrlGroupType;
-} CSSM_CRLGROUP, *CSSM_CRLGROUP_PTR;
+} CSSM_CRLGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CRLGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_fieldgroup {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_fieldgroup {
     int NumberOfFields;
     CSSM_FIELD_PTR Fields;
 } CSSM_FIELDGROUP __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_FIELDGROUP_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26398,24 +26461,24 @@ enum {
  CSSM_EVIDENCE_FORM_TUPLEGROUP = 0x9
 };
 
-typedef struct cssm_evidence {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_evidence {
     CSSM_EVIDENCE_FORM EvidenceForm;
     void *Evidence;
 } CSSM_EVIDENCE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_EVIDENCE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_verify_context {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_verify_context {
     CSSM_TP_ACTION Action;
     CSSM_DATA ActionData;
     CSSM_CRLGROUP Crls;
     CSSM_TP_CALLERAUTH_CONTEXT_PTR Cred;
 } CSSM_TP_VERIFY_CONTEXT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_VERIFY_CONTEXT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_verify_context_result {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_verify_context_result {
     uint32 NumberOfEvidences;
     CSSM_EVIDENCE_PTR Evidence;
 } CSSM_TP_VERIFY_CONTEXT_RESULT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_VERIFY_CONTEXT_RESULT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_request_set {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_request_set {
     uint32 NumberOfRequests;
     void *Requests;
 } CSSM_TP_REQUEST_SET __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_REQUEST_SET_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26437,7 +26500,7 @@ enum {
 
 };
 
-typedef struct cssm_tp_confirm_response {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_confirm_response {
     uint32 NumberOfResponses;
     CSSM_TP_CONFIRM_STATUS_PTR Responses;
 } CSSM_TP_CONFIRM_RESPONSE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_CONFIRM_RESPONSE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26451,7 +26514,7 @@ enum {
  CSSM_ELAPSED_TIME_COMPLETE = -2
 };
 
-typedef struct cssm_tp_certissue_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certissue_input {
     CSSM_SUBSERVICE_UID CSPSubserviceUid;
     CSSM_CL_HANDLE CLHandle;
     uint32 NumberOfTemplateFields;
@@ -26486,7 +26549,7 @@ enum {
 
 };
 
-typedef struct cssm_tp_certissue_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certissue_output {
     CSSM_TP_CERTISSUE_STATUS IssueStatus;
     CSSM_CERTGROUP_PTR CertGroup;
     CSSM_TP_SERVICES PerformedServiceRequests;
@@ -26533,7 +26596,7 @@ enum {
 
 };
 
-typedef struct cssm_tp_certchange_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certchange_input {
     CSSM_TP_CERTCHANGE_ACTION Action;
     CSSM_TP_CERTCHANGE_REASON Reason;
     CSSM_CL_HANDLE CLHandle;
@@ -26566,12 +26629,12 @@ enum {
 
 };
 
-typedef struct cssm_tp_certchange_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certchange_output {
     CSSM_TP_CERTCHANGE_STATUS ActionStatus;
     CSSM_FIELD RevokeInfo;
 } CSSM_TP_CERTCHANGE_OUTPUT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_CERTCHANGE_OUTPUT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_certverify_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certverify_input {
     CSSM_CL_HANDLE CLHandle;
     CSSM_DATA_PTR Cert;
     CSSM_TP_VERIFY_CONTEXT_PTR VerifyContext;
@@ -26598,13 +26661,13 @@ enum {
  CSSM_TP_CERTVERIFY_UNKNOWN_CRITICAL_EXT = 0x10
 };
 
-typedef struct cssm_tp_certverify_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certverify_output {
     CSSM_TP_CERTVERIFY_STATUS VerifyStatus;
     uint32 NumberOfEvidence;
     CSSM_EVIDENCE_PTR Evidence;
 } CSSM_TP_CERTVERIFY_OUTPUT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_CERTVERIFY_OUTPUT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_certnotarize_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certnotarize_input {
     CSSM_CL_HANDLE CLHandle;
     uint32 NumberOfFields;
     CSSM_FIELD_PTR MoreFields;
@@ -26640,13 +26703,13 @@ enum {
 
 };
 
-typedef struct cssm_tp_certnotarize_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certnotarize_output {
     CSSM_TP_CERTNOTARIZE_STATUS NotarizeStatus;
     CSSM_CERTGROUP_PTR NotarizedCertGroup;
     CSSM_TP_SERVICES PerformedServiceRequests;
 } CSSM_TP_CERTNOTARIZE_OUTPUT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_CERTNOTARIZE_OUTPUT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_certreclaim_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certreclaim_input {
     CSSM_CL_HANDLE CLHandle;
     uint32 NumberOfSelectionFields;
     CSSM_FIELD_PTR SelectionFields;
@@ -26674,13 +26737,13 @@ enum {
 
 };
 
-typedef struct cssm_tp_certreclaim_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_certreclaim_output {
     CSSM_TP_CERTRECLAIM_STATUS ReclaimStatus;
     CSSM_CERTGROUP_PTR ReclaimedCertGroup;
     CSSM_LONG_HANDLE KeyCacheHandle;
 } CSSM_TP_CERTRECLAIM_OUTPUT __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_TP_CERTRECLAIM_OUTPUT_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_tp_crlissue_input {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_crlissue_input {
     CSSM_CL_HANDLE CLHandle;
     uint32 CrlIdentifier;
     CSSM_TIMESTRING CrlThisTime;
@@ -26722,7 +26785,7 @@ enum {
 
 };
 
-typedef struct cssm_tp_crlissue_output {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_tp_crlissue_output {
     CSSM_TP_CRLISSUE_STATUS IssueStatus;
     CSSM_ENCODED_CRL_PTR Crl;
     CSSM_TIMESTRING CrlNextTime;
@@ -26772,12 +26835,12 @@ enum {
     CSSM_CERT_BUNDLE_ENCODING_PGP = 0x05
 };
 
-typedef struct cssm_cert_bundle_header {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_cert_bundle_header {
     CSSM_CERT_BUNDLE_TYPE BundleType;
     CSSM_CERT_BUNDLE_ENCODING BundleEncoding;
 } CSSM_CERT_BUNDLE_HEADER __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CERT_BUNDLE_HEADER_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_cert_bundle {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_cert_bundle {
     CSSM_CERT_BUNDLE_HEADER BundleHeader;
     CSSM_DATA Bundle;
 } CSSM_CERT_BUNDLE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_CERT_BUNDLE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26808,17 +26871,17 @@ enum {
     CSSM_DB_ATTRIBUTE_FORMAT_COMPLEX = 8
 };
 
-typedef struct cssm_db_attribute_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_attribute_info {
     CSSM_DB_ATTRIBUTE_NAME_FORMAT AttributeNameFormat;
-    union cssm_db_attribute_label {
+    union __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_attribute_label {
         char *AttributeName;
         CSSM_OID AttributeOID;
         uint32 AttributeID;
     } Label;
     CSSM_DB_ATTRIBUTE_FORMAT AttributeFormat;
-} CSSM_DB_ATTRIBUTE_INFO, *CSSM_DB_ATTRIBUTE_INFO_PTR;
+} CSSM_DB_ATTRIBUTE_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_ATTRIBUTE_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_db_attribute_data {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_attribute_data {
     CSSM_DB_ATTRIBUTE_INFO Info;
     uint32 NumberOfValues;
     CSSM_DATA_PTR Value;
@@ -26861,20 +26924,20 @@ enum {
  CSSM_DB_CERT_USE_PRIVACY = 0x00000020
 };
 
-typedef struct cssm_db_record_attribute_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_record_attribute_info {
     CSSM_DB_RECORDTYPE DataRecordType;
     uint32 NumberOfAttributes;
     CSSM_DB_ATTRIBUTE_INFO_PTR AttributeInfo;
 } CSSM_DB_RECORD_ATTRIBUTE_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_db_record_attribute_data {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_record_attribute_data {
     CSSM_DB_RECORDTYPE DataRecordType;
     uint32 SemanticInformation;
     uint32 NumberOfAttributes;
     CSSM_DB_ATTRIBUTE_DATA_PTR AttributeData;
 } CSSM_DB_RECORD_ATTRIBUTE_DATA __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_db_parsing_module_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_parsing_module_info {
     CSSM_DB_RECORDTYPE RecordType;
     CSSM_SUBSERVICE_UID ModuleSubserviceUid;
 } CSSM_DB_PARSING_MODULE_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_PARSING_MODULE_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26892,18 +26955,18 @@ enum {
     CSSM_DB_INDEX_ON_RECORD = 2
 };
 
-typedef struct cssm_db_index_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_index_info {
     CSSM_DB_INDEX_TYPE IndexType;
     CSSM_DB_INDEXED_DATA_LOCATION IndexedDataLocation;
     CSSM_DB_ATTRIBUTE_INFO Info;
 } CSSM_DB_INDEX_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_INDEX_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_db_unique_record {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_unique_record {
     CSSM_DB_INDEX_INFO RecordLocator;
     CSSM_DATA RecordIdentifier;
 } CSSM_DB_UNIQUE_RECORD __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_DB_UNIQUE_RECORD_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_db_record_index_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_record_index_info {
     CSSM_DB_RECORDTYPE DataRecordType;
     uint32 NumberOfIndexes;
     CSSM_DB_INDEX_INFO_PTR IndexInfo;
@@ -26924,7 +26987,7 @@ enum {
  CSSM_DB_MODIFY_ATTRIBUTE_REPLACE = CSSM_DB_MODIFY_ATTRIBUTE_NONE + 3
 };
 
-typedef struct cssm_dbinfo {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_dbinfo {
 
 
 
@@ -26956,7 +27019,7 @@ enum {
     CSSM_DB_OR = 2
 };
 
-typedef struct cssm_selection_predicate {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_selection_predicate {
     CSSM_DB_OPERATOR DbOperator;
     CSSM_DB_ATTRIBUTE_DATA Attribute;
 } CSSM_SELECTION_PREDICATE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_SELECTION_PREDICATE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26969,7 +27032,7 @@ enum {
  CSSM_QUERY_SIZELIMIT_NONE = 0
 };
 
-typedef struct cssm_query_limits {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_query_limits {
     uint32 TimeLimit;
     uint32 SizeLimit;
 } CSSM_QUERY_LIMITS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_QUERY_LIMITS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -26979,7 +27042,7 @@ enum {
  CSSM_QUERY_RETURN_DATA = 0x01
 };
 
-typedef struct cssm_query {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_query {
     CSSM_DB_RECORDTYPE RecordType;
     CSSM_DB_CONJUNCTIVE Conjunctive;
     uint32 NumSelectionPredicates;
@@ -27024,7 +27087,7 @@ enum {
  CSSM_DB_FILESYSTEMSCAN_MODE = 1
 };
 
-typedef struct cssm_db_schema_attribute_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_db_schema_attribute_info {
     uint32 AttributeId;
     char *AttributeName;
     CSSM_OID AttributeNameID;
@@ -27049,42 +27112,42 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 typedef uint8 CSSM_BER_TAG;
-typedef struct cssm_x509_algorithm_identifier {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_algorithm_identifier {
     CSSM_OID algorithm;
     CSSM_DATA parameters;
 } CSSM_X509_ALGORITHM_IDENTIFIER __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_ALGORITHM_IDENTIFIER_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_type_value_pair {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_type_value_pair {
     CSSM_OID type;
     CSSM_BER_TAG valueType;
 
     CSSM_DATA value;
 } CSSM_X509_TYPE_VALUE_PAIR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_TYPE_VALUE_PAIR_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_rdn {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_rdn {
     uint32 numberOfPairs;
     CSSM_X509_TYPE_VALUE_PAIR_PTR AttributeTypeAndValue;
 } CSSM_X509_RDN __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_RDN_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_name {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_name {
     uint32 numberOfRDNs;
     CSSM_X509_RDN_PTR RelativeDistinguishedName;
 } CSSM_X509_NAME __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_NAME_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_subject_public_key_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_subject_public_key_info {
     CSSM_X509_ALGORITHM_IDENTIFIER algorithm;
     CSSM_DATA subjectPublicKey;
 } CSSM_X509_SUBJECT_PUBLIC_KEY_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_time {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_time {
     CSSM_BER_TAG timeType;
     CSSM_DATA time;
 } CSSM_X509_TIME __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_TIME_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct x509_validity {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) x509_validity {
     CSSM_X509_TIME notBefore;
     CSSM_X509_TIME notAfter;
 } CSSM_X509_VALIDITY __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_VALIDITY_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -27093,7 +27156,7 @@ typedef struct x509_validity {
 
 typedef CSSM_BOOL CSSM_X509_OPTION;
 
-typedef struct cssm_x509ext_basicConstraints {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_basicConstraints {
     CSSM_BOOL cA;
     CSSM_X509_OPTION pathLenConstraintPresent;
     uint32 pathLenConstraint;
@@ -27105,22 +27168,22 @@ typedef enum extension_data_format {
     CSSM_X509_DATAFORMAT_PAIR
 } CSSM_X509EXT_DATA_FORMAT;
 
-typedef struct cssm_x509_extensionTagAndValue {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_extensionTagAndValue {
     CSSM_BER_TAG type;
     CSSM_DATA value;
 } CSSM_X509EXT_TAGandVALUE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509EXT_TAGandVALUE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509ext_pair {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_pair {
     CSSM_X509EXT_TAGandVALUE tagAndValue;
     void *parsedValue;
 } CSSM_X509EXT_PAIR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509EXT_PAIR_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_extension {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_extension {
     CSSM_OID extnId;
     CSSM_BOOL critical;
     CSSM_X509EXT_DATA_FORMAT format;
-    union cssm_x509ext_value {
+    union __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_value {
         CSSM_X509EXT_TAGandVALUE *tagAndValue;
         void *parsedValue;
         CSSM_X509EXT_PAIR *valuePair;
@@ -27128,13 +27191,13 @@ typedef struct cssm_x509_extension {
     CSSM_DATA BERvalue;
 } CSSM_X509_EXTENSION __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_EXTENSION_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_extensions {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_extensions {
     uint32 numberOfExtensions;
     CSSM_X509_EXTENSION_PTR extensions;
 } CSSM_X509_EXTENSIONS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_EXTENSIONS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_tbs_certificate {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_tbs_certificate {
     CSSM_DATA version;
     CSSM_DATA serialNumber;
     CSSM_X509_ALGORITHM_IDENTIFIER signature;
@@ -27148,28 +27211,28 @@ typedef struct cssm_x509_tbs_certificate {
 } CSSM_X509_TBS_CERTIFICATE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_TBS_CERTIFICATE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_signature {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_signature {
     CSSM_X509_ALGORITHM_IDENTIFIER algorithmIdentifier;
     CSSM_DATA encrypted;
 } CSSM_X509_SIGNATURE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_SIGNATURE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_signed_certificate {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_signed_certificate {
     CSSM_X509_TBS_CERTIFICATE certificate;
     CSSM_X509_SIGNATURE signature;
 } CSSM_X509_SIGNED_CERTIFICATE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_SIGNED_CERTIFICATE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509ext_policyQualifierInfo {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_policyQualifierInfo {
     CSSM_OID policyQualifierId;
     CSSM_DATA value;
 } CSSM_X509EXT_POLICYQUALIFIERINFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509EXT_POLICYQUALIFIERINFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509ext_policyQualifiers {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_policyQualifiers {
     uint32 numberOfPolicyQualifiers;
     CSSM_X509EXT_POLICYQUALIFIERINFO *policyQualifier;
 } CSSM_X509EXT_POLICYQUALIFIERS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509EXT_POLICYQUALIFIERS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509ext_policyInfo {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509ext_policyInfo {
     CSSM_OID policyIdentifier;
     CSSM_X509EXT_POLICYQUALIFIERS policyQualifiers;
 } CSSM_X509EXT_POLICYINFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509EXT_POLICYINFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -27178,19 +27241,19 @@ typedef struct cssm_x509ext_policyInfo {
 
 
 
-typedef struct cssm_x509_revoked_cert_entry {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_revoked_cert_entry {
     CSSM_DATA certificateSerialNumber;
     CSSM_X509_TIME revocationDate;
     CSSM_X509_EXTENSIONS extensions;
 } CSSM_X509_REVOKED_CERT_ENTRY __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_REVOKED_CERT_ENTRY_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_revoked_cert_list {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_revoked_cert_list {
     uint32 numberOfRevokedCertEntries;
     CSSM_X509_REVOKED_CERT_ENTRY_PTR revokedCertEntry;
 } CSSM_X509_REVOKED_CERT_LIST __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_REVOKED_CERT_LIST_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-typedef struct cssm_x509_tbs_certlist {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_tbs_certlist {
     CSSM_DATA version;
     CSSM_X509_ALGORITHM_IDENTIFIER signature;
     CSSM_X509_NAME issuer;
@@ -27200,7 +27263,7 @@ typedef struct cssm_x509_tbs_certlist {
     CSSM_X509_EXTENSIONS extensions;
 } CSSM_X509_TBS_CERTLIST __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_TBS_CERTLIST_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_x509_signed_crl {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_x509_signed_crl {
     CSSM_X509_TBS_CERTLIST tbsCertList;
     CSSM_X509_SIGNATURE signature;
 } CSSM_X509_SIGNED_CRL __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_X509_SIGNED_CRL_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
@@ -27255,14 +27318,24 @@ CFDataRef SecCertificateCopyNormalizedIssuerSequence(SecCertificateRef certifica
 _Nullable
 CFDataRef SecCertificateCopyNormalizedSubjectSequence(SecCertificateRef certificate)
     __attribute__((availability(macosx,introduced=10.12.4)));
+
+
+
+
+
+
+
+_Nullable __attribute__((cf_returns_retained))
+SecKeyRef SecCertificateCopyKey(SecCertificateRef certificate)
+    __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)));
 OSStatus SecCertificateCopyPublicKey(SecCertificateRef certificate, SecKeyRef * _Nonnull __attribute__((cf_returns_retained)) key)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.14,replacement="SecCertificateCopyKey"))) __attribute__((availability(ios,unavailable)));
 _Nullable
 CFDataRef SecCertificateCopySerialNumberData(SecCertificateRef certificate, CFErrorRef *error)
     __attribute__((availability(macosx,introduced=10.13)));
 _Nullable
 CFDataRef SecCertificateCopySerialNumber(SecCertificateRef certificate, CFErrorRef *error)
-    __attribute__((availability(macosx,introduced=10.7,deprecated=10.13,message="SecCertificateCopySerialNumber is deprecated. Use SecCertificateCopySerialNumberData instead.")));
+    __attribute__((availability(macos,introduced=10.7,deprecated=10.13,replacement="SecCertificateCopySerialNumberData"))) __attribute__((availability(ios,unavailable)));
 enum
 {
     kSecSubjectItemAttr = 'subj',
@@ -27460,7 +27533,7 @@ extern const CFStringRef kSecClassIdentity
 extern const CFStringRef kSecAttrAccessible
     __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccess
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrAccessControl
     __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 extern const CFStringRef kSecAttrAccessGroup
@@ -27534,11 +27607,11 @@ extern const CFStringRef kSecAttrApplicationTag
 extern const CFStringRef kSecAttrKeyType
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrPRF
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrSalt
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrRounds
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeySizeInBits
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrEffectiveKeySize
@@ -27666,35 +27739,35 @@ extern const CFStringRef kSecAttrKeyClassSymmetric
 extern const CFStringRef kSecAttrKeyTypeRSA
     __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyTypeDSA
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeAES
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeDES
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyType3DES
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeRC4
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeRC2
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeCAST
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeECDSA
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeEC
     __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrKeyTypeECSECPrimeRandom
     __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA1
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA224
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA256
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA384
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA512
-      __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+      __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchPolicy
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchItemList
@@ -27708,17 +27781,17 @@ extern const CFStringRef kSecMatchEmailAddressIfPresent
 extern const CFStringRef kSecMatchSubjectContains
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchSubjectStartsWith
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchSubjectEndsWith
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchSubjectWholeString
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchCaseInsensitive
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchDiacriticInsensitive
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchWidthInsensitive
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecMatchTrustedOnly
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchValidOnDate
@@ -27744,9 +27817,9 @@ extern const CFStringRef kSecValueRef
 extern const CFStringRef kSecValuePersistentRef
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecUseItemList
-    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 extern const CFStringRef kSecUseKeychain
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecUseOperationPrompt
     __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 extern const CFStringRef kSecUseNoAuthenticationUI
@@ -27852,7 +27925,7 @@ extern const CFStringRef kSecACLAuthorizationIntegrity
 
 
 CFTypeID SecAccessGetTypeID(void);
-OSStatus SecAccessCreate(CFStringRef descriptor, CFArrayRef _Nullable trustedlist, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) accessRef);
+OSStatus SecAccessCreate(CFStringRef descriptor, CFArrayRef _Nullable trustedlist, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) accessRef) __attribute__((availability(ios,unavailable)));
 OSStatus SecAccessCreateFromOwnerAndACL(const CSSM_ACL_OWNER_PROTOTYPE *owner, uint32 aclCount, const CSSM_ACL_ENTRY_INFO *acls, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) accessRef)
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 _Nullable
@@ -27862,7 +27935,7 @@ OSStatus SecAccessGetOwnerAndACL(SecAccessRef accessRef, CSSM_ACL_OWNER_PROTOTYP
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecAccessCopyOwnerAndACL(SecAccessRef accessRef, uid_t * _Nullable userId, gid_t * _Nullable groupId, SecAccessOwnerType * _Nullable ownerType, CFArrayRef * _Nullable __attribute__((cf_returns_retained)) aclList)
  __attribute__((availability(macosx,introduced=10.7)));
-OSStatus SecAccessCopyACLList(SecAccessRef accessRef, CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) aclList);
+OSStatus SecAccessCopyACLList(SecAccessRef accessRef, CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) aclList) __attribute__((availability(ios,unavailable)));
 OSStatus SecAccessCopySelectedACLList(SecAccessRef accessRef, CSSM_ACL_AUTHORIZATION_TAG action, CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) aclList)
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 _Nullable
@@ -28429,13 +28502,6 @@ typedef const struct __SecRandom * SecRandomRef;
 
 extern const SecRandomRef kSecRandomDefault
     __attribute__((availability(macosx,introduced=10.7)));
-
-
-
-
-
-
-
 int SecRandomCopyBytes(SecRandomRef _Nullable rnd, size_t count, void *bytes)
     __attribute__ ((warn_unused_result))
     __attribute__((availability(macosx,introduced=10.7)));
@@ -30228,7 +30294,7 @@ enum
  CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR = 0x00000800
 };
 
-typedef struct {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) {
  CSSM_TP_APPLE_CERT_STATUS StatusBits;
  uint32 NumStatusCodes;
  CSSM_RETURN *StatusCodes;
@@ -30244,7 +30310,7 @@ typedef struct {
 
 
 
-} CSSM_TP_APPLE_EVIDENCE_INFO;
+} CSSM_TP_APPLE_EVIDENCE_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 typedef struct
 {
  uint32 Version;
@@ -30412,14 +30478,14 @@ typedef UInt32 SecKeychainEventMask; enum
  kSecTrustSettingsChangedEventMask = 1 << kSecTrustSettingsChangedEvent,
     kSecEveryEventMask = 0xffffffff
 };
-struct SecKeychainCallbackInfo
+struct __attribute__((availability(ios,unavailable))) SecKeychainCallbackInfo
 {
     UInt32 version;
     SecKeychainItemRef _Nonnull item;
     SecKeychainRef _Nonnull keychain;
  pid_t pid;
 };
-typedef struct SecKeychainCallbackInfo SecKeychainCallbackInfo;
+typedef struct SecKeychainCallbackInfo SecKeychainCallbackInfo __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30436,7 +30502,7 @@ CFTypeID SecKeychainGetTypeID(void);
 
 OSStatus SecKeychainGetVersion(UInt32 * _Nonnull returnVers);
 OSStatus SecKeychainOpen(const char *pathName, SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychain);
-OSStatus SecKeychainCreate(const char *pathName, UInt32 passwordLength, const void * _Nullable password, Boolean promptUser, SecAccessRef _Nullable initialAccess, SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychain);
+OSStatus SecKeychainCreate(const char *pathName, UInt32 passwordLength, const void * _Nullable password, Boolean promptUser, SecAccessRef _Nullable initialAccess, SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychain) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30444,10 +30510,10 @@ OSStatus SecKeychainCreate(const char *pathName, UInt32 passwordLength, const vo
 
 
 
-OSStatus SecKeychainDelete(SecKeychainRef _Nullable keychainOrArray);
-OSStatus SecKeychainSetSettings(SecKeychainRef _Nullable keychain, const SecKeychainSettings *newSettings);
-OSStatus SecKeychainCopySettings(SecKeychainRef _Nullable keychain, SecKeychainSettings *outSettings);
-OSStatus SecKeychainUnlock(SecKeychainRef _Nullable keychain, UInt32 passwordLength, const void * _Nullable password, Boolean usePassword);
+OSStatus SecKeychainDelete(SecKeychainRef _Nullable keychainOrArray) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainSetSettings(SecKeychainRef _Nullable keychain, const SecKeychainSettings *newSettings) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainCopySettings(SecKeychainRef _Nullable keychain, SecKeychainSettings *outSettings) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainUnlock(SecKeychainRef _Nullable keychain, UInt32 passwordLength, const void * _Nullable password, Boolean usePassword) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30455,22 +30521,14 @@ OSStatus SecKeychainUnlock(SecKeychainRef _Nullable keychain, UInt32 passwordLen
 
 
 
-OSStatus SecKeychainLock(SecKeychainRef _Nullable keychain);
+OSStatus SecKeychainLock(SecKeychainRef _Nullable keychain) __attribute__((availability(ios,unavailable)));
 
 
 
 
 
 
-OSStatus SecKeychainLockAll(void);
-
-
-
-
-
-
-
-OSStatus SecKeychainCopyDefault(SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychain);
+OSStatus SecKeychainLockAll(void) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30478,7 +30536,7 @@ OSStatus SecKeychainCopyDefault(SecKeychainRef * _Nonnull __attribute__((cf_retu
 
 
 
-OSStatus SecKeychainSetDefault(SecKeychainRef _Nullable keychain);
+OSStatus SecKeychainCopyDefault(SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychain) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30486,7 +30544,7 @@ OSStatus SecKeychainSetDefault(SecKeychainRef _Nullable keychain);
 
 
 
-OSStatus SecKeychainCopySearchList(CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) searchList);
+OSStatus SecKeychainSetDefault(SecKeychainRef _Nullable keychain) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30494,7 +30552,15 @@ OSStatus SecKeychainCopySearchList(CFArrayRef * _Nonnull __attribute__((cf_retur
 
 
 
-OSStatus SecKeychainSetSearchList(CFArrayRef searchList);
+OSStatus SecKeychainCopySearchList(CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) searchList) __attribute__((availability(ios,unavailable)));
+
+
+
+
+
+
+
+OSStatus SecKeychainSetSearchList(CFArrayRef searchList) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30514,9 +30580,9 @@ OSStatus SecKeychainCopyDomainSearchList(SecPreferencesDomain domain, CFArrayRef
 OSStatus SecKeychainSetDomainSearchList(SecPreferencesDomain domain, CFArrayRef searchList);
 OSStatus SecKeychainSetPreferenceDomain(SecPreferencesDomain domain);
 OSStatus SecKeychainGetPreferenceDomain(SecPreferencesDomain *domain);
-OSStatus SecKeychainGetStatus(SecKeychainRef _Nullable keychain, SecKeychainStatus *keychainStatus);
-OSStatus SecKeychainGetPath(SecKeychainRef _Nullable keychain, UInt32 *ioPathLength, char *pathName);
-OSStatus SecKeychainAttributeInfoForItemID(SecKeychainRef _Nullable keychain, UInt32 itemID, SecKeychainAttributeInfo * _Nullable * _Nonnull info);
+OSStatus SecKeychainGetStatus(SecKeychainRef _Nullable keychain, SecKeychainStatus *keychainStatus) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainGetPath(SecKeychainRef _Nullable keychain, UInt32 *ioPathLength, char *pathName) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainAttributeInfoForItemID(SecKeychainRef _Nullable keychain, UInt32 itemID, SecKeychainAttributeInfo * _Nullable * _Nonnull info) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30524,9 +30590,9 @@ OSStatus SecKeychainAttributeInfoForItemID(SecKeychainRef _Nullable keychain, UI
 
 
 
-OSStatus SecKeychainFreeAttributeInfo(SecKeychainAttributeInfo *info);
-typedef OSStatus (*SecKeychainCallback)(SecKeychainEvent keychainEvent, SecKeychainCallbackInfo *info, void * _Nullable context);
-OSStatus SecKeychainAddCallback(SecKeychainCallback callbackFunction, SecKeychainEventMask eventMask, void * _Nullable userContext);
+OSStatus SecKeychainFreeAttributeInfo(SecKeychainAttributeInfo *info) __attribute__((availability(ios,unavailable)));
+typedef OSStatus (*SecKeychainCallback)(SecKeychainEvent keychainEvent, SecKeychainCallbackInfo *info, void * _Nullable context) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainAddCallback(SecKeychainCallback callbackFunction, SecKeychainEventMask eventMask, void * _Nullable userContext) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30534,12 +30600,12 @@ OSStatus SecKeychainAddCallback(SecKeychainCallback callbackFunction, SecKeychai
 
 
 
-OSStatus SecKeychainRemoveCallback(SecKeychainCallback callbackFunction);
-OSStatus SecKeychainAddInternetPassword(SecKeychainRef _Nullable keychain, UInt32 serverNameLength, const char * _Nullable serverName, UInt32 securityDomainLength, const char * _Nullable securityDomain, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 pathLength, const char * _Nullable path, UInt16 port, SecProtocolType protocol, SecAuthenticationType authenticationType, UInt32 passwordLength, const void *passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef);
-OSStatus SecKeychainFindInternetPassword(CFTypeRef _Nullable keychainOrArray, UInt32 serverNameLength, const char * _Nullable serverName, UInt32 securityDomainLength, const char * _Nullable securityDomain, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 pathLength, const char * _Nullable path, UInt16 port, SecProtocolType protocol, SecAuthenticationType authenticationType, UInt32 * _Nullable passwordLength, void * _Nullable * _Nullable passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef);
-OSStatus SecKeychainAddGenericPassword(SecKeychainRef _Nullable keychain, UInt32 serviceNameLength, const char * _Nullable serviceName, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 passwordLength, const void *passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef);
-OSStatus SecKeychainFindGenericPassword(CFTypeRef _Nullable keychainOrArray, UInt32 serviceNameLength, const char * _Nullable serviceName, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 * _Nullable passwordLength, void * _Nullable * _Nullable passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef);
-OSStatus SecKeychainSetUserInteractionAllowed(Boolean state);
+OSStatus SecKeychainRemoveCallback(SecKeychainCallback callbackFunction) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainAddInternetPassword(SecKeychainRef _Nullable keychain, UInt32 serverNameLength, const char * _Nullable serverName, UInt32 securityDomainLength, const char * _Nullable securityDomain, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 pathLength, const char * _Nullable path, UInt16 port, SecProtocolType protocol, SecAuthenticationType authenticationType, UInt32 passwordLength, const void *passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainFindInternetPassword(CFTypeRef _Nullable keychainOrArray, UInt32 serverNameLength, const char * _Nullable serverName, UInt32 securityDomainLength, const char * _Nullable securityDomain, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 pathLength, const char * _Nullable path, UInt16 port, SecProtocolType protocol, SecAuthenticationType authenticationType, UInt32 * _Nullable passwordLength, void * _Nullable * _Nullable passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainAddGenericPassword(SecKeychainRef _Nullable keychain, UInt32 serviceNameLength, const char * _Nullable serviceName, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 passwordLength, const void *passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainFindGenericPassword(CFTypeRef _Nullable keychainOrArray, UInt32 serviceNameLength, const char * _Nullable serviceName, UInt32 accountNameLength, const char * _Nullable accountName, UInt32 * _Nullable passwordLength, void * _Nullable * _Nullable passwordData, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainSetUserInteractionAllowed(Boolean state) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -30547,7 +30613,7 @@ OSStatus SecKeychainSetUserInteractionAllowed(Boolean state);
 
 
 
-OSStatus SecKeychainGetUserInteractionAllowed(Boolean *state);
+OSStatus SecKeychainGetUserInteractionAllowed(Boolean *state) __attribute__((availability(ios,unavailable)));
 OSStatus SecKeychainGetCSPHandle(SecKeychainRef _Nullable keychain, CSSM_CSP_HANDLE *cspHandle)
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecKeychainGetDLDBHandle(SecKeychainRef _Nullable keychain, CSSM_DL_DB_HANDLE *dldbHandle)
@@ -30713,7 +30779,7 @@ OSStatus SecItemExport(
      SecItemImportExportFlags flags,
      const SecItemImportExportKeyParameters * _Nullable keyParams,
      CFDataRef * _Nonnull __attribute__((cf_returns_retained)) exportedData)
-          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 OSStatus SecKeychainItemImport(
      CFDataRef importedData,
      CFStringRef _Nullable fileNameOrExtension,
@@ -30733,13 +30799,13 @@ OSStatus SecItemImport(
      const SecItemImportExportKeyParameters * _Nullable keyParams,
      SecKeychainRef _Nullable importKeychain,
      CFArrayRef * _Nullable __attribute__((cf_returns_retained)) outItems)
-          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecImportExportPassphrase
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportExportKeychain
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecImportExportAccess
-    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA)));
 extern const CFStringRef kSecImportItemLabel
     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportItemKeyID
@@ -30826,11 +30892,14 @@ OSStatus SecTrustSetVerifyDate(SecTrustRef trust, CFDateRef verifyDate)
     __attribute__((availability(macosx,introduced=10.3)));
 CFAbsoluteTime SecTrustGetVerifyTime(SecTrustRef trust)
     __attribute__((availability(macosx,introduced=10.6)));
-OSStatus SecTrustEvaluate(SecTrustRef trust, SecTrustResultType * _Nullable result)
+OSStatus SecTrustEvaluate(SecTrustRef trust, SecTrustResultType *result)
     __attribute__((availability(macosx,introduced=10.3)));
 OSStatus SecTrustEvaluateAsync(SecTrustRef trust,
     dispatch_queue_t _Nullable queue, SecTrustCallback result)
     __attribute__((availability(macosx,introduced=10.7)));
+__attribute__((warn_unused_result)) bool
+SecTrustEvaluateWithError(SecTrustRef trust, CFErrorRef _Nullable * _Nullable __attribute__((cf_returns_retained)) error)
+    __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(tvos,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0)));
 OSStatus SecTrustGetTrustResult(SecTrustRef trust,
     SecTrustResultType *result)
     __attribute__((availability(macosx,introduced=10.7)));
@@ -30893,9 +30962,1212 @@ OSStatus SecTrustCopyAnchorCertificates(CFArrayRef * _Nonnull __attribute__((cf_
 
 
 }
+extern "C" {
+
+#pragma clang assume_nonnull begin
+extern const CFStringRef kSecSharedPassword __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+void SecAddSharedWebCredential(CFStringRef fqdn, CFStringRef account, CFStringRef _Nullable password,
+    void (^completionHandler)(CFErrorRef _Nullable error)) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+void SecRequestSharedWebCredential(CFStringRef _Nullable fqdn, CFStringRef _Nullable account,
+    void (^completionHandler)(CFArrayRef _Nullable credentials, CFErrorRef _Nullable error)) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
+
+
+
+_Nullable
+CFStringRef SecCreateSharedWebCredentialPassword(void) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+}
+// @protocol OS_sec_object <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_object>*/ * __attribute__((objc_independent_class)) sec_object_t;
+
+typedef uint32_t SSLCipherSuite;
+
+
+
+
+
+enum
+{ SSL_NULL_WITH_NULL_NULL = 0x0000,
+    SSL_RSA_WITH_NULL_MD5 = 0x0001,
+    SSL_RSA_WITH_NULL_SHA = 0x0002,
+    SSL_RSA_EXPORT_WITH_RC4_40_MD5 = 0x0003,
+    SSL_RSA_WITH_RC4_128_MD5 = 0x0004,
+    SSL_RSA_WITH_RC4_128_SHA = 0x0005,
+    SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5 = 0x0006,
+    SSL_RSA_WITH_IDEA_CBC_SHA = 0x0007,
+    SSL_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x0008,
+    SSL_RSA_WITH_DES_CBC_SHA = 0x0009,
+    SSL_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A,
+    SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA = 0x000B,
+    SSL_DH_DSS_WITH_DES_CBC_SHA = 0x000C,
+    SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA = 0x000D,
+    SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x000E,
+    SSL_DH_RSA_WITH_DES_CBC_SHA = 0x000F,
+    SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA = 0x0010,
+    SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA = 0x0011,
+    SSL_DHE_DSS_WITH_DES_CBC_SHA = 0x0012,
+    SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA = 0x0013,
+    SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x0014,
+    SSL_DHE_RSA_WITH_DES_CBC_SHA = 0x0015,
+    SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA = 0x0016,
+    SSL_DH_anon_EXPORT_WITH_RC4_40_MD5 = 0x0017,
+    SSL_DH_anon_WITH_RC4_128_MD5 = 0x0018,
+    SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA = 0x0019,
+    SSL_DH_anon_WITH_DES_CBC_SHA = 0x001A,
+    SSL_DH_anon_WITH_3DES_EDE_CBC_SHA = 0x001B,
+    SSL_FORTEZZA_DMS_WITH_NULL_SHA = 0x001C,
+    SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA = 0x001D,
+
+
+ TLS_RSA_WITH_AES_128_CBC_SHA = 0x002F,
+ TLS_DH_DSS_WITH_AES_128_CBC_SHA = 0x0030,
+ TLS_DH_RSA_WITH_AES_128_CBC_SHA = 0x0031,
+ TLS_DHE_DSS_WITH_AES_128_CBC_SHA = 0x0032,
+ TLS_DHE_RSA_WITH_AES_128_CBC_SHA = 0x0033,
+ TLS_DH_anon_WITH_AES_128_CBC_SHA = 0x0034,
+ TLS_RSA_WITH_AES_256_CBC_SHA = 0x0035,
+ TLS_DH_DSS_WITH_AES_256_CBC_SHA = 0x0036,
+ TLS_DH_RSA_WITH_AES_256_CBC_SHA = 0x0037,
+ TLS_DHE_DSS_WITH_AES_256_CBC_SHA = 0x0038,
+ TLS_DHE_RSA_WITH_AES_256_CBC_SHA = 0x0039,
+ TLS_DH_anon_WITH_AES_256_CBC_SHA = 0x003A,
+
+
+ TLS_ECDH_ECDSA_WITH_NULL_SHA = 0xC001,
+ TLS_ECDH_ECDSA_WITH_RC4_128_SHA = 0xC002,
+ TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA = 0xC003,
+ TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA = 0xC004,
+ TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA = 0xC005,
+ TLS_ECDHE_ECDSA_WITH_NULL_SHA = 0xC006,
+ TLS_ECDHE_ECDSA_WITH_RC4_128_SHA = 0xC007,
+ TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = 0xC008,
+ TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA = 0xC009,
+ TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA = 0xC00A,
+ TLS_ECDH_RSA_WITH_NULL_SHA = 0xC00B,
+ TLS_ECDH_RSA_WITH_RC4_128_SHA = 0xC00C,
+ TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA = 0xC00D,
+ TLS_ECDH_RSA_WITH_AES_128_CBC_SHA = 0xC00E,
+ TLS_ECDH_RSA_WITH_AES_256_CBC_SHA = 0xC00F,
+ TLS_ECDHE_RSA_WITH_NULL_SHA = 0xC010,
+ TLS_ECDHE_RSA_WITH_RC4_128_SHA = 0xC011,
+ TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA = 0xC012,
+ TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA = 0xC013,
+ TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA = 0xC014,
+ TLS_ECDH_anon_WITH_NULL_SHA = 0xC015,
+ TLS_ECDH_anon_WITH_RC4_128_SHA = 0xC016,
+ TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA = 0xC017,
+ TLS_ECDH_anon_WITH_AES_128_CBC_SHA = 0xC018,
+ TLS_ECDH_anon_WITH_AES_256_CBC_SHA = 0xC019,
+
+
+
+
+    TLS_NULL_WITH_NULL_NULL = 0x0000,
+
+
+    TLS_RSA_WITH_NULL_MD5 = 0x0001,
+    TLS_RSA_WITH_NULL_SHA = 0x0002,
+    TLS_RSA_WITH_RC4_128_MD5 = 0x0004,
+    TLS_RSA_WITH_RC4_128_SHA = 0x0005,
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A,
+    TLS_RSA_WITH_NULL_SHA256 = 0x003B,
+    TLS_RSA_WITH_AES_128_CBC_SHA256 = 0x003C,
+    TLS_RSA_WITH_AES_256_CBC_SHA256 = 0x003D,
+
+
+    TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA = 0x000D,
+    TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA = 0x0010,
+    TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA = 0x0013,
+    TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA = 0x0016,
+    TLS_DH_DSS_WITH_AES_128_CBC_SHA256 = 0x003E,
+    TLS_DH_RSA_WITH_AES_128_CBC_SHA256 = 0x003F,
+    TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 = 0x0040,
+    TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 = 0x0067,
+    TLS_DH_DSS_WITH_AES_256_CBC_SHA256 = 0x0068,
+    TLS_DH_RSA_WITH_AES_256_CBC_SHA256 = 0x0069,
+    TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 = 0x006A,
+    TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 = 0x006B,
+
+
+    TLS_DH_anon_WITH_RC4_128_MD5 = 0x0018,
+    TLS_DH_anon_WITH_3DES_EDE_CBC_SHA = 0x001B,
+    TLS_DH_anon_WITH_AES_128_CBC_SHA256 = 0x006C,
+    TLS_DH_anon_WITH_AES_256_CBC_SHA256 = 0x006D,
+
+
+    TLS_PSK_WITH_RC4_128_SHA = 0x008A,
+    TLS_PSK_WITH_3DES_EDE_CBC_SHA = 0x008B,
+    TLS_PSK_WITH_AES_128_CBC_SHA = 0x008C,
+    TLS_PSK_WITH_AES_256_CBC_SHA = 0x008D,
+    TLS_DHE_PSK_WITH_RC4_128_SHA = 0x008E,
+    TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA = 0x008F,
+    TLS_DHE_PSK_WITH_AES_128_CBC_SHA = 0x0090,
+    TLS_DHE_PSK_WITH_AES_256_CBC_SHA = 0x0091,
+    TLS_RSA_PSK_WITH_RC4_128_SHA = 0x0092,
+    TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA = 0x0093,
+    TLS_RSA_PSK_WITH_AES_128_CBC_SHA = 0x0094,
+    TLS_RSA_PSK_WITH_AES_256_CBC_SHA = 0x0095,
+
+
+    TLS_PSK_WITH_NULL_SHA = 0x002C,
+    TLS_DHE_PSK_WITH_NULL_SHA = 0x002D,
+    TLS_RSA_PSK_WITH_NULL_SHA = 0x002E,
+
+
+    TLS_RSA_WITH_AES_128_GCM_SHA256 = 0x009C,
+    TLS_RSA_WITH_AES_256_GCM_SHA384 = 0x009D,
+    TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 = 0x009E,
+    TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 = 0x009F,
+    TLS_DH_RSA_WITH_AES_128_GCM_SHA256 = 0x00A0,
+    TLS_DH_RSA_WITH_AES_256_GCM_SHA384 = 0x00A1,
+    TLS_DHE_DSS_WITH_AES_128_GCM_SHA256 = 0x00A2,
+    TLS_DHE_DSS_WITH_AES_256_GCM_SHA384 = 0x00A3,
+    TLS_DH_DSS_WITH_AES_128_GCM_SHA256 = 0x00A4,
+    TLS_DH_DSS_WITH_AES_256_GCM_SHA384 = 0x00A5,
+    TLS_DH_anon_WITH_AES_128_GCM_SHA256 = 0x00A6,
+    TLS_DH_anon_WITH_AES_256_GCM_SHA384 = 0x00A7,
+
+
+    TLS_PSK_WITH_AES_128_GCM_SHA256 = 0x00A8,
+    TLS_PSK_WITH_AES_256_GCM_SHA384 = 0x00A9,
+    TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 = 0x00AA,
+    TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 = 0x00AB,
+    TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 = 0x00AC,
+    TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 = 0x00AD,
+
+    TLS_PSK_WITH_AES_128_CBC_SHA256 = 0x00AE,
+    TLS_PSK_WITH_AES_256_CBC_SHA384 = 0x00AF,
+    TLS_PSK_WITH_NULL_SHA256 = 0x00B0,
+    TLS_PSK_WITH_NULL_SHA384 = 0x00B1,
+
+    TLS_DHE_PSK_WITH_AES_128_CBC_SHA256 = 0x00B2,
+    TLS_DHE_PSK_WITH_AES_256_CBC_SHA384 = 0x00B3,
+    TLS_DHE_PSK_WITH_NULL_SHA256 = 0x00B4,
+    TLS_DHE_PSK_WITH_NULL_SHA384 = 0x00B5,
+
+    TLS_RSA_PSK_WITH_AES_128_CBC_SHA256 = 0x00B6,
+    TLS_RSA_PSK_WITH_AES_256_CBC_SHA384 = 0x00B7,
+    TLS_RSA_PSK_WITH_NULL_SHA256 = 0x00B8,
+    TLS_RSA_PSK_WITH_NULL_SHA384 = 0x00B9,
+
+
+
+
+    TLS_AES_128_GCM_SHA256 = 0x1301,
+    TLS_AES_256_GCM_SHA384 = 0x1302,
+    TLS_CHACHA20_POLY1305_SHA256 = 0x1303,
+    TLS_AES_128_CCM_SHA256 = 0x1304,
+    TLS_AES_128_CCM_8_SHA256 = 0x1305,
+
+
+
+    TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = 0xC023,
+    TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 = 0xC024,
+    TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256 = 0xC025,
+    TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384 = 0xC026,
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 = 0xC027,
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 = 0xC028,
+    TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256 = 0xC029,
+    TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384 = 0xC02A,
+
+
+
+    TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = 0xC02B,
+    TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 = 0xC02C,
+    TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256 = 0xC02D,
+    TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384 = 0xC02E,
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 = 0xC02F,
+    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 = 0xC030,
+    TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256 = 0xC031,
+    TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384 = 0xC032,
+
+
+
+    TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = 0xCCA8,
+    TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 = 0xCCA9,
+
+
+    TLS_EMPTY_RENEGOTIATION_INFO_SCSV = 0x00FF,
+
+
+
+    SSL_RSA_WITH_RC2_CBC_MD5 = 0xFF80,
+    SSL_RSA_WITH_IDEA_CBC_MD5 = 0xFF81,
+    SSL_RSA_WITH_DES_CBC_MD5 = 0xFF82,
+    SSL_RSA_WITH_3DES_EDE_CBC_MD5 = 0xFF83,
+    SSL_NO_SUCH_CIPHERSUITE = 0xFFFF
+};
+
+
+
+
+
+extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+struct SSLContext;
+typedef struct __attribute__((objc_bridge(id))) SSLContext *SSLContextRef;
+
+
+typedef const void * SSLConnectionRef;
+
+
+typedef int SSLProtocol; enum {
+    kSSLProtocolUnknown = 0,
+    kSSLProtocol3 = 2,
+    kTLSProtocol1 = 4,
+    kTLSProtocol11 = 7,
+    kTLSProtocol12 = 8,
+    kDTLSProtocol1 = 9,
+    kTLSProtocol13 = 10,
+
+    kTLSProtocolMaxSupported = 999,
+
+    kSSLProtocol2 = 1,
+    kSSLProtocol3Only = 3,
+    kTLSProtocol1Only = 5,
+    kSSLProtocolAll = 6,
+};
+
+
+typedef int SSLSessionOption; enum {
+
+
+
+
+
+
+
+ kSSLSessionOptionBreakOnServerAuth = 0,
+
+
+
+
+ kSSLSessionOptionBreakOnCertRequested = 1,
+
+
+
+
+
+
+    kSSLSessionOptionBreakOnClientAuth = 2,
+
+
+
+
+
+    kSSLSessionOptionFalseStart = 3,
+
+
+
+
+
+    kSSLSessionOptionSendOneByteRecord = 4,
+
+
+
+
+    kSSLSessionOptionAllowServerIdentityChange = 5,
+
+
+
+
+    kSSLSessionOptionFallback = 6,
+
+
+
+    kSSLSessionOptionBreakOnClientHello = 7,
+
+
+
+    kSSLSessionOptionAllowRenegotiation = 8,
+
+
+
+    kSSLSessionOptionEnableSessionTickets = 9,
+};
+
+
+typedef int SSLSessionState; enum {
+ kSSLIdle,
+ kSSLHandshake,
+ kSSLConnected,
+ kSSLClosed,
+ kSSLAborted
+};
+
+
+
+
+
+typedef int SSLClientCertificateState; enum {
+
+ kSSLClientCertNone,
+
+ kSSLClientCertRequested,
+
+
+
+
+
+
+ kSSLClientCertSent,
+
+
+
+
+ kSSLClientCertRejected
+};
+
+
+
+
+
+typedef int SSLCiphersuiteGroup; enum {
+    kSSLCiphersuiteGroupDefault,
+    kSSLCiphersuiteGroupCompatibility,
+    kSSLCiphersuiteGroupLegacy,
+    kSSLCiphersuiteGroupATS,
+    kSSLCiphersuiteGroupATSCompatibility,
+};
+typedef OSStatus
+(*SSLReadFunc) (SSLConnectionRef connection,
+        void *data,
+
+
+        size_t *dataLength);
+typedef OSStatus
+(*SSLWriteFunc) (SSLConnectionRef connection,
+        const void *data,
+        size_t *dataLength);
+enum {
+ errSSLProtocol = -9800,
+ errSSLNegotiation = -9801,
+ errSSLFatalAlert = -9802,
+ errSSLWouldBlock = -9803,
+    errSSLSessionNotFound = -9804,
+    errSSLClosedGraceful = -9805,
+    errSSLClosedAbort = -9806,
+    errSSLXCertChainInvalid = -9807,
+    errSSLBadCert = -9808,
+ errSSLCrypto = -9809,
+ errSSLInternal = -9810,
+ errSSLModuleAttach = -9811,
+    errSSLUnknownRootCert = -9812,
+    errSSLNoRootCert = -9813,
+ errSSLCertExpired = -9814,
+ errSSLCertNotYetValid = -9815,
+ errSSLClosedNoNotify = -9816,
+ errSSLBufferOverflow = -9817,
+ errSSLBadCipherSuite = -9818,
+
+
+ errSSLPeerUnexpectedMsg = -9819,
+ errSSLPeerBadRecordMac = -9820,
+ errSSLPeerDecryptionFail = -9821,
+ errSSLPeerRecordOverflow = -9822,
+ errSSLPeerDecompressFail = -9823,
+ errSSLPeerHandshakeFail = -9824,
+ errSSLPeerBadCert = -9825,
+ errSSLPeerUnsupportedCert = -9826,
+ errSSLPeerCertRevoked = -9827,
+ errSSLPeerCertExpired = -9828,
+ errSSLPeerCertUnknown = -9829,
+ errSSLIllegalParam = -9830,
+ errSSLPeerUnknownCA = -9831,
+ errSSLPeerAccessDenied = -9832,
+ errSSLPeerDecodeError = -9833,
+ errSSLPeerDecryptError = -9834,
+ errSSLPeerExportRestriction = -9835,
+ errSSLPeerProtocolVersion = -9836,
+ errSSLPeerInsufficientSecurity = -9837,
+ errSSLPeerInternalError = -9838,
+ errSSLPeerUserCancelled = -9839,
+ errSSLPeerNoRenegotiation = -9840,
+
+
+ errSSLPeerAuthCompleted = -9841,
+ errSSLClientCertRequested = -9842,
+
+
+ errSSLHostNameMismatch = -9843,
+ errSSLConnectionRefused = -9844,
+ errSSLDecryptionFail = -9845,
+ errSSLBadRecordMac = -9846,
+ errSSLRecordOverflow = -9847,
+ errSSLBadConfiguration = -9848,
+ errSSLUnexpectedRecord = -9849,
+    errSSLWeakPeerEphemeralDHKey = -9850,
+
+
+    errSSLClientHelloReceived = -9851,
+
+
+    errSSLTransportReset = -9852,
+    errSSLNetworkTimeout = -9853,
+
+
+    errSSLConfigurationFailed = -9854,
+
+
+    errSSLUnsupportedExtension = -9855,
+    errSSLUnexpectedMessage = -9856,
+    errSSLDecompressFail = -9857,
+    errSSLHandshakeFail = -9858,
+    errSSLDecodeError = -9859,
+    errSSLInappropriateFallback = -9860,
+    errSSLMissingExtension = -9861,
+    errSSLBadCertificateStatusResponse = -9862,
+    errSSLCertificateRequired = -9863,
+    errSSLUnknownPSKIdentity = -9864,
+    errSSLUnrecognizedName = -9865,
+};
+typedef int SSLProtocolSide; enum
+{
+    kSSLServerSide,
+    kSSLClientSide
+};
+
+typedef int SSLConnectionType; enum
+{
+    kSSLStreamType,
+    kSSLDatagramType
+};
+
+
+
+
+
+
+extern const CFStringRef kSSLSessionConfig_default
+__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
+
+
+extern const CFStringRef kSSLSessionConfig_ATSv1
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_ATSv1_noPFS
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_standard
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_RC4_fallback
+__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
+
+
+extern const CFStringRef kSSLSessionConfig_TLSv1_fallback
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_TLSv1_RC4_fallback
+__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
+
+
+extern const CFStringRef kSSLSessionConfig_legacy
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_legacy_DHE
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_anonymous
+__attribute__((availability(macosx,introduced=10.2)));
+
+
+extern const CFStringRef kSSLSessionConfig_3DES_fallback
+__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
+
+
+extern const CFStringRef kSSLSessionConfig_TLSv1_3DES_fallback
+__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
+CFTypeID
+SSLContextGetTypeID(void)
+ __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+_Nullable
+SSLContextRef
+SSLCreateContext(CFAllocatorRef _Nullable alloc, SSLProtocolSide protocolSide, SSLConnectionType connectionType)
+ __attribute__((availability(macosx,introduced=10.8)));
+OSStatus
+SSLNewContext (Boolean isServer,
+        SSLContextRef * _Nonnull __attribute__((cf_returns_retained)) contextPtr)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLDisposeContext (SSLContextRef context)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+
+
+
+
+
+
+OSStatus
+SSLGetSessionState (SSLContextRef context,
+        SSLSessionState *state)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLSetSessionOption (SSLContextRef context,
+        SSLSessionOption option,
+        Boolean value)
+ __attribute__((availability(macosx,introduced=10.6)));
+
+
+
+
+OSStatus
+SSLGetSessionOption (SSLContextRef context,
+        SSLSessionOption option,
+        Boolean *value)
+ __attribute__((availability(macosx,introduced=10.6)));
+OSStatus
+SSLSetIOFuncs (SSLContextRef context,
+        SSLReadFunc readFunc,
+        SSLWriteFunc writeFunc)
+ __attribute__((availability(macosx,introduced=10.2)));
+OSStatus
+SSLSetSessionConfig(SSLContextRef context,
+                    CFStringRef config)
+    __attribute__((availability(macosx,introduced=10.12)));
+OSStatus
+SSLSetProtocolVersionMin (SSLContextRef context,
+                           SSLProtocol minVersion)
+    __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+OSStatus
+SSLGetProtocolVersionMin (SSLContextRef context,
+                           SSLProtocol *minVersion)
+    __attribute__((availability(macosx,introduced=10.8)));
+OSStatus
+SSLSetProtocolVersionMax (SSLContextRef context,
+                           SSLProtocol maxVersion)
+    __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+OSStatus
+SSLGetProtocolVersionMax (SSLContextRef context,
+                           SSLProtocol *maxVersion)
+    __attribute__((availability(macosx,introduced=10.8)));
+OSStatus
+SSLSetProtocolVersionEnabled (SSLContextRef context,
+        SSLProtocol protocol,
+        Boolean enable)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLGetProtocolVersionEnabled(SSLContextRef context,
+        SSLProtocol protocol,
+        Boolean *enable)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLSetProtocolVersion (SSLContextRef context,
+        SSLProtocol version)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
+OSStatus
+SSLGetProtocolVersion (SSLContextRef context,
+        SSLProtocol *protocol)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
+OSStatus
+SSLSetCertificate (SSLContextRef context,
+        CFArrayRef _Nullable certRefs)
+ __attribute__((availability(macosx,introduced=10.2)));
+OSStatus
+SSLSetConnection (SSLContextRef context,
+        SSLConnectionRef _Nullable connection)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+OSStatus
+SSLGetConnection (SSLContextRef context,
+        SSLConnectionRef * _Nonnull __attribute__((cf_returns_not_retained)) connection)
+ __attribute__((availability(macosx,introduced=10.2)));
+OSStatus
+SSLSetPeerDomainName (SSLContextRef context,
+        const char * _Nullable peerName,
+        size_t peerNameLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+OSStatus
+SSLGetPeerDomainNameLength (SSLContextRef context,
+        size_t *peerNameLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+OSStatus
+SSLGetPeerDomainName (SSLContextRef context,
+        char *peerName,
+        size_t *peerNameLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLCopyRequestedPeerName (SSLContextRef context,
+                             char *peerName,
+                             size_t *peerNameLen)
+    __attribute__((availability(macosx,introduced=10.11)));
+
+
+
+
+OSStatus
+SSLCopyRequestedPeerNameLength (SSLContextRef ctx,
+                                 size_t *peerNameLen)
+    __attribute__((availability(macosx,introduced=10.11)));
+
+
+
+
+
+
+
+OSStatus
+SSLSetDatagramHelloCookie (SSLContextRef dtlsContext,
+                             const void * _Nullable cookie,
+                             size_t cookieLen)
+ __attribute__((availability(macosx,introduced=10.8)));
+OSStatus
+SSLSetMaxDatagramRecordSize (SSLContextRef dtlsContext,
+                             size_t maxSize)
+ __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+
+OSStatus
+SSLGetMaxDatagramRecordSize (SSLContextRef dtlsContext,
+                             size_t *maxSize)
+ __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+
+
+
+OSStatus
+SSLGetNegotiatedProtocolVersion (SSLContextRef context,
+          SSLProtocol *protocol)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus
+SSLGetNumberSupportedCiphers (SSLContextRef context,
+         size_t *numCiphers)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+OSStatus
+SSLGetSupportedCiphers (SSLContextRef context,
+         SSLCipherSuite *ciphers,
+         size_t *numCiphers)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus
+SSLSetEnabledCiphers (SSLContextRef context,
+        const SSLCipherSuite *ciphers,
+        size_t numCiphers)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus
+SSLGetNumberEnabledCiphers (SSLContextRef context,
+        size_t *numCiphers)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+OSStatus
+SSLGetEnabledCiphers (SSLContextRef context,
+        SSLCipherSuite *ciphers,
+        size_t *numCiphers)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLSetSessionTicketsEnabled (SSLContextRef context,
+                                 Boolean enabled)
+    __attribute__((availability(macosx,introduced=10.13)));
+OSStatus
+SSLSetEnableCertVerify (SSLContextRef context,
+        Boolean enableVerify)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLGetEnableCertVerify (SSLContextRef context,
+        Boolean *enableVerify)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLSetAllowsExpiredCerts (SSLContextRef context,
+        Boolean allowsExpired)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLGetAllowsExpiredCerts (SSLContextRef context,
+        Boolean *allowsExpired)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLSetAllowsExpiredRoots (SSLContextRef context,
+        Boolean allowsExpired)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLGetAllowsExpiredRoots (SSLContextRef context,
+        Boolean *allowsExpired)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLSetAllowsAnyRoot (SSLContextRef context,
+        Boolean anyRoot)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLGetAllowsAnyRoot (SSLContextRef context,
+        Boolean *anyRoot)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLSetTrustedRoots (SSLContextRef context,
+        CFArrayRef trustedRoots,
+        Boolean replaceExisting)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLCopyTrustedRoots (SSLContextRef context,
+        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) trustedRoots)
+ __attribute__((availability(macosx,introduced=10.5,deprecated=10.9)));
+OSStatus
+SSLCopyPeerCertificates (SSLContextRef context,
+        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) certs)
+ __attribute__((availability(macosx,introduced=10.5,deprecated=10.9)));
+OSStatus
+SSLCopyPeerTrust (SSLContextRef context,
+        SecTrustRef * _Nonnull __attribute__((cf_returns_retained)) trust)
+ __attribute__((availability(macosx,introduced=10.6)));
+OSStatus
+SSLSetPeerID (SSLContextRef context,
+        const void * _Nullable peerID,
+        size_t peerIDLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLGetPeerID (SSLContextRef context,
+        const void * _Nullable * _Nonnull peerID,
+        size_t *peerIDLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLGetNegotiatedCipher (SSLContextRef context,
+        SSLCipherSuite *cipherSuite)
+ __attribute__((availability(macosx,introduced=10.2)));
+OSStatus
+SSLSetALPNProtocols (SSLContextRef context,
+                             CFArrayRef protocols)
+    __attribute__((availability(macosx,introduced=10.13)));
+OSStatus
+SSLCopyALPNProtocols (SSLContextRef context,
+                             CFArrayRef _Nullable * _Nonnull protocols)
+    __attribute__((availability(macosx,introduced=10.13)));
+
+
+
+
+
+
+
+OSStatus
+SSLSetOCSPResponse (SSLContextRef context,
+                             CFDataRef _Nonnull response)
+__attribute__((availability(macosx,introduced=10.13)));
+OSStatus
+SSLSetEncryptionCertificate (SSLContextRef context,
+        CFArrayRef certRefs)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.11)));
+
+
+
+
+
+
+
+typedef int SSLAuthenticate; enum {
+ kNeverAuthenticate,
+ kAlwaysAuthenticate,
+ kTryAuthenticate
+
+};
+
+OSStatus
+SSLSetClientSideAuthenticate (SSLContextRef context,
+         SSLAuthenticate auth)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLAddDistinguishedName (SSLContextRef context,
+        const void * _Nullable derDN,
+        size_t derDNLen)
+ __attribute__((availability(macosx,introduced=10.4)));
+OSStatus
+SSLSetCertificateAuthorities(SSLContextRef context,
+        CFTypeRef certificateOrArray,
+        Boolean replaceExisting)
+ __attribute__((availability(macosx,introduced=10.5)));
+OSStatus
+SSLCopyCertificateAuthorities(SSLContextRef context,
+         CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) certificates)
+ __attribute__((availability(macosx,introduced=10.5)));
+OSStatus
+SSLCopyDistinguishedNames (SSLContextRef context,
+        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) names)
+ __attribute__((availability(macosx,introduced=10.5)));
+
+
+
+
+
+
+
+OSStatus
+SSLGetClientCertificateState (SSLContextRef context,
+         SSLClientCertificateState *clientState)
+ __attribute__((availability(macosx,introduced=10.3)));
+OSStatus SSLSetDiffieHellmanParams (SSLContextRef context,
+          const void * _Nullable dhParams,
+          size_t dhParamsLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus SSLGetDiffieHellmanParams (SSLContextRef context,
+          const void * _Nullable * _Nonnull dhParams,
+          size_t *dhParamsLen)
+ __attribute__((availability(macosx,introduced=10.2)));
+OSStatus SSLSetRsaBlinding (SSLContextRef context,
+          Boolean blinding)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+
+OSStatus SSLGetRsaBlinding (SSLContextRef context,
+          Boolean *blinding)
+ __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+OSStatus
+SSLHandshake (SSLContextRef context)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus
+SSLReHandshake (SSLContextRef context)
+    __attribute__((availability(macosx,introduced=10.12)));
+
+
+
+
+
+
+
+OSStatus
+SSLWrite (SSLContextRef context,
+        const void * _Nullable data,
+        size_t dataLength,
+        size_t *processed)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+OSStatus
+SSLRead (SSLContextRef context,
+        void * data,
+        size_t dataLength,
+        size_t *processed)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+OSStatus
+SSLGetBufferedReadSize (SSLContextRef context,
+        size_t *bufSize)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+
+
+OSStatus
+SSLGetDatagramWriteSize (SSLContextRef dtlsContext,
+        size_t *bufSize)
+ __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+OSStatus
+SSLClose (SSLContextRef context)
+ __attribute__((availability(macosx,introduced=10.2)));
+
+
+
+
+
+OSStatus
+SSLSetError (SSLContextRef context,
+                             OSStatus status)
+    __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
+
+
+
+
+}
+
+
+
+// @protocol OS_sec_trust <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_trust>*/ * __attribute__((objc_independent_class)) sec_trust_t;
+// @protocol OS_sec_identity <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_identity>*/ * __attribute__((objc_independent_class)) sec_identity_t;
+// @protocol OS_sec_certificate <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_certificate>*/ * __attribute__((objc_independent_class)) sec_certificate_t;
+
+
+#pragma clang assume_nonnull begin
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable sec_trust_t
+sec_trust_create(SecTrustRef _Nonnull trust);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+SecTrustRef
+sec_trust_copy_ref(sec_trust_t _Nonnull trust);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable sec_identity_t
+sec_identity_create(SecIdentityRef _Nonnull identity);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable sec_identity_t
+sec_identity_create_with_certificates(SecIdentityRef _Nonnull identity, CFArrayRef _Nonnull certificates);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+SecIdentityRef
+sec_identity_copy_ref(sec_identity_t _Nonnull identity);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+CFArrayRef
+sec_identity_copy_certificates_ref(sec_identity_t _Nonnull identity);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable sec_certificate_t
+sec_certificate_create(SecCertificateRef _Nonnull certificate);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+SecCertificateRef
+sec_certificate_copy_ref(sec_certificate_t _Nonnull certificate);
+#pragma clang assume_nonnull end
+// @protocol OS_sec_protocol_metadata <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_protocol_metadata>*/ * __attribute__((objc_independent_class)) sec_protocol_metadata_t;
+
+
+extern "C" {
+
+#pragma clang assume_nonnull begin
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+const char * _Nullable
+sec_protocol_metadata_get_negotiated_protocol(sec_protocol_metadata_t metadata);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable dispatch_data_t
+sec_protocol_metadata_copy_peer_public_key(sec_protocol_metadata_t metadata);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+SSLProtocol
+sec_protocol_metadata_get_negotiated_protocol_version(sec_protocol_metadata_t metadata);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+SSLCipherSuite
+sec_protocol_metadata_get_negotiated_ciphersuite(sec_protocol_metadata_t metadata);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_get_early_data_accepted(sec_protocol_metadata_t metadata);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_access_peer_certificate_chain(sec_protocol_metadata_t metadata,
+                                                    void (^handler)(sec_certificate_t certificate));
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_access_ocsp_response(sec_protocol_metadata_t metadata,
+                                           void (^handler)(dispatch_data_t ocsp_data));
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_access_supported_signature_algorithms(sec_protocol_metadata_t metadata,
+                                                            void (^handler)(uint16_t signature_algorithm));
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_access_distinguished_names(sec_protocol_metadata_t metadata,
+                                                 void (^handler)(dispatch_data_t distinguished_name));
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_peers_are_equal(sec_protocol_metadata_t metadataA, sec_protocol_metadata_t metadataB);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+bool
+sec_protocol_metadata_challenge_parameters_are_equal(sec_protocol_metadata_t metadataA, sec_protocol_metadata_t metadataB);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable dispatch_data_t
+sec_protocol_metadata_create_secret(sec_protocol_metadata_t metadata, size_t label_len,
+                                    const char *label, size_t exporter_length);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+__attribute__((__ns_returns_retained__)) _Nullable dispatch_data_t
+sec_protocol_metadata_create_secret_with_context(sec_protocol_metadata_t metadata, size_t label_len,
+                                                 const char *label, size_t context_len,
+                                                 const uint8_t *context, size_t exporter_length);
+#pragma clang assume_nonnull end
+
+
+}
+// @protocol OS_sec_protocol_options <NSObject> /* @end */
+ typedef NSObject/*<OS_sec_protocol_options>*/ * __attribute__((objc_independent_class)) sec_protocol_options_t;
+
+
+extern "C" {
+
+#pragma clang assume_nonnull begin
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_local_identity(sec_protocol_options_t options, sec_identity_t identity);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_add_tls_ciphersuite(sec_protocol_options_t options, SSLCipherSuite ciphersuite);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_add_tls_ciphersuite_group(sec_protocol_options_t options, SSLCiphersuiteGroup group);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_min_version(sec_protocol_options_t options, SSLProtocol version);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_max_version(sec_protocol_options_t options, SSLProtocol version);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_add_tls_application_protocol(sec_protocol_options_t options, const char *application_protocol);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_server_name(sec_protocol_options_t options, const char *server_name);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_diffie_hellman_parameters(sec_protocol_options_t options, dispatch_data_t params);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_add_pre_shared_key(sec_protocol_options_t options, dispatch_data_t psk, dispatch_data_t psk_identity);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_tickets_enabled(sec_protocol_options_t options, bool tickets_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_is_fallback_attempt(sec_protocol_options_t options, bool is_fallback_attempt);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_resumption_enabled(sec_protocol_options_t options, bool resumption_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_false_start_enabled(sec_protocol_options_t options, bool false_start_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_ocsp_enabled(sec_protocol_options_t options, bool ocsp_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_sct_enabled(sec_protocol_options_t options, bool sct_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_tls_renegotiation_enabled(sec_protocol_options_t options, bool renegotiation_enabled);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_peer_authentication_required(sec_protocol_options_t options, bool peer_authentication_required);
+typedef void (*sec_protocol_key_update_complete_t)(void);
+typedef void (*sec_protocol_key_update_t)(sec_protocol_metadata_t metadata, sec_protocol_key_update_complete_t complete);
+typedef void (*sec_protocol_challenge_complete_t)(sec_identity_t identity);
+typedef void (*sec_protocol_challenge_t)(sec_protocol_metadata_t metadata, sec_protocol_challenge_complete_t complete);
+typedef void (*sec_protocol_verify_complete_t)(bool result);
+typedef void (*sec_protocol_verify_t)(sec_protocol_metadata_t metadata, sec_trust_t trust_ref, sec_protocol_verify_complete_t complete);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_key_update_block(sec_protocol_options_t options, sec_protocol_key_update_t key_update_block, dispatch_queue_t key_update_queue);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_challenge_block(sec_protocol_options_t options, sec_protocol_challenge_t challenge_block, dispatch_queue_t challenge_queue);
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+void
+sec_protocol_options_set_verify_block(sec_protocol_options_t options, sec_protocol_verify_t verify_block, dispatch_queue_t verify_block_queue);
+#pragma clang assume_nonnull end
+
+
+
+
+}
 
 
 
@@ -31109,7 +32381,7 @@ typedef uint32 CSSM_MANAGER_EVENT_TYPES;
 
 
 
-typedef struct cssm_manager_event_notification {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_manager_event_notification {
     CSSM_SERVICE_MASK DestinationModuleManagerType;
     CSSM_SERVICE_MASK SourceModuleManagerType;
     CSSM_MANAGER_EVENT_TYPES Event;
@@ -33203,7 +34475,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_spi_ac_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_ac_funcs {
     CSSM_RETURN ( *AuthCompute)
         (CSSM_AC_HANDLE ACHandle,
          const CSSM_TUPLEGROUP *BaseAuthorizations,
@@ -33235,7 +34507,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_spi_cl_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_cl_funcs {
     CSSM_RETURN ( *CertCreateTemplate)
         (CSSM_CL_HANDLE CLHandle,
          uint32 NumberOfFields,
@@ -33455,7 +34727,7 @@ typedef CSSM_RETURN ( *CSSM_SPI_ModuleEventHandler)
      void *CssmNotifyCallbackCtx,
      uint32 SubserviceId,
      CSSM_SERVICE_TYPE ServiceType,
-     CSSM_MODULE_EVENT EventType);
+     CSSM_MODULE_EVENT EventType) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef uint32 CSSM_CONTEXT_EVENT;
 enum {
@@ -33464,7 +34736,7 @@ enum {
     CSSM_CONTEXT_EVENT_UPDATE = 3
 };
 
-typedef struct cssm_module_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_module_funcs {
     CSSM_SERVICE_TYPE ServiceType;
     uint32 NumberOfServiceFuncs;
     const CSSM_PROC_ADDR *ServiceFuncs;
@@ -33488,7 +34760,7 @@ typedef void *( *CSSM_UPCALLS_CALLOC)
      size_t num,
      size_t size) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_upcalls {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_upcalls {
     CSSM_UPCALLS_MALLOC malloc_func;
     CSSM_UPCALLS_FREE free_func;
     CSSM_UPCALLS_REALLOC realloc_func;
@@ -33521,7 +34793,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_spi_csp_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_csp_funcs {
     CSSM_RETURN ( *EventNotify)
         (CSSM_CSP_HANDLE CSPHandle,
          CSSM_CONTEXT_EVENT Event,
@@ -33858,7 +35130,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_spi_dl_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_dl_funcs {
     CSSM_RETURN ( *DbOpen)
         (CSSM_DL_HANDLE DLHandle,
          const char *DbName,
@@ -33989,7 +35261,7 @@ typedef struct cssm_kr_name {
     char *Name;
 } CSSM_KR_NAME __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_kr_profile {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_kr_profile {
     CSSM_KR_NAME UserName;
     CSSM_CERTGROUP_PTR UserCertificate;
     CSSM_CERTGROUP_PTR KRSCertChain;
@@ -34004,7 +35276,7 @@ typedef struct cssm_kr_profile {
     CSSM_DATA_PTR KRSPExtensions;
 } CSSM_KR_PROFILE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KR_PROFILE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_kr_wrappedproductinfo {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_kr_wrappedproductinfo {
     CSSM_VERSION StandardVersion;
     CSSM_STRING StandardDescription;
     CSSM_VERSION ProductVersion;
@@ -34013,11 +35285,11 @@ typedef struct cssm_kr_wrappedproductinfo {
     uint32 ProductFlags;
 } CSSM_KR_WRAPPEDPRODUCT_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KR_WRAPPEDPRODUCT_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_krsubservice {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_krsubservice {
     uint32 SubServiceId;
     char *Description;
     CSSM_KR_WRAPPEDPRODUCT_INFO WrappedProduct;
-} CSSM_KRSUBSERVICE, *CSSM_KRSUBSERVICE_PTR;
+} CSSM_KRSUBSERVICE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KRSUBSERVICE_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 typedef uint32 CSSM_KR_POLICY_TYPE;
 
@@ -34026,7 +35298,7 @@ typedef uint32 CSSM_KR_POLICY_TYPE;
 
 
 typedef uint32 CSSM_KR_POLICY_FLAGS;
-typedef struct cssm_kr_policy_list_item {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_kr_policy_list_item {
     struct kr_policy_list_item *next;
     CSSM_ALGORITHMS AlgorithmId;
     CSSM_ENCRYPT_MODE Mode;
@@ -34037,7 +35309,7 @@ typedef struct cssm_kr_policy_list_item {
     CSSM_CONTEXT_TYPE AlgClass;
 } CSSM_KR_POLICY_LIST_ITEM __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KR_POLICY_LIST_ITEM_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_kr_policy_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_kr_policy_info {
     CSSM_BOOL krbNotAllowed;
     uint32 numberOfEntries;
     CSSM_KR_POLICY_LIST_ITEM *policyEntry;
@@ -34056,7 +35328,7 @@ extern "C" {
 
 
 
-typedef struct cssm_spi_kr_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_kr_funcs {
     CSSM_RETURN ( *RegistrationRequest)
         (CSSM_KRSP_HANDLE KRSPHandle,
          CSSM_CC_HANDLE KRRegistrationContextHandle,
@@ -34137,7 +35409,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_spi_tp_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_spi_tp_funcs {
     CSSM_RETURN ( *SubmitCredRequest)
         (CSSM_TP_HANDLE TPHandle,
          const CSSM_TP_AUTHORITY_ID *PreferredAuthority,
@@ -34311,7 +35583,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-typedef struct cssm_state_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_state_funcs {
     CSSM_RETURN ( *cssm_GetAttachFunctions)
         (CSSM_MODULE_HANDLE hAddIn,
          CSSM_SERVICE_MASK AddinType,
@@ -34337,7 +35609,7 @@ typedef struct cssm_state_funcs {
         (const CSSM_MANAGER_EVENT_NOTIFICATION *EventDescription);
 } CSSM_STATE_FUNCS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_STATE_FUNCS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct cssm_manager_registration_info {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) cssm_manager_registration_info {
 
     CSSM_RETURN ( *Initialize)
         (uint32 VerMajor,
@@ -34372,9 +35644,9 @@ extern "C" {
 
 typedef CSSM_DL_HANDLE MDS_HANDLE;
 
-typedef CSSM_DL_DB_HANDLE MDS_DB_HANDLE;
+typedef CSSM_DL_DB_HANDLE MDS_DB_HANDLE __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-typedef struct mds_funcs {
+typedef struct __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))) mds_funcs {
     CSSM_RETURN ( *DbOpen)
         (MDS_HANDLE MdsHandle,
          const char *DbName,
@@ -35391,12 +36663,12 @@ typedef UInt8 SecPublicKeyHash[20];
 
 
 CFTypeID SecKeychainItemGetTypeID(void);
-OSStatus SecKeychainItemModifyAttributesAndData(SecKeychainItemRef itemRef, const SecKeychainAttributeList * _Nullable attrList, UInt32 length, const void * _Nullable data);
+OSStatus SecKeychainItemModifyAttributesAndData(SecKeychainItemRef itemRef, const SecKeychainAttributeList * _Nullable attrList, UInt32 length, const void * _Nullable data) __attribute__((availability(ios,unavailable)));
 OSStatus SecKeychainItemCreateFromContent(SecItemClass itemClass, SecKeychainAttributeList *attrList,
   UInt32 length, const void * _Nullable data, SecKeychainRef _Nullable keychainRef,
-  SecAccessRef _Nullable initialAccess, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef);
-OSStatus SecKeychainItemModifyContent(SecKeychainItemRef itemRef, const SecKeychainAttributeList * _Nullable attrList, UInt32 length, const void * _Nullable data);
-OSStatus SecKeychainItemCopyContent(SecKeychainItemRef itemRef, SecItemClass * _Nullable itemClass, SecKeychainAttributeList * _Nullable attrList, UInt32 * _Nullable length, void * _Nullable * _Nullable outData);
+  SecAccessRef _Nullable initialAccess, SecKeychainItemRef * _Nullable __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemModifyContent(SecKeychainItemRef itemRef, const SecKeychainAttributeList * _Nullable attrList, UInt32 length, const void * _Nullable data) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemCopyContent(SecKeychainItemRef itemRef, SecItemClass * _Nullable itemClass, SecKeychainAttributeList * _Nullable attrList, UInt32 * _Nullable length, void * _Nullable * _Nullable outData) __attribute__((availability(ios,unavailable)));
 
 
 
@@ -35404,21 +36676,21 @@ OSStatus SecKeychainItemCopyContent(SecKeychainItemRef itemRef, SecItemClass * _
 
 
 
-OSStatus SecKeychainItemFreeContent(SecKeychainAttributeList * _Nullable attrList, void * _Nullable data);
-OSStatus SecKeychainItemCopyAttributesAndData(SecKeychainItemRef itemRef, SecKeychainAttributeInfo * _Nullable info, SecItemClass * _Nullable itemClass, SecKeychainAttributeList * _Nullable * _Nullable attrList, UInt32 * _Nullable length, void * _Nullable * _Nullable outData);
-OSStatus SecKeychainItemFreeAttributesAndData(SecKeychainAttributeList * _Nullable attrList, void * _Nullable data);
-OSStatus SecKeychainItemDelete(SecKeychainItemRef itemRef);
-OSStatus SecKeychainItemCopyKeychain(SecKeychainItemRef itemRef, SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychainRef);
+OSStatus SecKeychainItemFreeContent(SecKeychainAttributeList * _Nullable attrList, void * _Nullable data) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemCopyAttributesAndData(SecKeychainItemRef itemRef, SecKeychainAttributeInfo * _Nullable info, SecItemClass * _Nullable itemClass, SecKeychainAttributeList * _Nullable * _Nullable attrList, UInt32 * _Nullable length, void * _Nullable * _Nullable outData) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemFreeAttributesAndData(SecKeychainAttributeList * _Nullable attrList, void * _Nullable data) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemDelete(SecKeychainItemRef itemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemCopyKeychain(SecKeychainItemRef itemRef, SecKeychainRef * _Nonnull __attribute__((cf_returns_retained)) keychainRef) __attribute__((availability(ios,unavailable)));
 OSStatus SecKeychainItemCreateCopy(SecKeychainItemRef itemRef, SecKeychainRef _Nullable destKeychainRef,
- SecAccessRef _Nullable initialAccess, SecKeychainItemRef * _Nonnull __attribute__((cf_returns_retained)) itemCopy);
-OSStatus SecKeychainItemCreatePersistentReference(SecKeychainItemRef itemRef, CFDataRef * _Nonnull __attribute__((cf_returns_retained)) persistentItemRef);
-OSStatus SecKeychainItemCopyFromPersistentReference(CFDataRef persistentItemRef, SecKeychainItemRef * _Nonnull __attribute__((cf_returns_retained)) itemRef);
+ SecAccessRef _Nullable initialAccess, SecKeychainItemRef * _Nonnull __attribute__((cf_returns_retained)) itemCopy) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemCreatePersistentReference(SecKeychainItemRef itemRef, CFDataRef * _Nonnull __attribute__((cf_returns_retained)) persistentItemRef) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemCopyFromPersistentReference(CFDataRef persistentItemRef, SecKeychainItemRef * _Nonnull __attribute__((cf_returns_retained)) itemRef) __attribute__((availability(ios,unavailable)));
 OSStatus SecKeychainItemGetDLDBHandle(SecKeychainItemRef keyItemRef, CSSM_DL_DB_HANDLE * _Nonnull dldbHandle)
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecKeychainItemGetUniqueRecordID(SecKeychainItemRef itemRef, const CSSM_DB_UNIQUE_RECORD * _Nullable * _Nonnull uniqueRecordID)
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-OSStatus SecKeychainItemCopyAccess(SecKeychainItemRef itemRef, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) access);
-OSStatus SecKeychainItemSetAccess(SecKeychainItemRef itemRef, SecAccessRef access);
+OSStatus SecKeychainItemCopyAccess(SecKeychainItemRef itemRef, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) access) __attribute__((availability(ios,unavailable)));
+OSStatus SecKeychainItemSetAccess(SecKeychainItemRef itemRef, SecAccessRef access) __attribute__((availability(ios,unavailable)));
 #pragma clang assume_nonnull end
 
 
@@ -35485,9 +36757,9 @@ extern "C" {
 
 
 CFTypeID SecTrustedApplicationGetTypeID(void);
-OSStatus SecTrustedApplicationCreateFromPath(const char * _Nullable path, SecTrustedApplicationRef * _Nonnull __attribute__((cf_returns_retained)) app);
-OSStatus SecTrustedApplicationCopyData(SecTrustedApplicationRef appRef, CFDataRef * _Nonnull __attribute__((cf_returns_retained)) data);
-OSStatus SecTrustedApplicationSetData(SecTrustedApplicationRef appRef, CFDataRef data);
+OSStatus SecTrustedApplicationCreateFromPath(const char * _Nullable path, SecTrustedApplicationRef * _Nonnull __attribute__((cf_returns_retained)) app) __attribute__((availability(ios,unavailable)));
+OSStatus SecTrustedApplicationCopyData(SecTrustedApplicationRef appRef, CFDataRef * _Nonnull __attribute__((cf_returns_retained)) data) __attribute__((availability(ios,unavailable)));
+OSStatus SecTrustedApplicationSetData(SecTrustedApplicationRef appRef, CFDataRef data) __attribute__((availability(ios,unavailable)));
 #pragma clang assume_nonnull end
 
 
@@ -35683,10 +36955,13 @@ enum {
  errSecCSBadDiskImageFormat = -67001,
  errSecCSUnsupportedDigestAlgorithm = -67000,
  errSecCSInvalidAssociatedFileData = -66999,
-    errSecCSInvalidTeamIdentifier = -66998,
-    errSecCSBadTeamIdentifier = -66997,
-    errSecCSSignatureUntrusted = -66996,
+ errSecCSInvalidTeamIdentifier = -66998,
+ errSecCSBadTeamIdentifier = -66997,
+ errSecCSSignatureUntrusted = -66996,
  errSecMultipleExecSegments = -66995,
+ errSecCSInvalidEntitlements = -66994,
+ errSecCSInvalidRuntimeVersion = -66993,
+ errSecCSRevokedNotarization = -66992,
 };
 extern const CFStringRef kSecCFErrorArchitecture;
 extern const CFStringRef kSecCFErrorPattern;
@@ -35736,11 +37011,14 @@ typedef uint32_t SecCodeSignatureFlags; enum {
  kSecCodeSignatureRestrict = 0x0800,
  kSecCodeSignatureEnforcement = 0x1000,
  kSecCodeSignatureLibraryValidation = 0x2000,
+ kSecCodeSignatureRuntime = 0x10000,
 };
 typedef uint32_t SecCodeStatus; enum {
- kSecCodeStatusValid = 0x0001,
- kSecCodeStatusHard = 0x0100,
- kSecCodeStatusKill = 0x0200,
+ kSecCodeStatusValid = 0x00000001,
+ kSecCodeStatusHard = 0x00000100,
+ kSecCodeStatusKill = 0x00000200,
+ kSecCodeStatusDebugged = 0x10000000,
+ kSecCodeStatusPlatform = 0x04000000,
 };
 
 
@@ -35763,6 +37041,7 @@ typedef uint32_t SecCSDigestAlgorithm; enum {
  kSecCodeSignatureHashSHA256 = 2,
  kSecCodeSignatureHashSHA256Truncated = 3,
  kSecCodeSignatureHashSHA384 = 4,
+    kSecCodeSignatureHashSHA512 = 5,
 };
 #pragma clang assume_nonnull end
 
@@ -35802,6 +37081,7 @@ enum {
  kSecCSRestrictToAppLike = 1 << 8,
  kSecCSRestrictSidebandData = 1 << 9,
     kSecCSUseSoftwareSigningCert = 1 << 10,
+ kSecCSValidatePEH = 1 << 11,
 };
 
 OSStatus SecStaticCodeCheckValidity(SecStaticCodeRef staticCode, SecCSFlags flags,
@@ -35885,6 +37165,7 @@ extern const CFStringRef kSecCodeInfoTimestamp;
 extern const CFStringRef kSecCodeInfoTrust;
 extern const CFStringRef kSecCodeInfoUnique;
 extern const CFStringRef kSecCodeInfoCdHashes;
+extern const CFStringRef kSecCodeInfoRuntimeVersion;
 
 OSStatus SecCodeCopySigningInformation(SecStaticCodeRef code, SecCSFlags flags,
  CFDictionaryRef * _Nonnull __attribute__((cf_returns_retained)) information);
@@ -36154,6 +37435,7 @@ OSStatus CMSDecoderCopySignerTimestampCertificates(
 
 
 
+
 }
 extern "C" {
 
@@ -36231,8 +37513,7 @@ OSStatus CMSEncoderGetHasDetachedContent(
 OSStatus CMSEncoderSetEncapsulatedContentType(
  CMSEncoderRef cmsEncoder,
  const CSSM_OID *eContentType)
-
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5,deprecated=10.7,replacement="CMSEncoderSetEncapsulatedContentTypeOID"))) __attribute__((availability(ios,unavailable)));
 OSStatus CMSEncoderSetEncapsulatedContentTypeOID(
  CMSEncoderRef cmsEncoder,
  CFTypeRef eContentTypeOID)
@@ -36286,6 +37567,10 @@ typedef uint32_t CMSSignedAttributes; enum {
 
     kCMSAttrAppleCodesigningHashAgility = 0x0010,
     kCMSAttrAppleCodesigningHashAgilityV2 = 0x0020,
+
+
+
+    kCMSAttrAppleExpirationTime = 0x0040,
 };
 
 
@@ -36350,8 +37635,7 @@ OSStatus CMSEncode(
  const void * content,
  size_t contentLen,
  CFDataRef * _Nonnull __attribute__((cf_returns_retained)) encodedContentOut)
-
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5,deprecated=10.7,replacement="CMSEncodeContent"))) __attribute__((availability(ios,unavailable)));
 OSStatus CMSEncodeContent(
  CFTypeRef _Nullable signers,
  CFTypeRef _Nullable recipients,
@@ -36382,995 +37666,8 @@ OSStatus CMSEncoderCopySignerTimestampWithPolicy(
 }
 
 
-typedef uint32_t SSLCipherSuite;
 
 
-
-
-
-enum
-{ SSL_NULL_WITH_NULL_NULL = 0x0000,
-    SSL_RSA_WITH_NULL_MD5 = 0x0001,
-    SSL_RSA_WITH_NULL_SHA = 0x0002,
-    SSL_RSA_EXPORT_WITH_RC4_40_MD5 = 0x0003,
-    SSL_RSA_WITH_RC4_128_MD5 = 0x0004,
-    SSL_RSA_WITH_RC4_128_SHA = 0x0005,
-    SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5 = 0x0006,
-    SSL_RSA_WITH_IDEA_CBC_SHA = 0x0007,
-    SSL_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x0008,
-    SSL_RSA_WITH_DES_CBC_SHA = 0x0009,
-    SSL_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A,
-    SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA = 0x000B,
-    SSL_DH_DSS_WITH_DES_CBC_SHA = 0x000C,
-    SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA = 0x000D,
-    SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x000E,
-    SSL_DH_RSA_WITH_DES_CBC_SHA = 0x000F,
-    SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA = 0x0010,
-    SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA = 0x0011,
-    SSL_DHE_DSS_WITH_DES_CBC_SHA = 0x0012,
-    SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA = 0x0013,
-    SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA = 0x0014,
-    SSL_DHE_RSA_WITH_DES_CBC_SHA = 0x0015,
-    SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA = 0x0016,
-    SSL_DH_anon_EXPORT_WITH_RC4_40_MD5 = 0x0017,
-    SSL_DH_anon_WITH_RC4_128_MD5 = 0x0018,
-    SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA = 0x0019,
-    SSL_DH_anon_WITH_DES_CBC_SHA = 0x001A,
-    SSL_DH_anon_WITH_3DES_EDE_CBC_SHA = 0x001B,
-    SSL_FORTEZZA_DMS_WITH_NULL_SHA = 0x001C,
-    SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA = 0x001D,
-
-
- TLS_RSA_WITH_AES_128_CBC_SHA = 0x002F,
- TLS_DH_DSS_WITH_AES_128_CBC_SHA = 0x0030,
- TLS_DH_RSA_WITH_AES_128_CBC_SHA = 0x0031,
- TLS_DHE_DSS_WITH_AES_128_CBC_SHA = 0x0032,
- TLS_DHE_RSA_WITH_AES_128_CBC_SHA = 0x0033,
- TLS_DH_anon_WITH_AES_128_CBC_SHA = 0x0034,
- TLS_RSA_WITH_AES_256_CBC_SHA = 0x0035,
- TLS_DH_DSS_WITH_AES_256_CBC_SHA = 0x0036,
- TLS_DH_RSA_WITH_AES_256_CBC_SHA = 0x0037,
- TLS_DHE_DSS_WITH_AES_256_CBC_SHA = 0x0038,
- TLS_DHE_RSA_WITH_AES_256_CBC_SHA = 0x0039,
- TLS_DH_anon_WITH_AES_256_CBC_SHA = 0x003A,
-
-
- TLS_ECDH_ECDSA_WITH_NULL_SHA = 0xC001,
- TLS_ECDH_ECDSA_WITH_RC4_128_SHA = 0xC002,
- TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA = 0xC003,
- TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA = 0xC004,
- TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA = 0xC005,
- TLS_ECDHE_ECDSA_WITH_NULL_SHA = 0xC006,
- TLS_ECDHE_ECDSA_WITH_RC4_128_SHA = 0xC007,
- TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = 0xC008,
- TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA = 0xC009,
- TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA = 0xC00A,
- TLS_ECDH_RSA_WITH_NULL_SHA = 0xC00B,
- TLS_ECDH_RSA_WITH_RC4_128_SHA = 0xC00C,
- TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA = 0xC00D,
- TLS_ECDH_RSA_WITH_AES_128_CBC_SHA = 0xC00E,
- TLS_ECDH_RSA_WITH_AES_256_CBC_SHA = 0xC00F,
- TLS_ECDHE_RSA_WITH_NULL_SHA = 0xC010,
- TLS_ECDHE_RSA_WITH_RC4_128_SHA = 0xC011,
- TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA = 0xC012,
- TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA = 0xC013,
- TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA = 0xC014,
- TLS_ECDH_anon_WITH_NULL_SHA = 0xC015,
- TLS_ECDH_anon_WITH_RC4_128_SHA = 0xC016,
- TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA = 0xC017,
- TLS_ECDH_anon_WITH_AES_128_CBC_SHA = 0xC018,
- TLS_ECDH_anon_WITH_AES_256_CBC_SHA = 0xC019,
-
-
-
-
-    TLS_NULL_WITH_NULL_NULL = 0x0000,
-
-
-    TLS_RSA_WITH_NULL_MD5 = 0x0001,
-    TLS_RSA_WITH_NULL_SHA = 0x0002,
-    TLS_RSA_WITH_RC4_128_MD5 = 0x0004,
-    TLS_RSA_WITH_RC4_128_SHA = 0x0005,
-    TLS_RSA_WITH_3DES_EDE_CBC_SHA = 0x000A,
-    TLS_RSA_WITH_NULL_SHA256 = 0x003B,
-    TLS_RSA_WITH_AES_128_CBC_SHA256 = 0x003C,
-    TLS_RSA_WITH_AES_256_CBC_SHA256 = 0x003D,
-
-
-    TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA = 0x000D,
-    TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA = 0x0010,
-    TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA = 0x0013,
-    TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA = 0x0016,
-    TLS_DH_DSS_WITH_AES_128_CBC_SHA256 = 0x003E,
-    TLS_DH_RSA_WITH_AES_128_CBC_SHA256 = 0x003F,
-    TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 = 0x0040,
-    TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 = 0x0067,
-    TLS_DH_DSS_WITH_AES_256_CBC_SHA256 = 0x0068,
-    TLS_DH_RSA_WITH_AES_256_CBC_SHA256 = 0x0069,
-    TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 = 0x006A,
-    TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 = 0x006B,
-
-
-    TLS_DH_anon_WITH_RC4_128_MD5 = 0x0018,
-    TLS_DH_anon_WITH_3DES_EDE_CBC_SHA = 0x001B,
-    TLS_DH_anon_WITH_AES_128_CBC_SHA256 = 0x006C,
-    TLS_DH_anon_WITH_AES_256_CBC_SHA256 = 0x006D,
-
-
-    TLS_PSK_WITH_RC4_128_SHA = 0x008A,
-    TLS_PSK_WITH_3DES_EDE_CBC_SHA = 0x008B,
-    TLS_PSK_WITH_AES_128_CBC_SHA = 0x008C,
-    TLS_PSK_WITH_AES_256_CBC_SHA = 0x008D,
-    TLS_DHE_PSK_WITH_RC4_128_SHA = 0x008E,
-    TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA = 0x008F,
-    TLS_DHE_PSK_WITH_AES_128_CBC_SHA = 0x0090,
-    TLS_DHE_PSK_WITH_AES_256_CBC_SHA = 0x0091,
-    TLS_RSA_PSK_WITH_RC4_128_SHA = 0x0092,
-    TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA = 0x0093,
-    TLS_RSA_PSK_WITH_AES_128_CBC_SHA = 0x0094,
-    TLS_RSA_PSK_WITH_AES_256_CBC_SHA = 0x0095,
-
-
-    TLS_PSK_WITH_NULL_SHA = 0x002C,
-    TLS_DHE_PSK_WITH_NULL_SHA = 0x002D,
-    TLS_RSA_PSK_WITH_NULL_SHA = 0x002E,
-
-
-    TLS_RSA_WITH_AES_128_GCM_SHA256 = 0x009C,
-    TLS_RSA_WITH_AES_256_GCM_SHA384 = 0x009D,
-    TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 = 0x009E,
-    TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 = 0x009F,
-    TLS_DH_RSA_WITH_AES_128_GCM_SHA256 = 0x00A0,
-    TLS_DH_RSA_WITH_AES_256_GCM_SHA384 = 0x00A1,
-    TLS_DHE_DSS_WITH_AES_128_GCM_SHA256 = 0x00A2,
-    TLS_DHE_DSS_WITH_AES_256_GCM_SHA384 = 0x00A3,
-    TLS_DH_DSS_WITH_AES_128_GCM_SHA256 = 0x00A4,
-    TLS_DH_DSS_WITH_AES_256_GCM_SHA384 = 0x00A5,
-    TLS_DH_anon_WITH_AES_128_GCM_SHA256 = 0x00A6,
-    TLS_DH_anon_WITH_AES_256_GCM_SHA384 = 0x00A7,
-
-
-    TLS_PSK_WITH_AES_128_GCM_SHA256 = 0x00A8,
-    TLS_PSK_WITH_AES_256_GCM_SHA384 = 0x00A9,
-    TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 = 0x00AA,
-    TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 = 0x00AB,
-    TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 = 0x00AC,
-    TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 = 0x00AD,
-
-    TLS_PSK_WITH_AES_128_CBC_SHA256 = 0x00AE,
-    TLS_PSK_WITH_AES_256_CBC_SHA384 = 0x00AF,
-    TLS_PSK_WITH_NULL_SHA256 = 0x00B0,
-    TLS_PSK_WITH_NULL_SHA384 = 0x00B1,
-
-    TLS_DHE_PSK_WITH_AES_128_CBC_SHA256 = 0x00B2,
-    TLS_DHE_PSK_WITH_AES_256_CBC_SHA384 = 0x00B3,
-    TLS_DHE_PSK_WITH_NULL_SHA256 = 0x00B4,
-    TLS_DHE_PSK_WITH_NULL_SHA384 = 0x00B5,
-
-    TLS_RSA_PSK_WITH_AES_128_CBC_SHA256 = 0x00B6,
-    TLS_RSA_PSK_WITH_AES_256_CBC_SHA384 = 0x00B7,
-    TLS_RSA_PSK_WITH_NULL_SHA256 = 0x00B8,
-    TLS_RSA_PSK_WITH_NULL_SHA384 = 0x00B9,
-
-
-
-
-    TLS_AES_128_GCM_SHA256 = 0x1301,
-    TLS_AES_256_GCM_SHA384 = 0x1302,
-    TLS_CHACHA20_POLY1305_SHA256 = 0x1303,
-    TLS_AES_128_CCM_SHA256 = 0x1304,
-    TLS_AES_128_CCM_8_SHA256 = 0x1305,
-
-
-
-    TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = 0xC023,
-    TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 = 0xC024,
-    TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256 = 0xC025,
-    TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384 = 0xC026,
-    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 = 0xC027,
-    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 = 0xC028,
-    TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256 = 0xC029,
-    TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384 = 0xC02A,
-
-
-
-    TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = 0xC02B,
-    TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 = 0xC02C,
-    TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256 = 0xC02D,
-    TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384 = 0xC02E,
-    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 = 0xC02F,
-    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 = 0xC030,
-    TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256 = 0xC031,
-    TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384 = 0xC032,
-
-
-
-    TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = 0xCCA8,
-    TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 = 0xCCA9,
-
-
-    TLS_EMPTY_RENEGOTIATION_INFO_SCSV = 0x00FF,
-
-
-
-    SSL_RSA_WITH_RC2_CBC_MD5 = 0xFF80,
-    SSL_RSA_WITH_IDEA_CBC_MD5 = 0xFF81,
-    SSL_RSA_WITH_DES_CBC_MD5 = 0xFF82,
-    SSL_RSA_WITH_3DES_EDE_CBC_MD5 = 0xFF83,
-    SSL_NO_SUCH_CIPHERSUITE = 0xFFFF
-};
-extern "C" {
-
-
-#pragma clang assume_nonnull begin
-
-
-
-
-
-
-
-struct SSLContext;
-typedef struct __attribute__((objc_bridge(id))) SSLContext *SSLContextRef;
-
-
-typedef const void * SSLConnectionRef;
-
-
-typedef int SSLProtocol; enum {
-    kSSLProtocolUnknown = 0,
-    kSSLProtocol3 = 2,
-    kTLSProtocol1 = 4,
-    kTLSProtocol11 = 7,
-    kTLSProtocol12 = 8,
-    kDTLSProtocol1 = 9,
-    kTLSProtocol13 = 10,
-
-    kTLSProtocolMaxSupported = 999,
-
-    kSSLProtocol2 = 1,
-    kSSLProtocol3Only = 3,
-    kTLSProtocol1Only = 5,
-    kSSLProtocolAll = 6,
-};
-
-
-typedef int SSLSessionOption; enum {
-
-
-
-
-
-
-
- kSSLSessionOptionBreakOnServerAuth = 0,
-
-
-
-
- kSSLSessionOptionBreakOnCertRequested = 1,
-
-
-
-
-
-
-    kSSLSessionOptionBreakOnClientAuth = 2,
-
-
-
-
-
-    kSSLSessionOptionFalseStart = 3,
-
-
-
-
-
-    kSSLSessionOptionSendOneByteRecord = 4,
-
-
-
-
-    kSSLSessionOptionAllowServerIdentityChange = 5,
-
-
-
-
-    kSSLSessionOptionFallback = 6,
-
-
-
-    kSSLSessionOptionBreakOnClientHello = 7,
-
-
-
-    kSSLSessionOptionAllowRenegotiation = 8,
-
-
-
-    kSSLSessionOptionEnableSessionTickets = 9,
-};
-
-
-typedef int SSLSessionState; enum {
- kSSLIdle,
- kSSLHandshake,
- kSSLConnected,
- kSSLClosed,
- kSSLAborted
-};
-
-
-
-
-
-typedef int SSLClientCertificateState; enum {
-
- kSSLClientCertNone,
-
- kSSLClientCertRequested,
-
-
-
-
-
-
- kSSLClientCertSent,
-
-
-
-
- kSSLClientCertRejected
-};
-typedef OSStatus
-(*SSLReadFunc) (SSLConnectionRef connection,
-        void *data,
-
-
-        size_t *dataLength);
-typedef OSStatus
-(*SSLWriteFunc) (SSLConnectionRef connection,
-        const void *data,
-        size_t *dataLength);
-enum {
- errSSLProtocol = -9800,
- errSSLNegotiation = -9801,
- errSSLFatalAlert = -9802,
- errSSLWouldBlock = -9803,
-    errSSLSessionNotFound = -9804,
-    errSSLClosedGraceful = -9805,
-    errSSLClosedAbort = -9806,
-    errSSLXCertChainInvalid = -9807,
-    errSSLBadCert = -9808,
- errSSLCrypto = -9809,
- errSSLInternal = -9810,
- errSSLModuleAttach = -9811,
-    errSSLUnknownRootCert = -9812,
-    errSSLNoRootCert = -9813,
- errSSLCertExpired = -9814,
- errSSLCertNotYetValid = -9815,
- errSSLClosedNoNotify = -9816,
- errSSLBufferOverflow = -9817,
- errSSLBadCipherSuite = -9818,
-
-
- errSSLPeerUnexpectedMsg = -9819,
- errSSLPeerBadRecordMac = -9820,
- errSSLPeerDecryptionFail = -9821,
- errSSLPeerRecordOverflow = -9822,
- errSSLPeerDecompressFail = -9823,
- errSSLPeerHandshakeFail = -9824,
- errSSLPeerBadCert = -9825,
- errSSLPeerUnsupportedCert = -9826,
- errSSLPeerCertRevoked = -9827,
- errSSLPeerCertExpired = -9828,
- errSSLPeerCertUnknown = -9829,
- errSSLIllegalParam = -9830,
- errSSLPeerUnknownCA = -9831,
- errSSLPeerAccessDenied = -9832,
- errSSLPeerDecodeError = -9833,
- errSSLPeerDecryptError = -9834,
- errSSLPeerExportRestriction = -9835,
- errSSLPeerProtocolVersion = -9836,
- errSSLPeerInsufficientSecurity = -9837,
- errSSLPeerInternalError = -9838,
- errSSLPeerUserCancelled = -9839,
- errSSLPeerNoRenegotiation = -9840,
-
-
- errSSLPeerAuthCompleted = -9841,
- errSSLClientCertRequested = -9842,
-
-
- errSSLHostNameMismatch = -9843,
- errSSLConnectionRefused = -9844,
- errSSLDecryptionFail = -9845,
- errSSLBadRecordMac = -9846,
- errSSLRecordOverflow = -9847,
- errSSLBadConfiguration = -9848,
- errSSLUnexpectedRecord = -9849,
-    errSSLWeakPeerEphemeralDHKey = -9850,
-
-
-    errSSLClientHelloReceived = -9851,
-
-
-    errSSLTransportReset = -9852,
-    errSSLNetworkTimeout = -9853,
-
-
-    errSSLConfigurationFailed = -9854,
-
-
-    errSSLUnsupportedExtension = -9855,
-    errSSLUnexpectedMessage = -9856,
-    errSSLDecompressFail = -9857,
-    errSSLHandshakeFail = -9858,
-    errSSLDecodeError = -9859,
-    errSSLInappropriateFallback = -9860,
-    errSSLMissingExtension = -9861,
-    errSSLBadCertificateStatusResponse = -9862,
-    errSSLCertificateRequired = -9863,
-    errSSLUnknownPSKIdentity = -9864,
-    errSSLUnrecognizedName = -9865,
-};
-typedef int SSLProtocolSide; enum
-{
-    kSSLServerSide,
-    kSSLClientSide
-};
-
-typedef int SSLConnectionType; enum
-{
-    kSSLStreamType,
-    kSSLDatagramType
-};
-
-
-
-
-
-
-extern const CFStringRef kSSLSessionConfig_default
-__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-
-
-extern const CFStringRef kSSLSessionConfig_ATSv1
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_ATSv1_noPFS
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_standard
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_RC4_fallback
-__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-
-
-extern const CFStringRef kSSLSessionConfig_TLSv1_fallback
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_TLSv1_RC4_fallback
-__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-
-
-extern const CFStringRef kSSLSessionConfig_legacy
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_legacy_DHE
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_anonymous
-__attribute__((availability(macosx,introduced=10.2)));
-
-
-extern const CFStringRef kSSLSessionConfig_3DES_fallback
-__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-
-
-extern const CFStringRef kSSLSessionConfig_TLSv1_3DES_fallback
-__attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-CFTypeID
-SSLContextGetTypeID(void)
- __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-_Nullable
-SSLContextRef
-SSLCreateContext(CFAllocatorRef _Nullable alloc, SSLProtocolSide protocolSide, SSLConnectionType connectionType)
- __attribute__((availability(macosx,introduced=10.8)));
-OSStatus
-SSLNewContext (Boolean isServer,
-        SSLContextRef * _Nonnull __attribute__((cf_returns_retained)) contextPtr)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLDisposeContext (SSLContextRef context)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-
-
-
-
-
-
-OSStatus
-SSLGetSessionState (SSLContextRef context,
-        SSLSessionState *state)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLSetSessionOption (SSLContextRef context,
-        SSLSessionOption option,
-        Boolean value)
- __attribute__((availability(macosx,introduced=10.6)));
-
-
-
-
-OSStatus
-SSLGetSessionOption (SSLContextRef context,
-        SSLSessionOption option,
-        Boolean *value)
- __attribute__((availability(macosx,introduced=10.6)));
-OSStatus
-SSLSetIOFuncs (SSLContextRef context,
-        SSLReadFunc readFunc,
-        SSLWriteFunc writeFunc)
- __attribute__((availability(macosx,introduced=10.2)));
-OSStatus
-SSLSetSessionConfig(SSLContextRef context,
-                    CFStringRef config)
-    __attribute__((availability(macosx,introduced=10.12)));
-OSStatus
-SSLSetProtocolVersionMin (SSLContextRef context,
-                           SSLProtocol minVersion)
-    __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-OSStatus
-SSLGetProtocolVersionMin (SSLContextRef context,
-                           SSLProtocol *minVersion)
-    __attribute__((availability(macosx,introduced=10.8)));
-OSStatus
-SSLSetProtocolVersionMax (SSLContextRef context,
-                           SSLProtocol maxVersion)
-    __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-OSStatus
-SSLGetProtocolVersionMax (SSLContextRef context,
-                           SSLProtocol *maxVersion)
-    __attribute__((availability(macosx,introduced=10.8)));
-OSStatus
-SSLSetProtocolVersionEnabled (SSLContextRef context,
-        SSLProtocol protocol,
-        Boolean enable)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLGetProtocolVersionEnabled(SSLContextRef context,
-        SSLProtocol protocol,
-        Boolean *enable)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLSetProtocolVersion (SSLContextRef context,
-        SSLProtocol version)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
-OSStatus
-SSLGetProtocolVersion (SSLContextRef context,
-        SSLProtocol *protocol)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
-OSStatus
-SSLSetCertificate (SSLContextRef context,
-        CFArrayRef _Nullable certRefs)
- __attribute__((availability(macosx,introduced=10.2)));
-OSStatus
-SSLSetConnection (SSLContextRef context,
-        SSLConnectionRef _Nullable connection)
- __attribute__((availability(macosx,introduced=10.2)));
-
-OSStatus
-SSLGetConnection (SSLContextRef context,
-        SSLConnectionRef * _Nonnull __attribute__((cf_returns_not_retained)) connection)
- __attribute__((availability(macosx,introduced=10.2)));
-OSStatus
-SSLSetPeerDomainName (SSLContextRef context,
-        const char * _Nullable peerName,
-        size_t peerNameLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-OSStatus
-SSLGetPeerDomainNameLength (SSLContextRef context,
-        size_t *peerNameLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-OSStatus
-SSLGetPeerDomainName (SSLContextRef context,
-        char *peerName,
-        size_t *peerNameLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLCopyRequestedPeerName (SSLContextRef context,
-                             char *peerName,
-                             size_t *peerNameLen)
-    __attribute__((availability(macosx,introduced=10.11)));
-
-
-
-
-OSStatus
-SSLCopyRequestedPeerNameLength (SSLContextRef ctx,
-                                 size_t *peerNameLen)
-    __attribute__((availability(macosx,introduced=10.11)));
-
-
-
-
-
-
-
-OSStatus
-SSLSetDatagramHelloCookie (SSLContextRef dtlsContext,
-                             const void * _Nullable cookie,
-                             size_t cookieLen)
- __attribute__((availability(macosx,introduced=10.8)));
-OSStatus
-SSLSetMaxDatagramRecordSize (SSLContextRef dtlsContext,
-                             size_t maxSize)
- __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-
-OSStatus
-SSLGetMaxDatagramRecordSize (SSLContextRef dtlsContext,
-                             size_t *maxSize)
- __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-
-
-
-OSStatus
-SSLGetNegotiatedProtocolVersion (SSLContextRef context,
-          SSLProtocol *protocol)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus
-SSLGetNumberSupportedCiphers (SSLContextRef context,
-         size_t *numCiphers)
- __attribute__((availability(macosx,introduced=10.2)));
-
-OSStatus
-SSLGetSupportedCiphers (SSLContextRef context,
-         SSLCipherSuite *ciphers,
-         size_t *numCiphers)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus
-SSLSetEnabledCiphers (SSLContextRef context,
-        const SSLCipherSuite *ciphers,
-        size_t numCiphers)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus
-SSLGetNumberEnabledCiphers (SSLContextRef context,
-        size_t *numCiphers)
- __attribute__((availability(macosx,introduced=10.2)));
-
-OSStatus
-SSLGetEnabledCiphers (SSLContextRef context,
-        SSLCipherSuite *ciphers,
-        size_t *numCiphers)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLSetSessionTicketsEnabled (SSLContextRef context,
-                                 Boolean enabled)
-    __attribute__((availability(macosx,introduced=10.13)));
-OSStatus
-SSLSetEnableCertVerify (SSLContextRef context,
-        Boolean enableVerify)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLGetEnableCertVerify (SSLContextRef context,
-        Boolean *enableVerify)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLSetAllowsExpiredCerts (SSLContextRef context,
-        Boolean allowsExpired)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLGetAllowsExpiredCerts (SSLContextRef context,
-        Boolean *allowsExpired)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLSetAllowsExpiredRoots (SSLContextRef context,
-        Boolean allowsExpired)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLGetAllowsExpiredRoots (SSLContextRef context,
-        Boolean *allowsExpired)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLSetAllowsAnyRoot (SSLContextRef context,
-        Boolean anyRoot)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLGetAllowsAnyRoot (SSLContextRef context,
-        Boolean *anyRoot)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLSetTrustedRoots (SSLContextRef context,
-        CFArrayRef trustedRoots,
-        Boolean replaceExisting)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLCopyTrustedRoots (SSLContextRef context,
-        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) trustedRoots)
- __attribute__((availability(macosx,introduced=10.5,deprecated=10.9)));
-OSStatus
-SSLCopyPeerCertificates (SSLContextRef context,
-        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) certs)
- __attribute__((availability(macosx,introduced=10.5,deprecated=10.9)));
-OSStatus
-SSLCopyPeerTrust (SSLContextRef context,
-        SecTrustRef * _Nonnull __attribute__((cf_returns_retained)) trust)
- __attribute__((availability(macosx,introduced=10.6)));
-OSStatus
-SSLSetPeerID (SSLContextRef context,
-        const void * _Nullable peerID,
-        size_t peerIDLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLGetPeerID (SSLContextRef context,
-        const void * _Nullable * _Nonnull peerID,
-        size_t *peerIDLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLGetNegotiatedCipher (SSLContextRef context,
-        SSLCipherSuite *cipherSuite)
- __attribute__((availability(macosx,introduced=10.2)));
-OSStatus
-SSLSetALPNProtocols (SSLContextRef context,
-                             CFArrayRef protocols)
-    __attribute__((availability(macosx,introduced=10.13)));
-OSStatus
-SSLCopyALPNProtocols (SSLContextRef context,
-                             CFArrayRef _Nullable * _Nonnull protocols)
-    __attribute__((availability(macosx,introduced=10.13)));
-
-
-
-
-
-
-
-OSStatus
-SSLSetOCSPResponse (SSLContextRef context,
-                             CFDataRef _Nonnull response)
-__attribute__((availability(macosx,introduced=10.13)));
-OSStatus
-SSLSetEncryptionCertificate (SSLContextRef context,
-        CFArrayRef certRefs)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.11)));
-
-
-
-
-
-
-
-typedef int SSLAuthenticate; enum {
- kNeverAuthenticate,
- kAlwaysAuthenticate,
- kTryAuthenticate
-
-};
-
-OSStatus
-SSLSetClientSideAuthenticate (SSLContextRef context,
-         SSLAuthenticate auth)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLAddDistinguishedName (SSLContextRef context,
-        const void * _Nullable derDN,
-        size_t derDNLen)
- __attribute__((availability(macosx,introduced=10.4)));
-OSStatus
-SSLSetCertificateAuthorities(SSLContextRef context,
-        CFTypeRef certificateOrArray,
-        Boolean replaceExisting)
- __attribute__((availability(macosx,introduced=10.5)));
-OSStatus
-SSLCopyCertificateAuthorities(SSLContextRef context,
-         CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) certificates)
- __attribute__((availability(macosx,introduced=10.5)));
-OSStatus
-SSLCopyDistinguishedNames (SSLContextRef context,
-        CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) names)
- __attribute__((availability(macosx,introduced=10.5)));
-
-
-
-
-
-
-
-OSStatus
-SSLGetClientCertificateState (SSLContextRef context,
-         SSLClientCertificateState *clientState)
- __attribute__((availability(macosx,introduced=10.3)));
-OSStatus SSLSetDiffieHellmanParams (SSLContextRef context,
-          const void * _Nullable dhParams,
-          size_t dhParamsLen)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus SSLGetDiffieHellmanParams (SSLContextRef context,
-          const void * _Nullable * _Nonnull dhParams,
-          size_t *dhParamsLen)
- __attribute__((availability(macosx,introduced=10.2)));
-OSStatus SSLSetRsaBlinding (SSLContextRef context,
-          Boolean blinding)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-
-OSStatus SSLGetRsaBlinding (SSLContextRef context,
-          Boolean *blinding)
- __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
-OSStatus
-SSLHandshake (SSLContextRef context)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus
-SSLReHandshake (SSLContextRef context)
-    __attribute__((availability(macosx,introduced=10.12)));
-
-
-
-
-
-
-
-OSStatus
-SSLWrite (SSLContextRef context,
-        const void * _Nullable data,
-        size_t dataLength,
-        size_t *processed)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-OSStatus
-SSLRead (SSLContextRef context,
-        void * data,
-        size_t dataLength,
-        size_t *processed)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-OSStatus
-SSLGetBufferedReadSize (SSLContextRef context,
-        size_t *bufSize)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-
-
-OSStatus
-SSLGetDatagramWriteSize (SSLContextRef dtlsContext,
-        size_t *bufSize)
- __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-OSStatus
-SSLClose (SSLContextRef context)
- __attribute__((availability(macosx,introduced=10.2)));
-
-
-
-
-
-OSStatus
-SSLSetError (SSLContextRef context,
-                             OSStatus status)
-    __attribute__((availability(macosx,introduced=10.13)));
-#pragma clang assume_nonnull end
-
-
-
-
-}
 
 
 extern "C" {
@@ -38025,7 +38322,7 @@ typedef struct {} _objc_exc_NSURLCredential;
 
 struct NSURLCredential_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCredentialInternal *_internal;
+	NSURLCredentialInternal *__strong _internal;
 };
 
 
@@ -38242,7 +38539,7 @@ typedef struct {} _objc_exc_NSURLProtectionSpace;
 
 struct NSURLProtectionSpace_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLProtectionSpaceInternal *_internal;
+	NSURLProtectionSpaceInternal *__strong _internal;
 };
 
 // - (instancetype)initWithHost:(NSString *)host port:(NSInteger)port protocol:(nullable NSString *)protocol realm:(nullable NSString *)realm authenticationMethod:(nullable NSString *)authenticationMethod;
@@ -38377,7 +38674,7 @@ typedef struct {} _objc_exc_NSURLCredentialStorage;
 
 struct NSURLCredentialStorage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCredentialStorageInternal *_internal;
+	NSURLCredentialStorageInternal *__strong _internal;
 };
 
 
@@ -43143,7 +43440,9 @@ enum {
   kTextEncodingUnicodeV6_3 = 0x0110,
   kTextEncodingUnicodeV7_0 = 0x0111,
   kTextEncodingUnicodeV8_0 = 0x0112,
-  kTextEncodingUnicodeV9_0 = 0x0113
+  kTextEncodingUnicodeV9_0 = 0x0113,
+  kTextEncodingUnicodeV10_0 = 0x0114,
+  kTextEncodingUnicodeV11_0 = 0x0115
 };
 
 
@@ -46938,6 +47237,9 @@ struct vm_purgeable_info {
 };
 
 typedef struct vm_purgeable_info *vm_purgeable_info_t;
+enum virtual_memory_guard_exception_codes {
+ kGUARD_EXC_DEALLOC_GAP = 1u << 0
+};
 typedef integer_t cpu_type_t;
 typedef integer_t cpu_subtype_t;
 typedef integer_t cpu_threadtype_t;
@@ -47051,6 +47353,16 @@ struct host_cpu_load_info {
 
 typedef struct host_cpu_load_info host_cpu_load_info_data_t;
 typedef struct host_cpu_load_info *host_cpu_load_info_t;
+
+
+
+struct host_preferred_user_arch {
+ cpu_type_t cpu_type;
+ cpu_subtype_t cpu_subtype;
+};
+
+typedef struct host_preferred_user_arch host_preferred_user_arch_data_t;
+typedef struct host_preferred_user_arch *host_preferred_user_arch_t;
 
 
 typedef int vm_prot_t;
@@ -47868,13 +48180,14 @@ typedef integer_t *task_policy_t;
 enum task_role {
  TASK_RENICED = -1,
  TASK_UNSPECIFIED = 0,
- TASK_FOREGROUND_APPLICATION,
- TASK_BACKGROUND_APPLICATION,
- TASK_CONTROL_APPLICATION,
- TASK_GRAPHICS_SERVER,
- TASK_THROTTLE_APPLICATION,
- TASK_NONUI_APPLICATION,
- TASK_DEFAULT_APPLICATION
+ TASK_FOREGROUND_APPLICATION = 1,
+ TASK_BACKGROUND_APPLICATION = 2,
+ TASK_CONTROL_APPLICATION = 3,
+ TASK_GRAPHICS_SERVER = 4,
+ TASK_THROTTLE_APPLICATION = 5,
+ TASK_NONUI_APPLICATION = 6,
+ TASK_DEFAULT_APPLICATION = 7,
+ TASK_DARWINBG_APPLICATION = 8,
 };
 
 typedef integer_t task_role_t;
@@ -48571,6 +48884,14 @@ extern kern_return_t _kernelrpc_mach_port_insert_right_trap(
     mach_port_name_t name,
     mach_port_name_t poly,
     mach_msg_type_name_t polyPoly
+);
+
+extern kern_return_t _kernelrpc_mach_port_get_attributes_trap(
+    mach_port_name_t target,
+    mach_port_name_t name,
+    mach_port_flavor_t flavor,
+    mach_port_info_t port_info_out,
+    mach_msg_type_number_t *port_info_outCnt
 );
 
 extern kern_return_t _kernelrpc_mach_port_insert_member_trap(
@@ -54860,12 +55181,20 @@ _mm_adds_epu16(__m128i __a, __m128i __b)
 static __inline__ __m128i __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_avg_epu8(__m128i __a, __m128i __b)
 {
-  return (__m128i)__builtin_ia32_pavgb128((__v16qi)__a, (__v16qi)__b);
+  typedef unsigned short __v16hu __attribute__ ((__vector_size__ (32)));
+  return (__m128i)__builtin_convertvector(
+               ((__builtin_convertvector((__v16qu)__a, __v16hu) +
+                 __builtin_convertvector((__v16qu)__b, __v16hu)) + 1)
+                 >> 1, __v16qu);
 }
 static __inline__ __m128i __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_avg_epu16(__m128i __a, __m128i __b)
 {
-  return (__m128i)__builtin_ia32_pavgw128((__v8hi)__a, (__v8hi)__b);
+  typedef unsigned int __v8su __attribute__ ((__vector_size__ (32)));
+  return (__m128i)__builtin_convertvector(
+               ((__builtin_convertvector((__v8hu)__a, __v8su) +
+                 __builtin_convertvector((__v8hu)__b, __v8su)) + 1)
+                 >> 1, __v8hu);
 }
 static __inline__ __m128i __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_madd_epi16(__m128i __a, __m128i __b)
@@ -58979,6 +59308,8 @@ void uuid_generate(uuid_t out);
 void uuid_generate_random(uuid_t out);
 void uuid_generate_time(uuid_t out);
 
+void uuid_generate_early_random(uuid_t out);
+
 int uuid_is_null(const uuid_t uu);
 
 int uuid_parse(const uuid_string_t in, uuid_t uu);
@@ -59764,7 +60095,7 @@ enum {
   kAEDontRecord = 0x00001000,
   kAEDontExecute = 0x00002000,
   kAEProcessNonReplyEvents = 0x00008000,
-  kAEDoNotAutomaticallyAddAnnotationsToEvent = 0x00010000
+  kAEDoNotAutomaticallyAddAnnotationsToEvent = 0x00010000,
 };
 
 
@@ -60253,12 +60584,7 @@ AERemoteProcessResolverScheduleWithRunLoop(
   CFStringRef runLoopMode,
   AERemoteProcessResolverCallback callback,
   const AERemoteProcessResolverContext * ctx) __attribute__((availability(macosx,introduced=10.3)));
-
-
-
-
-
-
+extern OSStatus AEDeterminePermissionToAutomateTarget( const AEAddressDesc* target, AEEventClass theAEEventClass, AEEventID theAEEventID, Boolean askUserIfNeeded ) __attribute__((availability(macosx,introduced=10.14)));
 #pragma pack(pop)
 
 
@@ -61872,13 +62198,6 @@ AESendMessage(
 
 
 
-
-
-
-
-
-
-
 extern "C" {
 #pragma clang assume_nonnull begin
 extern const CFStringRef kCFErrorDomainCFNetwork __attribute__((availability(macosx,introduced=10_5)));
@@ -62342,6 +62661,7 @@ extern const CFStringRef kCFStreamNetworkServiceType __attribute__((availability
 extern const CFStringRef kCFStreamNetworkServiceTypeVideo __attribute__((availability(macosx,introduced=10_7)));
 extern const CFStringRef kCFStreamNetworkServiceTypeVoice __attribute__((availability(macosx,introduced=10_7)));
 extern const CFStringRef kCFStreamNetworkServiceTypeBackground __attribute__((availability(macosx,introduced=10_7)));
+extern const CFStringRef kCFStreamNetworkServiceTypeResponsiveData __attribute__((availability(macosx,introduced=10.8)));
 extern const CFStringRef kCFStreamNetworkServiceTypeCallSignaling __attribute__((availability(macosx,introduced=10_12)));
 
 
@@ -62349,9 +62669,6 @@ extern const CFStringRef kCFStreamNetworkServiceTypeVoIP __attribute__((availabi
 extern const CFStringRef kCFStreamPropertyNoCellular __attribute__((availability(macosx,introduced=10_8)));
 extern const CFStringRef kCFStreamPropertyConnectionIsCellular __attribute__((availability(macosx,introduced=10_8)));
 extern const CFIndex kCFStreamErrorDomainWinSock __attribute__((availability(macosx,introduced=10_5)));
-extern const int kCFStreamErrorDomainSOCKS __attribute__((availability(macosx,introduced=10_0)));
-
-
 
 static __inline__ __attribute__((always_inline))
 SInt32 CFSocketStreamSOCKSGetErrorSubdomain(const CFStreamError* error) {
@@ -62391,23 +62708,7 @@ enum {
 enum {
   kSOCKS5NoAcceptableMethod = 0xFF
 };
-extern const CFStringRef kCFStreamPropertySOCKSProxy __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySOCKSProxyHost __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySOCKSProxyPort __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySOCKSVersion __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamSocketSOCKSVersion4 __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamSocketSOCKSVersion5 __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySOCKSUser __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySOCKSPassword __attribute__((availability(macosx,introduced=10_2)));
 extern const CFStringRef kCFStreamPropertyProxyLocalBypass __attribute__((availability(macosx,introduced=10_4)));
-extern const int kCFStreamErrorDomainSSL __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertySocketSecurityLevel __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamSocketSecurityLevelNone __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamSocketSecurityLevelSSLv2 __attribute__((availability(macosx,introduced=10_2,deprecated=10_12,message="" )));
-extern const CFStringRef kCFStreamSocketSecurityLevelSSLv3 __attribute__((availability(macosx,introduced=10_2,deprecated=10_12,message="" )));
-extern const CFStringRef kCFStreamSocketSecurityLevelTLSv1 __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamSocketSecurityLevelNegotiatedSSL __attribute__((availability(macosx,introduced=10_2)));
-extern const CFStringRef kCFStreamPropertyShouldCloseNativeSocket __attribute__((availability(macosx,introduced=10_2)));
 extern const CFStringRef kCFStreamPropertySocketRemoteHost __attribute__((availability(macosx,introduced=10_3)));
 extern const CFStringRef kCFStreamPropertySocketRemoteNetService __attribute__((availability(macosx,introduced=10_3)));
 extern const CFStringRef kCFStreamPropertySocketExtendedBackgroundIdleMode __attribute__((availability(macosx,introduced=10_11)));
@@ -62517,7 +62818,6 @@ extern const CFStringRef kCFHTTPAuthenticationSchemeKerberos __attribute__((avai
 extern const CFStringRef kCFHTTPAuthenticationSchemeNegotiate __attribute__((availability(macosx,introduced=10_5)));
 extern const CFStringRef kCFHTTPAuthenticationSchemeNegotiate2 __attribute__((availability(macosx,introduced=10_6)));
 extern const CFStringRef kCFHTTPAuthenticationSchemeXMobileMeAuthToken __attribute__((availability(macosx,introduced=10_6)));
-extern const CFStringRef kCFHTTPAuthenticationSchemeOAuth1 __attribute__((availability(macosx,introduced=10_9)));
 typedef struct __CFHTTPMessage* CFHTTPMessageRef;
 extern CFTypeID
 CFHTTPMessageGetTypeID(void) __attribute__((availability(macosx,introduced=10_1)));
@@ -62622,8 +62922,6 @@ CFReadStreamCreateForStreamedHTTPRequest(CFAllocatorRef _Nullable alloc, CFHTTPM
 extern void
 CFHTTPReadStreamSetRedirectsAutomatically(CFReadStreamRef httpStream, Boolean shouldAutoRedirect) __attribute__((availability(macosx,introduced=10_1,deprecated=10_3,message="" )));
 #pragma clang assume_nonnull end
-
-
 
 
 
@@ -62876,6 +63174,7 @@ extern const CFStringRef kCFNetworkProxiesProxyAutoDiscoveryEnable __attribute__
 
 
 
+
 extern "C" {
 #pragma clang assume_nonnull begin
 
@@ -62891,6 +63190,7 @@ extern CFStringRef _Nullable DCSCopyTextDefinition( DCSDictionaryRef _Nullable d
 #pragma clang assume_nonnull end
 
 }
+
 
 
 
@@ -63136,7 +63436,7 @@ enum {
 };
 
 
-typedef void ( * CSIdentityStatusUpdatedCallback)(CSIdentityRef identity, CFIndex status, CFErrorRef error, void *info);
+typedef void (*CSIdentityStatusUpdatedCallback)(CSIdentityRef identity, CFIndex status, CFErrorRef error, void *info);
 struct CSIdentityClientContext {
 
 
@@ -63296,7 +63596,7 @@ enum {
 };
 
 typedef CFIndex CSIdentityQueryEvent;
-typedef void ( * CSIdentityQueryReceiveEventCallback)(CSIdentityQueryRef query, CSIdentityQueryEvent event, CFArrayRef identities, CFErrorRef error, void *info);
+typedef void (*CSIdentityQueryReceiveEventCallback)(CSIdentityQueryRef query, CSIdentityQueryEvent event, CFArrayRef identities, CFErrorRef error, void *info);
 
 
 
@@ -63330,6 +63630,7 @@ CSIdentityQueryStop(CSIdentityQueryRef query) __attribute__((availability(macosx
 
 
 }
+
 
 
 
@@ -63425,6 +63726,8 @@ enum {
 
 
 #pragma pack(pop)
+
+
 
 
 
@@ -63539,6 +63842,8 @@ UpdateSystemActivity(UInt8 activity) __attribute__((availability(macosx,introduc
 
 
 }
+
+
 
 
 
@@ -63980,6 +64285,8 @@ kcfindgenericpassword(
 
 
 
+
+
 extern "C" {
 
 
@@ -64049,9 +64356,9 @@ enum WSTypeID {
 };
 typedef enum WSTypeID WSTypeID;
 
-typedef void * ( * WSClientContextRetainCallBackProcPtr)(void * info);
-typedef void ( * WSClientContextReleaseCallBackProcPtr)(void * info);
-typedef CFStringRef ( * WSClientContextCopyDescriptionCallBackProcPtr)(void * info);
+typedef void *(*WSClientContextRetainCallBackProcPtr)(void * info) __attribute__((availability(macosx,introduced=10.2)));
+typedef void (*WSClientContextReleaseCallBackProcPtr)(void * info) __attribute__((availability(macosx,introduced=10.2)));
+typedef CFStringRef (*WSClientContextCopyDescriptionCallBackProcPtr)(void * info) __attribute__((availability(macosx,introduced=10.2)));
 struct WSClientContext {
 
 
@@ -64079,7 +64386,7 @@ struct WSClientContext {
 
   WSClientContextCopyDescriptionCallBackProcPtr copyDescription;
 };
-typedef struct WSClientContext WSClientContext;
+typedef struct WSClientContext WSClientContext __attribute__((availability(macosx,introduced=10.2)));
 extern CFStringRef kWSXMLRPCProtocol __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern CFStringRef kWSSOAP1999Protocol __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern CFStringRef kWSSOAP2001Protocol __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
@@ -64198,7 +64505,7 @@ WSMethodInvocationCopyProperty(
   CFStringRef propertyName) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern __attribute__((cf_returns_retained)) CFDictionaryRef
 WSMethodInvocationInvoke(WSMethodInvocationRef invocation) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
-typedef void ( * WSMethodInvocationCallBackProcPtr)(WSMethodInvocationRef invocation, void *info, CFDictionaryRef outRef);
+typedef void(*WSMethodInvocationCallBackProcPtr)(WSMethodInvocationRef invocation, void *info, CFDictionaryRef outRef) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern void
 WSMethodInvocationSetCallBack(
   WSMethodInvocationRef invocation,
@@ -64216,14 +64523,14 @@ WSMethodInvocationUnscheduleFromRunLoop(
   CFStringRef runLoopMode) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern Boolean
 WSMethodResultIsFault(CFDictionaryRef methodResult) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
-typedef CFStringRef ( * WSMethodInvocationSerializationProcPtr)(WSMethodInvocationRef invocation, CFTypeRef obj, void *info);
+typedef CFStringRef(*WSMethodInvocationSerializationProcPtr)(WSMethodInvocationRef invocation, CFTypeRef obj, void *info) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern void
 WSMethodInvocationAddSerializationOverride(
   WSMethodInvocationRef invocation,
   CFTypeID objType,
   WSMethodInvocationSerializationProcPtr serializationProc,
   WSClientContext * context) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
-typedef CFTypeRef ( * WSMethodInvocationDeserializationProcPtr)(WSMethodInvocationRef invocation, CFXMLTreeRef msgRoot, CFXMLTreeRef deserializeRoot, void *info);
+typedef CFTypeRef(*WSMethodInvocationDeserializationProcPtr)(WSMethodInvocationRef invocation, CFXMLTreeRef msgRoot, CFXMLTreeRef deserializeRoot, void *info) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 extern void
 WSMethodInvocationAddDeserializationOverride(
   WSMethodInvocationRef invocation,
@@ -64232,6 +64539,8 @@ WSMethodInvocationAddDeserializationOverride(
   WSMethodInvocationDeserializationProcPtr deserializationProc,
   WSClientContext * context) __attribute__((availability(macosx,introduced=10.2,deprecated=10.8)));
 }
+
+
 
 
 
@@ -64278,14 +64587,14 @@ WSProtocolHandlerSetProperty(
   WSProtocolHandlerRef ref,
   CFStringRef propertyName,
   CFTypeRef propertyValue) __attribute__((availability(macosx,introduced=10.3,deprecated=10.8)));
-typedef CFStringRef ( * WSProtocolHandlerSerializationProcPtr)(WSProtocolHandlerRef protocol, CFTypeRef obj, void *info);
+typedef CFStringRef(*WSProtocolHandlerSerializationProcPtr)(WSProtocolHandlerRef protocol, CFTypeRef obj, void *info)__attribute__((availability(macosx,introduced=10.3)));
 extern void
 WSProtocolHandlerSetSerializationOverride(
   WSProtocolHandlerRef protocol,
   CFTypeID objType,
   WSProtocolHandlerSerializationProcPtr serializationProc,
   WSClientContext * context) __attribute__((availability(macosx,introduced=10.3,deprecated=10.8)));
-typedef CFTypeRef ( * WSProtocolHandlerDeserializationProcPtr)(WSProtocolHandlerRef protocol, CFXMLTreeRef msgRoot, CFXMLTreeRef deserializeRoot, void *info);
+typedef CFTypeRef(*WSProtocolHandlerDeserializationProcPtr)(WSProtocolHandlerRef protocol, CFXMLTreeRef msgRoot, CFXMLTreeRef deserializeRoot, void *info)__attribute__((availability(macosx,introduced=10.3)));
 extern void
 WSProtocolHandlerSetDeserializationOverride(
   WSProtocolHandlerRef protocol,
@@ -64867,8 +65176,6 @@ LSSetDefaultHandlerForURLScheme(
 
 
 
-
-
 extern "C" {
 
 
@@ -65191,6 +65498,7 @@ LSOpenURLsWithRole(
 
 
 
+
 #pragma clang assume_nonnull begin
 extern const CFStringRef kLSQuarantineAgentNameKey __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineAgentBundleIdentifierKey __attribute__((availability(macosx,introduced=10.5)));
@@ -65205,6 +65513,8 @@ extern const CFStringRef kLSQuarantineTypeOtherAttachment __attribute__((availab
 extern const CFStringRef kLSQuarantineOriginURLKey __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineDataURLKey __attribute__((availability(macosx,introduced=10.5)));
 #pragma clang assume_nonnull end
+
+
 
 
 
@@ -65459,6 +65769,7 @@ UTGetOSTypeFromString(CFStringRef inString) __attribute__((availability(macosx,i
 
 
 }
+
 
 
 
@@ -66014,13 +66325,6 @@ extern const CFStringRef kMDAttributeMultiValued __attribute__((availability(mac
 }
 extern "C" {
 }
-
-
-
-
-
-
-
 extern "C" {
 typedef CFTypeRef SKDocumentRef;
 extern CFTypeID
@@ -66416,6 +66720,7 @@ SKSummaryGetParagraphSummaryInfo(
 
 
 
+
 extern "C" {
 
 
@@ -66690,6 +66995,7 @@ FSEventStreamSetExclusionPaths(FSEventStreamRef streamRef, CFArrayRef pathsToExc
 
 
 }
+
 
 
 
@@ -67059,7 +67365,7 @@ typedef struct {} _objc_exc_NSURLProtocol;
 
 struct NSURLProtocol_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLProtocolInternal *_internal;
+	NSURLProtocolInternal *__strong _internal;
 };
 
 // - (instancetype)initWithRequest:(NSURLRequest *)request cachedResponse:(nullable NSCachedURLResponse *)cachedResponse client:(nullable id <NSURLProtocolClient>)client __attribute__((objc_designated_initializer));
@@ -67174,6 +67480,7 @@ typedef NSUInteger NSURLRequestNetworkServiceType; enum
     NSURLNetworkServiceTypeVideo = 2,
     NSURLNetworkServiceTypeBackground = 3,
     NSURLNetworkServiceTypeVoice = 4,
+    NSURLNetworkServiceTypeResponsiveData = 6,
     NSURLNetworkServiceTypeCallSignaling __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0))) = 11,
 };
 
@@ -67185,7 +67492,7 @@ typedef struct {} _objc_exc_NSURLRequest;
 
 struct NSURLRequest_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLRequestInternal *_internal;
+	NSURLRequestInternal *__strong _internal;
 };
 
 // + (instancetype)requestWithURL:(NSURL *)URL;
@@ -67372,7 +67679,7 @@ typedef struct {} _objc_exc_NSURLResponse;
 
 struct NSURLResponse_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLResponseInternal *_internal;
+	NSURLResponseInternal *__strong _internal;
 };
 
 // - (instancetype)initWithURL:(NSURL *)URL MIMEType:(nullable NSString *)MIMEType expectedContentLength:(NSInteger)length textEncodingName:(nullable NSString *)name __attribute__((objc_designated_initializer));
@@ -67408,7 +67715,7 @@ typedef struct {} _objc_exc_NSHTTPURLResponse;
 
 struct NSHTTPURLResponse_IMPL {
 	struct NSURLResponse_IMPL NSURLResponse_IVARS;
-	NSHTTPURLResponseInternal *_httpInternal;
+	NSHTTPURLResponseInternal *__strong _httpInternal;
 };
 
 // - (nullable instancetype)initWithURL:(NSURL *)url statusCode:(NSInteger)statusCode HTTPVersion:(nullable NSString *)HTTPVersion headerFields:(nullable NSDictionary<NSString *, NSString *> *)headerFields __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -67486,7 +67793,7 @@ typedef struct {} _objc_exc_NSUserDefaults;
 
 struct NSUserDefaults_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _kvo_;
+	__strong id _kvo_;
 	CFStringRef _identifier_;
 	CFStringRef _container_;
 	void *_reserved[2];
@@ -67697,8 +68004,10 @@ typedef NSString *NSValueTransformerName __attribute__((swift_wrapper(struct)));
 extern "C" NSValueTransformerName const NSNegateBooleanTransformerName __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=3.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSValueTransformerName const NSIsNilTransformerName __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=3.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSValueTransformerName const NSIsNotNilTransformerName __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=3.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-extern "C" NSValueTransformerName const NSUnarchiveFromDataTransformerName __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=3.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-extern "C" NSValueTransformerName const NSKeyedUnarchiveFromDataTransformerName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
+extern "C" NSValueTransformerName const NSUnarchiveFromDataTransformerName __attribute__((availability(macos,introduced=10.3,deprecated=10.14,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(ios,introduced=3.0,deprecated=12.0,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,replacement="NSSecureUnarchiveFromDataTransformerName")));
+extern "C" NSValueTransformerName const NSKeyedUnarchiveFromDataTransformerName __attribute__((availability(macos,introduced=10.3,deprecated=10.14,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(ios,introduced=3.0,deprecated=12.0,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(watchos,introduced=2.0,deprecated=5.0,replacement="NSSecureUnarchiveFromDataTransformerName"))) __attribute__((availability(tvos,introduced=9.0,deprecated=12.0,replacement="NSSecureUnarchiveFromDataTransformerName")));
+extern "C" NSValueTransformerName const NSSecureUnarchiveFromDataTransformerName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)));
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_3)))
 
@@ -67725,6 +68034,30 @@ struct NSValueTransformer_IMPL {
 
 // - (nullable id)transformedValue:(nullable id)value;
 // - (nullable id)reverseTransformedValue:(nullable id)value;
+
+/* @end */
+
+
+
+__attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)))
+
+#ifndef _REWRITER_typedef_NSSecureUnarchiveFromDataTransformer
+#define _REWRITER_typedef_NSSecureUnarchiveFromDataTransformer
+typedef struct objc_object NSSecureUnarchiveFromDataTransformer;
+typedef struct {} _objc_exc_NSSecureUnarchiveFromDataTransformer;
+#endif
+
+struct NSSecureUnarchiveFromDataTransformer_IMPL {
+	struct NSValueTransformer_IMPL NSValueTransformer_IVARS;
+};
+
+
+
+
+
+
+
+@property (class, readonly, copy) NSArray<Class> *allowedTopLevelClasses;
 
 /* @end */
 
@@ -67800,11 +68133,11 @@ typedef struct {} _objc_exc_NSXMLParser;
 
 struct NSXMLParser_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _reserved0;
-	id _delegate;
-	id _reserved1;
-	id _reserved2;
-	id _reserved3;
+	__strong id _reserved0;
+	__strong id _delegate;
+	__strong id _reserved1;
+	__strong id _reserved2;
+	__strong id _reserved3;
 };
 
 // - (nullable instancetype)initWithContentsOfURL:(NSURL *)url;
@@ -68022,6 +68355,7 @@ typedef u_int16_t au_event_t;
 typedef u_int16_t au_emod_t;
 typedef u_int32_t au_class_t;
 typedef u_int64_t au_asflgs_t __attribute__ ((aligned (8)));
+typedef unsigned char au_ctlmode_t;
 
 struct au_tid {
  dev_t port;
@@ -68083,6 +68417,13 @@ struct au_session {
  au_mask_t as_mask;
 };
 typedef struct au_session au_session_t;
+
+struct au_expire_after {
+ time_t age;
+ size_t size;
+ unsigned char op_type;
+};
+typedef struct au_expire_after au_expire_after_t;
 
 
 
@@ -68248,7 +68589,7 @@ typedef struct {} _objc_exc_NSXPCListenerEndpoint;
 /* @optional */
 
 
-// - (id)synchronousRemoteObjectProxyWithErrorHandler:(void (__attribute__((noescape)) ^)(NSError *error))handler __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+// - (id)synchronousRemoteObjectProxyWithErrorHandler:(void (^)(NSError *error))handler __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
 /* @end */
 
@@ -68273,23 +68614,23 @@ typedef struct {} _objc_exc_NSXPCConnection;
 struct NSXPCConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_xconnection;
-	id _repliesExpected;
-	dispatch_queue_t _userQueue;
+	__strong id _repliesExpected;
+	__strong dispatch_queue_t _userQueue;
 	uint32_t _state;
 	uint32_t _state2;
 	void (*_interruptionHandler)();
 	void (*_invalidationHandler)();
-	id _exportInfo;
-	id _repliesRequested;
-	id _importInfo;
+	__strong id _exportInfo;
+	__strong id _repliesRequested;
+	__strong id _importInfo;
 	id _otherInfo;
-	id _reserved1;
-	id _lock;
-	NSXPCInterface *_remoteObjectInterface;
-	NSString *_serviceName;
-	NSXPCListenerEndpoint *_endpoint;
-	id _eCache;
-	id _dCache;
+	__strong id _reserved1;
+	__strong id _lock;
+	NSXPCInterface *__strong _remoteObjectInterface;
+	NSString *__strong _serviceName;
+	NSXPCListenerEndpoint *__strong _endpoint;
+	__strong id _eCache;
+	__strong id _dCache;
 };
 
 
@@ -68361,13 +68702,13 @@ typedef struct {} _objc_exc_NSXPCListener;
 struct NSXPCListener_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_xconnection;
-	dispatch_queue_t _userQueue;
+	__strong dispatch_queue_t _userQueue;
 	void *reserved0;
 	id _delegate;
-	NSString *_serviceName;
+	NSString *__strong _serviceName;
 	uint64_t _state;
-	id _reserved1;
-	id _reserved2;
+	__strong id _reserved1;
+	__strong id _reserved2;
 };
 
 
@@ -68419,9 +68760,9 @@ typedef struct {} _objc_exc_NSXPCInterface;
 
 struct NSXPCInterface_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	Protocol *_protocol;
+	Protocol *__strong _protocol;
 	void *_reserved2;
-	id _reserved1;
+	__strong id _reserved1;
 };
 
 
@@ -68705,7 +69046,7 @@ typedef struct {} _objc_exc_NSCache;
 
 struct NSCache_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _delegate;
+	__strong id _delegate;
 	void *_private[5];
 	void *_reserved;
 };
@@ -68900,9 +69241,9 @@ typedef struct {} _objc_exc_NSComparisonPredicate;
 struct NSComparisonPredicate_IMPL {
 	struct NSPredicate_IMPL NSPredicate_IVARS;
 	void *_reserved2;
-	NSPredicateOperator *_predicateOperator;
-	NSExpression *_lhs;
-	NSExpression *_rhs;
+	NSPredicateOperator *__strong _predicateOperator;
+	NSExpression *__strong _lhs;
+	NSExpression *__strong _rhs;
 };
 
 
@@ -68959,7 +69300,7 @@ struct NSCompoundPredicate_IMPL {
 	struct NSPredicate_IMPL NSPredicate_IVARS;
 	void *_reserved2;
 	NSUInteger _type;
-	NSArray *_subpredicates;
+	NSArray *__strong _subpredicates;
 };
 
 
@@ -69025,10 +69366,10 @@ struct NSDateComponentsFormatter_IMPL {
 	pthread_mutex_t _lock;
 	void *_fmt;
 	void *_unused;
-	NSString *_fmtLocaleIdent;
-	NSCalendar *_calendar;
-	NSDate *_referenceDate;
-	NSNumberFormatter *_unitFormatter;
+	NSString *__strong _fmtLocaleIdent;
+	NSCalendar *__strong _calendar;
+	NSDate *__strong _referenceDate;
+	NSNumberFormatter *__strong _unitFormatter;
 	NSCalendarUnit _allowedUnits;
 	NSFormattingContext _formattingContext;
 	NSDateComponentsFormatterUnitsStyle _unitsStyle;
@@ -69307,7 +69648,7 @@ struct NSExtensionItem_IMPL {
 // @property(nullable, copy, atomic) NSAttributedString *attributedContentText;
 
 
-// @property(nullable, copy, atomic) NSArray *attachments;
+// @property(nullable, copy, atomic) NSArray<NSItemProvider *> *attachments;
 
 
 // @property(nullable, copy, atomic) NSDictionary *userInfo;
@@ -69444,7 +69785,7 @@ typedef struct {} _objc_exc_NSFileAccessIntent;
 
 struct NSFileAccessIntent_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *_url;
+	NSURL *__strong _url;
 	BOOL _isRead;
 	NSInteger _options;
 };
@@ -69466,13 +69807,13 @@ typedef struct {} _objc_exc_NSFileCoordinator;
 
 struct NSFileCoordinator_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _accessArbiter;
-	id _fileReactor;
-	id _purposeID;
-	NSURL *_recentFilePresenterURL;
-	id _accessClaimIDOrIDs;
+	__strong id _accessArbiter;
+	__strong id _fileReactor;
+	__strong id _purposeID;
+	NSURL *__strong _recentFilePresenterURL;
+	__strong id _accessClaimIDOrIDs;
 	BOOL _isCancelled;
-	NSMutableDictionary *_movedItems;
+	NSMutableDictionary *__strong _movedItems;
 };
 
 
@@ -69733,19 +70074,19 @@ typedef struct {} _objc_exc_NSFileVersion;
 
 struct NSFileVersion_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *_fileURL;
-	id _addition;
-	id _deadVersionIdentifier;
-	id _nonLocalVersion;
-	NSURL *_contentsURL;
+	NSURL *__strong _fileURL;
+	__strong id _addition;
+	__strong id _deadVersionIdentifier;
+	__strong id _nonLocalVersion;
+	NSURL *__strong _contentsURL;
 	BOOL _isBackup;
-	NSString *_localizedName;
-	NSString *_localizedComputerName;
-	NSDate *_modificationDate;
+	NSString *__strong _localizedName;
+	NSString *__strong _localizedComputerName;
+	NSDate *__strong _modificationDate;
 	BOOL _isResolved;
 	BOOL _contentsURLIsAccessed;
-	id _reserved;
-	NSString *_name;
+	__strong id _reserved;
+	NSString *__strong _name;
 };
 
 
@@ -69928,12 +70269,12 @@ typedef struct {} _objc_exc_NSFileWrapper;
 
 struct NSFileWrapper_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSDictionary *_fileAttributes;
-	NSString *_preferredFileName;
-	NSString *_fileName;
-	id _contents;
-	id _icon;
-	id _moreVars;
+	NSDictionary *__strong _fileAttributes;
+	NSString *__strong _preferredFileName;
+	NSString *__strong _fileName;
+	__strong id _contents;
+	__strong id _icon;
+	__strong id _moreVars;
 };
 
 
@@ -70178,11 +70519,11 @@ typedef struct {} _objc_exc_NSLinguisticTagger;
 
 struct NSLinguisticTagger_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSArray *_schemes;
+	NSArray *__strong _schemes;
 	NSUInteger _options;
-	NSString *_string;
-	id _orthographyArray;
-	id _tokenArray;
+	NSString *__strong _string;
+	__strong id _orthographyArray;
+	__strong id _tokenArray;
 	void *_reserved;
 };
 
@@ -70575,7 +70916,7 @@ struct NSMetadataQuery_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _flags;
 	NSTimeInterval _interval;
-	id _private[11];
+	id __strong _private[11];
 	void *_reserved;
 };
 
@@ -70677,7 +71018,7 @@ typedef struct {} _objc_exc_NSMetadataItem;
 
 struct NSMetadataItem_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _item;
+	__strong id _item;
 	void *_reserved;
 };
 
@@ -70702,8 +71043,8 @@ typedef struct {} _objc_exc_NSMetadataQueryAttributeValueTuple;
 
 struct NSMetadataQueryAttributeValueTuple_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _attr;
-	id _value;
+	__strong id _attr;
+	__strong id _value;
 	NSUInteger _count;
 	void *_reserved;
 };
@@ -70726,7 +71067,7 @@ typedef struct {} _objc_exc_NSMetadataQueryResultGroup;
 
 struct NSMetadataQueryResultGroup_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private[9];
+	id __strong _private[9];
 	NSUInteger _private2[1];
 	void *_reserved;
 };
@@ -70864,9 +71205,9 @@ typedef struct {} _objc_exc_NSNetService;
 
 struct NSNetService_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _netService;
-	id _delegate;
-	id _reserved;
+	__strong id _netService;
+	__strong id _delegate;
+	__strong id _reserved;
 };
 
 
@@ -70986,8 +71327,8 @@ typedef struct {} _objc_exc_NSNetServiceBrowser;
 
 struct NSNetServiceBrowser_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _netServiceBrowser;
-	id _delegate;
+	__strong id _netServiceBrowser;
+	__strong id _delegate;
 	void *_reserved;
 };
 
@@ -71152,9 +71493,9 @@ typedef struct {} _objc_exc_NSUbiquitousKeyValueStore;
 
 struct NSUbiquitousKeyValueStore_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private1;
-	id _private2;
-	id _private3;
+	__strong id _private1;
+	__strong id _private2;
+	__strong id _private3;
 	void *_private4;
 	void *_reserved[3];
 	int _daemonWakeToken;
@@ -71231,12 +71572,12 @@ typedef struct {} _objc_exc_NSUndoManager;
 
 struct NSUndoManager_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _undoStack;
-	id _redoStack;
-	NSArray *_runLoopModes;
+	__strong id _undoStack;
+	__strong id _redoStack;
+	NSArray *__strong _runLoopModes;
 	uint64_t _NSUndoManagerPrivate1;
-	id _target;
-	id _proxy;
+	__strong id _target;
+	__strong id _proxy;
 	void *_NSUndoManagerPrivate2;
 	void *_NSUndoManagerPrivate3;
 };
@@ -72418,15 +72759,15 @@ struct NSURLSessionTaskMetrics_IMPL {
 /* @end */
 
 #pragma clang assume_nonnull end
-
-
-
-
-
-
-
+#pragma clang assume_nonnull begin
 
 // @class NSArray;
+#ifndef _REWRITER_typedef_NSArray
+#define _REWRITER_typedef_NSArray
+typedef struct objc_object NSArray;
+typedef struct {} _objc_exc_NSArray;
+#endif
+
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
 typedef struct objc_object NSArray;
@@ -72477,7 +72818,7 @@ typedef struct {} _objc_exc_NSError;
 
 // @protocol NSUserActivityDelegate;
 
-#pragma clang assume_nonnull begin
+typedef NSString* NSUserActivityPersistentIdentifier __attribute__((swift_bridged_typedef));
 
 
 
@@ -72570,6 +72911,13 @@ struct NSUserActivity_IMPL {
 
 
 // @property (getter=isEligibleForPublicIndexing) BOOL eligibleForPublicIndexing __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
+
+// @property (getter=isEligibleForPrediction) BOOL eligibleForPrediction __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable)));
+
+// @property (copy, nullable) NSUserActivityPersistentIdentifier persistentIdentifier __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable)));
+
+// +(void) deleteSavedUserActivitiesWithPersistentIdentifiers:(NSArray<NSUserActivityPersistentIdentifier>*) persistentIdentifiers completionHandler:(void(^)(void))handler __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable)));
+// +(void) deleteAllSavedUserActivitiesWithCompletionHandler:(void(^)(void))handler __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(macos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
 /* @end */
 
@@ -72743,18 +73091,18 @@ struct NSUnarchiver_IMPL {
 	char unused2;
 	void *pointerTable;
 	void *stringTable;
-	id classVersions;
+	__strong id classVersions;
 	NSInteger lastLabel;
 	void *map;
 	void *allUnarchivedObjects;
-	id reserved;
+	__strong id reserved;
 };
 
 
 // - (nullable instancetype)initForReadingWithData:(NSData *)data __attribute__((objc_designated_initializer));
 
-// - (void)setObjectZone:(nullable NSZone *)zone ;
-// - (nullable NSZone *)objectZone ;
+// - (void)setObjectZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (nullable NSZone *)objectZone __attribute__((unavailable("not available in automatic reference counting mode")));
 
 // @property (getter=isAtEnd, readonly) BOOL atEnd;
 
@@ -72807,7 +73155,7 @@ typedef NSInteger NSBackgroundActivityResult; enum {
 
 
     NSBackgroundActivityResultDeferred = 2,
-} __attribute__((availability(macosx,introduced=10_10)));
+} __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
 typedef void (*NSBackgroundActivityCompletionHandler)(NSBackgroundActivityResult result);
 
@@ -72817,7 +73165,7 @@ typedef void (*NSBackgroundActivityCompletionHandler)(NSBackgroundActivityResult
 
 
 
-__attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_10)))
+__attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
 
 #ifndef _REWRITER_typedef_NSBackgroundActivityScheduler
 #define _REWRITER_typedef_NSBackgroundActivityScheduler
@@ -72827,9 +73175,9 @@ typedef struct {} _objc_exc_NSBackgroundActivityScheduler;
 
 struct NSBackgroundActivityScheduler_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _private1;
-	id _private2;
-	id _private3;
+	__strong id _private1;
+	__strong id _private2;
+	__strong id _private3;
 	int64_t _flags;
 };
 
@@ -72920,8 +73268,8 @@ struct NSCalendarDate_IMPL {
 	struct NSDate_IMPL NSDate_IVARS;
 	NSUInteger refCount;
 	NSTimeInterval _timeIntervalSinceReferenceDate;
-	NSTimeZone *_timeZone;
-	NSString *_formatString;
+	NSTimeZone *__strong _timeZone;
+	NSString *__strong _formatString;
 	void *_reserved;
 };
 
@@ -73085,28 +73433,28 @@ typedef struct {} _objc_exc_NSConnection;
 	} ;
 struct NSConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id receivePort;
-	id sendPort;
-	id delegate;
+	__strong id receivePort;
+	__strong id sendPort;
+	__strong id delegate;
 	int32_t busy;
 	int32_t localProxyCount;
 	int32_t waitCount;
-	id delayedRL;
-	id statistics;
+	__strong id delayedRL;
+	__strong id statistics;
 	unsigned char isDead;
 	unsigned char isValid;
 	unsigned char wantsInvalid;
 	struct NSConnection__T_1 NSConnection__GRBF_1;
-	id ___1;
-	id ___2;
-	id runLoops;
-	id requestModes;
-	id rootObject;
+	__strong id ___1;
+	__strong id ___2;
+	__strong id runLoops;
+	__strong id requestModes;
+	__strong id rootObject;
 	void *registerInfo;
-	id replMode;
-	id classInfoImported;
-	id releasedProxies;
-	id reserved;
+	__strong id replMode;
+	__strong id classInfoImported;
+	__strong id releasedProxies;
+	__strong id reserved;
 };
 
 
@@ -73261,14 +73609,14 @@ typedef struct {} _objc_exc_NSDistantObject;
 
 struct NSDistantObject_IMPL {
 	struct NSProxy_IMPL NSProxy_IVARS;
-	id _knownSelectors;
+	__strong id _knownSelectors;
 	NSUInteger _wireCount;
 	NSUInteger _refCount;
-	id _proto;
+	__strong id _proto;
 	uint16_t ___2;
 	uint8_t ___1;
 	uint8_t _wireType;
-	id _remoteClass;
+	__strong id _remoteClass;
 };
 
 
@@ -73488,9 +73836,9 @@ typedef struct {} _objc_exc_NSPortMessage;
 
 struct NSPortMessage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSPort *localPort;
-	NSPort *remotePort;
-	NSMutableArray *components;
+	NSPort *__strong localPort;
+	NSPort *__strong remotePort;
+	NSMutableArray *__strong components;
 	uint32_t msgid;
 	void *reserved2;
 	void *reserved;
@@ -73945,8 +74293,8 @@ typedef struct {} _objc_exc_NSXMLNode;
 	} ;
 struct NSXMLNode_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSXMLNode *_parent;
-	id _objectValue;
+	NSXMLNode *__strong _parent;
+	__strong id _objectValue;
 	struct NSXMLNode__T_1 NSXMLNode__GRBF_1;
 	int32_t _private;
 };
@@ -74233,17 +74581,17 @@ typedef struct {} _objc_exc_NSXMLDTD;
 
 struct NSXMLDTD_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *_name;
-	NSString *_publicID;
-	NSString *_systemID;
-	NSArray *_children;
+	NSString *__strong _name;
+	NSString *__strong _publicID;
+	NSString *__strong _systemID;
+	NSArray *__strong _children;
 	BOOL _childrenHaveMutated;
 	uint8_t _padding3[3];
-	NSMutableDictionary *_entities;
-	NSMutableDictionary *_elements;
-	NSMutableDictionary *_notations;
-	NSMutableDictionary *_attributes;
-	NSString *_original;
+	NSMutableDictionary *__strong _entities;
+	NSMutableDictionary *__strong _elements;
+	NSMutableDictionary *__strong _notations;
+	NSMutableDictionary *__strong _attributes;
+	NSString *__strong _original;
 	BOOL _modified;
 	uint8_t _padding2[3];
 };
@@ -74374,10 +74722,10 @@ typedef struct {} _objc_exc_NSXMLDTDNode;
 struct NSXMLDTDNode_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
 	NSXMLDTDNodeKind _DTDKind;
-	NSString *_name;
-	NSString *_notationName;
-	NSString *_publicID;
-	NSString *_systemID;
+	NSString *__strong _name;
+	NSString *__strong _notationName;
+	NSString *__strong _publicID;
+	NSString *__strong _systemID;
 };
 
 
@@ -74479,16 +74827,16 @@ typedef struct {} _objc_exc_NSXMLDocument;
 
 struct NSXMLDocument_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *_encoding;
-	NSString *_version;
-	NSXMLDTD *_docType;
-	NSArray *_children;
+	NSString *__strong _encoding;
+	NSString *__strong _version;
+	NSXMLDTD *__strong _docType;
+	NSArray *__strong _children;
 	BOOL _childrenHaveMutated;
 	BOOL _standalone;
 	int8_t padding[2];
-	NSXMLElement *_rootElement;
-	NSString *_URI;
-	id _extraIvars;
+	NSXMLElement *__strong _rootElement;
+	NSString *__strong _URI;
+	__strong id _extraIvars;
 	NSUInteger _fidelityMask;
 	NSXMLDocumentContentKind _contentKind;
 };
@@ -74682,15 +75030,15 @@ typedef struct {} _objc_exc_NSXMLElement;
 
 struct NSXMLElement_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *_name;
-	id _attributes;
-	id _namespaces;
-	NSArray *_children;
+	NSString *__strong _name;
+	__strong id _attributes;
+	__strong id _namespaces;
+	NSArray *__strong _children;
 	BOOL _childrenHaveMutated;
 	BOOL _zeroOrOneAttributes;
 	BOOL _zeroOrOneNamespaces;
 	uint8_t _padding;
-	NSString *_URI;
+	NSString *__strong _URI;
 	NSInteger _prefixIndex;
 };
 
@@ -74908,7 +75256,7 @@ typedef struct {} _objc_exc_NSURLDownload;
 
 struct NSURLDownload_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLDownloadInternal *_internal;
+	NSURLDownloadInternal *__strong _internal;
 };
 
 // + (BOOL)canResumeDownloadDecodedWithEncodingMIMEType:(NSString *)MIMEType;
@@ -75019,87 +75367,87 @@ struct CGAffineTransform {
 
 
 extern "C" const CGAffineTransform CGAffineTransformIdentity
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGAffineTransform CGAffineTransformMake(CGFloat a, CGFloat b,
   CGFloat c, CGFloat d, CGFloat tx, CGFloat ty)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,
-  CGFloat ty) __attribute__((availability(macosx,introduced=10.0)));
+  CGFloat ty) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformMakeScale(CGFloat sx, CGFloat sy)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformMakeRotation(CGFloat angle)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGAffineTransformIsIdentity(CGAffineTransform t)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformTranslate(CGAffineTransform t,
-  CGFloat tx, CGFloat ty) __attribute__((availability(macosx,introduced=10.0)));
+  CGFloat tx, CGFloat ty) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformScale(CGAffineTransform t,
-  CGFloat sx, CGFloat sy) __attribute__((availability(macosx,introduced=10.0)));
+  CGFloat sx, CGFloat sy) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformRotate(CGAffineTransform t,
-  CGFloat angle) __attribute__((availability(macosx,introduced=10.0)));
+  CGFloat angle) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformInvert(CGAffineTransform t)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGAffineTransformConcat(CGAffineTransform t1,
-  CGAffineTransform t2) __attribute__((availability(macosx,introduced=10.0)));
+  CGAffineTransform t2) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGAffineTransformEqualToTransform(CGAffineTransform t1,
-  CGAffineTransform t2) __attribute__((availability(macosx,introduced=10.4)));
+  CGAffineTransform t2) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGPoint CGPointApplyAffineTransform(CGPoint point,
-  CGAffineTransform t) __attribute__((availability(macosx,introduced=10.0)));
+  CGAffineTransform t) __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -77024,27 +77372,6 @@ typedef OSStatus ( * FMFontFamilyCallbackFilterProcPtr)(FMFontFamily iFontFamily
 typedef OSStatus ( * FMFontCallbackFilterProcPtr)(FMFont iFont, void *iRefCon);
 typedef FMFontFamilyCallbackFilterProcPtr FMFontFamilyCallbackFilterUPP;
 typedef FMFontCallbackFilterProcPtr FMFontCallbackFilterUPP;
-extern FMFontFamilyCallbackFilterUPP
-NewFMFontFamilyCallbackFilterUPP(FMFontFamilyCallbackFilterProcPtr userRoutine) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-extern FMFontCallbackFilterUPP
-NewFMFontCallbackFilterUPP(FMFontCallbackFilterProcPtr userRoutine) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-extern void
-DisposeFMFontFamilyCallbackFilterUPP(FMFontFamilyCallbackFilterUPP userUPP) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-extern void
-DisposeFMFontCallbackFilterUPP(FMFontCallbackFilterUPP userUPP) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-extern OSStatus
-InvokeFMFontFamilyCallbackFilterUPP(
-  FMFontFamily iFontFamily,
-  void * iRefCon,
-  FMFontFamilyCallbackFilterUPP userUPP) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-extern OSStatus
-InvokeFMFontCallbackFilterUPP(
-  FMFont iFont,
-  void * iRefCon,
-  FMFontCallbackFilterUPP userUPP) __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
     inline FMFontFamilyCallbackFilterUPP NewFMFontFamilyCallbackFilterUPP(FMFontFamilyCallbackFilterProcPtr userRoutine) { return userRoutine; }
     inline FMFontCallbackFilterUPP NewFMFontCallbackFilterUPP(FMFontCallbackFilterProcPtr userRoutine) { return userRoutine; }
     inline void DisposeFMFontFamilyCallbackFilterUPP(FMFontFamilyCallbackFilterUPP) { }
@@ -77579,21 +77906,6 @@ typedef ATSJustWidthDeltaEntryOverride ATSJustPriorityWidthDeltaOverrides[4];
 typedef struct ATSGlyphVector* ATSULineRef;
 typedef OSStatus ( * ATSUDirectLayoutOperationOverrideProcPtr)(ATSULayoutOperationSelector iCurrentOperation, ATSULineRef iLineRef, URefCon iRefCon, void *iOperationCallbackParameterPtr, ATSULayoutOperationCallbackStatus *oCallbackStatus);
 typedef ATSUDirectLayoutOperationOverrideProcPtr ATSUDirectLayoutOperationOverrideUPP;
-extern ATSUDirectLayoutOperationOverrideUPP
-NewATSUDirectLayoutOperationOverrideUPP(ATSUDirectLayoutOperationOverrideProcPtr userRoutine) __attribute__((availability(macosx,introduced=10.2,deprecated=10.7)));
-extern void
-DisposeATSUDirectLayoutOperationOverrideUPP(ATSUDirectLayoutOperationOverrideUPP userUPP) __attribute__((availability(macosx,introduced=10.2,deprecated=10.7)));
-extern OSStatus
-InvokeATSUDirectLayoutOperationOverrideUPP(
-  ATSULayoutOperationSelector iCurrentOperation,
-  ATSULineRef iLineRef,
-  URefCon iRefCon,
-  void * iOperationCallbackParameterPtr,
-  ATSULayoutOperationCallbackStatus * oCallbackStatus,
-  ATSUDirectLayoutOperationOverrideUPP userUPP) __attribute__((availability(macosx,introduced=10.2,deprecated=10.7)));
-
-
-
     inline ATSUDirectLayoutOperationOverrideUPP NewATSUDirectLayoutOperationOverrideUPP(ATSUDirectLayoutOperationOverrideProcPtr userRoutine) { return userRoutine; }
     inline void DisposeATSUDirectLayoutOperationOverrideUPP(ATSUDirectLayoutOperationOverrideUPP) { }
     inline OSStatus InvokeATSUDirectLayoutOperationOverrideUPP(ATSULayoutOperationSelector iCurrentOperation, ATSULineRef iLineRef, URefCon iRefCon, void * iOperationCallbackParameterPtr, ATSULayoutOperationCallbackStatus * oCallbackStatus, ATSUDirectLayoutOperationOverrideUPP userUPP) { return (*userUPP)(iCurrentOperation, iLineRef, iRefCon, iOperationCallbackParameterPtr, oCallbackStatus); }
@@ -78473,90 +78785,88 @@ typedef const struct __attribute__((objc_bridge(id))) ColorSyncProfile* ColorSyn
 
 typedef struct __attribute__((objc_bridge(id))) ColorSyncProfile* ColorSyncMutableProfileRef;
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericGrayProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericGrayGamma22Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericRGBProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericCMYKProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayP3Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSRGBProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncAdobeRGB1998Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericLabProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericXYZProfile;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncACESCGLinearProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDCIP3Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncITUR709Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncITUR2020Profile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncROMMRGBProfile;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileHeader;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileColorSpace;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfilePCS;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileURL;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileDescription;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileMD5Digest;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB0Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB1Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB2Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA0Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA1Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA2Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigCmykData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGrayData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigLabData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRgbData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigXYZData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAbstractClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBlueTRCTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBlueColorantTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigMediaBlackPointTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigCopyrightTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigProfileDescriptionTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDeviceModelDescTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDeviceMfgDescTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGreenTRCTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGreenColorantTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGamutTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGrayTRCTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigLinkClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDisplayClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigNamedColor2Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigNamedColorClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview0Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview1Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview2Tag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigOutputClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigProfileSequenceDescTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRedTRCTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRedColorantTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigInputClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigColorSpaceClass;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigTechnologyTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigViewingConditionsTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigViewingCondDescTag;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigMediaWhitePointTag;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileComputerDomain;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileUserDomain;
 
 
+#pragma clang assume_nonnull begin
 
-__attribute__((visibility("default"))) extern CFTypeID ColorSyncProfileGetTypeID(void);
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericGrayProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericGrayGamma22Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericRGBProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericCMYKProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayP3Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSRGBProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncAdobeRGB1998Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericLabProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncGenericXYZProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncACESCGLinearProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDCIP3Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncITUR709Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncITUR2020Profile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncROMMRGBProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileHeader __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileColorSpace __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfilePCS __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileURL __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileDescription __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileMD5Digest __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB0Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB1Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAToB2Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA0Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA1Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBToA2Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigCmykData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGrayData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigLabData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRgbData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigXYZData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigAbstractClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBlueTRCTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigBlueColorantTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigMediaBlackPointTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigCopyrightTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigProfileDescriptionTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDeviceModelDescTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDeviceMfgDescTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGreenTRCTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGreenColorantTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGamutTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigGrayTRCTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigLinkClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigDisplayClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigNamedColor2Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigNamedColorClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview0Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview1Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigPreview2Tag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigOutputClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigProfileSequenceDescTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRedTRCTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigRedColorantTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigInputClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigColorSpaceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigTechnologyTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigViewingConditionsTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigViewingCondDescTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncSigMediaWhitePointTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
-
-
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreate(CFDataRef data, CFErrorRef* error);
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileComputerDomain __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileUserDomain __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
+__attribute__((visibility("default"))) extern CFTypeID ColorSyncProfileGetTypeID(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreateWithURL(CFURLRef url, CFErrorRef* error);
+
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreate(CFDataRef data, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78564,47 +78874,66 @@ __attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfi
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreateWithName(CFStringRef name);
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreateWithURL(CFURLRef url, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreateWithDisplayID (uint32_t displayID);
+
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreateWithName(CFStringRef name) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreateDeviceProfile (CFStringRef deviceClass, CFUUIDRef deviceID, CFTypeRef profileID);
-__attribute__((visibility("default"))) extern ColorSyncMutableProfileRef ColorSyncProfileCreateMutable(void);
 
-
-
-
-__attribute__((visibility("default"))) extern ColorSyncMutableProfileRef ColorSyncProfileCreateMutableCopy(ColorSyncProfileRef prof);
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreateWithDisplayID(uint32_t displayID) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncProfileRef ColorSyncProfileCreateLink (CFArrayRef profileInfo, CFDictionaryRef options);
-__attribute__((visibility("default"))) extern bool ColorSyncProfileVerify (ColorSyncProfileRef prof, CFErrorRef* errors, CFErrorRef* warnings);
-__attribute__((visibility("default"))) extern float ColorSyncProfileEstimateGammaWithDisplayID (const int32_t displayID, CFErrorRef* error);
-__attribute__((visibility("default"))) extern float ColorSyncProfileEstimateGamma (ColorSyncProfileRef prof, CFErrorRef* error);
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreateDeviceProfile(CFStringRef deviceClass, CFUUIDRef deviceID, CFTypeRef profileID) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern ColorSyncMutableProfileRef _Nullable ColorSyncProfileCreateMutable(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+
+
+
+__attribute__((visibility("default"))) extern ColorSyncMutableProfileRef _Nullable ColorSyncProfileCreateMutableCopy(ColorSyncProfileRef prof) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+
+
+
+
+
+__attribute__((visibility("default"))) extern ColorSyncProfileRef _Nullable ColorSyncProfileCreateLink (CFArrayRef profileInfo, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern bool ColorSyncProfileVerify (ColorSyncProfileRef prof, CFErrorRef* _Nullable errors, CFErrorRef* _Nullable warnings) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern float ColorSyncProfileEstimateGammaWithDisplayID (const int32_t displayID, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern float ColorSyncProfileEstimateGamma (ColorSyncProfileRef prof, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern bool ColorSyncProfileGetDisplayTransferFormulaFromVCGT(ColorSyncProfileRef profile,
+                                                                float* redMin, float* redMax, float* redGamma,
+                                                                float* greenMin, float* greenMax, float* greenGamma,
+                                                                float* blueMin, float* blueMax, float* blueGamma) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+
+
+
+
+    __attribute__((visibility("default"))) extern CFDataRef _Nullable ColorSyncProfileCreateDisplayTransferTablesFromVCGT(ColorSyncProfileRef profile, size_t *nSamplesPerChannel) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 typedef struct { uint8_t digest[16]; } ColorSyncMD5;
 
-__attribute__((visibility("default"))) extern ColorSyncMD5 ColorSyncProfileGetMD5(ColorSyncProfileRef prof);
+__attribute__((visibility("default"))) extern ColorSyncMD5 ColorSyncProfileGetMD5(ColorSyncProfileRef prof) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyData (ColorSyncProfileRef prof, CFErrorRef* error);
+__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyData (ColorSyncProfileRef prof, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78612,7 +78941,7 @@ __attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyData
 
 
 
-__attribute__((visibility("default"))) extern CFURLRef ColorSyncProfileGetURL (ColorSyncProfileRef prof, CFErrorRef* error);
+__attribute__((visibility("default"))) extern CFURLRef ColorSyncProfileGetURL (ColorSyncProfileRef prof, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78620,34 +78949,34 @@ __attribute__((visibility("default"))) extern CFURLRef ColorSyncProfileGetURL (C
 
 
 
-__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyHeader (ColorSyncProfileRef prof);
+__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyHeader (ColorSyncProfileRef prof) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncProfileSetHeader (ColorSyncMutableProfileRef prof, CFDataRef header);
+__attribute__((visibility("default"))) extern void ColorSyncProfileSetHeader (ColorSyncMutableProfileRef prof, CFDataRef header) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
-__attribute__((visibility("default"))) extern CFStringRef ColorSyncProfileCopyDescriptionString (ColorSyncProfileRef prof);
+__attribute__((visibility("default"))) extern CFStringRef _Nullable ColorSyncProfileCopyDescriptionString (ColorSyncProfileRef prof) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern CFArrayRef ColorSyncProfileCopyTagSignatures (ColorSyncProfileRef prof);
+__attribute__((visibility("default"))) extern CFArrayRef _Nullable ColorSyncProfileCopyTagSignatures (ColorSyncProfileRef prof) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern bool ColorSyncProfileContainsTag (ColorSyncProfileRef prof, CFStringRef signature);
+__attribute__((visibility("default"))) extern bool ColorSyncProfileContainsTag (ColorSyncProfileRef prof, CFStringRef signature) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78655,7 +78984,7 @@ __attribute__((visibility("default"))) extern bool ColorSyncProfileContainsTag (
 
 
 
-__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyTag (ColorSyncProfileRef prof, CFStringRef signature);
+__attribute__((visibility("default"))) extern CFDataRef _Nullable ColorSyncProfileCopyTag (ColorSyncProfileRef prof, CFStringRef signature) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78663,31 +78992,14 @@ __attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCopyTag 
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncProfileSetTag (ColorSyncMutableProfileRef prof, CFStringRef signature, CFDataRef data);
+__attribute__((visibility("default"))) extern void ColorSyncProfileSetTag (ColorSyncMutableProfileRef prof, CFStringRef signature, CFDataRef data) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncProfileRemoveTag (ColorSyncMutableProfileRef prof, CFStringRef signature);
-
-
-
-
-
-
-
-__attribute__((visibility("default"))) extern bool ColorSyncProfileGetDisplayTransferFormulaFromVCGT(ColorSyncProfileRef profile,
-                                                 float* redMin, float* redMax, float* redGamma,
-                                                 float* greenMin, float* greenMax, float* greenGamma,
-                                                 float* blueMin, float* blueMax, float* blueGamma);
-
-
-
-
-
-__attribute__((visibility("default"))) extern CFDataRef ColorSyncProfileCreateDisplayTransferTablesFromVCGT(ColorSyncProfileRef profile, size_t *nSamplesPerChannel);
+__attribute__((visibility("default"))) extern void ColorSyncProfileRemoveTag (ColorSyncMutableProfileRef prof, CFStringRef signature) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 typedef bool (*ColorSyncProfileIterateCallback)(CFDictionaryRef profileInfo, void* userInfo);
 
 
@@ -78695,20 +79007,14 @@ typedef bool (*ColorSyncProfileIterateCallback)(CFDictionaryRef profileInfo, voi
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncIterateInstalledProfiles (ColorSyncProfileIterateCallback callBack,
-                                        uint32_t * seed,
-                                        void* userInfo,
-                                        CFErrorRef* error);
-
-
-
-
-
-
-
-__attribute__((visibility("default"))) extern bool ColorSyncProfileInstall(ColorSyncProfileRef profile, CFStringRef domain, CFStringRef subpath, CFErrorRef* error);
-__attribute__((visibility("default"))) extern bool ColorSyncProfileUninstall(ColorSyncProfileRef profile, CFErrorRef* error);
+__attribute__((visibility("default"))) extern void ColorSyncIterateInstalledProfiles (ColorSyncProfileIterateCallback _Nullable callBack,
+                                        uint32_t * _Nullable seed,
+                                        void* _Nullable userInfo,
+                                        CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern bool ColorSyncProfileInstall(ColorSyncProfileRef profile, CFStringRef domain, CFStringRef subpath, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern bool ColorSyncProfileUninstall(ColorSyncProfileRef profile, CFErrorRef* _Nullable error) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 }
+#pragma clang assume_nonnull end
 extern "C" {
 
 
@@ -78716,20 +79022,24 @@ extern "C" {
 
 typedef struct __attribute__((objc_bridge(id))) ColorSyncTransform* ColorSyncTransformRef;
 
-__attribute__((visibility("default"))) extern CFTypeID ColorSyncTransformGetTypeID(void);
+
+
+#pragma clang assume_nonnull begin
+
+__attribute__((visibility("default"))) extern CFTypeID ColorSyncTransformGetTypeID(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncTransformRef ColorSyncTransformCreate (CFArrayRef profileSequence, CFDictionaryRef options);
-__attribute__((visibility("default"))) extern CFTypeRef ColorSyncTransformCopyProperty(ColorSyncTransformRef transform, CFTypeRef key, CFDictionaryRef options);
+__attribute__((visibility("default"))) extern ColorSyncTransformRef _Nullable ColorSyncTransformCreate (CFArrayRef _Nullable profileSequence, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFTypeRef _Nullable ColorSyncTransformCopyProperty(ColorSyncTransformRef transform, CFTypeRef key, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncTransformSetProperty(ColorSyncTransformRef transform, CFTypeRef key, CFTypeRef property);
+__attribute__((visibility("default"))) extern void ColorSyncTransformSetProperty(ColorSyncTransformRef transform, CFTypeRef key, _Nullable CFTypeRef property) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -78780,187 +79090,187 @@ __attribute__((visibility("default"))) extern bool ColorSyncTransformConvert (Co
                                          ColorSyncDataLayout dstLayout, size_t dstBytesPerRow,
                                          const void* src, ColorSyncDataDepth srcDepth,
                                          ColorSyncDataLayout srcLayout, size_t srcBytesPerRow,
-                                         CFDictionaryRef options);
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfile;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntent;
+                                         _Nullable CFDictionaryRef options) __attribute__((availability(macos,introduced=10.4,deprecated=10.14,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntent __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentPerceptual;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentRelative;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentSaturation;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentAbsolute;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentUseProfileHeader;
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentPerceptual __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentRelative __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentSaturation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentAbsolute __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncRenderingIntentUseProfileHeader __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformTag;
-
-
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDeviceToPCS;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformPCSToPCS;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformPCSToDevice;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDeviceToDevice;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformGamutCheck;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncBlackPointCompensation;
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformTag __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncPreferredCMM;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConvertQuality;
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDeviceToPCS __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformPCSToPCS __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformPCSToDevice __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDeviceToDevice __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformGamutCheck __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncBlackPointCompensation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncBestQuality;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncNormalQuality;
-        __attribute__((visibility("default"))) extern CFStringRef kColorSyncDraftQuality;
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncPreferredCMM __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConvertQuality __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConvertThreadCount;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConvertUseVectorUnit;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConvertUseExtendedRange;
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncBestQuality __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncNormalQuality __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+        __attribute__((visibility("default"))) extern CFStringRef kColorSyncDraftQuality __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTranformInfo;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCreator;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformSrcSpace;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDstSpace;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCodeFragmentType;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCodeFragmentMD5;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformFullConversionData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformSimplifiedConversionData;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformParametricConversionData;
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformInfo __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCreator __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformSrcSpace __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformDstSpace __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCodeFragmentType __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformCodeFragmentMD5 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformFullConversionData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformSimplifiedConversionData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncTransformParametricConversionData __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionMatrix;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve0;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve1;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve2;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve3;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve4;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversion1DLut;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionGridPoints;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionChannelID;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversion3DLut;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionNDLut;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionInpChan;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionOutChan;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionBPC;
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionMatrix __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve0 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve1 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve2 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve3 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionParamCurve4 __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversion1DLut __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionGridPoints __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionChannelID __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversion3DLut __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionNDLut __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionInpChan __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionOutChan __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncConversionBPC __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncFixedPointRange;
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncFixedPointRange __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-
+__attribute__((visibility("default"))) extern CFTypeRef ColorSyncCreateCodeFragment(CFArrayRef profileSequence, CFDictionaryRef options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+#pragma clang assume_nonnull end
 }
 extern "C" {
 typedef struct __attribute__((objc_bridge(id))) ColorSyncCMM* ColorSyncCMMRef;
 
-__attribute__((visibility("default"))) extern CFTypeID ColorSyncCMMGetTypeID(void);
+
+
+#pragma clang assume_nonnull begin
+
+__attribute__((visibility("default"))) extern CFTypeID ColorSyncCMMGetTypeID(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
-__attribute__((visibility("default"))) extern ColorSyncCMMRef ColorSyncCMMCreate(CFBundleRef cmmBundle);
+__attribute__((visibility("default"))) extern ColorSyncCMMRef _Nullable ColorSyncCMMCreate(CFBundleRef cmmBundle) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFBundleRef ColorSyncCMMGetBundle(ColorSyncCMMRef);
+__attribute__((visibility("default"))) extern CFBundleRef _Nullable ColorSyncCMMGetBundle(ColorSyncCMMRef) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFStringRef ColorSyncCMMCopyLocalizedName(ColorSyncCMMRef);
+__attribute__((visibility("default"))) extern CFStringRef _Nullable ColorSyncCMMCopyLocalizedName(ColorSyncCMMRef) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFStringRef ColorSyncCMMCopyCMMIdentifier(ColorSyncCMMRef);
+__attribute__((visibility("default"))) extern CFStringRef _Nullable ColorSyncCMMCopyCMMIdentifier(ColorSyncCMMRef) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-typedef bool (*ColorSyncCMMIterateCallback)(ColorSyncCMMRef cmm, void* userInfo);
-
-
+typedef bool (*ColorSyncCMMIterateCallback)(ColorSyncCMMRef cmm, void* userInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
-__attribute__((visibility("default"))) extern void ColorSyncIterateInstalledCMMs (ColorSyncCMMIterateCallback callBack, void* userInfo);
-typedef bool (*CMMInitializeLinkProfileProc) (ColorSyncMutableProfileRef, CFArrayRef profileInfo, CFDictionaryRef options);
 
-typedef bool (*CMMInitializeTransformProc) (ColorSyncTransformRef, CFArrayRef profileInfo, CFDictionaryRef options);
+
+__attribute__((visibility("default"))) extern void ColorSyncIterateInstalledCMMs (ColorSyncCMMIterateCallback callBack, void* _Nullable userInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+typedef bool (*CMMInitializeLinkProfileProc) (ColorSyncMutableProfileRef, CFArrayRef profileInfo, CFDictionaryRef _Nullable options);
+
+typedef bool (*CMMInitializeTransformProc) (ColorSyncTransformRef, CFArrayRef profileInfo, CFDictionaryRef _Nullable options);
 
 typedef bool (*CMMApplyTransformProc)(ColorSyncTransformRef transform, size_t width, size_t height,
-                                      size_t dstPlanes, void* dst[], ColorSyncDataDepth dstDepth,
+                                      size_t dstPlanes, void* _Nonnull * _Nonnull dst, ColorSyncDataDepth dstDepth,
                                       ColorSyncDataLayout dstFormat, size_t dstBytesPerRow,
-                                      size_t srcPlanes, const void* src[], ColorSyncDataDepth srcDepth,
+                                      size_t srcPlanes, const void* _Nonnull* _Nonnull src, ColorSyncDataDepth srcDepth,
                                       ColorSyncDataLayout srcFormat, size_t srcBytesPerRow,
-                                      CFDictionaryRef options);
+                                      CFDictionaryRef _Nullable options);
 
-typedef CFTypeRef (*CMMCreateTransformPropertyProc)(ColorSyncTransformRef transform, CFTypeRef key, CFDictionaryRef options);
+typedef CFTypeRef _Nullable (*CMMCreateTransformPropertyProc)(ColorSyncTransformRef _Nullable transform, CFTypeRef key, CFDictionaryRef _Nullable options);
 
-__attribute__((visibility("default"))) extern CFStringRef kCMMInitializeLinkProfileProcName;
-__attribute__((visibility("default"))) extern CFStringRef kCMMInitializeTransformProcName;
-__attribute__((visibility("default"))) extern CFStringRef kCMMApplyTransformProcName;
-__attribute__((visibility("default"))) extern CFStringRef kCMMCreateTransformPropertyProcName;
+__attribute__((visibility("default"))) extern CFStringRef kCMMInitializeLinkProfileProcName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kCMMInitializeTransformProcName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kCMMApplyTransformProcName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kCMMCreateTransformPropertyProcName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 }
+#pragma clang assume_nonnull end
 extern "C" {
 
 
 
 
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceID;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceClass;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncCameraDeviceClass;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayDeviceClass;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncPrinterDeviceClass;
-    __attribute__((visibility("default"))) extern CFStringRef kColorSyncScannerDeviceClass;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileURL;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDescription;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDescriptions;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncFactoryProfiles;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncCustomProfiles;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceModeDescription;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceModeDescriptions;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDefaultProfileID;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceHostScope;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceUserScope;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileHostScope;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileUserScope;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsFactory;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsDefault;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsCurrent;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileID;
-
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceRegisteredNotification;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceUnregisteredNotification;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfilesNotification;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayDeviceProfilesNotification;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileRepositoryChangeNotification;
-__attribute__((visibility("default"))) extern CFStringRef kColorSyncRegistrationUpdateWindowServer;
-
-__attribute__((visibility("default"))) extern bool ColorSyncRegisterDevice (CFStringRef deviceClass, CFUUIDRef deviceID, CFDictionaryRef deviceInfo);
-__attribute__((visibility("default"))) extern bool ColorSyncUnregisterDevice (CFStringRef deviceClass, CFUUIDRef deviceID);
 
 
+#pragma clang assume_nonnull begin
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceID __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncCameraDeviceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayDeviceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncPrinterDeviceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+    __attribute__((visibility("default"))) extern CFStringRef kColorSyncScannerDeviceClass __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileURL __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDescription __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDescriptions __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncFactoryProfiles __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncCustomProfiles __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceModeDescription __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceModeDescriptions __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceDefaultProfileID __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceHostScope __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceUserScope __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileHostScope __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileUserScope __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsFactory __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsDefault __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileIsCurrent __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfileID __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceRegisteredNotification __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceUnregisteredNotification __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDeviceProfilesNotification __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncDisplayDeviceProfilesNotification __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncProfileRepositoryChangeNotification __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFStringRef kColorSyncRegistrationUpdateWindowServer __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+
+__attribute__((visibility("default"))) extern bool ColorSyncRegisterDevice (CFStringRef deviceClass, CFUUIDRef deviceID, CFDictionaryRef deviceInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern bool ColorSyncUnregisterDevice (CFStringRef deviceClass, CFUUIDRef deviceID) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
-__attribute__((visibility("default"))) extern bool ColorSyncDeviceSetCustomProfiles (CFStringRef deviceClass, CFUUIDRef deviceID, CFDictionaryRef profileInfo);
-__attribute__((visibility("default"))) extern CFDictionaryRef ColorSyncDeviceCopyDeviceInfo (CFStringRef deviceClass, CFUUIDRef devID);
+
+
+__attribute__((visibility("default"))) extern bool ColorSyncDeviceSetCustomProfiles (CFStringRef deviceClass, CFUUIDRef deviceID, CFDictionaryRef profileInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+__attribute__((visibility("default"))) extern CFDictionaryRef _Nullable ColorSyncDeviceCopyDeviceInfo (CFStringRef deviceClass, CFUUIDRef devID) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 typedef bool (*ColorSyncDeviceProfileIterateCallback) (CFDictionaryRef colorSyncDeviceProfileInfo,
-                                                       void* userInfo);
+                                                       void* _Nullable userInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 __attribute__((visibility("default"))) extern void ColorSyncIterateDeviceProfiles(ColorSyncDeviceProfileIterateCallback callBack,
-                                            void* userInfo);
+                                            void* _Nullable userInfo) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
-__attribute__((visibility("default"))) extern CFUUIDRef CGDisplayCreateUUIDFromDisplayID (uint32_t displayID);
-
-
-
-
-__attribute__((visibility("default"))) extern uint32_t CGDisplayGetDisplayIDFromUUID (CFUUIDRef uuid);
+__attribute__((visibility("default"))) extern CFUUIDRef CGDisplayCreateUUIDFromDisplayID (uint32_t displayID) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
-
-
+__attribute__((visibility("default"))) extern uint32_t CGDisplayGetDisplayIDFromUUID (CFUUIDRef uuid) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
+#pragma clang assume_nonnull end
 }
 
 
@@ -79056,7 +79366,7 @@ typedef struct CGDataProviderDirectCallbacks CGDataProviderDirectCallbacks;
 
 
 extern "C" CFTypeID CGDataProviderGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79064,7 +79374,7 @@ extern "C" CFTypeID CGDataProviderGetTypeID(void)
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateSequential(
     void * _Nullable info,
     const CGDataProviderSequentialCallbacks * _Nullable callbacks)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79073,7 +79383,7 @@ extern "C" CGDataProviderRef _Nullable CGDataProviderCreateSequential(
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateDirect(
     void * _Nullable info, off_t size,
     const CGDataProviderDirectCallbacks * _Nullable callbacks)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79087,38 +79397,38 @@ typedef void (*CGDataProviderReleaseDataCallback)(void * _Nullable info,
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateWithData(
     void * _Nullable info, const void * _Nullable data, size_t size,
     CGDataProviderReleaseDataCallback _Nullable releaseData)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateWithCFData(
     CFDataRef _Nullable data)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateWithURL(
     CFURLRef _Nullable url)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataProviderRef _Nullable CGDataProviderCreateWithFilename(
     const char * _Nullable filename)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGDataProviderRef _Nullable CGDataProviderRetain(
     CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGDataProviderRelease(CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79126,10 +79436,10 @@ extern "C" void CGDataProviderRelease(CGDataProviderRef _Nullable provider)
 
 extern "C" CFDataRef _Nullable CGDataProviderCopyData(
     CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 extern "C" void* _Nullable CGDataProviderGetInfo(CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 #pragma clang assume_nonnull end
 
 
@@ -79154,7 +79464,8 @@ typedef int32_t CGColorSpaceModel; enum {
     kCGColorSpaceModelLab,
     kCGColorSpaceModelDeviceN,
     kCGColorSpaceModelIndexed,
-    kCGColorSpaceModelPattern
+    kCGColorSpaceModelPattern,
+    kCGColorSpaceModelXYZ
 };
 
 #pragma clang assume_nonnull begin
@@ -79167,7 +79478,7 @@ typedef int32_t CGColorSpaceModel; enum {
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericGray
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
@@ -79176,28 +79487,28 @@ extern "C" const CFStringRef kCGColorSpaceGenericGray
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericRGB
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericCMYK
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceDisplayP3
-  __attribute__((availability(macosx,introduced=10.11.2)));
+  __attribute__((availability(macos,introduced=10.11.2))) __attribute__((availability(ios,introduced=9.3)));
 
 
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericRGBLinear
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGColorSpaceAdobeRGB1998
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
@@ -79206,15 +79517,15 @@ extern "C" const CFStringRef kCGColorSpaceAdobeRGB1998
 
 
 extern "C" const CFStringRef kCGColorSpaceSRGB
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericGrayGamma2_2
-  __attribute__((availability(macosx,introduced=10.6)));
+  __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceGenericXYZ
-  __attribute__((availability(macosx,introduced=10.11)));
+  __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
@@ -79222,89 +79533,89 @@ extern "C" const CFStringRef kCGColorSpaceGenericXYZ
 
 
 extern "C" const CFStringRef kCGColorSpaceGenericLab
-__attribute__((availability(macosx,introduced=10.13)));
+__attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 extern "C" const CFStringRef kCGColorSpaceACESCGLinear
-__attribute__((availability(macosx,introduced=10.11)));
+__attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceITUR_709
-__attribute__((availability(macosx,introduced=10.11)));
+__attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceITUR_2020
-__attribute__((availability(macosx,introduced=10.11)));
+__attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceROMMRGB
-__attribute__((availability(macosx,introduced=10.11)));
+__attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 extern "C" const CFStringRef kCGColorSpaceDCIP3
-__attribute__((availability(macosx,introduced=10.11)));
+__attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern "C" const CFStringRef kCGColorSpaceExtendedSRGB
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceLinearSRGB
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceExtendedLinearSRGB
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGColorSpaceExtendedGray
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceLinearGray
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" const CFStringRef kCGColorSpaceExtendedLinearGray
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateDeviceGray(void)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateDeviceRGB(void)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateDeviceCMYK(void)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateCalibratedGray(const CGFloat
   whitePoint[_Nonnull 3], const CGFloat blackPoint[_Nullable 3], CGFloat gamma)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateCalibratedRGB(const CGFloat
   whitePoint[_Nonnull 3], const CGFloat blackPoint[_Nullable 3],
   const CGFloat gamma[_Nullable 3], const CGFloat matrix[_Nullable 9])
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateLab(const CGFloat whitePoint[_Nonnull 3],
   const CGFloat blackPoint[_Nullable 3], const CGFloat range[_Nullable 4])
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGColorSpaceRef CGColorSpaceCreateWithICCData(CFTypeRef _Nullable data)
-  __attribute__((availability(macosx,introduced=10.12)));
+  __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateICCBased(size_t nComponents,
   const CGFloat * _Nullable range, CGDataProviderRef _Nullable profile,
   CGColorSpaceRef _Nullable alternate)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateIndexed(CGColorSpaceRef _Nullable baseSpace,
   size_t lastIndex, const unsigned char * _Nullable colorTable)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79312,96 +79623,105 @@ extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateIndexed(CGColorSpaceRef _
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreatePattern(CGColorSpaceRef _Nullable baseSpace)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable
   CGColorSpaceCreateWithPlatformColorSpace(const void * _Nullable ref)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateWithName(CFStringRef _Nullable name)
-  __attribute__((availability(macosx,introduced=10.2)));
+  __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceRetain(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGColorSpaceRelease(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CFStringRef _Nullable CGColorSpaceGetName(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.13)));
+  __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 extern "C" CFStringRef _Nullable CGColorSpaceCopyName(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.6)));
+  __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" CFTypeID CGColorSpaceGetTypeID(void)
-  __attribute__((availability(macosx,introduced=10.2)));
+  __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGColorSpaceGetNumberOfComponents(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorSpaceModel CGColorSpaceGetModel(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceGetBaseColorSpace(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" size_t CGColorSpaceGetColorTableCount(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGColorSpaceGetColorTable(CGColorSpaceRef _Nullable space,
-  uint8_t * _Nullable table) __attribute__((availability(macosx,introduced=10.5)));
+  uint8_t * _Nullable table) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFDataRef _Nullable CGColorSpaceCopyICCData(CGColorSpaceRef _Nullable space)
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 extern "C" bool CGColorSpaceIsWideGamutRGB(CGColorSpaceRef)
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
 
 extern "C" bool CGColorSpaceSupportsOutput(CGColorSpaceRef space)
-__attribute__((availability(macosx,introduced=10.12)));
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+
+extern "C" CFPropertyListRef _Nullable
+CGColorSpaceCopyPropertyList(CGColorSpaceRef space)
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+
+extern "C" CGColorSpaceRef _Nullable
+CGColorSpaceCreateWithPropertyList(CFPropertyListRef plist)
+__attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateWithICCProfile(CFDataRef _Nullable data)
-  __attribute__((availability(macosx,introduced=10.5,deprecated=10.13)));
+  __attribute__((availability(macos,introduced=10.5,deprecated=10.13,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="No longer supported")));
 
 
 extern "C" CFDataRef _Nullable CGColorSpaceCopyICCProfile(CGColorSpaceRef _Nullable space)
-  __attribute__((availability(macosx,introduced=10.5,deprecated=10.13)));
+  __attribute__((availability(macos,introduced=10.5,deprecated=10.13,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="No longer supported")));
 #pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGPattern *CGPatternRef;
 
@@ -79432,7 +79752,7 @@ typedef struct CGPatternCallbacks CGPatternCallbacks;
 
 
 extern "C" CFTypeID CGPatternGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79440,19 +79760,19 @@ extern "C" CGPatternRef _Nullable CGPatternCreate(void * _Nullable info,
     CGRect bounds, CGAffineTransform matrix, CGFloat xStep, CGFloat yStep,
     CGPatternTiling tiling, bool isColored,
     const CGPatternCallbacks * _Nullable callbacks)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPatternRef _Nullable CGPatternRetain(CGPatternRef _Nullable pattern)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPatternRelease(CGPatternRef _Nullable pattern)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -79465,110 +79785,110 @@ extern "C" void CGPatternRelease(CGPatternRef _Nullable pattern)
 
 extern "C" CGColorRef _Nullable CGColorCreate(CGColorSpaceRef _Nullable space,
   const CGFloat * _Nullable components)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorRef CGColorCreateGenericGray(CGFloat gray, CGFloat alpha)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 extern "C" CGColorRef CGColorCreateGenericRGB(CGFloat red, CGFloat green,
-  CGFloat blue, CGFloat alpha) __attribute__((availability(macosx,introduced=10.5)));
+  CGFloat blue, CGFloat alpha) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 extern "C" CGColorRef CGColorCreateGenericCMYK(CGFloat cyan, CGFloat magenta,
   CGFloat yellow, CGFloat black, CGFloat alpha)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 extern "C" CGColorRef _Nullable CGColorGetConstantColor(CFStringRef _Nullable colorName)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" CGColorRef _Nullable CGColorCreateWithPattern(CGColorSpaceRef _Nullable space,
   CGPatternRef _Nullable pattern, const CGFloat * _Nullable components)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorRef _Nullable CGColorCreateCopy(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorRef _Nullable CGColorCreateCopyWithAlpha(CGColorRef _Nullable color,
-  CGFloat alpha) __attribute__((availability(macosx,introduced=10.3)));
+  CGFloat alpha) __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorRef _Nullable CGColorCreateCopyByMatchingToColorSpace(_Nullable CGColorSpaceRef,
   CGColorRenderingIntent intent, CGColorRef _Nullable color, _Nullable CFDictionaryRef options)
-  __attribute__((availability(macosx,introduced=10.11)));
+  __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
 
 
 
 extern "C" CGColorRef _Nullable CGColorRetain(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGColorRelease(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGColorEqualToColor(CGColorRef _Nullable color1, CGColorRef _Nullable color2)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGColorGetNumberOfComponents(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const CGFloat * _Nullable CGColorGetComponents(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGFloat CGColorGetAlpha(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGColorGetColorSpace(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPatternRef _Nullable CGColorGetPattern(CGColorRef _Nullable color)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFTypeID CGColorGetTypeID(void)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGColorWhite
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 extern "C" const CFStringRef kCGColorBlack
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 extern "C" const CFStringRef kCGColorClear
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 #pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGFont *CGFontRef;
@@ -79605,7 +79925,7 @@ static const CGFontIndex kCGGlyphMax = kCGFontIndexMax;
 
 
 extern "C" CFTypeID CGFontGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79613,15 +79933,14 @@ extern "C" CFTypeID CGFontGetTypeID(void)
 
 extern "C" CGFontRef _Nullable CGFontCreateWithPlatformFont(
     void * _Nullable platformFontReference)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" CGFontRef _Nullable CGFontCreateWithDataProvider(
     CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79629,96 +79948,96 @@ extern "C" CGFontRef _Nullable CGFontCreateWithDataProvider(
 
 extern "C" CGFontRef _Nullable CGFontCreateWithFontName(
     CFStringRef _Nullable name)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGFontRef _Nullable CGFontCreateCopyWithVariations(
     CGFontRef _Nullable font, CFDictionaryRef _Nullable variations)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGFontRef _Nullable CGFontRetain(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGFontRelease(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGFontGetNumberOfGlyphs(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" int CGFontGetUnitsPerEm(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFStringRef _Nullable CGFontCopyPostScriptName(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFStringRef _Nullable CGFontCopyFullName(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGFontGetAscent(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGFontGetDescent(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGFontGetLeading(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGFontGetCapHeight(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGFontGetXHeight(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGRect CGFontGetFontBBox(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGFloat CGFontGetItalicAngle(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGFloat CGFontGetStemV(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79726,9 +80045,9 @@ extern "C" CGFloat CGFontGetStemV(CGFontRef _Nullable font)
 
 
 extern "C" CFArrayRef _Nullable CGFontCopyVariationAxes(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CFDictionaryRef _Nullable CGFontCopyVariations(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79737,7 +80056,7 @@ extern "C" CFDictionaryRef _Nullable CGFontCopyVariations(CGFontRef _Nullable fo
 
 extern "C" bool CGFontGetGlyphAdvances(CGFontRef _Nullable font,
     const CGGlyph * glyphs, size_t count, int * advances)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79747,28 +80066,28 @@ extern "C" bool CGFontGetGlyphAdvances(CGFontRef _Nullable font,
 
 extern "C" bool CGFontGetGlyphBBoxes(CGFontRef _Nullable font,
     const CGGlyph * glyphs, size_t count, CGRect * bboxes)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGGlyph CGFontGetGlyphWithGlyphName(
     CGFontRef _Nullable font, CFStringRef _Nullable name)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFStringRef _Nullable CGFontCopyGlyphNameForGlyph(
     CGFontRef _Nullable font, CGGlyph glyph)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGFontCanCreatePostScriptSubset(CGFontRef _Nullable font,
     CGFontPostScriptFormat format)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79778,29 +80097,29 @@ extern "C" bool CGFontCanCreatePostScriptSubset(CGFontRef _Nullable font,
 extern "C" CFDataRef _Nullable CGFontCreatePostScriptSubset(
     CGFontRef _Nullable font, CFStringRef _Nullable subsetName,
     CGFontPostScriptFormat format, const CGGlyph * _Nullable glyphs,
-    size_t count, const CGGlyph encoding[_Nonnull 256])
-    __attribute__((availability(macosx,introduced=10.4)));
+    size_t count, const CGGlyph encoding[_Nullable 256])
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFDataRef _Nullable CGFontCreatePostScriptEncoding(
-    CGFontRef _Nullable font, const CGGlyph encoding[_Nonnull 256])
-    __attribute__((availability(macosx,introduced=10.4)));
+    CGFontRef _Nullable font, const CGGlyph encoding[_Nullable 256])
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CFArrayRef _Nullable CGFontCopyTableTags(CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFDataRef _Nullable CGFontCopyTableForTag(
     CGFontRef _Nullable font, uint32_t tag)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79809,28 +80128,28 @@ extern "C" CFDataRef _Nullable CGFontCopyTableForTag(
 
 
 extern "C" const CFStringRef kCGFontVariationAxisName
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGFontVariationAxisMinValue
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGFontVariationAxisMaxValue
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGFontVariationAxisDefaultValue
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79854,28 +80173,28 @@ typedef uint32_t CGGradientDrawingOptions; enum {
 
 #pragma clang assume_nonnull begin
 extern "C" CFTypeID CGGradientGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGGradientRef _Nullable CGGradientCreateWithColorComponents(
     CGColorSpaceRef _Nullable space, const CGFloat * _Nullable components,
     const CGFloat * _Nullable locations, size_t count)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGGradientRef _Nullable CGGradientCreateWithColors(
     CGColorSpaceRef _Nullable space, CFArrayRef _Nullable colors,
     const CGFloat * _Nullable locations)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGGradientRef _Nullable CGGradientRetain(
     CGGradientRef _Nullable gradient)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGGradientRelease(CGGradientRef _Nullable gradient)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGImage *CGImageRef;
 
@@ -79905,7 +80224,16 @@ typedef uint32_t CGImageByteOrderInfo; enum {
     kCGImageByteOrder32Little = (2 << 12),
     kCGImageByteOrder16Big = (3 << 12),
     kCGImageByteOrder32Big = (4 << 12)
-} __attribute__((availability(macosx,introduced=10.0)));
+} __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
+
+typedef uint32_t CGImagePixelFormatInfo; enum {
+    kCGImagePixelFormatMask = 0xF0000,
+    kCGImagePixelFormatPacked = (0 << 16),
+    kCGImagePixelFormatRGB555 = (1 << 16),
+    kCGImagePixelFormatRGB565 = (2 << 16),
+    kCGImagePixelFormatRGB101010 = (3 << 16),
+    kCGImagePixelFormatRGBCIF10 = (4 << 16),
+} __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
 
 typedef uint32_t CGBitmapInfo; enum {
     kCGBitmapAlphaInfoMask = 0x1F,
@@ -79919,9 +80247,9 @@ typedef uint32_t CGBitmapInfo; enum {
     kCGBitmapByteOrder32Little = kCGImageByteOrder32Little,
     kCGBitmapByteOrder16Big = kCGImageByteOrder16Big,
     kCGBitmapByteOrder32Big = kCGImageByteOrder32Big
-} __attribute__((availability(macosx,introduced=10.0)));
+} __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CFTypeID CGImageGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79931,7 +80259,10 @@ extern "C" CGImageRef _Nullable CGImageCreate(size_t width, size_t height,
     CGDataProviderRef _Nullable provider,
     const CGFloat * _Nullable decode, bool shouldInterpolate,
     CGColorRenderingIntent intent)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
+
+
+
 
 
 
@@ -79939,13 +80270,13 @@ extern "C" CGImageRef _Nullable CGImageMaskCreate(size_t width, size_t height,
     size_t bitsPerComponent, size_t bitsPerPixel, size_t bytesPerRow,
     CGDataProviderRef _Nullable provider, const CGFloat * _Nullable decode,
     bool shouldInterpolate)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGImageRef _Nullable CGImageCreateCopy(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79953,7 +80284,7 @@ extern "C" CGImageRef _Nullable CGImageCreateWithJPEGDataProvider(
     CGDataProviderRef _Nullable source, const CGFloat * _Nullable decode,
     bool shouldInterpolate,
     CGColorRenderingIntent intent)
-    __attribute__((availability(macosx,introduced=10.1)));
+    __attribute__((availability(macos,introduced=10.1))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79961,16 +80292,16 @@ extern "C" CGImageRef _Nullable CGImageCreateWithPNGDataProvider(
     CGDataProviderRef _Nullable source, const CGFloat * _Nullable decode,
     bool shouldInterpolate,
     CGColorRenderingIntent intent)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGImageRef _Nullable CGImageCreateWithImageInRect(
     CGImageRef _Nullable image, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGImageRef _Nullable CGImageCreateWithMask(
     CGImageRef _Nullable image, CGImageRef _Nullable mask)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGImageRef _Nullable CGImageCreateWithMaskingColors(
     CGImageRef _Nullable image, const CGFloat * _Nullable components)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -79979,88 +80310,96 @@ extern "C" CGImageRef _Nullable CGImageCreateWithMaskingColors(
 
 extern "C" CGImageRef _Nullable CGImageCreateCopyWithColorSpace(
     CGImageRef _Nullable image, CGColorSpaceRef _Nullable space)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGImageRef _Nullable CGImageRetain(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGImageRelease(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGImageIsMask(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGImageGetWidth(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGImageGetHeight(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGImageGetBitsPerComponent(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGImageGetBitsPerPixel(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGImageGetBytesPerRow(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGImageGetColorSpace(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGImageAlphaInfo CGImageGetAlphaInfo(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataProviderRef _Nullable CGImageGetDataProvider(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const CGFloat * _Nullable CGImageGetDecode(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGImageGetShouldInterpolate(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGColorRenderingIntent CGImageGetRenderingIntent(_Nullable CGImageRef image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGBitmapInfo CGImageGetBitmapInfo(CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
+
+
+
+extern "C" CGImageByteOrderInfo CGImageGetByteOrderInfo(CGImageRef _Nullable image) __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+
+
+
+extern "C" CGImagePixelFormatInfo CGImageGetPixelFormatInfo(CGImageRef _Nullable image) __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
 
 
 
 extern "C" CFStringRef _Nullable CGImageGetUTType(_Nullable CGImageRef image)
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 #pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGPath *CGMutablePathRef;
 typedef const struct __attribute__((objc_bridge(id))) CGPath *CGPathRef;
@@ -80092,49 +80431,49 @@ typedef int32_t CGLineCap; enum {
 
 
 extern "C" CFTypeID CGPathGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGMutablePathRef CGPathCreateMutable(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPathRef _Nullable CGPathCreateCopy(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPathRef _Nullable CGPathCreateCopyByTransformingPath(
     CGPathRef _Nullable path, const CGAffineTransform * _Nullable transform)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 
 
 
 extern "C" CGMutablePathRef _Nullable CGPathCreateMutableCopy(
     CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGMutablePathRef _Nullable CGPathCreateMutableCopyByTransformingPath(
     CGPathRef _Nullable path, const CGAffineTransform * _Nullable transform)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 extern "C" CGPathRef CGPathCreateWithRect(CGRect rect,
     const CGAffineTransform * _Nullable transform)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
 extern "C" CGPathRef CGPathCreateWithEllipseInRect(CGRect rect,
     const CGAffineTransform * _Nullable transform)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 extern "C" CGPathRef CGPathCreateWithRoundedRect(CGRect rect,
     CGFloat cornerWidth, CGFloat cornerHeight,
     const CGAffineTransform * _Nullable transform)
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 extern "C" void CGPathAddRoundedRect(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable transform, CGRect rect,
     CGFloat cornerWidth, CGFloat cornerHeight)
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -80145,7 +80484,7 @@ extern "C" void CGPathAddRoundedRect(CGMutablePathRef _Nullable path,
 extern "C" CGPathRef _Nullable CGPathCreateCopyByDashingPath(
     CGPathRef _Nullable path, const CGAffineTransform * _Nullable transform,
     CGFloat phase, const CGFloat * _Nullable lengths, size_t count)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 
 
 
@@ -80157,25 +80496,25 @@ extern "C" CGPathRef _Nullable CGPathCreateCopyByStrokingPath(
     CGPathRef _Nullable path, const CGAffineTransform * _Nullable transform,
     CGFloat lineWidth, CGLineCap lineCap,
     CGLineJoin lineJoin, CGFloat miterLimit)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 
 
 
 
 extern "C" CGPathRef _Nullable CGPathRetain(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPathRelease(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGPathEqualToPath(CGPathRef _Nullable path1,
     CGPathRef _Nullable path2)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80184,7 +80523,7 @@ extern "C" bool CGPathEqualToPath(CGPathRef _Nullable path1,
 
 extern "C" void CGPathMoveToPoint(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80192,7 +80531,7 @@ extern "C" void CGPathMoveToPoint(CGMutablePathRef _Nullable path,
 
 extern "C" void CGPathAddLineToPoint(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80201,7 +80540,7 @@ extern "C" void CGPathAddLineToPoint(CGMutablePathRef _Nullable path,
 extern "C" void CGPathAddQuadCurveToPoint(CGMutablePathRef _Nullable path,
     const CGAffineTransform *_Nullable m, CGFloat cpx, CGFloat cpy,
     CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80211,13 +80550,13 @@ extern "C" void CGPathAddQuadCurveToPoint(CGMutablePathRef _Nullable path,
 extern "C" void CGPathAddCurveToPoint(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGFloat cp1x, CGFloat cp1y,
     CGFloat cp2x, CGFloat cp2y, CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPathCloseSubpath(CGMutablePathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80226,7 +80565,7 @@ extern "C" void CGPathCloseSubpath(CGMutablePathRef _Nullable path)
 
 extern "C" void CGPathAddRect(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80235,7 +80574,7 @@ extern "C" void CGPathAddRect(CGMutablePathRef _Nullable path,
 extern "C" void CGPathAddRects(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, const CGRect * _Nullable rects,
     size_t count)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80244,48 +80583,48 @@ extern "C" void CGPathAddRects(CGMutablePathRef _Nullable path,
 extern "C" void CGPathAddLines(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, const CGPoint * _Nullable points,
     size_t count)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGPathAddEllipseInRect(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGPathAddRelativeArc(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable matrix, CGFloat x, CGFloat y,
     CGFloat radius, CGFloat startAngle, CGFloat delta)
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
 extern "C" void CGPathAddArc(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m,
     CGFloat x, CGFloat y, CGFloat radius, CGFloat startAngle, CGFloat endAngle,
     bool clockwise)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGPathAddArcToPoint(CGMutablePathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGFloat x1, CGFloat y1,
     CGFloat x2, CGFloat y2, CGFloat radius)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPathAddPath(CGMutablePathRef _Nullable path1,
     const CGAffineTransform * _Nullable m, CGPathRef _Nullable path2)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" bool CGPathIsEmpty(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGPathIsRect(CGPathRef _Nullable path, CGRect * _Nullable rect)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPoint CGPathGetCurrentPoint(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80293,7 +80632,7 @@ extern "C" CGPoint CGPathGetCurrentPoint(CGPathRef _Nullable path)
 
 
 extern "C" CGRect CGPathGetBoundingBox(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80301,10 +80640,10 @@ extern "C" CGRect CGPathGetBoundingBox(CGPathRef _Nullable path)
 
 
 extern "C" CGRect CGPathGetPathBoundingBox(CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
 extern "C" bool CGPathContainsPoint(CGPathRef _Nullable path,
     const CGAffineTransform * _Nullable m, CGPoint point, bool eoFill)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80334,12 +80673,12 @@ typedef void (*CGPathApplierFunction)(void * _Nullable info,
 
 extern "C" void CGPathApply(CGPathRef _Nullable path, void * _Nullable info,
     CGPathApplierFunction _Nullable function)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 typedef void (*CGPathApplyBlock)(const CGPathElement * element);
 
 extern "C" void CGPathApplyWithBlock(CGPathRef path, CGPathApplyBlock __attribute__((noescape)) block)
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 #pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGPDFDocument *CGPDFDocumentRef;
@@ -80392,10 +80731,10 @@ typedef int32_t CGPDFObjectType; enum {
 
 
 extern "C" CGPDFObjectType CGPDFObjectGetType(CGPDFObjectRef _Nullable object)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" bool CGPDFObjectGetValue(CGPDFObjectRef _Nullable object,
     CGPDFObjectType type, void * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80426,14 +80765,14 @@ typedef int32_t CGPDFDataFormat; enum {
 
 extern "C" CGPDFDictionaryRef _Nullable CGPDFStreamGetDictionary(
     CGPDFStreamRef _Nullable stream)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFDataRef _Nullable CGPDFStreamCopyData(
     CGPDFStreamRef _Nullable stream,
     CGPDFDataFormat * _Nullable format)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 typedef struct CGPDFString *CGPDFStringRef;
 
@@ -80448,13 +80787,13 @@ typedef struct CGPDFString *CGPDFStringRef;
 
 
 extern "C" size_t CGPDFStringGetLength(CGPDFStringRef _Nullable string)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" const unsigned char * _Nullable CGPDFStringGetBytePtr(
     CGPDFStringRef _Nullable string)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80462,14 +80801,14 @@ extern "C" const unsigned char * _Nullable CGPDFStringGetBytePtr(
 
 extern "C" CFStringRef _Nullable CGPDFStringCopyTextString(
     CGPDFStringRef _Nullable string)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFDateRef _Nullable CGPDFStringCopyDate(
     CGPDFStringRef _Nullable string)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80479,34 +80818,34 @@ extern "C" CFDateRef _Nullable CGPDFStringCopyDate(
 
 
 extern "C" size_t CGPDFArrayGetCount(CGPDFArrayRef _Nullable array)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetObject(CGPDFArrayRef _Nullable array, size_t index,
     CGPDFObjectRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetNull(CGPDFArrayRef _Nullable array, size_t index)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetBoolean(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFBoolean * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetInteger(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFInteger * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80514,42 +80853,60 @@ extern "C" bool CGPDFArrayGetInteger(CGPDFArrayRef _Nullable array,
 
 extern "C" bool CGPDFArrayGetNumber(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFReal * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetName(CGPDFArrayRef _Nullable array,
     size_t index, const char * _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetString(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFStringRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetArray(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFArrayRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetDictionary(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFDictionaryRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFArrayGetStream(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFStreamRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
+
+
+
+
+
+
+typedef bool (*CGPDFArrayApplierBlock)(size_t index,
+    CGPDFObjectRef value, void * _Nullable info);
+
+
+
+
+
+
+
+extern "C" void CGPDFArrayApplyBlock(CGPDFArrayRef _Nullable array,
+    CGPDFArrayApplierBlock _Nullable block, void * _Nullable info)
+    __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80562,14 +80919,14 @@ extern "C" bool CGPDFArrayGetStream(CGPDFArrayRef _Nullable array,
 
 
 extern "C" size_t CGPDFDictionaryGetCount(CGPDFDictionaryRef _Nullable dict)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFDictionaryGetObject(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFObjectRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80577,7 +80934,7 @@ extern "C" bool CGPDFDictionaryGetObject(CGPDFDictionaryRef _Nullable dict,
 
 extern "C" bool CGPDFDictionaryGetBoolean(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFBoolean * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80585,7 +80942,7 @@ extern "C" bool CGPDFDictionaryGetBoolean(CGPDFDictionaryRef _Nullable dict,
 
 extern "C" bool CGPDFDictionaryGetInteger(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFInteger * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80593,28 +80950,28 @@ extern "C" bool CGPDFDictionaryGetInteger(CGPDFDictionaryRef _Nullable dict,
 
 extern "C" bool CGPDFDictionaryGetNumber(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFReal * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFDictionaryGetName(CGPDFDictionaryRef _Nullable dict,
     const char * key, const char * _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFDictionaryGetString(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFStringRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFDictionaryGetArray(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFArrayRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80622,14 +80979,14 @@ extern "C" bool CGPDFDictionaryGetArray(CGPDFDictionaryRef _Nullable dict,
 
 extern "C" bool CGPDFDictionaryGetDictionary(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFDictionaryRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFDictionaryGetStream(CGPDFDictionaryRef _Nullable dict,
     const char * key, CGPDFStreamRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80644,7 +81001,26 @@ typedef void (*CGPDFDictionaryApplierFunction)(const char * key,
 
 extern "C" void CGPDFDictionaryApplyFunction(CGPDFDictionaryRef _Nullable dict,
     CGPDFDictionaryApplierFunction _Nullable function, void * _Nullable info)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
+
+
+
+
+
+
+
+typedef bool (*CGPDFDictionaryApplierBlock)(const char * key,
+    CGPDFObjectRef value, void * _Nullable info);
+
+
+
+
+
+
+
+extern "C" void CGPDFDictionaryApplyBlock(CGPDFDictionaryRef _Nullable dict,
+    CGPDFDictionaryApplierBlock _Nullable block, void * _Nullable info)
+    __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80663,24 +81039,24 @@ typedef int32_t CGPDFBox; enum {
 
 
 extern "C" CGPDFPageRef _Nullable CGPDFPageRetain(CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPDFPageRelease(CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFDocumentRef _Nullable CGPDFPageGetDocument(
     CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGPDFPageGetPageNumber(CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80688,29 +81064,29 @@ extern "C" size_t CGPDFPageGetPageNumber(CGPDFPageRef _Nullable page)
 
 
 extern "C" CGRect CGPDFPageGetBoxRect(CGPDFPageRef _Nullable page, CGPDFBox box)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" int CGPDFPageGetRotationAngle(CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGAffineTransform CGPDFPageGetDrawingTransform(
     CGPDFPageRef _Nullable page, CGPDFBox box, CGRect rect, int rotate,
     bool preserveAspectRatio)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFDictionaryRef _Nullable CGPDFPageGetDictionary(
     CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFTypeID CGPDFPageGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80728,53 +81104,53 @@ typedef uint32_t CGPDFAccessPermissions; enum {
     kCGPDFAllowsFormFieldEntry = (1 << 7)
 };
 extern "C" const CFStringRef kCGPDFOutlineTitle
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" const CFStringRef kCGPDFOutlineChildren
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" const CFStringRef kCGPDFOutlineDestination
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" const CFStringRef kCGPDFOutlineDestinationRect
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" CGPDFDocumentRef _Nullable CGPDFDocumentCreateWithProvider(
     CGDataProviderRef _Nullable provider)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFDocumentRef _Nullable CGPDFDocumentCreateWithURL(
     CFURLRef _Nullable url)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPDFDocumentRef _Nullable CGPDFDocumentRetain(
     CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPDFDocumentRelease(CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFDocumentGetVersion(CGPDFDocumentRef _Nullable document,
   int * majorVersion, int * minorVersion)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80782,7 +81158,7 @@ extern "C" void CGPDFDocumentGetVersion(CGPDFDocumentRef _Nullable document,
 
 
 extern "C" bool CGPDFDocumentIsEncrypted(CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80790,14 +81166,14 @@ extern "C" bool CGPDFDocumentIsEncrypted(CGPDFDocumentRef _Nullable document)
 
 extern "C" bool CGPDFDocumentUnlockWithPassword(
     CGPDFDocumentRef _Nullable document, const char * password)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" bool CGPDFDocumentIsUnlocked(CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80805,7 +81181,7 @@ extern "C" bool CGPDFDocumentIsUnlocked(CGPDFDocumentRef _Nullable document)
 
 
 extern "C" bool CGPDFDocumentAllowsPrinting(CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -80813,53 +81189,53 @@ extern "C" bool CGPDFDocumentAllowsPrinting(CGPDFDocumentRef _Nullable document)
 
 
 extern "C" bool CGPDFDocumentAllowsCopying(CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" size_t CGPDFDocumentGetNumberOfPages(
     CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPDFPageRef _Nullable CGPDFDocumentGetPage(
     CGPDFDocumentRef _Nullable document, size_t pageNumber)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFDictionaryRef _Nullable CGPDFDocumentGetCatalog(
     CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFDictionaryRef _Nullable CGPDFDocumentGetInfo(
     CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFArrayRef _Nullable CGPDFDocumentGetID(
     CGPDFDocumentRef _Nullable document)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFTypeID CGPDFDocumentGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" _Nullable CFDictionaryRef CGPDFDocumentGetOutline(CGPDFDocumentRef document)
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" CGPDFAccessPermissions CGPDFDocumentGetAccessPermissions(CGPDFDocumentRef document)
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
@@ -80868,8 +81244,7 @@ extern "C" CGPDFAccessPermissions CGPDFDocumentGetAccessPermissions(CGPDFDocumen
 
 extern "C" CGRect CGPDFDocumentGetMediaBox(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -80877,39 +81252,35 @@ extern "C" CGRect CGPDFDocumentGetMediaBox(CGPDFDocumentRef _Nullable document,
 
 extern "C" CGRect CGPDFDocumentGetCropBox(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" CGRect CGPDFDocumentGetBleedBox(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" CGRect CGPDFDocumentGetTrimBox(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" CGRect CGPDFDocumentGetArtBox(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" int CGPDFDocumentGetRotationAngle(CGPDFDocumentRef _Nullable document,
     int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 #pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGShading *CGShadingRef;
 
@@ -80948,25 +81319,25 @@ typedef struct CGFunctionCallbacks CGFunctionCallbacks;
 
 
 extern "C" CFTypeID CGFunctionGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGFunctionRef _Nullable CGFunctionCreate(void * _Nullable info,
     size_t domainDimension, const CGFloat *_Nullable domain,
     size_t rangeDimension, const CGFloat * _Nullable range,
     const CGFunctionCallbacks * _Nullable callbacks)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGFunctionRef _Nullable CGFunctionRetain(
     CGFunctionRef _Nullable function)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGFunctionRelease(CGFunctionRef _Nullable function)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -80978,28 +81349,28 @@ extern "C" void CGFunctionRelease(CGFunctionRef _Nullable function)
 
 
 extern "C" CFTypeID CGShadingGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGShadingRef _Nullable CGShadingCreateAxial(
     CGColorSpaceRef _Nullable space, CGPoint start, CGPoint end,
     CGFunctionRef _Nullable function, bool extendStart, bool extendEnd)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGShadingRef _Nullable CGShadingCreateRadial(
     CGColorSpaceRef _Nullable space,
     CGPoint start, CGFloat startRadius, CGPoint end, CGFloat endRadius,
     CGFunctionRef _Nullable function, bool extendStart, bool extendEnd)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGShadingRef _Nullable CGShadingRetain(CGShadingRef _Nullable shading)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGShadingRelease(CGShadingRef _Nullable shading)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -81034,7 +81405,7 @@ typedef int32_t CGTextDrawingMode; enum {
 typedef int32_t CGTextEncoding; enum {
   kCGEncodingFontSpecific,
   kCGEncodingMacRoman
-} __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+} __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
@@ -81080,7 +81451,7 @@ typedef int32_t CGBlendMode; enum {
 
 
 extern "C" CFTypeID CGContextGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81089,13 +81460,13 @@ extern "C" CFTypeID CGContextGetTypeID(void)
 
 
 extern "C" void CGContextSaveGState(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextRestoreGState(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81104,139 +81475,139 @@ extern "C" void CGContextRestoreGState(CGContextRef _Nullable c)
 
 extern "C" void CGContextScaleCTM(CGContextRef _Nullable c,
     CGFloat sx, CGFloat sy)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextTranslateCTM(CGContextRef _Nullable c,
     CGFloat tx, CGFloat ty)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextRotateCTM(CGContextRef _Nullable c, CGFloat angle)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextConcatCTM(CGContextRef _Nullable c,
     CGAffineTransform transform)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGContextGetCTM(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" void CGContextSetLineWidth(CGContextRef _Nullable c, CGFloat width)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetLineCap(CGContextRef _Nullable c, CGLineCap cap)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetLineJoin(CGContextRef _Nullable c, CGLineJoin join)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetMiterLimit(CGContextRef _Nullable c, CGFloat limit)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetLineDash(CGContextRef _Nullable c, CGFloat phase,
     const CGFloat * _Nullable lengths, size_t count)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetFlatness(CGContextRef _Nullable c, CGFloat flatness)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetAlpha(CGContextRef _Nullable c, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetBlendMode(CGContextRef _Nullable c, CGBlendMode mode)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextBeginPath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextMoveToPoint(CGContextRef _Nullable c,
     CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextAddLineToPoint(CGContextRef _Nullable c,
     CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextAddCurveToPoint(CGContextRef _Nullable c, CGFloat cp1x,
     CGFloat cp1y, CGFloat cp2x, CGFloat cp2y, CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextAddQuadCurveToPoint(CGContextRef _Nullable c,
     CGFloat cpx, CGFloat cpy, CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextClosePath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" void CGContextAddRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextAddRects(CGContextRef _Nullable c,
     const CGRect * _Nullable rects, size_t count)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextAddLines(CGContextRef _Nullable c,
     const CGPoint * _Nullable points, size_t count)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" void CGContextAddEllipseInRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextAddArc(CGContextRef _Nullable c, CGFloat x, CGFloat y,
     CGFloat radius, CGFloat startAngle, CGFloat endAngle, int clockwise)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81245,16 +81616,16 @@ extern "C" void CGContextAddArc(CGContextRef _Nullable c, CGFloat x, CGFloat y,
 
 extern "C" void CGContextAddArcToPoint(CGContextRef _Nullable c,
     CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat radius)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextAddPath(CGContextRef _Nullable c,
     CGPathRef _Nullable path)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextReplacePathWithStrokedPath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81262,26 +81633,26 @@ extern "C" void CGContextReplacePathWithStrokedPath(CGContextRef _Nullable c)
 
 
 extern "C" bool CGContextIsPathEmpty(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPoint CGContextGetPathCurrentPoint(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGRect CGContextGetPathBoundingBox(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPathRef _Nullable CGContextCopyPath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81290,7 +81661,7 @@ extern "C" CGPathRef _Nullable CGContextCopyPath(CGContextRef _Nullable c)
 
 extern "C" bool CGContextPathContainsPoint(CGContextRef _Nullable c,
     CGPoint point, CGPathDrawingMode mode)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81298,7 +81669,7 @@ extern "C" bool CGContextPathContainsPoint(CGContextRef _Nullable c,
 
 extern "C" void CGContextDrawPath(CGContextRef _Nullable c,
     CGPathDrawingMode mode)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81306,62 +81677,62 @@ extern "C" void CGContextDrawPath(CGContextRef _Nullable c,
 
 
 extern "C" void CGContextFillPath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextEOFillPath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextStrokePath(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextFillRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextFillRects(CGContextRef _Nullable c,
     const CGRect * _Nullable rects, size_t count)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextStrokeRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextStrokeRectWithWidth(CGContextRef _Nullable c,
     CGRect rect, CGFloat width)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextClearRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextFillEllipseInRect(CGContextRef _Nullable c,
     CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextStrokeEllipseInRect(CGContextRef _Nullable c,
     CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextStrokeLineSegments(CGContextRef _Nullable c,
     const CGPoint * _Nullable points, size_t count)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81370,28 +81741,28 @@ extern "C" void CGContextStrokeLineSegments(CGContextRef _Nullable c,
 
 
 extern "C" void CGContextClip(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" void CGContextEOClip(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextResetClip(CGContextRef c);
 extern "C" void CGContextClipToMask(CGContextRef _Nullable c, CGRect rect,
     CGImageRef _Nullable mask)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGRect CGContextGetClipBoundingBox(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81399,7 +81770,7 @@ extern "C" CGRect CGContextGetClipBoundingBox(CGContextRef _Nullable c)
 
 
 extern "C" void CGContextClipToRect(CGContextRef _Nullable c, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81407,7 +81778,7 @@ extern "C" void CGContextClipToRect(CGContextRef _Nullable c, CGRect rect)
 
 extern "C" void CGContextClipToRects(CGContextRef _Nullable c,
     const CGRect * rects, size_t count)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81415,13 +81786,13 @@ extern "C" void CGContextClipToRects(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetFillColorWithColor(CGContextRef _Nullable c,
     CGColorRef _Nullable color)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetStrokeColorWithColor(CGContextRef _Nullable c,
     CGColorRef _Nullable color)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81431,7 +81802,7 @@ extern "C" void CGContextSetStrokeColorWithColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetFillColorSpace(CGContextRef _Nullable c,
     CGColorSpaceRef _Nullable space)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81439,10 +81810,10 @@ extern "C" void CGContextSetFillColorSpace(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetStrokeColorSpace(CGContextRef _Nullable c,
     CGColorSpaceRef _Nullable space)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetFillColor(CGContextRef _Nullable c,
     const CGFloat * _Nullable components)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81452,19 +81823,19 @@ extern "C" void CGContextSetFillColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetStrokeColor(CGContextRef _Nullable c,
     const CGFloat * _Nullable components)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetFillPattern(CGContextRef _Nullable c,
     CGPatternRef _Nullable pattern, const CGFloat * _Nullable components)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetStrokePattern(CGContextRef _Nullable c,
     CGPatternRef _Nullable pattern, const CGFloat * _Nullable components)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetPatternPhase(CGContextRef _Nullable c, CGSize phase)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81473,21 +81844,21 @@ extern "C" void CGContextSetPatternPhase(CGContextRef _Nullable c, CGSize phase)
 
 extern "C" void CGContextSetGrayFillColor(CGContextRef _Nullable c,
     CGFloat gray, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetGrayStrokeColor(CGContextRef _Nullable c,
     CGFloat gray, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetRGBFillColor(CGContextRef _Nullable c, CGFloat red,
     CGFloat green, CGFloat blue, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81495,7 +81866,7 @@ extern "C" void CGContextSetRGBFillColor(CGContextRef _Nullable c, CGFloat red,
 
 extern "C" void CGContextSetRGBStrokeColor(CGContextRef _Nullable c,
     CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81503,7 +81874,7 @@ extern "C" void CGContextSetRGBStrokeColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetCMYKFillColor(CGContextRef _Nullable c,
     CGFloat cyan, CGFloat magenta, CGFloat yellow, CGFloat black, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81511,7 +81882,7 @@ extern "C" void CGContextSetCMYKFillColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetCMYKStrokeColor(CGContextRef _Nullable c,
     CGFloat cyan, CGFloat magenta, CGFloat yellow, CGFloat black, CGFloat alpha)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81520,7 +81891,7 @@ extern "C" void CGContextSetCMYKStrokeColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetRenderingIntent(CGContextRef _Nullable c,
     CGColorRenderingIntent intent)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81529,10 +81900,10 @@ extern "C" void CGContextSetRenderingIntent(CGContextRef _Nullable c,
 
 extern "C" void CGContextDrawImage(CGContextRef _Nullable c, CGRect rect,
     CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextDrawTiledImage(CGContextRef _Nullable c, CGRect rect,
     CGImageRef _Nullable image)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81542,16 +81913,16 @@ extern "C" void CGContextDrawTiledImage(CGContextRef _Nullable c, CGRect rect,
 
 extern "C" CGInterpolationQuality
     CGContextGetInterpolationQuality(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetInterpolationQuality(CGContextRef _Nullable c,
     CGInterpolationQuality quality)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetShadowWithColor(CGContextRef _Nullable c,
     CGSize offset, CGFloat blur, CGColorRef _Nullable color)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81560,21 +81931,21 @@ extern "C" void CGContextSetShadowWithColor(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetShadow(CGContextRef _Nullable c, CGSize offset,
     CGFloat blur)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextDrawLinearGradient(CGContextRef _Nullable c,
     CGGradientRef _Nullable gradient, CGPoint startPoint, CGPoint endPoint,
     CGGradientDrawingOptions options)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextDrawRadialGradient(CGContextRef _Nullable c,
     CGGradientRef _Nullable gradient, CGPoint startCenter, CGFloat startRadius,
     CGPoint endCenter, CGFloat endRadius, CGGradientDrawingOptions options)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextDrawShading(CGContextRef _Nullable c,
     _Nullable CGShadingRef shading)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81584,51 +81955,51 @@ extern "C" void CGContextDrawShading(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetCharacterSpacing(CGContextRef _Nullable c,
     CGFloat spacing)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetTextPosition(CGContextRef _Nullable c,
     CGFloat x, CGFloat y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPoint CGContextGetTextPosition(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSetTextMatrix(CGContextRef _Nullable c,
     CGAffineTransform t)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGAffineTransform CGContextGetTextMatrix(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetTextDrawingMode(CGContextRef _Nullable c,
     CGTextDrawingMode mode)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetFont(CGContextRef _Nullable c,
     CGFontRef _Nullable font)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGContextSetFontSize(CGContextRef _Nullable c, CGFloat size)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81637,7 +82008,7 @@ extern "C" void CGContextSetFontSize(CGContextRef _Nullable c, CGFloat size)
 extern "C" void CGContextShowGlyphsAtPositions(CGContextRef _Nullable c,
     const CGGlyph * _Nullable glyphs, const CGPoint * _Nullable Lpositions,
     size_t count)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81645,7 +82016,7 @@ extern "C" void CGContextShowGlyphsAtPositions(CGContextRef _Nullable c,
 
 extern "C" void CGContextDrawPDFPage(CGContextRef _Nullable c,
     CGPDFPageRef _Nullable page)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81653,34 +82024,34 @@ extern "C" void CGContextDrawPDFPage(CGContextRef _Nullable c,
 
 extern "C" void CGContextBeginPage(CGContextRef _Nullable c,
     const CGRect * _Nullable mediaBox)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextEndPage(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" CGContextRef _Nullable CGContextRetain(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextRelease(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextFlush(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextSynchronize(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81689,7 +82060,7 @@ extern "C" void CGContextSynchronize(CGContextRef _Nullable c)
 
 extern "C" void CGContextSetShouldAntialias(CGContextRef _Nullable c,
     bool shouldAntialias)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81698,10 +82069,10 @@ extern "C" void CGContextSetShouldAntialias(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetAllowsAntialiasing(CGContextRef _Nullable c,
     bool allowsAntialiasing)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetShouldSmoothFonts(CGContextRef _Nullable c,
     bool shouldSmoothFonts)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81711,7 +82082,7 @@ extern "C" void CGContextSetShouldSmoothFonts(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetAllowsFontSmoothing(CGContextRef _Nullable c,
     bool allowsFontSmoothing)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81720,10 +82091,10 @@ extern "C" void CGContextSetAllowsFontSmoothing(CGContextRef _Nullable c,
 
 extern "C" void CGContextSetShouldSubpixelPositionFonts(
     CGContextRef _Nullable c, bool shouldSubpixelPositionFonts)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetAllowsFontSubpixelPositioning(
     CGContextRef _Nullable c, bool allowsFontSubpixelPositioning)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81732,13 +82103,13 @@ extern "C" void CGContextSetAllowsFontSubpixelPositioning(
 
 extern "C" void CGContextSetShouldSubpixelQuantizeFonts(
     CGContextRef _Nullable c, bool shouldSubpixelQuantizeFonts)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextSetAllowsFontSubpixelQuantization(
     CGContextRef _Nullable c, bool allowsFontSubpixelQuantization)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGContextBeginTransparencyLayer(CGContextRef _Nullable c,
     CFDictionaryRef _Nullable auxiliaryInfo)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81746,12 +82117,12 @@ extern "C" void CGContextBeginTransparencyLayer(CGContextRef _Nullable c,
 
 extern "C" void CGContextBeginTransparencyLayerWithRect(
     CGContextRef _Nullable c, CGRect rect, CFDictionaryRef _Nullable auxInfo)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGContextEndTransparencyLayer(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81760,31 +82131,31 @@ extern "C" void CGContextEndTransparencyLayer(CGContextRef _Nullable c)
 
 extern "C" CGAffineTransform
     CGContextGetUserSpaceToDeviceSpaceTransform(CGContextRef _Nullable c)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPoint CGContextConvertPointToDeviceSpace(CGContextRef _Nullable c,
     CGPoint point)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPoint CGContextConvertPointToUserSpace(CGContextRef _Nullable c,
     CGPoint point)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGSize CGContextConvertSizeToDeviceSpace(CGContextRef _Nullable c,
     CGSize size)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGSize CGContextConvertSizeToUserSpace(CGContextRef _Nullable c,
     CGSize size)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81793,7 +82164,7 @@ extern "C" CGSize CGContextConvertSizeToUserSpace(CGContextRef _Nullable c,
 
 extern "C" CGRect CGContextConvertRectToDeviceSpace(CGContextRef _Nullable c,
     CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81802,7 +82173,7 @@ extern "C" CGRect CGContextConvertRectToDeviceSpace(CGContextRef _Nullable c,
 
 extern "C" CGRect CGContextConvertRectToUserSpace(CGContextRef _Nullable c,
     CGRect rect)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -81810,35 +82181,35 @@ extern "C" CGRect CGContextConvertRectToUserSpace(CGContextRef _Nullable c,
 
 extern "C" void CGContextSelectFont(CGContextRef _Nullable c,
     const char * _Nullable name, CGFloat size, CGTextEncoding textEncoding)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
 
 extern "C" void CGContextShowText(CGContextRef _Nullable c,
     const char * _Nullable string, size_t length)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
 
 extern "C" void CGContextShowTextAtPoint(CGContextRef _Nullable c,
     CGFloat x, CGFloat y, const char * _Nullable string, size_t length)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
 
 extern "C" void CGContextShowGlyphs(CGContextRef _Nullable c,
     const CGGlyph * _Nullable g, size_t count)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
 
 extern "C" void CGContextShowGlyphsAtPoint(CGContextRef _Nullable c, CGFloat x,
     CGFloat y, const CGGlyph * _Nullable glyphs, size_t count)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
@@ -81846,14 +82217,14 @@ extern "C" void CGContextShowGlyphsAtPoint(CGContextRef _Nullable c, CGFloat x,
 extern "C" void CGContextShowGlyphsWithAdvances(CGContextRef _Nullable c,
     const CGGlyph * _Nullable glyphs, const CGSize * _Nullable advances,
     size_t count)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.9,message="No longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=7.0,message="No longer supported")));
 
 
 
 
 extern "C" void CGContextDrawPDFDocument(CGContextRef _Nullable c, CGRect rect,
     CGPDFDocumentRef _Nullable document, int page)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="No longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 #pragma clang assume_nonnull end
 
 
@@ -81873,71 +82244,71 @@ extern "C" CGContextRef _Nullable CGBitmapContextCreateWithData(
     size_t bytesPerRow, CGColorSpaceRef _Nullable space, uint32_t bitmapInfo,
     CGBitmapContextReleaseDataCallback _Nullable releaseCallback,
     void * _Nullable releaseInfo)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
 extern "C" CGContextRef _Nullable CGBitmapContextCreate(void * _Nullable data,
     size_t width, size_t height, size_t bitsPerComponent, size_t bytesPerRow,
     CGColorSpaceRef _Nullable space, uint32_t bitmapInfo)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void * _Nullable CGBitmapContextGetData(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGBitmapContextGetWidth(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGBitmapContextGetHeight(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGBitmapContextGetBitsPerComponent(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGBitmapContextGetBitsPerPixel(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" size_t CGBitmapContextGetBytesPerRow(CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGColorSpaceRef _Nullable CGBitmapContextGetColorSpace(
     CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGImageAlphaInfo CGBitmapContextGetAlphaInfo(
     CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGBitmapInfo CGBitmapContextGetBitmapInfo(
     CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" CGImageRef _Nullable CGBitmapContextCreateImage(
     CGContextRef _Nullable context)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 typedef const struct __attribute__((objc_bridge(id))) CGColorConversionInfo* CGColorConversionInfoRef;
@@ -81960,7 +82331,7 @@ typedef uint32_t CGColorConversionInfoTransformType; enum {
 
 
 extern "C" CGColorConversionInfoRef _Nullable CGColorConversionInfoCreate(_Nullable CGColorSpaceRef src, _Nullable CGColorSpaceRef dst)
-    __attribute__((availability(macosx,introduced=10.12)));
+    __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 
 
@@ -81970,16 +82341,16 @@ extern "C" CGColorConversionInfoRef _Nullable CGColorConversionInfoCreate(_Nulla
 
 extern "C" CGColorConversionInfoRef _Nullable CGColorConversionInfoCreateFromList
   (CFDictionaryRef _Nullable options, _Nullable CGColorSpaceRef, CGColorConversionInfoTransformType, CGColorRenderingIntent, ...)
-  __attribute__((availability(macosx,introduced=10.12)));
+  __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
 extern "C" CGColorConversionInfoRef _Nullable CGColorConversionInfoCreateFromListWithArguments
   (CFDictionaryRef _Nullable options, _Nullable CGColorSpaceRef, CGColorConversionInfoTransformType, CGColorRenderingIntent, va_list)
-  __attribute__((availability(macosx,introduced=10.13)));
+  __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
-extern "C" const CFStringRef kCGColorConversionBlackPointCompensation __attribute__((availability(macosx,introduced=10.12)));
+extern "C" const CFStringRef kCGColorConversionBlackPointCompensation __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 
-extern "C" const CFStringRef kCGColorConversionTRCSize __attribute__((availability(macosx,introduced=10.13)));
+extern "C" const CFStringRef kCGColorConversionTRCSize __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 #pragma clang assume_nonnull end
 
 
@@ -82018,37 +82389,37 @@ typedef struct CGDataConsumerCallbacks CGDataConsumerCallbacks;
 
 
 extern "C" CFTypeID CGDataConsumerGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGDataConsumerRef _Nullable CGDataConsumerCreate(
     void * _Nullable info, const CGDataConsumerCallbacks * _Nullable cbks)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataConsumerRef _Nullable CGDataConsumerCreateWithURL(
     CFURLRef _Nullable url)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataConsumerRef _Nullable CGDataConsumerCreateWithCFData(
     CFMutableDataRef _Nullable data)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGDataConsumerRef _Nullable CGDataConsumerRetain(
     CGDataConsumerRef _Nullable consumer)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGDataConsumerRelease(_Nullable CGDataConsumerRef consumer)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 typedef int32_t CGError; enum {
@@ -82086,29 +82457,29 @@ typedef struct __attribute__((objc_bridge(id))) CGLayer *CGLayerRef;
 extern "C" CGLayerRef _Nullable CGLayerCreateWithContext(
     CGContextRef _Nullable context,
     CGSize size, CFDictionaryRef _Nullable auxiliaryInfo)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGLayerRef _Nullable CGLayerRetain(CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGLayerRelease(CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGSize CGLayerGetSize(CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGContextRef _Nullable CGLayerGetContext(CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82116,7 +82487,7 @@ extern "C" CGContextRef _Nullable CGLayerGetContext(CGLayerRef _Nullable layer)
 
 extern "C" void CGContextDrawLayerInRect(CGContextRef _Nullable context,
     CGRect rect, CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82124,12 +82495,12 @@ extern "C" void CGContextDrawLayerInRect(CGContextRef _Nullable context,
 
 extern "C" void CGContextDrawLayerAtPoint(CGContextRef _Nullable context,
     CGPoint point, CGLayerRef _Nullable layer)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CFTypeID CGLayerGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -82150,42 +82521,42 @@ typedef struct CGPDFContentStream *CGPDFContentStreamRef;
 
 
 extern "C" CGPDFContentStreamRef CGPDFContentStreamCreateWithPage(
-  CGPDFPageRef page) __attribute__((availability(macosx,introduced=10.4)));
+  CGPDFPageRef page) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFContentStreamRef CGPDFContentStreamCreateWithStream(
   CGPDFStreamRef stream, CGPDFDictionaryRef streamResources,
   CGPDFContentStreamRef _Nullable parent)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFContentStreamRef CGPDFContentStreamRetain(
-  CGPDFContentStreamRef cs) __attribute__((availability(macosx,introduced=10.4)));
+  CGPDFContentStreamRef cs) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFContentStreamRelease(CGPDFContentStreamRef cs)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CFArrayRef _Nullable CGPDFContentStreamGetStreams(CGPDFContentStreamRef cs)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" CGPDFObjectRef _Nullable CGPDFContentStreamGetResource(
   CGPDFContentStreamRef cs, const char *category, const char *name)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
 extern "C" CGContextRef _Nullable CGPDFContextCreate(CGDataConsumerRef _Nullable consumer,
   const CGRect *_Nullable mediaBox, CFDictionaryRef _Nullable auxiliaryInfo)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82193,7 +82564,7 @@ extern "C" CGContextRef _Nullable CGPDFContextCreate(CGDataConsumerRef _Nullable
 
 extern "C" CGContextRef _Nullable CGPDFContextCreateWithURL(CFURLRef _Nullable url,
   const CGRect * _Nullable mediaBox, CFDictionaryRef _Nullable auxiliaryInfo)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82201,40 +82572,40 @@ extern "C" CGContextRef _Nullable CGPDFContextCreateWithURL(CFURLRef _Nullable u
 
 
 extern "C" void CGPDFContextClose(CGContextRef _Nullable context)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFContextBeginPage(CGContextRef _Nullable context,
   CFDictionaryRef _Nullable pageInfo)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFContextEndPage(CGContextRef _Nullable context)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" void CGPDFContextAddDocumentMetadata(CGContextRef _Nullable context,
-  CFDataRef _Nullable metadata) __attribute__((availability(macosx,introduced=10.7)));
+  CFDataRef _Nullable metadata) __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 extern "C" void CGPDFContextSetURLForRect(CGContextRef _Nullable context, CFURLRef url,
-  CGRect rect) __attribute__((availability(macosx,introduced=10.4)));
+  CGRect rect) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPDFContextAddDestinationAtPoint(CGContextRef _Nullable context,
   CFStringRef name, CGPoint point)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" void CGPDFContextSetDestinationForRect(CGContextRef _Nullable context,
   CFStringRef name, CGRect rect)
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82243,35 +82614,35 @@ extern "C" void CGPDFContextSetDestinationForRect(CGContextRef _Nullable context
 
 
 extern "C" const CFStringRef kCGPDFContextMediaBox
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextCropBox
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextBleedBox
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextTrimBox
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextArtBox
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82279,50 +82650,50 @@ extern "C" const CFStringRef kCGPDFContextArtBox
 
 
 extern "C" const CFStringRef kCGPDFContextTitle
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextAuthor
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextSubject
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" const CFStringRef kCGPDFContextKeywords
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextCreator
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" const CFStringRef kCGPDFContextOwnerPassword
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" const CFStringRef kCGPDFContextUserPassword
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" const CFStringRef kCGPDFContextEncryptionKeyLength
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextAllowsPrinting
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextAllowsCopying
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 extern "C" const CFStringRef kCGPDFContextOutputIntent
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -82331,7 +82702,7 @@ extern "C" const CFStringRef kCGPDFContextOutputIntent
 
 
 extern "C" const CFStringRef kCGPDFXOutputIntentSubtype
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -82340,7 +82711,7 @@ extern "C" const CFStringRef kCGPDFXOutputIntentSubtype
 
 
 extern "C" const CFStringRef kCGPDFXOutputConditionIdentifier
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -82348,7 +82719,7 @@ extern "C" const CFStringRef kCGPDFXOutputConditionIdentifier
 
 
 extern "C" const CFStringRef kCGPDFXOutputCondition
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -82357,7 +82728,7 @@ extern "C" const CFStringRef kCGPDFXOutputCondition
 
 
 extern "C" const CFStringRef kCGPDFXRegistryName
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
@@ -82366,22 +82737,22 @@ extern "C" const CFStringRef kCGPDFXRegistryName
 
 
 extern "C" const CFStringRef kCGPDFXInfo
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 extern "C" const CFStringRef kCGPDFXDestinationOutputProfile
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 extern "C" const CFStringRef kCGPDFContextOutputIntents
-  __attribute__((availability(macosx,introduced=10.4)));
+  __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,unavailable))) __attribute__((availability(tvos,unavailable))) __attribute__((availability(watchos,unavailable)));
 
 
 
 
 extern "C" const CFStringRef kCGPDFContextAccessPermissions
-  __attribute__((availability(macosx,introduced=10.13)));
+  __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
 
 extern "C" void CGPDFContextSetOutline(CGContextRef context, _Nullable CFDictionaryRef outline)
-  __attribute__((availability(macosx,introduced=10.13)));
+  __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 #pragma clang assume_nonnull end
 
 
@@ -82403,79 +82774,79 @@ typedef struct CGPDFScanner *CGPDFScannerRef;
 extern "C" CGPDFScannerRef CGPDFScannerCreate(
     CGPDFContentStreamRef cs,
     CGPDFOperatorTableRef _Nullable table, void * _Nullable info)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFScannerRef _Nullable CGPDFScannerRetain(
     CGPDFScannerRef _Nullable scanner)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFScannerRelease(CGPDFScannerRef _Nullable scanner)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 
 extern "C" bool CGPDFScannerScan(CGPDFScannerRef _Nullable scanner)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFContentStreamRef CGPDFScannerGetContentStream(
     CGPDFScannerRef scanner)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" bool CGPDFScannerPopObject(CGPDFScannerRef scanner,
     CGPDFObjectRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopBoolean(CGPDFScannerRef scanner,
     CGPDFBoolean * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopInteger(CGPDFScannerRef scanner,
     CGPDFInteger * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopNumber(CGPDFScannerRef scanner,
     CGPDFReal * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopName(CGPDFScannerRef scanner,
     const char * _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopString(CGPDFScannerRef scanner,
     CGPDFStringRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopArray(CGPDFScannerRef scanner,
     CGPDFArrayRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
@@ -82483,14 +82854,14 @@ extern "C" bool CGPDFScannerPopArray(CGPDFScannerRef scanner,
 
 extern "C" bool CGPDFScannerPopDictionary(CGPDFScannerRef scanner,
     CGPDFDictionaryRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 
 extern "C" bool CGPDFScannerPopStream(CGPDFScannerRef scanner,
     CGPDFStreamRef _Nullable * _Nullable value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -82503,26 +82874,26 @@ typedef void (*CGPDFOperatorCallback)(CGPDFScannerRef scanner,
 
 
 extern "C" CGPDFOperatorTableRef _Nullable CGPDFOperatorTableCreate(void)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" CGPDFOperatorTableRef _Nullable CGPDFOperatorTableRetain(
     CGPDFOperatorTableRef _Nullable table)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFOperatorTableRelease(
     CGPDFOperatorTableRef _Nullable table)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 
 
 
 extern "C" void CGPDFOperatorTableSetCallback(
     CGPDFOperatorTableRef _Nullable table,
     const char * _Nullable name, CGPDFOperatorCallback _Nullable callback)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=2.0)));
 #pragma clang assume_nonnull end
 
 
@@ -82557,20 +82928,20 @@ typedef uint32_t CGWindowBackingType; enum {
 
 #pragma clang assume_nonnull begin
 extern "C" const CFStringRef kCGWindowNumber
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowStoreType
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 extern "C" const CFStringRef kCGWindowLayer
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82578,34 +82949,34 @@ extern "C" const CFStringRef kCGWindowLayer
 
 
 extern "C" const CFStringRef kCGWindowBounds
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowSharingState
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowAlpha
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 extern "C" const CFStringRef kCGWindowOwnerPID
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowMemoryUsage
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82613,33 +82984,33 @@ extern "C" const CFStringRef kCGWindowMemoryUsage
 
 
 extern "C" const CFStringRef kCGWindowWorkspace
-  __attribute__((availability(macosx,introduced=10.5,deprecated=10.8)));
+  __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="No longer supported")));
 
 
 
 
 extern "C" const CFStringRef kCGWindowOwnerName
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 extern "C" const CFStringRef kCGWindowName
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowIsOnscreen
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 
 
 extern "C" const CFStringRef kCGWindowBackingLocationVideoMemory
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82670,7 +83041,7 @@ typedef uint32_t CGWindowListOption; enum {
 };
 extern "C" CFArrayRef _Nullable CGWindowListCopyWindowInfo(CGWindowListOption option,
     CGWindowID relativeToWindow)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82680,11 +83051,11 @@ extern "C" CFArrayRef _Nullable CGWindowListCopyWindowInfo(CGWindowListOption op
 
 extern "C" CFArrayRef _Nullable CGWindowListCreate(CGWindowListOption option,
     CGWindowID relativeToWindow)
-    __attribute__((availability(macosx,introduced=10.5)))
+    __attribute__((availability(macos,introduced=10.5)))
     __attribute__((availability(swift, unavailable, message="No replacement at present")));
 extern "C" CFArrayRef _Nullable CGWindowListCreateDescriptionFromArray(
     CFArrayRef _Nullable windowArray)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82714,7 +83085,7 @@ typedef uint32_t CGWindowImageOption; enum {
 extern "C" CGImageRef _Nullable CGWindowListCreateImage(CGRect screenBounds,
     CGWindowListOption listOption, CGWindowID windowID,
     CGWindowImageOption imageOption)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
@@ -82723,7 +83094,7 @@ extern "C" CGImageRef _Nullable CGWindowListCreateImage(CGRect screenBounds,
 extern "C" CGImageRef _Nullable CGWindowListCreateImageFromArray(
     CGRect screenBounds, CFArrayRef windowArray,
     CGWindowImageOption imageOption)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 #pragma clang assume_nonnull end
 typedef int32_t CGWindowLevelKey; enum {
     kCGBaseWindowLevelKey = 0,
@@ -82756,7 +83127,7 @@ typedef int32_t CGWindowLevel;
 
 
 extern "C" CGWindowLevel CGWindowLevelForKey(CGWindowLevelKey key)
-  __attribute__((availability(macosx,introduced=10.0)));
+  __attribute__((availability(macos,introduced=10.0)));
 
 
 typedef uint32_t CGDirectDisplayID;
@@ -82775,36 +83146,36 @@ typedef struct __attribute__((objc_bridge(id))) CGDisplayMode *CGDisplayModeRef;
 
 
 extern "C" CGDirectDisplayID CGMainDisplayID(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 extern "C" CGError CGGetDisplaysWithPoint(CGPoint point, uint32_t maxDisplays,
     CGDirectDisplayID * _Nullable displays,
     uint32_t * _Nullable matchingDisplayCount)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 extern "C" CGError CGGetDisplaysWithRect(CGRect rect, uint32_t maxDisplays,
     CGDirectDisplayID * _Nullable displays,
     uint32_t * _Nullable matchingDisplayCount)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 extern "C" CGError CGGetDisplaysWithOpenGLDisplayMask(CGOpenGLDisplayMask mask,
     uint32_t maxDisplays, CGDirectDisplayID * _Nullable displays,
     uint32_t * _Nullable matchingDisplayCount)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGGetActiveDisplayList(uint32_t maxDisplays,
     CGDirectDisplayID * _Nullable activeDisplays,
     uint32_t * _Nullable displayCount)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGGetOnlineDisplayList(uint32_t maxDisplays,
     CGDirectDisplayID * _Nullable onlineDisplays,
     uint32_t * _Nullable displayCount)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" CGOpenGLDisplayMask CGDisplayIDToOpenGLDisplayMask(
     CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -82812,23 +83183,23 @@ extern "C" CGOpenGLDisplayMask CGDisplayIDToOpenGLDisplayMask(
 
 extern "C" CGDirectDisplayID CGOpenGLDisplayMaskToDisplayID(
     CGOpenGLDisplayMask mask)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" CGRect CGDisplayBounds(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 extern "C" size_t CGDisplayPixelsWide(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 extern "C" size_t CGDisplayPixelsHigh(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -82836,96 +83207,95 @@ extern "C" size_t CGDisplayPixelsHigh(CGDirectDisplayID display)
 
 extern "C" CFArrayRef _Nullable CGDisplayCopyAllDisplayModes(
     CGDirectDisplayID display, CFDictionaryRef _Nullable options)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 extern "C" const CFStringRef kCGDisplayShowDuplicateLowResolutionModes
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 extern "C" CGDisplayModeRef _Nullable CGDisplayCopyDisplayMode(
     CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 extern "C" CGError CGDisplaySetDisplayMode(CGDirectDisplayID display,
     CGDisplayModeRef _Nullable mode, CFDictionaryRef _Nullable options)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" size_t CGDisplayModeGetWidth(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" size_t CGDisplayModeGetHeight(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 
 extern "C" CFStringRef _Nullable CGDisplayModeCopyPixelEncoding(
     CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6,deprecated=10.11)));
-
+    __attribute__((availability(macos,introduced=10.6,deprecated=10.11,message="No longer supported")));
 
 
 
 extern "C" double CGDisplayModeGetRefreshRate(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" uint32_t CGDisplayModeGetIOFlags(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" int32_t CGDisplayModeGetIODisplayModeID(
     CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 
 extern "C" bool CGDisplayModeIsUsableForDesktopGUI(
     CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" CFTypeID CGDisplayModeGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 
 extern "C" CGDisplayModeRef _Nullable CGDisplayModeRetain(
     CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 
 extern "C" void CGDisplayModeRelease(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 extern "C" size_t CGDisplayModeGetPixelWidth(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 
 
 
 extern "C" size_t CGDisplayModeGetPixelHeight(CGDisplayModeRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 typedef float CGGammaValue;
 
 extern "C" CGError CGSetDisplayTransferByFormula(CGDirectDisplayID display,
     CGGammaValue redMin, CGGammaValue redMax, CGGammaValue redGamma,
     CGGammaValue greenMin, CGGammaValue greenMax, CGGammaValue greenGamma,
     CGGammaValue blueMin, CGGammaValue blueMax, CGGammaValue blueGamma)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -82936,18 +83306,18 @@ extern "C" CGError CGGetDisplayTransferByFormula(CGDirectDisplayID display,
     CGGammaValue * _Nullable greenGamma,
     CGGammaValue * _Nullable blueMin, CGGammaValue * _Nullable blueMax,
     CGGammaValue * _Nullable blueGamma)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" uint32_t CGDisplayGammaTableCapacity(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 extern "C" CGError CGSetDisplayTransferByTable(CGDirectDisplayID display,
     uint32_t tableSize, const CGGammaValue * _Nullable redTable,
     const CGGammaValue * _Nullable greenTable,
     const CGGammaValue * _Nullable blueTable)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -82959,17 +83329,17 @@ extern "C" CGError CGGetDisplayTransferByTable(CGDirectDisplayID display,
     uint32_t capacity, CGGammaValue * _Nullable redTable,
     CGGammaValue * _Nullable greenTable,
     CGGammaValue * _Nullable blueTable, uint32_t * _Nullable sampleCount)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGSetDisplayTransferByByteTable(CGDirectDisplayID display,
     uint32_t tableSize, const uint8_t * redTable,
     const uint8_t * greenTable, const uint8_t * blueTable)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" void CGDisplayRestoreColorSyncSettings(void)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -82982,63 +83352,63 @@ typedef uint32_t CGCaptureOptions; enum {
 
 
 extern "C" boolean_t CGDisplayIsCaptured(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.9,message="No longer supported")));
 
 
 
 extern "C" CGError CGDisplayCapture(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" CGError CGDisplayCaptureWithOptions(CGDirectDisplayID display,
     CGCaptureOptions options)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
 extern "C" CGError CGDisplayRelease(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 
 extern "C" CGError CGCaptureAllDisplays(void)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 
 extern "C" CGError CGCaptureAllDisplaysWithOptions(CGCaptureOptions options)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
 
 
 extern "C" CGError CGReleaseAllDisplays(void)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" CGWindowID CGShieldingWindowID(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" CGWindowLevel CGShieldingWindowLevel(void)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" CGImageRef _Nullable CGDisplayCreateImage(CGDirectDisplayID displayID)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
@@ -83047,19 +83417,19 @@ extern "C" CGImageRef _Nullable CGDisplayCreateImage(CGDirectDisplayID displayID
 
 extern "C" CGImageRef _Nullable CGDisplayCreateImageForRect(
     CGDirectDisplayID display, CGRect rect)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 
 
 
 
 extern "C" CGError CGDisplayHideCursor(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" CGError CGDisplayShowCursor(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
@@ -83068,17 +83438,17 @@ extern "C" CGError CGDisplayShowCursor(CGDirectDisplayID display)
 
 extern "C" CGError CGDisplayMoveCursorToPoint(CGDirectDisplayID display,
     CGPoint point)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" void CGGetLastMouseDelta(int32_t *_Nullable deltaX,
     int32_t * _Nullable deltaY)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGContextRef _Nullable CGDisplayGetDrawingContext(
     CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 typedef uint32_t CGDisplayCount;
 typedef CGError CGDisplayErr;
 
@@ -83087,33 +83457,29 @@ typedef CGError CGDisplayErr;
 
 
 extern "C" CFArrayRef _Nullable CGDisplayAvailableModes(CGDirectDisplayID dsp)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 extern "C" CFDictionaryRef _Nullable CGDisplayBestModeForParameters(
     CGDirectDisplayID display, size_t bitsPerPixel, size_t width, size_t height,
     boolean_t * _Nullable exactMatch)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 extern "C" CFDictionaryRef _Nullable CGDisplayBestModeForParametersAndRefreshRate(
     CGDirectDisplayID display, size_t bitsPerPixel, size_t width, size_t height,
     CGRefreshRate refreshRate, boolean_t * _Nullable exactMatch)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 extern "C" CFDictionaryRef _Nullable CGDisplayCurrentMode(
     CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 extern "C" CGError CGDisplaySwitchToMode(CGDirectDisplayID display,
     CFDictionaryRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 #pragma clang assume_nonnull end
 struct CGDeviceColor {
   float red;
@@ -83131,31 +83497,31 @@ typedef struct _CGDisplayConfigRef *CGDisplayConfigRef;
 
 extern "C" CGError CGBeginDisplayConfiguration(
     CGDisplayConfigRef _Nullable * _Nullable config)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGConfigureDisplayOrigin(
     CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, int32_t x, int32_t y)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGConfigureDisplayWithDisplayMode(
     CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, CGDisplayModeRef _Nullable mode,
     CFDictionaryRef _Nullable options)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6)));
 extern "C" CGError CGConfigureDisplayStereoOperation(
     CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, boolean_t stereo, boolean_t forceBlueLine)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGError CGConfigureDisplayMirrorOfDisplay(
     CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, CGDirectDisplayID master)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" CGError CGCancelDisplayConfiguration(
     CGDisplayConfigRef _Nullable config)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 typedef uint32_t CGConfigureOption; enum {
     kCGConfigureForAppOnly = 0,
     kCGConfigureForSession = 1,
@@ -83165,13 +83531,13 @@ typedef uint32_t CGConfigureOption; enum {
 extern "C" CGError CGCompleteDisplayConfiguration(
     CGDisplayConfigRef _Nullable config,
     CGConfigureOption option)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 
 
 
 
 extern "C" void CGRestorePermanentDisplayConfiguration(void)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 typedef uint32_t CGDisplayChangeSummaryFlags; enum {
     kCGDisplayBeginConfigurationFlag = (1 << 0),
     kCGDisplayMovedFlag = (1 << 1),
@@ -83199,129 +83565,129 @@ typedef void(*CGDisplayReconfigurationCallBack)(CGDirectDisplayID display,
 extern "C" CGError CGDisplayRegisterReconfigurationCallback(
   CGDisplayReconfigurationCallBack _Nullable callback,
   void * _Nullable userInfo)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3)));
 
 
 
 extern "C" CGError CGDisplayRemoveReconfigurationCallback(
     CGDisplayReconfigurationCallBack _Nullable callback,
     void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 extern "C" CGError CGDisplaySetStereoOperation(CGDirectDisplayID display,
     boolean_t stereo, boolean_t forceBlueLine, CGConfigureOption option)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsActive(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsAsleep(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" boolean_t CGDisplayIsOnline(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsMain(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsBuiltin(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" boolean_t CGDisplayIsInMirrorSet(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsAlwaysInMirrorSet(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsInHWMirrorSet(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 
 extern "C" CGDirectDisplayID CGDisplayMirrorsDisplay(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayUsesOpenGLAcceleration(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayIsStereo(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGDirectDisplayID CGDisplayPrimaryDisplay(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" uint32_t CGDisplayUnitNumber(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" uint32_t CGDisplayVendorNumber(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" uint32_t CGDisplayModelNumber(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" uint32_t CGDisplaySerialNumber(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 extern "C" io_service_t CGDisplayIOServicePort(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.2,deprecated=10.9,message="No longer supported")));
 extern "C" CGSize CGDisplayScreenSize(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 extern "C" double CGDisplayRotation(CGDirectDisplayID display)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 extern "C" CGColorSpaceRef CGDisplayCopyColorSpace(
   CGDirectDisplayID display)
-  __attribute__((availability(macosx,introduced=10.5)));
+  __attribute__((availability(macos,introduced=10.5)));
 
 
 
 extern "C" CGError CGConfigureDisplayMode(CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, CFDictionaryRef _Nullable mode)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
 
@@ -83341,28 +83707,28 @@ extern "C" CGError CGConfigureDisplayFadeEffect(
     CGDisplayConfigRef _Nullable config,
     CGDisplayFadeInterval fadeOutSeconds, CGDisplayFadeInterval fadeInSeconds,
     float fadeRed, float fadeGreen, float fadeBlue)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 typedef float CGDisplayReservationInterval;
 
 
 
 extern "C" CGError CGAcquireDisplayFadeReservation(CGDisplayReservationInterval
     seconds, CGDisplayFadeReservationToken * _Nullable token)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 extern "C" CGError CGReleaseDisplayFadeReservation(
     CGDisplayFadeReservationToken token)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 extern "C" CGError CGDisplayFade(CGDisplayFadeReservationToken token,
     CGDisplayFadeInterval duration, CGDisplayBlendFraction startBlend,
     CGDisplayBlendFraction endBlend, float redBlend, float greenBlend,
     float blueBlend, boolean_t synchronous)
-    __attribute__((availability(macosx,introduced=10.2)));
+    __attribute__((availability(macos,introduced=10.2)));
 
 
 
 
 extern "C" boolean_t CGDisplayFadeOperationInProgress(void)
-    __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.2,deprecated=10.9,message="No longer supported")));
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) CGDisplayStream *CGDisplayStreamRef;
@@ -83389,58 +83755,58 @@ typedef void (*CGDisplayStreamFrameAvailableHandler)(CGDisplayStreamFrameStatus 
 
 
 extern "C" CFTypeID CGDisplayStreamUpdateGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" const CGRect * _Nullable CGDisplayStreamUpdateGetRects(CGDisplayStreamUpdateRef _Nullable updateRef,
     CGDisplayStreamUpdateRectType rectType, size_t * rectCount)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" CGDisplayStreamUpdateRef _Nullable CGDisplayStreamUpdateCreateMergedUpdate(
     CGDisplayStreamUpdateRef _Nullable firstUpdate,
     CGDisplayStreamUpdateRef _Nullable secondUpdate)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" void CGDisplayStreamUpdateGetMovedRectsDelta(CGDisplayStreamUpdateRef _Nullable updateRef,
     CGFloat * dx, CGFloat * dy)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" size_t CGDisplayStreamUpdateGetDropCount(CGDisplayStreamUpdateRef _Nullable updateRef)
-    __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGDisplayStreamSourceRect __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGDisplayStreamDestinationRect __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGDisplayStreamPreserveAspectRatio __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamSourceRect __attribute__((availability(macos,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamDestinationRect __attribute__((availability(macos,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamPreserveAspectRatio __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 
-extern "C" const CFStringRef kCGDisplayStreamColorSpace __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamColorSpace __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 
-extern "C" const CFStringRef kCGDisplayStreamMinimumFrameTime __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamMinimumFrameTime __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 
-extern "C" const CFStringRef kCGDisplayStreamShowCursor __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamShowCursor __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 
-extern "C" const CFStringRef kCGDisplayStreamQueueDepth __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamQueueDepth __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 
 
-extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix __attribute__((availability(macos,introduced=10.8)));
 
 
-extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_ITU_R_709_2 __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_ITU_R_601_4 __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995 __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_ITU_R_709_2 __attribute__((availability(macos,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_ITU_R_601_4 __attribute__((availability(macos,introduced=10.8)));
+extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995 __attribute__((availability(macos,introduced=10.8)));
 
 
 
@@ -83448,15 +83814,15 @@ extern "C" const CFStringRef kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995 __attri
 
 
 extern "C" CFTypeID CGDisplayStreamGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" CGDisplayStreamRef _Nullable CGDisplayStreamCreate(CGDirectDisplayID display,
     size_t outputWidth, size_t outputHeight, int32_t pixelFormat, CFDictionaryRef _Nullable properties,
     CGDisplayStreamFrameAvailableHandler _Nullable handler)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" CGDisplayStreamRef _Nullable CGDisplayStreamCreateWithDispatchQueue(CGDirectDisplayID display,
     size_t outputWidth, size_t outputHeight, int32_t pixelFormat, CFDictionaryRef _Nullable properties,
     dispatch_queue_t queue, CGDisplayStreamFrameAvailableHandler _Nullable handler)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 
 
 
@@ -83465,11 +83831,11 @@ extern "C" CGDisplayStreamRef _Nullable CGDisplayStreamCreateWithDispatchQueue(C
 
 
 extern "C" CGError CGDisplayStreamStart(CGDisplayStreamRef _Nullable displayStream)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" CGError CGDisplayStreamStop(CGDisplayStreamRef _Nullable displayStream)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 extern "C" CFRunLoopSourceRef _Nullable CGDisplayStreamGetRunLoopSource(CGDisplayStreamRef _Nullable displayStream)
-    __attribute__((availability(macosx,introduced=10.8)));
+    __attribute__((availability(macos,introduced=10.8)));
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
 
@@ -83500,13 +83866,20 @@ typedef void (*CGScreenRefreshCallback)(uint32_t count,
                                         void *_Nullable userInfo);
 extern "C" CGError CGRegisterScreenRefreshCallback(
     CGScreenRefreshCallback callback, void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="No longer supported")));
+
+
+
+
+
+
+
 extern "C" void CGUnregisterScreenRefreshCallback(
     CGScreenRefreshCallback callback, void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="No longer supported")));
 extern "C" CGError CGWaitForScreenRefreshRects(
     CGRect *_Nullable * _Nullable rects, uint32_t * _Nullable count)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="No longer supported")));
 
 
 
@@ -83529,69 +83902,67 @@ typedef void (*CGScreenUpdateMoveCallback)(CGScreenUpdateMoveDelta delta,
 
 extern "C" CGError CGScreenRegisterMoveCallback(
     CGScreenUpdateMoveCallback callback, void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.8)));
-
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.8,message="No longer supported")));
 
 
 
 extern "C" void CGScreenUnregisterMoveCallback(
     CGScreenUpdateMoveCallback callback, void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.8,message="No longer supported")));
 extern "C" CGError CGWaitForScreenUpdateRects(
     CGScreenUpdateOperation requestedOperations,
     CGScreenUpdateOperation * _Nullable currentOperation,
     CGRect * _Nullable * _Nullable rects, size_t * _Nullable rectCount,
     CGScreenUpdateMoveDelta * _Nullable delta)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.8,message="No longer supported")));
 
 
 
 
 extern "C" void CGReleaseScreenRefreshRects(CGRect * _Nullable rects)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="No longer supported")));
 
 
 
 extern "C" boolean_t CGCursorIsVisible(void)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.9,message="No longer supported")));
 extern "C" boolean_t CGCursorIsDrawnInFramebuffer(void)
-    __attribute__((availability(macosx,introduced=10.3,deprecated=10.9)));
+    __attribute__((availability(macos,introduced=10.3,deprecated=10.9,message="No longer supported")));
 
 
 
 
 extern "C" CGError CGWarpMouseCursorPosition(CGPoint newCursorPosition)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CGError CGAssociateMouseAndMouseCursorPosition(boolean_t connected)
-    __attribute__((availability(macosx,introduced=10.0)));
+    __attribute__((availability(macos,introduced=10.0)));
 extern "C" CFMachPortRef _Nullable CGWindowServerCreateServerPort(void)
-   __attribute__((availability(macosx,introduced=10.8)));
+   __attribute__((availability(macos,introduced=10.8)));
 
 
 
 
 extern "C" CGError CGEnableEventStateCombining(boolean_t combineState)
-    __attribute__((availability(macosx,introduced=10.1,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.1,deprecated=10.6,message="No longer supported")));
 
 
 
 
 extern "C" CGError CGInhibitLocalEvents(boolean_t inhibit)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 extern "C" CGError CGPostMouseEvent(CGPoint mouseCursorPosition,
     boolean_t updateMouseCursorPosition, CGButtonCount buttonCount,
     boolean_t mouseButtonDown, ... )
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 extern "C" CGError CGPostScrollWheelEvent(CGWheelCount wheelCount,
     int32_t wheel1, ... )
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 
 extern "C" CGError CGPostKeyboardEvent(CGCharCode keyChar, CGKeyCode virtualKey,
     boolean_t keyDown)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 
@@ -83612,20 +83983,19 @@ typedef uint32_t CGEventSuppressionState; enum {
 
 extern "C" CGError CGSetLocalEventsFilterDuringSuppressionState(
     CGEventFilterMask filter, CGEventSuppressionState state)
-    __attribute__((availability(macosx,introduced=10.1,deprecated=10.6)));
+    __attribute__((availability(macos,introduced=10.1,deprecated=10.6,message="No longer supported")));
 
 
 
 
 extern "C" CGError CGSetLocalEventsSuppressionInterval(CFTimeInterval seconds)
-    __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
-
+    __attribute__((availability(macos,introduced=10.0,deprecated=10.6,message="No longer supported")));
 
 
 
 
 extern "C" CFMachPortRef _Nullable CGWindowServerCFMachPort(void) __attribute__((cf_returns_retained))
-    __attribute__((availability(macosx,introduced=10.1,deprecated=10.8)));
+    __attribute__((availability(macos,introduced=10.1,deprecated=10.8,message="No longer supported")));
 typedef uint32_t CGRectCount;
 #pragma clang assume_nonnull end
 extern "C" {
@@ -83994,7 +84364,7 @@ enum {
 
     kIOClamshellStateAttribute = 'clam',
 
- kIOFBDisplayPortTrainingAttribute = 'dpta',
+    kIOFBDisplayPortTrainingAttribute = 'dpta',
 
     kIOFBDisplayState = 'dstt',
 
@@ -84071,6 +84441,35 @@ enum {
     kIOWSAA_DeferEnd = 0x200,
     kIOWSAA_NonConsoleDevice = 0x400,
     kIOWSAA_Reserved = 0xF0000000
+};
+
+
+enum {
+    kIOFBNS_Rendezvous = 0x87654321,
+
+    kIOFBNS_MessageMask = 0x0000000f,
+    kIOFBNS_Sleep = 0x00,
+    kIOFBNS_Wake = 0x01,
+    kIOFBNS_Doze = 0x02,
+
+
+
+
+
+    kIOFBNS_Dim = 0x03,
+    kIOFBNS_UnDim = 0x04,
+
+
+
+
+    kIOFBNS_DisplayStateMask = 0x00000f00,
+    kIOFBNS_DisplayStateShift = 8,
+
+
+
+
+    kIOFBNS_GenerationMask = 0x7fff0000,
+    kIOFBNS_GenerationShift = 16,
 };
 
 
@@ -84476,6 +84875,8 @@ enum {
 
     kConnectionEnableAudio = 'aud ',
     kConnectionAudioStreaming = 'auds',
+
+    kConnectionStartOfFrameTime = 'soft',
 };
 
 
@@ -85064,6 +85465,7 @@ typedef struct _NXEvent {
 } NXEvent, *NXEventPtr;
 typedef struct _NXEventExtension {
     UInt32 flags;
+    audit_token_t audit;
 } NXEventExtension;
 
 typedef struct _NXEventExt {
@@ -85479,110 +85881,110 @@ typedef uint32_t CGEventSourceKeyboardType;
 
 
 extern "C" CFTypeID CGEventGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGEventRef _Nullable CGEventCreate(CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" CFDataRef _Nullable CGEventCreateData(
     CFAllocatorRef _Nullable allocator,
     CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGEventRef _Nullable CGEventCreateFromData(
     CFAllocatorRef _Nullable allocator, CFDataRef _Nullable data)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGEventRef _Nullable CGEventCreateMouseEvent(
     CGEventSourceRef _Nullable source,
     CGEventType mouseType, CGPoint mouseCursorPosition,
     CGMouseButton mouseButton)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGEventRef _Nullable CGEventCreateKeyboardEvent(
     CGEventSourceRef _Nullable source,
     CGKeyCode virtualKey, bool keyDown)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGEventRef _Nullable CGEventCreateScrollWheelEvent(
     CGEventSourceRef _Nullable source,
     CGScrollEventUnit units, uint32_t wheelCount, int32_t wheel1, ...)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 extern "C" CGEventRef _Nullable CGEventCreateScrollWheelEvent2(
     CGEventSourceRef _Nullable source,
     CGScrollEventUnit units, uint32_t wheelCount, int32_t wheel1, int32_t wheel2, int32_t wheel3)
-    __attribute__((availability(macosx,introduced=10.13)));
+    __attribute__((availability(macos,introduced=10.13)));
 
 
 
 extern "C" CGEventRef _Nullable CGEventCreateCopy(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGEventSourceRef _Nullable CGEventCreateSourceFromEvent(
     CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" void CGEventSetSource(CGEventRef _Nullable event,
     CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" CGEventType CGEventGetType(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" void CGEventSetType(CGEventRef _Nullable event, CGEventType type)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" CGEventTimestamp CGEventGetTimestamp(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" void CGEventSetTimestamp(CGEventRef _Nullable event,
     CGEventTimestamp timestamp)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGPoint CGEventGetLocation(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGPoint CGEventGetUnflippedLocation(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 
 
 
 extern "C" void CGEventSetLocation(CGEventRef _Nullable event, CGPoint location)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGEventFlags CGEventGetFlags(CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" void CGEventSetFlags(CGEventRef _Nullable event, CGEventFlags flags)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85593,19 +85995,19 @@ extern "C" void CGEventSetFlags(CGEventRef _Nullable event, CGEventFlags flags)
 extern "C" void CGEventKeyboardGetUnicodeString(CGEventRef _Nullable event,
     UniCharCount maxStringLength, UniCharCount *_Nullable actualStringLength,
     UniChar * _Nullable unicodeString)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventKeyboardSetUnicodeString(CGEventRef _Nullable event,
     UniCharCount stringLength, const UniChar * _Nullable unicodeString)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" int64_t CGEventGetIntegerValueField(CGEventRef _Nullable event,
     CGEventField field)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventSetIntegerValueField(CGEventRef _Nullable event,
     CGEventField field, int64_t value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85615,15 +86017,15 @@ extern "C" void CGEventSetIntegerValueField(CGEventRef _Nullable event,
 
 extern "C" double CGEventGetDoubleValueField(CGEventRef _Nullable event,
     CGEventField field)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventSetDoubleValueField(CGEventRef _Nullable event,
     CGEventField field, double value)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CFMachPortRef _Nullable CGEventTapCreate(CGEventTapLocation tap,
     CGEventTapPlacement place, CGEventTapOptions options,
     CGEventMask eventsOfInterest, CGEventTapCallBack callback,
     void * _Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85636,22 +86038,22 @@ extern "C" CFMachPortRef _Nullable CGEventTapCreateForPSN(
     CGEventTapPlacement place, CGEventTapOptions options,
     CGEventMask eventsOfInterest, CGEventTapCallBack callback,
     void *_Nullable userInfo)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 extern "C" CFMachPortRef _Nullable CGEventTapCreateForPid(pid_t pid,
   CGEventTapPlacement place, CGEventTapOptions options,
   CGEventMask eventsOfInterest, CGEventTapCallBack callback,
-  void * _Nullable userInfo) __attribute__((availability(macosx,introduced=10.11)));
+  void * _Nullable userInfo) __attribute__((availability(macos,introduced=10.11)));
 extern "C" void CGEventTapEnable(CFMachPortRef tap, bool enable)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" bool CGEventTapIsEnabled(CFMachPortRef tap)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventTapPostEvent(CGEventTapProxy _Nullable proxy,
     CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85660,28 +86062,28 @@ extern "C" void CGEventTapPostEvent(CGEventTapProxy _Nullable proxy,
 
 
 extern "C" void CGEventPost(CGEventTapLocation tap, CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventPostToPSN(void * _Nullable processSerialNumber,
     CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 extern "C" void CGEventPostToPid( pid_t pid,
     CGEventRef _Nullable event)
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11)));
 extern "C" CGError CGGetEventTapList(uint32_t maxNumberOfTaps,
     CGEventTapInformation * _Nullable tapList,
     uint32_t * _Nullable eventTapCount)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 #pragma clang assume_nonnull end
 #pragma clang assume_nonnull begin
 extern "C" CFTypeID CGEventSourceGetTypeID(void)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" CGEventSourceRef _Nullable CGEventSourceCreate(
     CGEventSourceStateID stateID)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85689,42 +86091,42 @@ extern "C" CGEventSourceRef _Nullable CGEventSourceCreate(
 
 extern "C" CGEventSourceKeyboardType CGEventSourceGetKeyboardType(
     CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 extern "C" void CGEventSourceSetKeyboardType(CGEventSourceRef _Nullable source,
     CGEventSourceKeyboardType keyboardType)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" double CGEventSourceGetPixelsPerLine(
     CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 extern "C" void CGEventSourceSetPixelsPerLine(CGEventSourceRef _Nullable source,
     double pixelsPerLine)
-    __attribute__((availability(macosx,introduced=10.5)));
+    __attribute__((availability(macos,introduced=10.5)));
 extern "C" CGEventSourceStateID CGEventSourceGetSourceStateID(
     CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" bool CGEventSourceButtonState(CGEventSourceStateID stateID,
     CGMouseButton button)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" bool CGEventSourceKeyState(CGEventSourceStateID stateID,
     CGKeyCode key)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
 
 extern "C" CGEventFlags CGEventSourceFlagsState(CGEventSourceStateID stateID)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85733,26 +86135,26 @@ extern "C" CGEventFlags CGEventSourceFlagsState(CGEventSourceStateID stateID)
 
 extern "C" CFTimeInterval CGEventSourceSecondsSinceLastEventType(
     CGEventSourceStateID stateID, CGEventType eventType)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" uint32_t CGEventSourceCounterForEventType(CGEventSourceStateID
     stateID, CGEventType eventType)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventSourceSetUserData(CGEventSourceRef _Nullable source,
     int64_t userData)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" int64_t CGEventSourceGetUserData(CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventSourceSetLocalEventsFilterDuringSuppressionState(
     CGEventSourceRef _Nullable source, CGEventFilterMask filter,
     CGEventSuppressionState state)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" CGEventFilterMask
     CGEventSourceGetLocalEventsFilterDuringSuppressionState(
     CGEventSourceRef _Nullable source, CGEventSuppressionState state)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 extern "C" void CGEventSourceSetLocalEventsSuppressionInterval(
     CGEventSourceRef _Nullable source, CFTimeInterval seconds)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 
 
 
@@ -85761,7 +86163,7 @@ extern "C" void CGEventSourceSetLocalEventsSuppressionInterval(
 
 extern "C" CFTimeInterval CGEventSourceGetLocalEventsSuppressionInterval(
     CGEventSourceRef _Nullable source)
-    __attribute__((availability(macosx,introduced=10.4)));
+    __attribute__((availability(macos,introduced=10.4)));
 #pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGPSConverter *CGPSConverterRef;
@@ -85804,7 +86206,7 @@ typedef struct CGPSConverterCallbacks CGPSConverterCallbacks;
 extern "C" CGPSConverterRef _Nullable CGPSConverterCreate(void * _Nullable info,
     const CGPSConverterCallbacks * callbacks,
     CFDictionaryRef _Nullable options)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
@@ -85813,23 +86215,23 @@ extern "C" CGPSConverterRef _Nullable CGPSConverterCreate(void * _Nullable info,
 extern "C" bool CGPSConverterConvert(CGPSConverterRef converter,
     CGDataProviderRef provider, CGDataConsumerRef consumer,
     CFDictionaryRef _Nullable options)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
 
 extern "C" bool CGPSConverterAbort(CGPSConverterRef converter)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
 extern "C" bool CGPSConverterIsConverting(CGPSConverterRef converter)
-    __attribute__((availability(macosx,introduced=10.3)));
+    __attribute__((availability(macos,introduced=10.3)));
 
 
 
 extern "C" CFTypeID CGPSConverterGetTypeID(void)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3)));
 #pragma clang assume_nonnull end
 
 #pragma clang assume_nonnull begin
@@ -85839,16 +86241,12 @@ extern "C" CFTypeID CGPSConverterGetTypeID(void)
 
 
 extern "C" CFDictionaryRef _Nullable CGSessionCopyCurrentDictionary(void)
-  __attribute__((availability(macosx,introduced=10.3)));
+  __attribute__((availability(macos,introduced=10.3)));
 #pragma clang assume_nonnull end
 
 
 // @protocol MTLDevice;
-
-
-
-
-extern "C" id/*<MTLDevice>*/ _Nullable CGDirectDisplayCopyCurrentMetalDevice(CGDirectDisplayID display) __attribute__((cf_returns_retained)) __attribute__((availability(macosx,introduced=10.11)));
+extern "C" id/*<MTLDevice>*/ _Nullable CGDirectDisplayCopyCurrentMetalDevice(CGDirectDisplayID display) __attribute__((ns_returns_retained)) __attribute__((availability(macos,introduced=10.11)));
 
 
 
@@ -85901,6 +86299,9 @@ typedef struct {} _objc_exc_NSParagraphStyle;
 typedef struct objc_object NSTextTab;
 typedef struct {} _objc_exc_NSTextTab;
 #endif
+
+
+
 
 extern "C" {
 #pragma clang assume_nonnull begin
@@ -86003,6 +86404,10 @@ typedef uint32_t CTFontStylisticClass; enum {
 #pragma clang assume_nonnull end
 
 }
+
+
+
+
 extern "C" {
 #pragma clang assume_nonnull begin
 typedef const struct __attribute__((objc_bridge(NSFontDescriptor))) __CTFontDescriptor * CTFontDescriptorRef;
@@ -86279,10 +86684,6 @@ CFTypeRef _Nullable CTFontDescriptorCopyLocalizedAttribute(
 #pragma clang assume_nonnull end
 
 }
-
-
-
-
 
 
 extern "C" {
@@ -86886,7 +87287,7 @@ CFArrayRef _Nullable CTFontCollectionCreateMatchingFontDescriptorsSortedWithCall
     void * _Nullable refCon ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFArrayRef _Nullable CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
     CTFontCollectionRef collection,
-    CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+    CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)));
 CFArrayRef _Nullable CTFontCollectionCreateMatchingFontDescriptorsForFamily(
     CTFontCollectionRef collection,
     CFStringRef familyName,
@@ -86937,10 +87338,6 @@ typedef CFIndex CTFontManagerError; enum {
 #pragma clang assume_nonnull end
 
 }
-
-
-
-
 
 
 extern "C" {
@@ -87055,30 +87452,30 @@ typedef uint32_t CTFrameProgression; enum {
 };
 extern const CFStringRef kCTFrameProgressionAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 typedef uint32_t CTFramePathFillRule; enum {
- kCTFramePathFillEvenOdd = 0,
- kCTFramePathFillWindingNumber = 1
+    kCTFramePathFillEvenOdd = 0,
+    kCTFramePathFillWindingNumber = 1
 };
 extern const CFStringRef kCTFramePathFillRuleAttributeName __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTFramePathWidthAttributeName __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTFrameClippingPathsAttributeName __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.3))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTFramePathClippingPathAttributeName __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.3))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFRange CTFrameGetStringRange(
- CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFRange CTFrameGetVisibleStringRange(
- CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CGPathRef CTFrameGetPath(
- CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFDictionaryRef _Nullable CTFrameGetFrameAttributes(
- CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFArrayRef CTFrameGetLines(
- CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 void CTFrameGetLineOrigins(
- CTFrameRef frame,
- CFRange range,
- CGPoint origins[_Nonnull] ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame,
+    CFRange range,
+    CGPoint origins[_Nonnull] ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 void CTFrameDraw(
- CTFrameRef frame,
- CGContextRef context ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFrameRef frame,
+    CGContextRef context ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -87183,17 +87580,19 @@ typedef const struct __attribute__((objc_bridge(id))) __CTTypesetter * CTTypeset
 
 
 CFTypeID CTTypesetterGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-extern const CFStringRef kCTTypesetterOptionDisableBidiProcessing __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=6.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern const CFStringRef kCTTypesetterOptionAllowUnboundedLayout __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)));
+extern const CFStringRef kCTTypesetterOptionDisableBidiProcessing __attribute__((availability(macos,introduced=10.5,deprecated=10.8,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=6.0,message="Deprecated"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Deprecated"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Deprecated")));
 extern const CFStringRef kCTTypesetterOptionForcedEmbeddingLevel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTTypesetterRef CTTypesetterCreateWithAttributedString(
- CFAttributedStringRef string ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-CTTypesetterRef CTTypesetterCreateWithAttributedStringAndOptions(
- CFAttributedStringRef string,
- CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CFAttributedStringRef string ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+CTTypesetterRef _Nullable CTTypesetterCreateWithAttributedStringAndOptions(
+    CFAttributedStringRef string,
+    CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTLineRef CTTypesetterCreateLineWithOffset(
- CTTypesetterRef typesetter,
- CFRange stringRange,
- double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFRange stringRange,
+    double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
 
 
 
@@ -87201,13 +87600,14 @@ CTLineRef CTTypesetterCreateLineWithOffset(
 
 
 CTLineRef CTTypesetterCreateLine(
- CTTypesetterRef typesetter,
- CFRange stringRange ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFRange stringRange ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFIndex CTTypesetterSuggestLineBreakWithOffset(
- CTTypesetterRef typesetter,
- CFIndex startIndex,
- double width,
- double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFIndex startIndex,
+    double width,
+    double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+
 
 
 
@@ -87215,14 +87615,14 @@ CFIndex CTTypesetterSuggestLineBreakWithOffset(
 
 
 CFIndex CTTypesetterSuggestLineBreak(
- CTTypesetterRef typesetter,
- CFIndex startIndex,
- double width ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFIndex startIndex,
+    double width ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFIndex CTTypesetterSuggestClusterBreakWithOffset(
- CTTypesetterRef typesetter,
- CFIndex startIndex,
- double width,
- double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFIndex startIndex,
+    double width,
+    double offset ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
 
 
@@ -87231,9 +87631,9 @@ CFIndex CTTypesetterSuggestClusterBreakWithOffset(
 
 
 CFIndex CTTypesetterSuggestClusterBreak(
- CTTypesetterRef typesetter,
- CFIndex startIndex,
- double width ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTypesetterRef typesetter,
+    CFIndex startIndex,
+    double width ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -87256,21 +87656,23 @@ typedef const struct __attribute__((objc_bridge(id))) __CTFramesetter * CTFrames
 
 
 CFTypeID CTFramesetterGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+CTFramesetterRef CTFramesetterCreateWithTypesetter(
+    CTTypesetterRef typesetter ) __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0))) __attribute__((availability(watchos,introduced=5.0))) __attribute__((availability(tvos,introduced=12.0)));
 CTFramesetterRef CTFramesetterCreateWithAttributedString(
- CFAttributedStringRef string ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CFAttributedStringRef string ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTFrameRef CTFramesetterCreateFrame(
- CTFramesetterRef framesetter,
- CFRange stringRange,
- CGPathRef path,
- CFDictionaryRef _Nullable frameAttributes ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFramesetterRef framesetter,
+    CFRange stringRange,
+    CGPathRef path,
+    CFDictionaryRef _Nullable frameAttributes ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTTypesetterRef CTFramesetterGetTypesetter(
- CTFramesetterRef framesetter ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFramesetterRef framesetter ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CGSize CTFramesetterSuggestFrameSizeWithConstraints(
- CTFramesetterRef framesetter,
- CFRange stringRange,
- CFDictionaryRef _Nullable frameAttributes,
- CGSize constraints,
- CFRange * _Nullable fitRange ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTFramesetterRef framesetter,
+    CFRange stringRange,
+    CFDictionaryRef _Nullable frameAttributes,
+    CGSize constraints,
+    CFRange * _Nullable fitRange ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -87295,44 +87697,44 @@ typedef const struct __attribute__((objc_bridge(NSGlyphInfo))) __CTGlyphInfo * C
 
 CFTypeID CTGlyphInfoGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 typedef uint16_t CTCharacterCollection; enum {
- kCTCharacterCollectionIdentityMapping = 0,
- kCTCharacterCollectionAdobeCNS1 = 1,
- kCTCharacterCollectionAdobeGB1 = 2,
- kCTCharacterCollectionAdobeJapan1 = 3,
- kCTCharacterCollectionAdobeJapan2 = 4,
- kCTCharacterCollectionAdobeKorea1 = 5,
+    kCTCharacterCollectionIdentityMapping = 0,
+    kCTCharacterCollectionAdobeCNS1 = 1,
+    kCTCharacterCollectionAdobeGB1 = 2,
+    kCTCharacterCollectionAdobeJapan1 = 3,
+    kCTCharacterCollectionAdobeJapan2 = 4,
+    kCTCharacterCollectionAdobeKorea1 = 5,
 
- kCTIdentityMappingCharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTIdentityMappingCharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionIdentityMapping,
- kCTAdobeCNS1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTAdobeCNS1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionAdobeCNS1,
- kCTAdobeGB1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTAdobeGB1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionAdobeGB1,
- kCTAdobeJapan1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTAdobeJapan1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionAdobeJapan1,
- kCTAdobeJapan2CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTAdobeJapan2CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionAdobeJapan2,
- kCTAdobeKorea1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
+    kCTAdobeKorea1CharacterCollection __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Deprecated"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Deprecated"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)))
         = kCTCharacterCollectionAdobeKorea1
 };
 CTGlyphInfoRef CTGlyphInfoCreateWithGlyphName(
- CFStringRef glyphName,
- CTFontRef font,
- CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CFStringRef glyphName,
+    CTFontRef font,
+    CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTGlyphInfoRef CTGlyphInfoCreateWithGlyph(
- CGGlyph glyph,
- CTFontRef font,
- CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CGGlyph glyph,
+    CTFontRef font,
+    CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTGlyphInfoRef CTGlyphInfoCreateWithCharacterIdentifier(
- CGFontIndex cid,
- CTCharacterCollection collection,
- CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CGFontIndex cid,
+    CTCharacterCollection collection,
+    CFStringRef baseString ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFStringRef _Nullable CTGlyphInfoGetGlyphName(
- CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CGFontIndex CTGlyphInfoGetCharacterIdentifier(
- CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTCharacterCollection CTGlyphInfoGetCharacterCollection(
- CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -87587,30 +87989,30 @@ typedef const struct __attribute__((objc_bridge(id))) __CTRunDelegate * CTRunDel
 
 CFTypeID CTRunDelegateGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 typedef void (*CTRunDelegateDeallocateCallback) (
- void * refCon );
+    void * refCon );
 typedef CGFloat (*CTRunDelegateGetAscentCallback) (
- void * refCon );
+    void * refCon );
 typedef CGFloat (*CTRunDelegateGetDescentCallback) (
- void * refCon );
+    void * refCon );
 typedef CGFloat (*CTRunDelegateGetWidthCallback) (
- void * refCon );
+    void * refCon );
 typedef struct
 {
- CFIndex version;
- CTRunDelegateDeallocateCallback dealloc;
- CTRunDelegateGetAscentCallback getAscent;
- CTRunDelegateGetDescentCallback getDescent;
- CTRunDelegateGetWidthCallback getWidth;
+    CFIndex version;
+    CTRunDelegateDeallocateCallback dealloc;
+    CTRunDelegateGetAscentCallback getAscent;
+    CTRunDelegateGetDescentCallback getDescent;
+    CTRunDelegateGetWidthCallback getWidth;
 } CTRunDelegateCallbacks;
 enum {
- kCTRunDelegateVersion1 = 1,
- kCTRunDelegateCurrentVersion = kCTRunDelegateVersion1
+    kCTRunDelegateVersion1 = 1,
+    kCTRunDelegateCurrentVersion = kCTRunDelegateVersion1
 };
 CTRunDelegateRef _Nullable CTRunDelegateCreate(
- const CTRunDelegateCallbacks* callbacks,
- void * _Nullable refCon ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    const CTRunDelegateCallbacks* callbacks,
+    void * _Nullable refCon ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 void * CTRunDelegateGetRefCon(
- CTRunDelegateRef runDelegate ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTRunDelegateRef runDelegate ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -87632,7 +88034,7 @@ extern const CFStringRef kCTUnderlineColorAttributeName __attribute__((availabil
 extern const CFStringRef kCTVerticalFormsAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.3))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTHorizontalInVerticalFormsAttributeName __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
 extern const CFStringRef kCTGlyphInfoAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-extern const CFStringRef kCTCharacterShapeAttributeName __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Use feature type kCharacterShapeType with the appropriate selector"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Use feature type kCharacterShapeType with the appropriate selector"))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern const CFStringRef kCTCharacterShapeAttributeName __attribute__((availability(macos,introduced=10.5,deprecated=10.11,message="Use feature type kCharacterShapeType with the appropriate selector"))) __attribute__((availability(ios,introduced=3.2,deprecated=9.0,message="Use feature type kCharacterShapeType with the appropriate selector"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Use feature type kCharacterShapeType with the appropriate selector"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Use feature type kCharacterShapeType with the appropriate selector")));
 extern const CFStringRef kCTLanguageAttributeName __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTRunDelegateAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 typedef int32_t CTUnderlineStyle; enum {
@@ -87675,15 +88077,15 @@ typedef const struct __attribute__((objc_bridge_related(NSTextTab,,))) __CTTextT
 CFTypeID CTTextTabGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTTabColumnTerminatorsAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTTextTabRef CTTextTabCreate(
- CTTextAlignment alignment,
- double location,
- CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTextAlignment alignment,
+    double location,
+    CFDictionaryRef _Nullable options ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTTextAlignment CTTextTabGetAlignment(
- CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 double CTTextTabGetLocation(
- CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFDictionaryRef _Nullable CTTextTabGetOptions(
- CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+    CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
@@ -90932,6 +91334,7 @@ extern "C" {
 
 
 
+
 #pragma clang assume_nonnull begin
 extern Boolean AXAPIEnabled (void) __attribute__((availability(macosx,introduced=10_0,deprecated=10_9,message="" )));
 extern Boolean AXIsProcessTrustedWithOptions (CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10_9)));
@@ -91224,6 +91627,7 @@ UAZoomChangeFocus(
 typedef struct __attribute__((objc_bridge(id))) CGImageSource * CGImageSourceRef;
 
 
+
 typedef const struct __attribute__((objc_bridge(id))) CGImageMetadata *CGImageMetadataRef;
 
 
@@ -91246,8 +91650,8 @@ typedef struct __attribute__((objc_bridge(id))) CGImageMetadata *CGMutableImageM
 
 
 
-extern "C" CGMutableImageMetadataRef _Nonnull CGImageMetadataCreateMutable(void) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CGMutableImageMetadataRef _Nullable CGImageMetadataCreateMutableCopy(CGImageMetadataRef _Nonnull metadata) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CGMutableImageMetadataRef _Nonnull CGImageMetadataCreateMutable(void) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CGMutableImageMetadataRef _Nullable CGImageMetadataCreateMutableCopy(CGImageMetadataRef _Nonnull metadata) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 typedef struct __attribute__((objc_bridge(id))) CGImageMetadataTag *CGImageMetadataTagRef;
 
 
@@ -91256,7 +91660,7 @@ typedef struct __attribute__((objc_bridge(id))) CGImageMetadataTag *CGImageMetad
 
 
 
-extern "C" CFTypeID CGImageMetadataTagGetTypeID(void) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CFTypeID CGImageMetadataTagGetTypeID(void) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -91264,26 +91668,26 @@ extern "C" CFTypeID CGImageMetadataTagGetTypeID(void) __attribute__((availabilit
 
 
 #pragma clang assume_nonnull begin
-extern "C" const CFStringRef kCGImageMetadataNamespaceExif __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceExifAux __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceExifEX __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceDublinCore __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCCore __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCExtension __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImageMetadataNamespacePhotoshop __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceTIFF __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceXMPBasic __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataNamespaceXMPRights __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixExif __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixExifAux __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixExifEX __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImageMetadataPrefixDublinCore __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixIPTCCore __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixIPTCExtension __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImageMetadataPrefixPhotoshop __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixTIFF __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixXMPBasic __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageMetadataPrefixXMPRights __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceExif __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceExifAux __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceExifEX __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceDublinCore __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCCore __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCExtension __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImageMetadataNamespacePhotoshop __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceTIFF __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceXMPBasic __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceXMPRights __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixExif __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixExifAux __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixExifEX __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixDublinCore __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixIPTCCore __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixIPTCExtension __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImageMetadataPrefixPhotoshop __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixTIFF __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixXMPBasic __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageMetadataPrefixXMPRights __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 #pragma clang assume_nonnull end
 typedef int32_t CGImageMetadataType; enum {
     kCGImageMetadataTypeInvalid = -1,
@@ -91295,21 +91699,21 @@ typedef int32_t CGImageMetadataType; enum {
     kCGImageMetadataTypeAlternateText = 5,
     kCGImageMetadataTypeStructure = 6
 };
-extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataTagCreate (CFStringRef _Nonnull xmlns, CFStringRef _Nullable prefix, CFStringRef _Nonnull name, CGImageMetadataType type, CFTypeRef _Nonnull value) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFStringRef _Nullable CGImageMetadataTagCopyNamespace(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataTagCreate (CFStringRef _Nonnull xmlns, CFStringRef _Nullable prefix, CFStringRef _Nonnull name, CGImageMetadataType type, CFTypeRef _Nonnull value) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFStringRef _Nullable CGImageMetadataTagCopyNamespace(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
-extern "C" CFStringRef _Nullable CGImageMetadataTagCopyPrefix(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CFStringRef _Nullable CGImageMetadataTagCopyPrefix(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
-extern "C" CFStringRef _Nullable CGImageMetadataTagCopyName(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFTypeRef _Nullable CGImageMetadataTagCopyValue(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CFStringRef _Nullable CGImageMetadataTagCopyName(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFTypeRef _Nullable CGImageMetadataTagCopyValue(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -91317,28 +91721,28 @@ extern "C" CFTypeRef _Nullable CGImageMetadataTagCopyValue(CGImageMetadataTagRef
 
 
 
-extern "C" CGImageMetadataType CGImageMetadataTagGetType(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFArrayRef _Nullable CGImageMetadataTagCopyQualifiers(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFArrayRef _Nullable CGImageMetadataCopyTags(CGImageMetadataRef _Nonnull metadata) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataCopyTagWithPath(CGImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFStringRef _Nullable CGImageMetadataCopyStringValueWithPath(CGImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" bool CGImageMetadataRegisterNamespaceForPrefix(CGMutableImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull xmlns, CFStringRef _Nonnull prefix, _Nullable CFErrorRef * _Nullable err) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" bool CGImageMetadataSetTagWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path, CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" bool CGImageMetadataSetValueWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path, CFTypeRef _Nonnull value) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" bool CGImageMetadataRemoveTagWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CGImageMetadataType CGImageMetadataTagGetType(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFArrayRef _Nullable CGImageMetadataTagCopyQualifiers(CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFArrayRef _Nullable CGImageMetadataCopyTags(CGImageMetadataRef _Nonnull metadata) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataCopyTagWithPath(CGImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFStringRef _Nullable CGImageMetadataCopyStringValueWithPath(CGImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" bool CGImageMetadataRegisterNamespaceForPrefix(CGMutableImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull xmlns, CFStringRef _Nonnull prefix, _Nullable CFErrorRef * _Nullable err) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" bool CGImageMetadataSetTagWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path, CGImageMetadataTagRef _Nonnull tag) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" bool CGImageMetadataSetValueWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path, CFTypeRef _Nonnull value) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" bool CGImageMetadataRemoveTagWithPath(CGMutableImageMetadataRef _Nonnull metadata, CGImageMetadataTagRef _Nullable parent, CFStringRef _Nonnull path) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 typedef bool(*CGImageMetadataTagBlock)(CFStringRef _Nonnull path, CGImageMetadataTagRef _Nonnull tag);
-extern "C" void CGImageMetadataEnumerateTagsUsingBlock(CGImageMetadataRef _Nonnull metadata, CFStringRef _Nullable rootPath, CFDictionaryRef _Nullable options, CGImageMetadataTagBlock _Nonnull block) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" void CGImageMetadataEnumerateTagsUsingBlock(CGImageMetadataRef _Nonnull metadata, CFStringRef _Nullable rootPath, CFDictionaryRef _Nullable options, CGImageMetadataTagBlock _Nonnull block) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
 
-extern "C" const CFStringRef _Nonnull kCGImageMetadataEnumerateRecursively __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataCopyTagMatchingImageProperty(CGImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull dictionaryName, CFStringRef _Nonnull propertyName) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" bool CGImageMetadataSetValueMatchingImageProperty(CGMutableImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull dictionaryName, CFStringRef _Nonnull propertyName, CFTypeRef _Nonnull value) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CFDataRef _Nullable CGImageMetadataCreateXMPData (CGImageMetadataRef _Nonnull metadata, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" CGImageMetadataRef _Nullable CGImageMetadataCreateFromXMPData (CFDataRef _Nonnull data) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef _Nonnull kCGImageMetadataEnumerateRecursively __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CGImageMetadataTagRef _Nullable CGImageMetadataCopyTagMatchingImageProperty(CGImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull dictionaryName, CFStringRef _Nonnull propertyName) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" bool CGImageMetadataSetValueMatchingImageProperty(CGMutableImageMetadataRef _Nonnull metadata, CFStringRef _Nonnull dictionaryName, CFStringRef _Nonnull propertyName, CFTypeRef _Nonnull value) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CFDataRef _Nullable CGImageMetadataCreateXMPData (CGImageMetadataRef _Nonnull metadata, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" CGImageMetadataRef _Nullable CGImageMetadataCreateFromXMPData (CFDataRef _Nonnull data) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -91379,117 +91783,117 @@ typedef int32_t CGImageSourceStatus; enum {
 
 
 
-extern "C" const CFStringRef kCGImageSourceTypeIdentifierHint __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageSourceShouldCache __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImageSourceTypeIdentifierHint __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageSourceShouldCache __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" const CFStringRef kCGImageSourceShouldCacheImmediately __attribute__((availability(macosx,introduced=10.9)));
-
-
-
-
-
-
-
-extern "C" const CFStringRef kCGImageSourceShouldAllowFloat __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageSourceCreateThumbnailFromImageIfAbsent __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageSourceCreateThumbnailFromImageAlways __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImageSourceShouldCacheImmediately __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
 
-extern "C" const CFStringRef kCGImageSourceThumbnailMaxPixelSize __attribute__((availability(macosx,introduced=10.4)));
+
+extern "C" const CFStringRef kCGImageSourceShouldAllowFloat __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageSourceCreateThumbnailFromImageIfAbsent __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageSourceCreateThumbnailFromImageAlways __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" const CFStringRef kCGImageSourceCreateThumbnailWithTransform __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageSourceSubsampleFactor __attribute__((availability(macosx,introduced=10.11)));
+extern "C" const CFStringRef kCGImageSourceThumbnailMaxPixelSize __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+
+
+extern "C" const CFStringRef kCGImageSourceCreateThumbnailWithTransform __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageSourceSubsampleFactor __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 #pragma clang assume_nonnull end
 
 
 
 
 
-extern "C" CFTypeID CGImageSourceGetTypeID (void) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFTypeID CGImageSourceGetTypeID (void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
-extern "C" CFArrayRef _Nonnull CGImageSourceCopyTypeIdentifiers(void) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFArrayRef _Nonnull CGImageSourceCopyTypeIdentifiers(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithDataProvider(CGDataProviderRef _Nonnull provider, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithDataProvider(CGDataProviderRef _Nonnull provider, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithData(CFDataRef _Nonnull data, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithData(CFDataRef _Nonnull data, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithURL(CFURLRef _Nonnull url, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageSourceRef _Nullable CGImageSourceCreateWithURL(CFURLRef _Nonnull url, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" CFStringRef _Nullable CGImageSourceGetType(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFStringRef _Nullable CGImageSourceGetType(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" size_t CGImageSourceGetCount(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" size_t CGImageSourceGetCount(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CFDictionaryRef _Nullable CGImageSourceCopyProperties(CGImageSourceRef _Nonnull isrc, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFDictionaryRef _Nullable CGImageSourceCopyProperties(CGImageSourceRef _Nonnull isrc, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" CFDictionaryRef _Nullable CGImageSourceCopyPropertiesAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFDictionaryRef _Nullable CGImageSourceCopyPropertiesAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CGImageMetadataRef _Nullable CGImageSourceCopyMetadataAtIndex (CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" CGImageMetadataRef _Nullable CGImageSourceCopyMetadataAtIndex (CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
-extern "C" CGImageRef _Nullable CGImageSourceCreateImageAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageRef _Nullable CGImageSourceCreateImageAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" void CGImageSourceRemoveCacheAtIndex(CGImageSourceRef _Nonnull isrc, size_t index) __attribute__((availability(macosx,introduced=10.9)));
+extern "C" void CGImageSourceRemoveCacheAtIndex(CGImageSourceRef _Nonnull isrc, size_t index) __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
 
-extern "C" CGImageRef _Nullable CGImageSourceCreateThumbnailAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageRef _Nullable CGImageSourceCreateThumbnailAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
@@ -91497,35 +91901,40 @@ extern "C" CGImageRef _Nullable CGImageSourceCreateThumbnailAtIndex(CGImageSourc
 
 
 
-extern "C" CGImageSourceRef _Nonnull CGImageSourceCreateIncremental(CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageSourceRef _Nonnull CGImageSourceCreateIncremental(CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" void CGImageSourceUpdateData(CGImageSourceRef _Nonnull isrc, CFDataRef _Nonnull data, bool final) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" void CGImageSourceUpdateData(CGImageSourceRef _Nonnull isrc, CFDataRef _Nonnull data, bool final) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" void CGImageSourceUpdateDataProvider(CGImageSourceRef _Nonnull isrc, CGDataProviderRef _Nonnull provider, bool final) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" void CGImageSourceUpdateDataProvider(CGImageSourceRef _Nonnull isrc, CGDataProviderRef _Nonnull provider, bool final) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
-extern "C" CGImageSourceStatus CGImageSourceGetStatus(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageSourceStatus CGImageSourceGetStatus(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" CGImageSourceStatus CGImageSourceGetStatusAtIndex(CGImageSourceRef _Nonnull isrc, size_t index) __attribute__((availability(macosx,introduced=10.4)));
-extern "C" CFDictionaryRef _Nullable CGImageSourceCopyAuxiliaryDataInfoAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFStringRef _Nonnull auxiliaryImageDataType ) __attribute__((availability(macosx,introduced=10.13)));
+extern "C" CGImageSourceStatus CGImageSourceGetStatusAtIndex(CGImageSourceRef _Nonnull isrc, size_t index) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+extern "C" size_t CGImageSourceGetPrimaryImageIndex(CGImageSourceRef _Nonnull isrc) __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" CFDictionaryRef _Nullable CGImageSourceCopyAuxiliaryDataInfoAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFStringRef _Nonnull auxiliaryImageDataType ) __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 typedef struct __attribute__((objc_bridge(id))) CGImageDestination * CGImageDestinationRef;
 #pragma clang assume_nonnull begin
@@ -91537,59 +91946,37 @@ typedef struct __attribute__((objc_bridge(id))) CGImageDestination * CGImageDest
 
 
 
-extern "C" const CFStringRef kCGImageDestinationLossyCompressionQuality __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageDestinationBackgroundColor __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImageDestinationLossyCompressionQuality __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageDestinationBackgroundColor __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImageDestinationImageMaxPixelSize __attribute__((availability(macosx,introduced=10.10)));
+extern "C" const CFStringRef kCGImageDestinationImageMaxPixelSize __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImageDestinationEmbedThumbnail __attribute__((availability(macosx,introduced=10.10)));
+extern "C" const CFStringRef kCGImageDestinationEmbedThumbnail __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 
 
 
 
 
 
-extern "C" const CFStringRef kCGImageDestinationOptimizeColorForSharing __attribute__((availability(macosx,introduced=10.12)));
+extern "C" const CFStringRef kCGImageDestinationOptimizeColorForSharing __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=9.3)));
 #pragma clang assume_nonnull end
 
 
 
 
 
-extern "C" CFTypeID CGImageDestinationGetTypeID(void) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFTypeID CGImageDestinationGetTypeID(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
-extern "C" CFArrayRef _Nonnull CGImageDestinationCopyTypeIdentifiers(void) __attribute__((availability(macosx,introduced=10.4)));
-extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithDataConsumer(CGDataConsumerRef _Nonnull consumer, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
-
-
-
-
-
-
-
-extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithData(CFMutableDataRef _Nonnull data, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
-extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithURL(CFURLRef _Nonnull url, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.4)));
-
-
-
-
-extern "C" void CGImageDestinationSetProperties(CGImageDestinationRef _Nonnull idst, CFDictionaryRef _Nullable properties) __attribute__((availability(macosx,introduced=10.4)));
-
-
-
-
-
-
-extern "C" void CGImageDestinationAddImage(CGImageDestinationRef _Nonnull idst, CGImageRef _Nonnull image, CFDictionaryRef _Nullable properties) __attribute__((availability(macosx,introduced=10.4)));
-extern "C" void CGImageDestinationAddImageFromSource(CGImageDestinationRef _Nonnull idst, CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable properties) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CFArrayRef _Nonnull CGImageDestinationCopyTypeIdentifiers(void) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithDataConsumer(CGDataConsumerRef _Nonnull consumer, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
@@ -91597,14 +91984,36 @@ extern "C" void CGImageDestinationAddImageFromSource(CGImageDestinationRef _Nonn
 
 
 
-extern "C" bool CGImageDestinationFinalize(CGImageDestinationRef _Nonnull idst) __attribute__((availability(macosx,introduced=10.4)));
+extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithData(CFMutableDataRef _Nonnull data, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" CGImageDestinationRef _Nullable CGImageDestinationCreateWithURL(CFURLRef _Nonnull url, CFStringRef _Nonnull type, size_t count, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+extern "C" void CGImageDestinationSetProperties(CGImageDestinationRef _Nonnull idst, CFDictionaryRef _Nullable properties) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
 
 
-extern "C" void CGImageDestinationAddImageAndMetadata(CGImageDestinationRef _Nonnull idst, CGImageRef _Nonnull image, CGImageMetadataRef _Nullable metadata, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.8)));
+extern "C" void CGImageDestinationAddImage(CGImageDestinationRef _Nonnull idst, CGImageRef _Nonnull image, CFDictionaryRef _Nullable properties) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" void CGImageDestinationAddImageFromSource(CGImageDestinationRef _Nonnull idst, CGImageSourceRef _Nonnull isrc, size_t index, CFDictionaryRef _Nullable properties) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+
+
+
+extern "C" bool CGImageDestinationFinalize(CGImageDestinationRef _Nonnull idst) __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+
+
+extern "C" void CGImageDestinationAddImageAndMetadata(CGImageDestinationRef _Nonnull idst, CGImageRef _Nonnull image, CGImageMetadataRef _Nullable metadata, CFDictionaryRef _Nullable options) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -91618,23 +92027,15 @@ extern "C" void CGImageDestinationAddImageAndMetadata(CGImageDestinationRef _Non
 
 
 
-extern "C" const CFStringRef kCGImageDestinationMetadata __attribute__((availability(macosx,introduced=10.8)));
-extern "C" const CFStringRef kCGImageDestinationMergeMetadata __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGImageDestinationMetadata __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImageDestinationMergeMetadata __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
 
 
 
-extern "C" const CFStringRef kCGImageMetadataShouldExcludeXMP __attribute__((availability(macosx,introduced=10.8)));
-
-
-
-
-
-
-
-extern "C" const CFStringRef kCGImageMetadataShouldExcludeGPS __attribute__((availability(macosx,introduced=10.10)));
+extern "C" const CFStringRef kCGImageMetadataShouldExcludeXMP __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 
 
 
@@ -91642,16 +92043,24 @@ extern "C" const CFStringRef kCGImageMetadataShouldExcludeGPS __attribute__((ava
 
 
 
-extern "C" const CFStringRef kCGImageDestinationDateTime __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGImageMetadataShouldExcludeGPS __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 
 
 
 
 
-extern "C" const CFStringRef kCGImageDestinationOrientation __attribute__((availability(macosx,introduced=10.8)));
+
+
+extern "C" const CFStringRef kCGImageDestinationDateTime __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+
+
+
+
+
+extern "C" const CFStringRef kCGImageDestinationOrientation __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
 #pragma clang assume_nonnull end
-extern "C" bool CGImageDestinationCopyImageSource(CGImageDestinationRef _Nonnull idst, CGImageSourceRef _Nonnull isrc, CFDictionaryRef _Nullable options, _Nullable CFErrorRef * _Nullable err) __attribute__((availability(macosx,introduced=10.8)));
-extern "C" void CGImageDestinationAddAuxiliaryDataInfo(CGImageDestinationRef _Nonnull idst, CFStringRef _Nonnull auxiliaryImageDataType, CFDictionaryRef _Nonnull auxiliaryDataInfoDictionary ) __attribute__((availability(macosx,introduced=10.13)));
+extern "C" bool CGImageDestinationCopyImageSource(CGImageDestinationRef _Nonnull idst, CGImageSourceRef _Nonnull isrc, CFDictionaryRef _Nullable options, _Nullable CFErrorRef * _Nullable err) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" void CGImageDestinationAddAuxiliaryDataInfo(CGImageDestinationRef _Nonnull idst, CFStringRef _Nonnull auxiliaryImageDataType, CFDictionaryRef _Nonnull auxiliaryDataInfoDictionary ) __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 #pragma clang assume_nonnull begin
 
@@ -91659,601 +92068,675 @@ extern "C" void CGImageDestinationAddAuxiliaryDataInfo(CGImageDestinationRef _No
 
 
 
-extern "C" const CFStringRef kCGImagePropertyTIFFDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGIFDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyJFIFDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyRawDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyCIFFDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerMinoltaDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerFujiDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerOlympusDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerPentaxDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImageProperty8BIMDictionary __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyDNGDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxDictionary __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyOpenEXRDictionary __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyMakerAppleDictionary __attribute__((availability(macosx,introduced=10.10)));
-extern "C" const CFStringRef kCGImagePropertyFileContentsDictionary __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyFileSize __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPixelHeight __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPixelWidth __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyTIFFDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGIFDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyJFIFDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyRawDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerMinoltaDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerFujiDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerOlympusDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerPentaxDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageProperty8BIMDictionary __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxDictionary __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyOpenEXRDictionary __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyMakerAppleDictionary __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyFileContentsDictionary __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyFileSize __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPixelHeight __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPixelWidth __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyDPIHeight __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyDPIWidth __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyDPIHeight __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDPIWidth __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyDepth __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyOrientation __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyDepth __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyOrientation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyIsFloat __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyIsFloat __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyIsIndexed __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyIsIndexed __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyHasAlpha __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyHasAlpha __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyColorModel __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyColorModel __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
 
-extern "C" const CFStringRef kCGImagePropertyProfileName __attribute__((availability(macosx,introduced=10.4)));
+extern "C" const CFStringRef kCGImagePropertyProfileName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
 
+extern "C" const CFStringRef kCGImagePropertyPrimaryImage __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
-extern "C" const CFStringRef kCGImagePropertyColorModelRGB __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyColorModelGray __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyColorModelCMYK __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyColorModelLab __attribute__((availability(macosx,introduced=10.4)));
 
 
+extern "C" const CFStringRef kCGImagePropertyColorModelRGB __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyColorModelGray __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyColorModelCMYK __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyColorModelLab __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
 
 
-extern "C" const CFStringRef kCGImagePropertyTIFFCompression __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFPhotometricInterpretation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFDocumentName __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFImageDescription __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFMake __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFModel __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFOrientation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFXResolution __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFYResolution __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFResolutionUnit __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFSoftware __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFTransferFunction __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFDateTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFArtist __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFHostComputer __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFCopyright __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFWhitePoint __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFPrimaryChromaticities __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyTIFFTileWidth __attribute__((availability(macosx,introduced=10.11)));
-extern "C" const CFStringRef kCGImagePropertyTIFFTileLength __attribute__((availability(macosx,introduced=10.11)));
 
 
+extern "C" const CFStringRef kCGImagePropertyTIFFCompression __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFPhotometricInterpretation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFDocumentName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFImageDescription __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFMake __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFModel __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFOrientation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFXResolution __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFYResolution __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFResolutionUnit __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFSoftware __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFTransferFunction __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFDateTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFArtist __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFHostComputer __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFCopyright __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFWhitePoint __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFPrimaryChromaticities __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFTileWidth __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
+extern "C" const CFStringRef kCGImagePropertyTIFFTileLength __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 
-extern "C" const CFStringRef kCGImagePropertyJFIFVersion __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyJFIFXDensity __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyJFIFYDensity __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyJFIFDensityUnit __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyJFIFIsProgressive __attribute__((availability(macosx,introduced=10.4)));
-
-
-
-
-extern "C" const CFStringRef kCGImagePropertyExifExposureTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFNumber __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifExposureProgram __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSpectralSensitivity __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifISOSpeedRatings __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifOECF __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSensitivityType __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifStandardOutputSensitivity __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifRecommendedExposureIndex __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifISOSpeed __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifISOSpeedLatitudeyyy __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifISOSpeedLatitudezzz __attribute__((availability(macosx,introduced=10.9)));
-extern "C" const CFStringRef kCGImagePropertyExifVersion __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifDateTimeOriginal __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifDateTimeDigitized __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifComponentsConfiguration __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifCompressedBitsPerPixel __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifShutterSpeedValue __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifApertureValue __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifBrightnessValue __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifExposureBiasValue __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifMaxApertureValue __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubjectDistance __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifMeteringMode __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifLightSource __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFlash __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFocalLength __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubjectArea __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifMakerNote __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifUserComment __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubsecTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeOriginal __attribute__((availability(macosx,introduced=10.11)));
-extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeDigitized __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFlashPixVersion __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifColorSpace __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifPixelXDimension __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifPixelYDimension __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifRelatedSoundFile __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFlashEnergy __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSpatialFrequencyResponse __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneXResolution __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneYResolution __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneResolutionUnit __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubjectLocation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifExposureIndex __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSensingMethod __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFileSource __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSceneType __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifCFAPattern __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifCustomRendered __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifExposureMode __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifWhiteBalance __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifDigitalZoomRatio __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifFocalLenIn35mmFilm __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSceneCaptureType __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifGainControl __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifContrast __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSaturation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSharpness __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifDeviceSettingDescription __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifSubjectDistRange __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifImageUniqueID __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyExifCameraOwnerName __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifBodySerialNumber __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifLensSpecification __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifLensMake __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifLensModel __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifLensSerialNumber __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyExifGamma __attribute__((availability(macosx,introduced=10.4)));
-
-
-extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeOrginal __attribute__((availability(macosx,introduced=10.4)));
-
-
-extern "C" const CFStringRef kCGImagePropertyExifAuxLensInfo __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxLensModel __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxLensID __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxLensSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxImageNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxFlashCompensation __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxOwnerName __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyExifAuxFirmware __attribute__((availability(macosx,introduced=10.5)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyGIFLoopCount __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGIFDelayTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGIFImageColorMap __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGIFHasGlobalColorMap __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGIFUnclampedDelayTime __attribute__((availability(macosx,introduced=10.7)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyPNGGamma __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGInterlaceType __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGXPixelsPerMeter __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGYPixelsPerMeter __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGsRGBIntent __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyPNGChromaticities __attribute__((availability(macosx,introduced=10.4)));
-
-extern "C" const CFStringRef kCGImagePropertyPNGAuthor __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGCopyright __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGCreationTime __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGDescription __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGModificationTime __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGSoftware __attribute__((availability(macosx,introduced=10.7)));
-extern "C" const CFStringRef kCGImagePropertyPNGTitle __attribute__((availability(macosx,introduced=10.7)));
-
-extern "C" const CFStringRef kCGImagePropertyAPNGLoopCount __attribute__((availability(macosx,introduced=10.10)));
-extern "C" const CFStringRef kCGImagePropertyAPNGDelayTime __attribute__((availability(macosx,introduced=10.10)));
-extern "C" const CFStringRef kCGImagePropertyAPNGUnclampedDelayTime __attribute__((availability(macosx,introduced=10.10)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyGPSVersion __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSLatitudeRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSLatitude __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSLongitudeRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSLongitude __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSAltitudeRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSAltitude __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSTimeStamp __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSSatellites __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSStatus __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSMeasureMode __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDOP __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSSpeedRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSSpeed __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSTrackRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSTrack __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSImgDirectionRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSImgDirection __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSMapDatum __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestLatitudeRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestLatitude __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestLongitudeRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestLongitude __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestBearingRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestBearing __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestDistanceRef __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDestDistance __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSProcessingMethod __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSAreaInformation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDateStamp __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSDifferental __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyGPSHPositioningError __attribute__((availability(macosx,introduced=10.10)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyIPTCObjectTypeReference __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCObjectAttributeReference __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCObjectName __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCEditStatus __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCEditorialUpdate __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCUrgency __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCSubjectReference __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCategory __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCSupplementalCategory __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCFixtureIdentifier __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCKeywords __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContentLocationCode __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContentLocationName __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCReleaseDate __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCReleaseTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExpirationDate __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExpirationTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCSpecialInstructions __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCActionAdvised __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCReferenceService __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCReferenceDate __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCReferenceNumber __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCDateCreated __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCTimeCreated __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCDigitalCreationDate __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCDigitalCreationTime __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCOriginatingProgram __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCProgramVersion __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCObjectCycle __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCByline __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCBylineTitle __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCity __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCSubLocation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCProvinceState __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCountryPrimaryLocationCode __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCountryPrimaryLocationName __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCOriginalTransmissionReference __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCHeadline __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCredit __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCSource __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCopyrightNotice __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContact __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCaptionAbstract __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCWriterEditor __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCImageType __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCImageOrientation __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCLanguageIdentifier __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCStarRating __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCCreatorContactInfo __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCRightsUsageTerms __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCScene __attribute__((availability(macosx,introduced=10.6)));
-
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTerm __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermCvId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAddlModelInfo __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkOrObject __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCircaDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContentDescription __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContributionDescription __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightNotice __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreator __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreatorID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkPhysicalDescription __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSource __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInventoryNo __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInvURL __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkStylePeriod __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkTitle __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrate __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrateMode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioChannelCount __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCircaDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormat __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContributor __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorRole __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCopyrightYear __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCreator __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorRole __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtControlledVocabularyTerm __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreen __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegion __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionD __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionH __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionText __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionUnit __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionW __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionX __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionY __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalImageGUID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceFileType __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceType __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheet __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbdEncRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeNumber __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtEvent __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEvent __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtExternalMetadataLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtFeedIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtGenre __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtHeadline __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtIPTCLastEdited __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprType __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCreated __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCity __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryCode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSAltitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLatitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLongitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationProvinceState __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationSublocation __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationWorldRegion __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationShown __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailHeight __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailWidth __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtModelAge __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageCode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeard __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImage __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageWDetails __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCharacteristic __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermCvId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageDescription __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImage __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageDescription __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageGTIN __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEvent __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventDate __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRating __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRatingRegion __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCity __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryCode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSAltitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLatitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLongitude __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionProvinceState __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionSublocation __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionWorldRegion __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMaxValue __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMinValue __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingSourceLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValue __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValueLogoLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryEntryRole __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryItemID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryOrganisationID __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtReleaseReady __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeason __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonNumber __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeries __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtStorylineIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtStreamReady __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtStylePeriod __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSource __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverage __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageFrom __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageTo __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscript __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLink __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrate __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrateMode __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoDisplayAspectRatio __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoEncodingProfile __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotType __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoStreamsCount __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtVisualColor __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTag __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
-extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
-
-
-
-
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoCity __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoCountry __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoAddress __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoPostalCode __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoStateProvince __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoEmails __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoPhones __attribute__((availability(macosx,introduced=10.6)));
-extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoWebURLs __attribute__((availability(macosx,introduced=10.6)));
-
-
-
-extern "C" const CFStringRef kCGImageProperty8BIMLayerNames __attribute__((availability(macosx,introduced=10.4)));
-extern "C" const CFStringRef kCGImageProperty8BIMVersion __attribute__((availability(macosx,introduced=10.10)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyDNGVersion __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGBackwardVersion __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGUniqueCameraModel __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGLocalizedCameraModel __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGCameraSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGLensInfo __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyDNGBlackLevel __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGWhiteLevel __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGCalibrationIlluminant1 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGCalibrationIlluminant2 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGColorMatrix1 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGColorMatrix2 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibration1 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibration2 __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGAsShotNeutral __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGAsShotWhiteXY __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGBaselineExposure __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGBaselineNoise __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGBaselineSharpness __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGPrivateData __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibrationSignature __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGProfileCalibrationSignature __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGNoiseProfile __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGWarpRectilinear __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGWarpFisheye __attribute__((availability(macosx,introduced=10.12)));
-extern "C" const CFStringRef kCGImagePropertyDNGFixVignetteRadial __attribute__((availability(macosx,introduced=10.12)));
-
-
-
-
-extern "C" const CFStringRef kCGImagePropertyCIFFDescription __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFFirmware __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFOwnerName __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFImageName __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFImageFileName __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFReleaseMethod __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFReleaseTiming __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFRecordID __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFSelfTimingTime __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFCameraSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFImageSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFContinuousDrive __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFFocusMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFMeteringMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFShootingMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFLensModel __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFLensMaxMM __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFLensMinMM __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFWhiteBalanceIndex __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFFlashExposureComp __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyCIFFMeasuredEV __attribute__((availability(macosx,introduced=10.5)));
-
-
-
-
-extern "C" const CFStringRef kCGImagePropertyMakerNikonISOSetting __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonColorMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonQuality __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonWhiteBalanceMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonSharpenMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonFocusMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonFlashSetting __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonISOSelection __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonFlashExposureComp __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonImageAdjustment __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonLensAdapter __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonLensType __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonLensInfo __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonFocusDistance __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonDigitalZoom __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonShootingMode __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonCameraSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerNikonShutterCount __attribute__((availability(macosx,introduced=10.5)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyMakerCanonOwnerName __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonCameraSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonImageSerialNumber __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonFlashExposureComp __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonContinuousDrive __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonLensModel __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonFirmware __attribute__((availability(macosx,introduced=10.5)));
-extern "C" const CFStringRef kCGImagePropertyMakerCanonAspectRatioInfo __attribute__((availability(macosx,introduced=10.5)));
-
-
-
-extern "C" const CFStringRef kCGImagePropertyOpenEXRAspectRatio __attribute__((availability(macosx,introduced=10.9)));
+
+
+extern "C" const CFStringRef kCGImagePropertyJFIFVersion __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyJFIFXDensity __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyJFIFYDensity __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyJFIFDensityUnit __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyJFIFIsProgressive __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+extern "C" const CFStringRef kCGImagePropertyExifExposureTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFNumber __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifExposureProgram __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSpectralSensitivity __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifISOSpeedRatings __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifOECF __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSensitivityType __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifStandardOutputSensitivity __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifRecommendedExposureIndex __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifISOSpeed __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifISOSpeedLatitudeyyy __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifISOSpeedLatitudezzz __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
+extern "C" const CFStringRef kCGImagePropertyExifVersion __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifDateTimeOriginal __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifDateTimeDigitized __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifComponentsConfiguration __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifCompressedBitsPerPixel __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifShutterSpeedValue __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifApertureValue __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifBrightnessValue __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifExposureBiasValue __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifMaxApertureValue __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubjectDistance __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifMeteringMode __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifLightSource __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFlash __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFocalLength __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubjectArea __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifMakerNote __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifUserComment __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubsecTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeOriginal __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeDigitized __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFlashPixVersion __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifColorSpace __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifPixelXDimension __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifPixelYDimension __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifRelatedSoundFile __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFlashEnergy __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSpatialFrequencyResponse __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneXResolution __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneYResolution __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFocalPlaneResolutionUnit __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubjectLocation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifExposureIndex __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSensingMethod __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFileSource __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSceneType __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifCFAPattern __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifCustomRendered __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifExposureMode __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifWhiteBalance __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifDigitalZoomRatio __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifFocalLenIn35mmFilm __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSceneCaptureType __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifGainControl __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifContrast __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSaturation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSharpness __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifDeviceSettingDescription __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifSubjectDistRange __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifImageUniqueID __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifCameraOwnerName __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifBodySerialNumber __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifLensSpecification __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifLensMake __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifLensModel __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifLensSerialNumber __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyExifGamma __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+
+extern "C" const CFStringRef kCGImagePropertyExifSubsecTimeOrginal __attribute__((availability(macos,introduced=10.4,deprecated=10.11,message="No longer supported"))) __attribute__((availability(ios,introduced=4.0,deprecated=10.0,message="No longer supported")));
+
+
+extern "C" const CFStringRef kCGImagePropertyExifAuxLensInfo __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxLensModel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxLensID __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxLensSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxImageNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxFlashCompensation __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxOwnerName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyExifAuxFirmware __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyGIFLoopCount __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGIFDelayTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGIFImageColorMap __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGIFHasGlobalColorMap __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGIFUnclampedDelayTime __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyPNGAuthor __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGChromaticities __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGComment __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGCopyright __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGCreationTime __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGDescription __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGDisclaimer __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGGamma __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGInterlaceType __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGModificationTime __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGSoftware __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGSource __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGsRGBIntent __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGTitle __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGWarning __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGXPixelsPerMeter __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyPNGYPixelsPerMeter __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+
+extern "C" const CFStringRef kCGImagePropertyAPNGLoopCount __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
+extern "C" const CFStringRef kCGImagePropertyAPNGDelayTime __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
+extern "C" const CFStringRef kCGImagePropertyAPNGUnclampedDelayTime __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyGPSVersion __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSLatitudeRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSLatitude __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSLongitudeRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSLongitude __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSAltitudeRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSAltitude __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSTimeStamp __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSSatellites __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSStatus __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSMeasureMode __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDOP __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSSpeedRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSSpeed __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSTrackRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSTrack __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSImgDirectionRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSImgDirection __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSMapDatum __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestLatitudeRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestLatitude __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestLongitudeRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestLongitude __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestBearingRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestBearing __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestDistanceRef __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDestDistance __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSProcessingMethod __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSAreaInformation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDateStamp __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSDifferental __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyGPSHPositioningError __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyIPTCObjectTypeReference __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCObjectAttributeReference __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCObjectName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCEditStatus __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCEditorialUpdate __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCUrgency __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCSubjectReference __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCategory __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCSupplementalCategory __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCFixtureIdentifier __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCKeywords __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContentLocationCode __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContentLocationName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCReleaseDate __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCReleaseTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExpirationDate __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExpirationTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCSpecialInstructions __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCActionAdvised __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCReferenceService __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCReferenceDate __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCReferenceNumber __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCDateCreated __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCTimeCreated __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCDigitalCreationDate __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCDigitalCreationTime __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCOriginatingProgram __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCProgramVersion __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCObjectCycle __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCByline __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCBylineTitle __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCity __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCSubLocation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCProvinceState __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCountryPrimaryLocationCode __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCountryPrimaryLocationName __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCOriginalTransmissionReference __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCHeadline __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCredit __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCSource __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCopyrightNotice __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContact __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCaptionAbstract __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCWriterEditor __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCImageType __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCImageOrientation __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCLanguageIdentifier __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCStarRating __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCCreatorContactInfo __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCRightsUsageTerms __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCScene __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTerm __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermCvId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermRefinedAbout __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAddlModelInfo __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkOrObject __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCircaDateCreated __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContentDescription __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContributionDescription __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightNotice __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreator __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreatorID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkDateCreated __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkPhysicalDescription __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSource __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInventoryNo __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInvURL __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkStylePeriod __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkTitle __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrate __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrateMode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioChannelCount __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCircaDateCreated __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormat __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributor __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorRole __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCopyrightYear __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreator __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorRole __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtControlledVocabularyTerm __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreen __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegion __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionD __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionH __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionText __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionUnit __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionW __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionX __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionY __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalImageGUID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceFileType __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceType __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheet __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbdEncRightsExpr __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeNumber __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEvent __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEvent __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtExternalMetadataLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtFeedIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenre __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermRefinedAbout __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtHeadline __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtIPTCLastEdited __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncRightsExpr __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExpr __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprType __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCreated __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCity __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryCode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSAltitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLatitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLongitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationProvinceState __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationSublocation __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationWorldRegion __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationShown __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailHeight __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailWidth __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtModelAge __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageCode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeard __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImage __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageWDetails __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCharacteristic __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermCvId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageDescription __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImage __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageDescription __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageGTIN __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEvent __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventDate __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRating __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRatingRegion __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCity __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryCode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSAltitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLatitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLongitude __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionProvinceState __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionSublocation __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionWorldRegion __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMaxValue __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMinValue __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingSourceLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValue __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValueLogoLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryEntryRole __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryItemID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryOrganisationID __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtReleaseReady __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeason __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonNumber __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeries __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStorylineIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStreamReady __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStylePeriod __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSource __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverage __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageFrom __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageTo __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscript __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLink __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrate __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrateMode __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoDisplayAspectRatio __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoEncodingProfile __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotType __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeIdentifier __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoStreamsCount __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVisualColor __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTag __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermId __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermName __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3)));
+
+
+
+
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoCity __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoCountry __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoAddress __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoPostalCode __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoStateProvince __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoEmails __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoPhones __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoWebURLs __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+extern "C" const CFStringRef kCGImageProperty8BIMLayerNames __attribute__((availability(macos,introduced=10.4))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImageProperty8BIMVersion __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyDNGVersion __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBackwardVersion __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGUniqueCameraModel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGLocalizedCameraModel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCameraSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGLensInfo __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBlackLevel __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGWhiteLevel __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCalibrationIlluminant1 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCalibrationIlluminant2 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGColorMatrix1 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGColorMatrix2 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibration1 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibration2 __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAsShotNeutral __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAsShotWhiteXY __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBaselineExposure __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBaselineNoise __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBaselineSharpness __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPrivateData __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCameraCalibrationSignature __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileCalibrationSignature __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGNoiseProfile __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGWarpRectilinear __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGWarpFisheye __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGFixVignetteRadial __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
+
+extern "C" const CFStringRef kCGImagePropertyDNGActiveArea __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAnalogBalance __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAntiAliasStrength __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAsShotICCProfile __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAsShotPreProfileMatrix __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGAsShotProfileName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBaselineExposureOffset __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBayerGreenSplit __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBestQualityScale __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBlackLevelDeltaH __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBlackLevelDeltaV __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGBlackLevelRepeatDim __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCFALayout __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCFAPlaneColor __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGChromaBlurRadius __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGColorimetricReference __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCurrentICCProfile __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGCurrentPreProfileMatrix __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDefaultBlackRender __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDefaultCropOrigin __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDefaultCropSize __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDefaultScale __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGDefaultUserCrop __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGExtraCameraProfiles __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGForwardMatrix1 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGForwardMatrix2 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGLinearizationTable __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGLinearResponseLimit __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGMakerNoteSafety __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGMaskedAreas __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGNewRawImageDigest __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGNoiseReductionApplied __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOpcodeList1 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOpcodeList2 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOpcodeList3 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalBestQualityFinalSize __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalDefaultCropSize __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalDefaultFinalSize __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalRawFileData __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalRawFileDigest __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGOriginalRawFileName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewApplicationName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewApplicationVersion __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewColorSpace __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewDateTime __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewSettingsDigest __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGPreviewSettingsName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileCopyright __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileEmbedPolicy __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileHueSatMapData1 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileHueSatMapData2 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileHueSatMapDims __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileHueSatMapEncoding __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileLookTableData __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileLookTableDims __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileLookTableEncoding __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileName __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGProfileToneCurve __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGRawDataUniqueID __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGRawImageDigest __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGRawToPreviewGain __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGReductionMatrix1 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGReductionMatrix2 __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGRowInterleaveFactor __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGShadowScale __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImagePropertyDNGSubTileBlockSize __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+
+
+
+
+
+extern "C" const CFStringRef kCGImagePropertyCIFFDescription __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFFirmware __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFOwnerName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFImageName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFImageFileName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFReleaseMethod __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFReleaseTiming __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFRecordID __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFSelfTimingTime __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFCameraSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFImageSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFContinuousDrive __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFFocusMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFMeteringMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFShootingMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFLensModel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFLensMaxMM __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFLensMinMM __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFWhiteBalanceIndex __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFFlashExposureComp __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyCIFFMeasuredEV __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+
+extern "C" const CFStringRef kCGImagePropertyMakerNikonISOSetting __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonColorMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonQuality __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonWhiteBalanceMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonSharpenMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonFocusMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonFlashSetting __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonISOSelection __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonFlashExposureComp __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonImageAdjustment __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonLensAdapter __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonLensType __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonLensInfo __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonFocusDistance __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonDigitalZoom __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonShootingMode __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonCameraSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerNikonShutterCount __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyMakerCanonOwnerName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonCameraSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonImageSerialNumber __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonFlashExposureComp __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonContinuousDrive __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonLensModel __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonFirmware __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+extern "C" const CFStringRef kCGImagePropertyMakerCanonAspectRatioInfo __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=4.0)));
+
+
+
+extern "C" const CFStringRef kCGImagePropertyOpenEXRAspectRatio __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=11.3)));
 
 
 
@@ -92267,24 +92750,25 @@ typedef uint32_t CGImagePropertyOrientation; enum {
     kCGImagePropertyOrientationRightMirrored,
     kCGImagePropertyOrientationLeft
 };
-extern "C" const CFStringRef kCGImagePropertyPNGCompressionFilter __attribute__((availability(macosx,introduced=10.11)));
-extern "C" const CFStringRef kCGImageAuxiliaryDataTypeDepth __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImageAuxiliaryDataTypeDisparity __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImageAuxiliaryDataInfoData __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImageAuxiliaryDataInfoDataDescription __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImageAuxiliaryDataInfoMetadata __attribute__((availability(macosx,introduced=10.13)));
+extern "C" const CFStringRef kCGImagePropertyPNGCompressionFilter __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataTypeDepth __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataTypeDisparity __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataTypePortraitEffectsMatte __attribute__((availability(macos,introduced=10.14))) __attribute__((availability(ios,introduced=12.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataInfoData __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataInfoDataDescription __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImageAuxiliaryDataInfoMetadata __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 
 
-extern "C" const CFStringRef kCGImagePropertyImageCount __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyWidth __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyHeight __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyBytesPerRow __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyNamedColorSpace __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyPixelFormat __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyImages __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyThumbnailImages __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyAuxiliaryData __attribute__((availability(macosx,introduced=10.13)));
-extern "C" const CFStringRef kCGImagePropertyAuxiliaryDataType __attribute__((availability(macosx,introduced=10.13)));
+extern "C" const CFStringRef kCGImagePropertyImageCount __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyWidth __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyHeight __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyBytesPerRow __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyNamedColorSpace __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyPixelFormat __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyImages __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyThumbnailImages __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyAuxiliaryData __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
+extern "C" const CFStringRef kCGImagePropertyAuxiliaryDataType __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0)));
 #pragma clang assume_nonnull end
 
 
@@ -92908,7 +93392,7 @@ PMRetain(PMObject _Nullable object) ;
 extern OSStatus
 PMRelease(PMObject _Nullable object) ;
 extern OSStatus
-PMCreateSession(_Nonnull PMPrintSession* _Nonnull printSession) ;
+PMCreateSession(PMPrintSession _Nullable * _Nonnull printSession) ;
 extern OSStatus
 PMSessionError(PMPrintSession printSession) ;
 extern OSStatus
@@ -92968,13 +93452,13 @@ PMSessionCreatePageFormatList(
 extern OSStatus
 PMSessionCreatePrinterList(
   PMPrintSession printSession,
-  CFArrayRef _Nonnull * _Nonnull printerList,
+  CFArrayRef _Nullable * _Nonnull printerList,
   CFIndex * _Nullable currentIndex,
-  PMPrinter _Nonnull * _Nullable currentPrinter) __attribute__((availability(macosx,introduced=10.1)));
+  PMPrinter _Nullable * _Nullable currentPrinter) __attribute__((availability(macosx,introduced=10.1)));
 extern OSStatus
 PMSessionGetCurrentPrinter(
   PMPrintSession printSession,
-  PMPrinter _Nonnull * _Nonnull currentPrinter) ;
+  PMPrinter _Nullable * _Nonnull currentPrinter) ;
 extern OSStatus
 PMSessionSetCurrentPMPrinter(
   PMPrintSession session,
@@ -92990,7 +93474,7 @@ PMSessionSetDataInSession(
   CFStringRef key,
   CFTypeRef data) ;
 extern OSStatus
-PMCreatePageFormat(PMPageFormat _Nonnull * _Nonnull pageFormat) ;
+PMCreatePageFormat(PMPageFormat _Nullable * _Nonnull pageFormat) ;
 extern OSStatus
 PMSessionDefaultPageFormat(
   PMPrintSession printSession,
@@ -93006,17 +93490,17 @@ PMCopyPageFormat(
   PMPageFormat formatDest) ;
 extern OSStatus
 PMCreatePageFormatWithPMPaper(
-  PMPageFormat _Nonnull * _Nonnull pageFormat,
+  PMPageFormat _Nullable * _Nonnull pageFormat,
   PMPaper paper) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PMPageFormatCreateDataRepresentation(
   PMPageFormat pageFormat,
-  CFDataRef _Nonnull * _Nonnull data,
+  CFDataRef _Nullable * _Nonnull data,
   PMDataFormat format) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMPageFormatCreateWithDataRepresentation(
  CFDataRef data,
- PMPageFormat _Nonnull * _Nonnull pageFormat) __attribute__((availability(macosx,introduced=10.5)));
+ PMPageFormat _Nullable * _Nonnull pageFormat) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMGetAdjustedPageRect(
   PMPageFormat pageFormat,
@@ -93068,7 +93552,7 @@ PMSetScale(
   double scale) ;
 extern OSStatus
 PMCreatePrintSettings(
- PMPrintSettings _Nonnull * _Nonnull printSettings) ;
+ PMPrintSettings _Nullable * _Nonnull printSettings) ;
 extern OSStatus
 PMSessionDefaultPrintSettings(
   PMPrintSession printSession,
@@ -93085,12 +93569,12 @@ PMCopyPrintSettings(
 extern OSStatus
 PMPrintSettingsCreateDataRepresentation(
   PMPrintSettings printSettings,
-  CFDataRef _Nonnull * _Nonnull data,
+  CFDataRef _Nullable * _Nonnull data,
   PMDataFormat format) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMPrintSettingsCreateWithDataRepresentation(
  CFDataRef data,
- PMPrintSettings _Nonnull * _Nonnull printSettings) __attribute__((availability(macosx,introduced=10.5)));
+ PMPrintSettings _Nullable * _Nonnull printSettings) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMGetCollate(
   PMPrintSettings printSettings,
@@ -93173,7 +93657,7 @@ PMPrintSettingsCopyKeys(
  CFArrayRef _Nullable * _Nonnull settingsKeys) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMCreateGenericPrinter(
- PMPrinter _Nonnull * _Nonnull printer) __attribute__((availability(macosx,introduced=10.5)));
+ PMPrinter _Nullable * _Nonnull printer) __attribute__((availability(macosx,introduced=10.5)));
 extern OSStatus
 PMServerCreatePrinterList(
   PMServer _Nullable server,
@@ -93196,7 +93680,7 @@ PMPrinterCopyDeviceURI(
 extern OSStatus
 PMPrinterCopyHostName(
   PMPrinter printer,
-  CFStringRef _Nonnull * _Nonnull hostNameP) __attribute__((availability(macosx,introduced=10.3)));
+  CFStringRef _Nullable * _Nonnull hostNameP) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PMPrinterCopyPresets(
   PMPrinter printer,
@@ -93279,7 +93763,7 @@ extern OSStatus
 PMPresetCreatePrintSettings(
   PMPreset preset,
   PMPrintSession session,
-  PMPrintSettings _Nonnull * _Nonnull printSettings) __attribute__((availability(macosx,introduced=10.3)));
+  PMPrintSettings _Nullable * _Nonnull printSettings) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PMPresetGetAttributes(
   PMPreset preset,
@@ -93287,7 +93771,7 @@ PMPresetGetAttributes(
 extern OSStatus
 PMGetPageFormatPaper(
   PMPageFormat format,
-  PMPaper _Nonnull * _Nonnull paper) __attribute__((availability(macosx,introduced=10.3)));
+  PMPaper _Nullable * _Nonnull paper) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PMPaperCreateCustom(
   PMPrinter _Nullable printer,
@@ -93312,7 +93796,7 @@ PMPaperGetMargins(
 extern OSStatus
 PMPaperGetID(
   PMPaper paper,
-  CFStringRef _Nonnull * _Nonnull paperID) __attribute__((availability(macosx,introduced=10.3)));
+  CFStringRef _Nullable * _Nonnull paperID) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PMPaperGetPPDPaperName(
   PMPaper paper,
@@ -93383,7 +93867,7 @@ PMPrinterSendCommand(
 extern OSStatus
 PMPrinterCopyState(
   PMPrinter printer,
-  CFDictionaryRef _Nonnull * _Nonnull stateDict) __attribute__((availability(macosx,introduced=10.6)));
+  CFDictionaryRef _Nullable * _Nonnull stateDict) __attribute__((availability(macosx,introduced=10.6)));
 extern OSStatus
 PMCopyAvailablePPDs(
   PMPPDDomain domain,
@@ -95466,7 +95950,7 @@ typedef struct {} _objc_exc_NSAppleScript;
 
 struct NSAppleScript_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_source;
+	NSString *__strong _source;
 	unsigned int _compiledScriptID;
 	void *_reserved1;
 	void *_reserved2;
@@ -95613,7 +96097,7 @@ struct NSDistributedLock_IMPL {
 
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_5,deprecated=10_10,message="" "Building Garbage Collected apps is no longer supported.")))
-
+__attribute__((unavailable("not available in automatic reference counting mode")))
 
 #pragma clang assume_nonnull begin
 
@@ -95710,9 +96194,9 @@ typedef struct {} _objc_exc_NSHost;
 
 struct NSHost_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSArray *names;
-	NSArray *addresses;
-	id reserved;
+	NSArray *__strong names;
+	NSArray *__strong addresses;
+	__strong id reserved;
 };
 
 
@@ -95812,15 +96296,15 @@ typedef struct {} _objc_exc_NSScriptClassDescription;
 
 struct NSScriptClassDescription_IMPL {
 	struct NSClassDescription_IMPL NSClassDescription_IVARS;
-	NSString *_suiteName;
-	NSString *_objcClassName;
+	NSString *__strong _suiteName;
+	NSString *__strong _objcClassName;
 	FourCharCode _appleEventCode;
-	NSObject *_superclassNameOrDescription;
-	NSArray *_attributeDescriptions;
-	NSArray *_toOneRelationshipDescriptions;
-	NSArray *_toManyRelationshipDescriptions;
-	NSDictionary *_commandMethodSelectorsByName;
-	id _moreVars;
+	NSObject *__strong _superclassNameOrDescription;
+	NSArray *__strong _attributeDescriptions;
+	NSArray *__strong _toOneRelationshipDescriptions;
+	NSArray *__strong _toManyRelationshipDescriptions;
+	NSDictionary *__strong _commandMethodSelectorsByName;
+	__strong id _moreVars;
 };
 
 
@@ -95934,7 +96418,7 @@ typedef struct {} _objc_exc_NSScriptCoercionHandler;
 
 struct NSScriptCoercionHandler_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _coercers;
+	__strong id _coercers;
 };
 
 
@@ -96019,19 +96503,19 @@ typedef struct {} _objc_exc_NSScriptCommand;
 
 struct NSScriptCommand_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptCommandDescription *_commandDescription;
-	id _directParameter;
-	NSScriptObjectSpecifier *_receiversSpecifier;
-	id _evaluatedReceivers;
-	NSDictionary *_arguments;
-	NSMutableDictionary *_evaluatedArguments;
+	NSScriptCommandDescription *__strong _commandDescription;
+	__strong id _directParameter;
+	NSScriptObjectSpecifier *__strong _receiversSpecifier;
+	__strong id _evaluatedReceivers;
+	NSDictionary *__strong _arguments;
+	NSMutableDictionary *__strong _evaluatedArguments;
 
 	struct  {
 	unsigned int hasEvaluatedReceivers : 1;
 	unsigned int hasEvaluatedArguments : 1;
 	unsigned int RESERVED : 30;
 	} _flags;
-	id _moreVars;
+	__strong id _moreVars;
 	void *_reserved;
 };
 
@@ -96135,14 +96619,14 @@ typedef struct {} _objc_exc_NSScriptCommandDescription;
 
 struct NSScriptCommandDescription_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *_suiteName;
-	NSString *_plistCommandName;
+	NSString *__strong _suiteName;
+	NSString *__strong _plistCommandName;
 	FourCharCode _classAppleEventCode;
 	FourCharCode _idAppleEventCode;
-	NSString *_objcClassName;
-	NSObject *_resultTypeNameOrDescription;
+	NSString *__strong _objcClassName;
+	NSObject *__strong _resultTypeNameOrDescription;
 	FourCharCode _plistResultTypeAppleEventCode;
-	id _moreVars;
+	__strong id _moreVars;
 };
 
 
@@ -96226,10 +96710,10 @@ typedef struct {} _objc_exc_NSScriptExecutionContext;
 
 struct NSScriptExecutionContext_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _topLevelObject;
-	id _objectBeingTested;
-	id _rangeContainerObject;
-	id _moreVars;
+	__strong id _topLevelObject;
+	__strong id _objectBeingTested;
+	__strong id _rangeContainerObject;
+	__strong id _moreVars;
 };
 
 
@@ -96385,14 +96869,14 @@ typedef struct {} _objc_exc_NSScriptObjectSpecifier;
 
 struct NSScriptObjectSpecifier_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptObjectSpecifier *_container;
-	NSScriptObjectSpecifier *_child;
-	NSString *_key;
-	NSScriptClassDescription *_containerClassDescription;
+	NSScriptObjectSpecifier *__strong _container;
+	NSScriptObjectSpecifier *__strong _child;
+	NSString *__strong _key;
+	NSScriptClassDescription *__strong _containerClassDescription;
 	BOOL _containerIsObjectBeingTested;
 	BOOL _containerIsRangeContainerObject;
 	char _padding[2];
-	NSAppleEventDescriptor *_descriptor;
+	NSAppleEventDescriptor *__strong _descriptor;
 	NSInteger _error;
 };
 
@@ -96507,7 +96991,7 @@ typedef struct {} _objc_exc_NSNameSpecifier;
 
 struct NSNameSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSString *_name;
+	NSString *__strong _name;
 };
 
 
@@ -96528,10 +97012,10 @@ typedef struct {} _objc_exc_NSPositionalSpecifier;
 
 struct NSPositionalSpecifier_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptObjectSpecifier *_specifier;
+	NSScriptObjectSpecifier *__strong _specifier;
 	NSInsertionPosition _unadjustedPosition;
-	NSScriptClassDescription *_insertionClassDescription;
-	id _moreVars;
+	NSScriptClassDescription *__strong _insertionClassDescription;
+	__strong id _moreVars;
 	void *_reserved0;
 };
 
@@ -96612,8 +97096,8 @@ typedef struct {} _objc_exc_NSRangeSpecifier;
 
 struct NSRangeSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSScriptObjectSpecifier *_startSpec;
-	NSScriptObjectSpecifier *_endSpec;
+	NSScriptObjectSpecifier *__strong _startSpec;
+	NSScriptObjectSpecifier *__strong _endSpec;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -96637,7 +97121,7 @@ typedef struct {} _objc_exc_NSRelativeSpecifier;
 struct NSRelativeSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
 	NSRelativePosition _relativePosition;
-	NSScriptObjectSpecifier *_baseSpecifier;
+	NSScriptObjectSpecifier *__strong _baseSpecifier;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -96663,7 +97147,7 @@ typedef struct {} _objc_exc_NSUniqueIDSpecifier;
 
 struct NSUniqueIDSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	id _uniqueID;
+	__strong id _uniqueID;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -96682,7 +97166,7 @@ typedef struct {} _objc_exc_NSWhoseSpecifier;
 
 struct NSWhoseSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSScriptWhoseTest *_test;
+	NSScriptWhoseTest *__strong _test;
 	NSWhoseSubelementIdentifier _startSubelementIdentifier;
 	NSInteger _startSubelementIndex;
 	NSWhoseSubelementIdentifier _endSubelementIdentifier;
@@ -96760,7 +97244,7 @@ typedef struct {} _objc_exc_NSCloneCommand;
 
 struct NSCloneCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *_keySpecifier;
+	NSScriptObjectSpecifier *__strong _keySpecifier;
 };
 
 
@@ -96817,7 +97301,7 @@ typedef struct {} _objc_exc_NSCreateCommand;
 
 struct NSCreateCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	id _moreVars2;
+	__strong id _moreVars2;
 };
 
 
@@ -96840,7 +97324,7 @@ typedef struct {} _objc_exc_NSDeleteCommand;
 
 struct NSDeleteCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *_keySpecifier;
+	NSScriptObjectSpecifier *__strong _keySpecifier;
 };
 
 
@@ -96894,7 +97378,7 @@ typedef struct {} _objc_exc_NSMoveCommand;
 
 struct NSMoveCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *_keySpecifier;
+	NSScriptObjectSpecifier *__strong _keySpecifier;
 };
 
 
@@ -96935,7 +97419,7 @@ typedef struct {} _objc_exc_NSSetCommand;
 
 struct NSSetCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *_keySpecifier;
+	NSScriptObjectSpecifier *__strong _keySpecifier;
 };
 
 
@@ -97026,16 +97510,16 @@ struct NSScriptSuiteRegistry_IMPL {
 	BOOL _isLoadingSecurityOverride;
 	BOOL _hasLoadedIntrinsics;
 	char _reserved1[1];
-	NSMutableSet *_seenBundles;
-	NSMutableArray *_suiteDescriptionsBeingCollected;
-	NSScriptClassDescription *_classDescriptionNeedingRegistration;
-	NSMutableArray *_suiteDescriptions;
-	NSScriptCommandDescription *_commandDescriptionNeedingRegistration;
-	NSMutableDictionary *_cachedClassDescriptionsByAppleEventCode;
-	NSMutableDictionary *_cachedCommandDescriptionsByAppleEventCodes;
-	NSDictionary *_cachedSuiteDescriptionsByName;
-	NSMutableDictionary *_complexTypeDescriptionsByName;
-	NSMutableDictionary *_listTypeDescriptionsByName;
+	NSMutableSet *__strong _seenBundles;
+	NSMutableArray *__strong _suiteDescriptionsBeingCollected;
+	NSScriptClassDescription *__strong _classDescriptionNeedingRegistration;
+	NSMutableArray *__strong _suiteDescriptions;
+	NSScriptCommandDescription *__strong _commandDescriptionNeedingRegistration;
+	NSMutableDictionary *__strong _cachedClassDescriptionsByAppleEventCode;
+	NSMutableDictionary *__strong _cachedCommandDescriptionsByAppleEventCodes;
+	NSDictionary *__strong _cachedSuiteDescriptionsByName;
+	NSMutableDictionary *__strong _complexTypeDescriptionsByName;
+	NSMutableDictionary *__strong _listTypeDescriptionsByName;
 	unsigned int _nextComplexTypeAppleEventCode;
 	void *_reserved2[4];
 };
@@ -97174,7 +97658,7 @@ typedef struct {} _objc_exc_NSLogicalTest;
 struct NSLogicalTest_IMPL {
 	struct NSScriptWhoseTest_IMPL NSScriptWhoseTest_IVARS;
 	int _operator;
-	id _subTests;
+	__strong id _subTests;
 };
 
 
@@ -97199,8 +97683,8 @@ typedef struct {} _objc_exc_NSSpecifierTest;
 struct NSSpecifierTest_IMPL {
 	struct NSScriptWhoseTest_IMPL NSScriptWhoseTest_IVARS;
 	NSTestComparisonOperation _comparisonOperator;
-	NSScriptObjectSpecifier *_object1;
-	id _object2;
+	NSScriptObjectSpecifier *__strong _object1;
+	__strong id _object2;
 };
 
 // - (instancetype)init __attribute__((unavailable));
@@ -97307,14 +97791,14 @@ typedef struct {} _objc_exc_NSSpellServer;
 	} ;
 struct NSSpellServer_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _delegate;
+	__strong id _delegate;
 	NSInteger _caseSensitive;
-	id _spellServerConnection;
-	id _dictionaries;
-	NSArray *_learnedDictionaries;
+	__strong id _spellServerConnection;
+	__strong id _dictionaries;
+	NSArray *__strong _learnedDictionaries;
 
 	struct __ssFlags _ssFlags;
-	id _checker;
+	__strong id _checker;
 	void *_reservedSpellServer;
 };
 
@@ -97426,15 +97910,16 @@ typedef struct {} _objc_exc_NSUserNotificationAction;
 #pragma clang assume_nonnull begin
 
 
+
 typedef NSInteger NSUserNotificationActivationType; enum {
     NSUserNotificationActivationTypeNone = 0,
     NSUserNotificationActivationTypeContentsClicked = 1,
     NSUserNotificationActivationTypeActionButtonClicked = 2,
     NSUserNotificationActivationTypeReplied __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable))) = 3,
     NSUserNotificationActivationTypeAdditionalActionClicked __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable))) = 4,
-} __attribute__((availability(macosx,introduced=10_8)));
+} __attribute__((availability(macosx,introduced=10_8,deprecated=100000,message="" "All NSUserNotifications API should be replaced with UserNotifications.frameworks API")));
 
-__attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_8)))
+__attribute__((availability(macosx,introduced=10_8,deprecated=100000,message="" "All NSUserNotifications API should be replaced with UserNotifications.frameworks API")))
 
 #ifndef _REWRITER_typedef_NSUserNotification
 #define _REWRITER_typedef_NSUserNotification
@@ -97444,7 +97929,7 @@ typedef struct {} _objc_exc_NSUserNotification;
 
 struct NSUserNotification_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _internal;
+	__strong id _internal;
 };
 
 
@@ -97522,7 +98007,8 @@ struct NSUserNotification_IMPL {
 
 
 
-__attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_10)))
+__attribute__((availability(macosx,introduced=10_10,deprecated=100000,message="" "All NSUserNotifications API should be replaced with UserNotifications.frameworks API")))
+
 
 #ifndef _REWRITER_typedef_NSUserNotificationAction
 #define _REWRITER_typedef_NSUserNotificationAction
@@ -97545,9 +98031,9 @@ struct NSUserNotificationAction_IMPL {
 /* @end */
 
 
-extern "C" NSString * const NSUserNotificationDefaultSoundName __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+extern "C" NSString * const NSUserNotificationDefaultSoundName __attribute__((availability(macosx,introduced=10_8,deprecated=100000,message="" "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
-__attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_8)))
+__attribute__((availability(macosx,introduced=10_8,deprecated=100000,message="" "All NSUserNotifications API should be replaced with UserNotifications.frameworks API")))
 
 #ifndef _REWRITER_typedef_NSUserNotificationCenter
 #define _REWRITER_typedef_NSUserNotificationCenter
@@ -97557,7 +98043,7 @@ typedef struct {} _objc_exc_NSUserNotificationCenter;
 
 struct NSUserNotificationCenter_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id _internal;
+	__strong id _internal;
 };
 
 
@@ -97588,6 +98074,7 @@ struct NSUserNotificationCenter_IMPL {
 // - (void)removeAllDeliveredNotifications;
 
 /* @end */
+
 
 
 // @protocol NSUserNotificationCenterDelegate <NSObject>
@@ -97674,13 +98161,13 @@ typedef struct {} _objc_exc_NSUserScriptTask;
 
 struct NSUserScriptTask_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *_scriptURL;
-	NSXPCConnection *_connection;
+	NSURL *__strong _scriptURL;
+	NSXPCConnection *__strong _connection;
 	BOOL _hasExeced;
 	BOOL _hasTerminated;
-	NSFileHandle *_stdin;
-	NSFileHandle *_stdout;
-	NSFileHandle *_stderr;
+	NSFileHandle *__strong _stdin;
+	NSFileHandle *__strong _stdout;
+	NSFileHandle *__strong _stderr;
 };
 
 
@@ -97761,7 +98248,7 @@ typedef struct {} _objc_exc_NSUserAutomatorTask;
 
 struct NSUserAutomatorTask_IMPL {
 	struct NSUserScriptTask_IMPL NSUserScriptTask_IVARS;
-	NSDictionary *_variables;
+	NSDictionary *__strong _variables;
 };
 
 
@@ -97793,72 +98280,75 @@ struct MCBlock_IMPL {
 
 // - (void)method;
 
+// - (void)blockVariableMethod;
+
 /* @end */
 
 
 // @implementation MCBlock
+int global_var = 4;
 
-struct __MCBlock__method_block_impl_0 {
+static int static_global_var = 5;
+
+
+struct __MCBlock__blockVariableMethod_block_impl_0 {
   struct __block_impl impl;
-  struct __MCBlock__method_block_desc_0* Desc;
-  int *multiplier;
-  __MCBlock__method_block_impl_0(void *fp, struct __MCBlock__method_block_desc_0 *desc, int *_multiplier, int flags=0) : multiplier(_multiplier) {
+  struct __MCBlock__blockVariableMethod_block_desc_0* Desc;
+    //截获局部变量的值
+  int var;
+    //连同所有权修饰符一起截获
+  __unsafe_unretained id unsafe_obj;
+  __strong id strong_obj;
+    //指针的形式截获静态局部变量
+  int *static_var;
+    
+  __MCBlock__blockVariableMethod_block_impl_0(void *fp, struct __MCBlock__blockVariableMethod_block_desc_0 *desc, int _var, __unsafe_unretained id _unsafe_obj, __strong id _strong_obj, int *_static_var, int flags=0) : var(_var), unsafe_obj(_unsafe_obj), strong_obj(_strong_obj), static_var(_static_var) {
     impl.isa = &_NSConcreteStackBlock;
     impl.Flags = flags;
     impl.FuncPtr = fp;
     Desc = desc;
   }
 };
-static int __MCBlock__method_block_func_0(struct __MCBlock__method_block_impl_0 *__cself, int num) {
-  int *multiplier = __cself->multiplier; // bound by copy
+static void __MCBlock__blockVariableMethod_block_func_0(struct __MCBlock__blockVariableMethod_block_impl_0 *__cself) {
+  int var = __cself->var; // bound by copy
+  __unsafe_unretained id unsafe_obj = __cself->unsafe_obj; // bound by copy
+  __strong id strong_obj = __cself->strong_obj; // bound by copy
+  int *static_var = __cself->static_var; // bound by copy
 
-        return num * (*multiplier);
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_0,var);
+
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_1,unsafe_obj);
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_2,strong_obj);
+
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_3,(*static_var));
+
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_4,global_var);
+        NSLog((NSString *)&__NSConstantStringImpl__var_folders_t4_kx4s55h91mb19b85w54t07740000gn_T_MCBlock_8b6a89_mi_5,static_global_var);
     }
+static void __MCBlock__blockVariableMethod_block_copy_0(struct __MCBlock__blockVariableMethod_block_impl_0*dst, struct __MCBlock__blockVariableMethod_block_impl_0*src) {_Block_object_assign((void*)&dst->unsafe_obj, (void*)src->unsafe_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_assign((void*)&dst->strong_obj, (void*)src->strong_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);}
 
-static struct __MCBlock__method_block_desc_0 {
+static void __MCBlock__blockVariableMethod_block_dispose_0(struct __MCBlock__blockVariableMethod_block_impl_0*src) {_Block_object_dispose((void*)src->unsafe_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_dispose((void*)src->strong_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);}
+
+static struct __MCBlock__blockVariableMethod_block_desc_0 {
   size_t reserved;
   size_t Block_size;
-} __MCBlock__method_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__method_block_impl_0)};
+  void (*copy)(struct __MCBlock__blockVariableMethod_block_impl_0*, struct __MCBlock__blockVariableMethod_block_impl_0*);
+  void (*dispose)(struct __MCBlock__blockVariableMethod_block_impl_0*);
+} __MCBlock__blockVariableMethod_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__blockVariableMethod_block_impl_0), __MCBlock__blockVariableMethod_block_copy_0, __MCBlock__blockVariableMethod_block_dispose_0};
 
-static void _I_MCBlock_method(MCBlock * self, SEL _cmd) {
-    static int multiplier = 6;
-    int(*Block)(int) = ((int (*)(int))&__MCBlock__method_block_impl_0((void *)__MCBlock__method_block_func_0, &__MCBlock__method_block_desc_0_DATA, &multiplier));
+static void _I_MCBlock_blockVariableMethod(MCBlock * self, SEL _cmd) {
+    int var = 1;
+    __attribute__((objc_ownership(none))) id unsafe_obj = __null;
+    __attribute__((objc_ownership(strong))) id strong_obj = __null;
+    static int static_var = 3;
+    void (*Block)(void) = ((void (*)())&__MCBlock__blockVariableMethod_block_impl_0((void *)__MCBlock__blockVariableMethod_block_func_0, &__MCBlock__blockVariableMethod_block_desc_0_DATA, var, unsafe_obj, strong_obj, &static_var, 570425344));
 
-    ((int (*)(__block_impl *, int))((__block_impl *)Block)->FuncPtr)((__block_impl *)Block, 2);
+    ((void (*)(__block_impl *))((__block_impl *)Block)->FuncPtr)((__block_impl *)Block);
 }
 
 
 
-struct __MCBlock__blockHowToRunInCpp_block_impl_0 {
-  struct __block_impl impl;
-  struct __MCBlock__blockHowToRunInCpp_block_desc_0* Desc;
-  int number;
-  __MCBlock__blockHowToRunInCpp_block_impl_0(void *fp, struct __MCBlock__blockHowToRunInCpp_block_desc_0 *desc, int _number, int flags=0) : number(_number) {
-    impl.isa = &_NSConcreteStackBlock;
-    impl.Flags = flags;
-    impl.FuncPtr = fp;
-    Desc = desc;
-  }
-};
-static int __MCBlock__blockHowToRunInCpp_block_func_0(struct __MCBlock__blockHowToRunInCpp_block_impl_0 *__cself, int num) {
-  int number = __cself->number; // bound by copy
 
-        return num * number;
-    }
-
-static struct __MCBlock__blockHowToRunInCpp_block_desc_0 {
-  size_t reserved;
-  size_t Block_size;
-} __MCBlock__blockHowToRunInCpp_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__blockHowToRunInCpp_block_impl_0)};
-
-static void _I_MCBlock_blockHowToRunInCpp(MCBlock * self, SEL _cmd) {
-
-    int number = 1;
-
-    int (*testBlock) (int) = ((int (*)(int))&__MCBlock__blockHowToRunInCpp_block_impl_0((void *)__MCBlock__blockHowToRunInCpp_block_func_0, &__MCBlock__blockHowToRunInCpp_block_desc_0_DATA, number));
-
-    ((int (*)(__block_impl *, int))((__block_impl *)testBlock)->FuncPtr)((__block_impl *)testBlock, 5);
-}
 
 
 
@@ -97935,12 +98425,11 @@ extern "C" __declspec(dllimport) struct objc_cache _objc_empty_cache;
 static struct /*_method_list_t*/ {
 	unsigned int entsize;  // sizeof(struct _objc_method)
 	unsigned int method_count;
-	struct _objc_method method_list[2];
+	struct _objc_method method_list[1];
 } _OBJC_$_INSTANCE_METHODS_MCBlock __attribute__ ((used, section ("__DATA,__objc_const"))) = {
 	sizeof(_objc_method),
-	2,
-	{{(struct objc_selector *)"method", "v16@0:8", (void *)_I_MCBlock_method},
-	{(struct objc_selector *)"blockHowToRunInCpp", "v16@0:8", (void *)_I_MCBlock_blockHowToRunInCpp}}
+	1,
+	{{(struct objc_selector *)"blockVariableMethod", "v16@0:8", (void *)_I_MCBlock_blockVariableMethod}}
 };
 
 static struct _class_ro_t _OBJC_METACLASS_RO_$_MCBlock __attribute__ ((used, section ("__DATA,__objc_const"))) = {

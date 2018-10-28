@@ -16,9 +16,7 @@ public class TreeNode {
 }
 
 func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
-    
-    func push
-    
+
     var tree = [[Int]]()
     
     var layer = 0

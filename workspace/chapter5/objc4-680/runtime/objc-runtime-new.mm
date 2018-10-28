@@ -626,6 +626,7 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
         }
     }
 
+
     //获取宿主类当中的RW数据，其中包含数组类的方法信息列表
     auto rw = cls->data();
 

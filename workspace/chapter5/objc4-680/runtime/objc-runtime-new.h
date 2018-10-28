@@ -1263,6 +1263,7 @@ struct swift_class_t : objc_class {
 
 
 struct category_t {
+    // 分类名称
     const char *name;
     classref_t cls;
     struct method_list_t *instanceMethods;

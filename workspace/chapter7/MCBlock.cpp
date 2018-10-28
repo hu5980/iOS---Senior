@@ -106,12 +106,6 @@ struct __AtAutoreleasePool {
 };
 
 #define __OFFSETOFIVAR__(TYPE, MEMBER) ((long long) &((TYPE *)0)->MEMBER)
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_0 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<\345\237\272\346\234\254\346\225\260\346\215\256\347\261\273\345\236\213> var %d",39};
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_1 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<__unsafe_unretained \345\257\271\350\261\241\347\261\273\345\236\213> var %@",53};
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_2 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\261\200\351\203\250\345\217\230\351\207\217<__strong \345\257\271\350\261\241\347\261\273\345\236\213> var %@",42};
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_3 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\351\235\231\346\200\201\345\217\230\351\207\217 %d",15};
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_4 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\345\205\250\345\261\200\345\217\230\351\207\217 %d",15};
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_5 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"\351\235\231\346\200\201\345\205\250\345\261\200\345\217\230\351\207\217 %d",21};
 
 
 
@@ -1563,6 +1557,11 @@ long mrand48(void) __attribute__((__availability__(swift, unavailable, message="
 long nrand48(unsigned short[3]) __attribute__((__availability__(swift, unavailable, message="Use arc4random instead.")));
 int posix_openpt(int);
 char *ptsname(int);
+
+
+int ptsname_r(int fildes, char *buffer, size_t buflen) __attribute__((availability(macos,introduced=10.13.4))) __attribute__((availability(ios,introduced=11.3))) __attribute__((availability(tvos,introduced=11.3))) __attribute__((availability(watchos,introduced=4.3)));
+
+
 int putenv(char *) __asm("_" "putenv" );
 long random(void) __attribute__((__availability__(swift, unavailable, message="Use arc4random instead.")));
 int rand_r(unsigned *) __attribute__((__availability__(swift, unavailable, message="Use arc4random instead.")));
@@ -3476,7 +3475,7 @@ CFAllocatorRef CFGetAllocator(CFTypeRef cf);
 
 
 extern
-CFTypeRef CFMakeCollectable(CFTypeRef cf) __attribute__((unavailable("not available in automatic reference counting mode")));
+CFTypeRef CFMakeCollectable(CFTypeRef cf) ;
 }
 extern "C" {
 typedef const void * (*CFArrayRetainCallBack)(CFAllocatorRef allocator, const void *value);
@@ -5781,6 +5780,7 @@ Boolean CFNumberFormatterGetDecimalInfoForCurrencyCode(CFStringRef currencyCode,
 
 
 }
+#pragma clang assume_nonnull begin
 extern "C" {
 
 extern
@@ -5883,6 +5883,7 @@ Boolean CFPreferencesAppValueIsForced(CFStringRef key, CFStringRef applicationID
 
 
 }
+#pragma clang assume_nonnull end
 extern "C" {
 
 typedef CFIndex CFURLPathStyle; enum {
@@ -7558,7 +7559,7 @@ extern "C" __attribute__((visibility("default"))) const char * _Nonnull object_g
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
 extern "C" __attribute__((visibility("default"))) void * _Nullable object_getIndexedIvars(id _Nullable obj)
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)))
-    __attribute__((unavailable("not available in automatic reference counting mode")));
+                        ;
 extern "C" __attribute__((visibility("default"))) BOOL sel_isMapped(SEL _Nonnull sel)
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0))) ;
 extern "C" __attribute__((visibility("default"))) SEL _Nonnull sel_getUid(const char * _Nonnull str)
@@ -7619,12 +7620,12 @@ typedef struct {} _objc_exc_NSInvocation;
 
 // - (BOOL)respondsToSelector:(SEL)aSelector;
 
-// - (instancetype)retain __attribute__((unavailable("not available in automatic reference counting mode")));
-// - (oneway void)release __attribute__((unavailable("not available in automatic reference counting mode")));
-// - (instancetype)autorelease __attribute__((unavailable("not available in automatic reference counting mode")));
-// - (NSUInteger)retainCount __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (instancetype)retain ;
+// - (oneway void)release ;
+// - (instancetype)autorelease ;
+// - (NSUInteger)retainCount ;
 
-// - (struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (struct _NSZone *)zone ;
 
 // @property (readonly, copy) NSString *description;
 /* @optional */
@@ -7645,7 +7646,7 @@ typedef struct {} _objc_exc_NSObject;
 #endif
 
 struct NSObject_IMPL {
-	__unsafe_unretained Class isa;
+	Class isa;
 };
 
 
@@ -7671,8 +7672,8 @@ struct NSObject_IMPL {
 // - (id)copy;
 // - (id)mutableCopy;
 
-// + (id)copyWithZone:(struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
-// + (id)mutableCopyWithZone:(struct _NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// + (id)copyWithZone:(struct _NSZone *)zone ;
+// + (id)mutableCopyWithZone:(struct _NSZone *)zone ;
 
 // + (BOOL)instancesRespondToSelector:(SEL)aSelector;
 // + (BOOL)conformsToProtocol:(Protocol *)protocol;
@@ -7743,6 +7744,9 @@ struct mach_timespec {
  clock_res_t tv_nsec;
 };
 typedef struct mach_timespec mach_timespec_t;
+
+
+#pragma clang assume_nonnull begin
 extern "C" {
 
 struct timespec;
@@ -7757,6 +7761,8 @@ dispatch_time_t
 dispatch_walltime(const struct timespec *_Nullable when, int64_t delta);
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 // @protocol OS_dispatch_object <NSObject> /* @end */
  typedef NSObject/*<OS_dispatch_object>*/ * __attribute__((objc_independent_class)) dispatch_object_t;
 
@@ -7768,7 +7774,7 @@ dispatch_walltime(const struct timespec *_Nullable when, int64_t delta);
 static __inline__ __attribute__((__always_inline__)) __attribute__((__nonnull__)) __attribute__((__nothrow__))
 void
 _dispatch_object_validate(dispatch_object_t object) {
- void *isa = *(void* volatile*)(__bridge void*)object;
+ void *isa = *(void* volatile*)( void*)object;
  (void)isa;
 }
 typedef void (*dispatch_block_t)(void);
@@ -7842,6 +7848,7 @@ void
 dispatch_debugv(dispatch_object_t object, const char *message, va_list ap);
 
 }
+#pragma clang assume_nonnull end
 typedef enum : unsigned int { QOS_CLASS_USER_INTERACTIVE __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x21, QOS_CLASS_USER_INITIATED __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x19, QOS_CLASS_DEFAULT __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x15, QOS_CLASS_UTILITY __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x11, QOS_CLASS_BACKGROUND __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x09, QOS_CLASS_UNSPECIFIED __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x00, } qos_class_t;
 extern "C" {
 __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)))
@@ -7852,6 +7859,9 @@ qos_class_t
 qos_class_main(void);
 
 }
+
+
+#pragma clang assume_nonnull begin
 // @protocol OS_dispatch_queue <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_queue>*/ * __attribute__((objc_independent_class)) dispatch_queue_t;
 
@@ -7880,7 +7890,7 @@ __attribute__((availability(macos,introduced=10.6))) __attribute__((availability
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(3))) __attribute__((__nothrow__))
 void
 dispatch_apply(size_t iterations, dispatch_queue_t queue,
-  __attribute__((__noescape__)) void (*block)(size_t));
+  __attribute__((__noescape__)) void (^block)(size_t));
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(4))) __attribute__((__nothrow__))
 void
@@ -7898,7 +7908,7 @@ static __inline__ __attribute__((__always_inline__)) __attribute__((__const__)) 
 dispatch_queue_t
 dispatch_get_main_queue(void)
 {
- return ((__bridge dispatch_queue_t)&(_dispatch_main_q));
+ return (( dispatch_queue_t)&(_dispatch_main_q));
 }
 typedef long dispatch_queue_priority_t;
 
@@ -8035,6 +8045,9 @@ void
 dispatch_assert_queue_not(dispatch_queue_t queue)
  __asm__("_" "dispatch_assert_queue_not" "$V2");
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 extern "C" {
 typedef enum : unsigned long { DISPATCH_BLOCK_BARRIER __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x1, DISPATCH_BLOCK_DETACHED __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x2, DISPATCH_BLOCK_ASSIGN_CURRENT __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x4, DISPATCH_BLOCK_NO_QOS_CLASS __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x8, DISPATCH_BLOCK_INHERIT_QOS_CLASS __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x10, DISPATCH_BLOCK_ENFORCE_QOS_CLASS __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) = 0x20, } dispatch_block_flags_t;
 __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)))
@@ -8074,6 +8087,7 @@ long
 dispatch_block_testcancel(dispatch_block_t block);
 
 }
+#pragma clang assume_nonnull end
 typedef int kern_return_t;
 typedef natural_t mach_msg_timeout_t;
 typedef unsigned int mach_msg_bits_t;
@@ -8375,6 +8389,13 @@ extern kern_return_t mach_voucher_deallocate(
 
 
 }
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 // @protocol OS_dispatch_source <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_source>*/ * __attribute__((objc_independent_class)) dispatch_source_t;;
 
@@ -8484,6 +8505,14 @@ dispatch_source_set_registration_handler_f(dispatch_source_t source,
  dispatch_function_t _Nullable handler);
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 // @protocol OS_dispatch_group <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_group>*/ * __attribute__((objc_independent_class)) dispatch_group_t;
 
@@ -8535,6 +8564,15 @@ void
 dispatch_group_leave(dispatch_group_t group);
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 // @protocol OS_dispatch_semaphore <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_semaphore>*/ * __attribute__((objc_independent_class)) dispatch_semaphore_t;
 
@@ -8554,6 +8592,9 @@ long
 dispatch_semaphore_signal(dispatch_semaphore_t dsema);
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 extern "C" {
 typedef long dispatch_once_t;
 __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0)))
@@ -8609,6 +8650,9 @@ _dispatch_once_f(dispatch_once_t *predicate, void *_Nullable context,
 
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 extern "C" {
 // @protocol OS_dispatch_data <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_data>*/ * __attribute__((objc_independent_class)) dispatch_data_t;
@@ -8673,6 +8717,9 @@ dispatch_data_copy_region(dispatch_data_t data,
  size_t *offset_ptr);
 
 }
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 extern "C" {
 typedef int dispatch_fd_t;
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
@@ -8681,7 +8728,7 @@ void
 dispatch_read(dispatch_fd_t fd,
  size_t length,
  dispatch_queue_t queue,
- void (*handler)(dispatch_data_t data, int error));
+ void (^handler)(dispatch_data_t data, int error));
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(2))) __attribute__((__nonnull__(3))) __attribute__((__nonnull__(4)))
 __attribute__((__nothrow__))
@@ -8689,7 +8736,7 @@ void
 dispatch_write(dispatch_fd_t fd,
  dispatch_data_t data,
  dispatch_queue_t queue,
- void (*handler)(dispatch_data_t _Nullable data, int error));
+ void (^handler)(dispatch_data_t _Nullable data, int error));
 // @protocol OS_dispatch_io <OS_dispatch_object> /* @end */
  typedef NSObject/*<OS_dispatch_io>*/ * __attribute__((objc_independent_class)) dispatch_io_t;
 typedef unsigned long dispatch_io_type_t;
@@ -8700,7 +8747,7 @@ dispatch_io_t
 dispatch_io_create(dispatch_io_type_t type,
  dispatch_fd_t fd,
  dispatch_queue_t queue,
- void (*cleanup_handler)(int error));
+ void (^cleanup_handler)(int error));
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(2))) __attribute__((__malloc__)) __attribute__((__ns_returns_retained__))
 __attribute__((__warn_unused_result__)) __attribute__((__nothrow__))
@@ -8708,7 +8755,7 @@ dispatch_io_t
 dispatch_io_create_with_path(dispatch_io_type_t type,
  const char *path, int oflag, mode_t mode,
  dispatch_queue_t queue,
- void (*cleanup_handler)(int error));
+ void (^cleanup_handler)(int error));
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
 extern __attribute__((visibility("default"))) __attribute__((__nonnull__(2))) __attribute__((__malloc__)) __attribute__((__ns_returns_retained__))
 __attribute__((__warn_unused_result__)) __attribute__((__nothrow__))
@@ -8716,7 +8763,7 @@ dispatch_io_t
 dispatch_io_create_with_io(dispatch_io_type_t type,
  dispatch_io_t io,
  dispatch_queue_t queue,
- void (*cleanup_handler)(int error));
+ void (^cleanup_handler)(int error));
 typedef void (*dispatch_io_handler_t)(bool done, dispatch_data_t _Nullable data,
   int error);
 __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0)))
@@ -8767,6 +8814,7 @@ dispatch_io_set_interval(dispatch_io_t channel,
  dispatch_io_interval_flags_t flags);
 
 }
+#pragma clang assume_nonnull end
 
 
 extern "C" {
@@ -10979,6 +11027,8 @@ extern const CFStringRef kCFXMLTreeErrorStatusCode;
 
 }
 
+#pragma clang assume_nonnull begin
+
 extern "C" double NSFoundationVersionNumber;
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
@@ -11046,6 +11096,7 @@ typedef NSInteger NSQualityOfService; enum {
 } __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
 static const NSInteger NSNotFound = 9223372036854775807L;
+#pragma clang assume_nonnull end
 
 
 
@@ -11073,7 +11124,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef struct _NSZone NSZone;
 
@@ -11101,12 +11152,12 @@ enum {
 
 extern "C" void *NSAllocateCollectable(NSUInteger size, NSUInteger options) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
 extern "C" void *NSReallocateCollectable(void * _Nullable ptr, NSUInteger size, NSUInteger options) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
-static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) __attribute__((unavailable("not available in automatic reference counting mode"))) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
+static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")));
 static __inline__ __attribute__((always_inline)) __attribute__((ns_returns_retained)) id _Nullable NSMakeCollectable(CFTypeRef _Nullable __attribute__((cf_consumed)) cf) {
 
-    return __null;
 
 
+    return (id)cf;
 
 }
 
@@ -11118,6 +11169,7 @@ extern "C" void *NSAllocateMemoryPages(NSUInteger bytes);
 extern "C" void NSDeallocateMemoryPages(void *ptr, NSUInteger bytes);
 extern "C" void NSCopyMemoryPages(const void *source, void *dest, NSUInteger bytes);
 extern "C" NSUInteger NSRealMemoryAvailable(void) __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="Use NSProcessInfo instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=6.0,message="Use NSProcessInfo instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Use NSProcessInfo instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Use NSProcessInfo instead")));
+#pragma clang assume_nonnull end
 
 // @class NSInvocation;
 #ifndef _REWRITER_typedef_NSInvocation
@@ -11158,7 +11210,7 @@ typedef struct {} _objc_exc_Protocol;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -11244,30 +11296,28 @@ __attribute__((unavailable))
 
 
 
-extern "C" id NSAllocateObject(Class aClass, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((unavailable("not available in automatic reference counting mode")));
+extern "C" id NSAllocateObject(Class aClass, NSUInteger extraBytes, NSZone * _Nullable zone) ;
 
-extern "C" void NSDeallocateObject(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
+extern "C" void NSDeallocateObject(id object) ;
 
-extern "C" id NSCopyObject(id object, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((unavailable("not available in automatic reference counting mode"))) __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=6.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
+extern "C" id NSCopyObject(id object, NSUInteger extraBytes, NSZone * _Nullable zone) __attribute__((availability(macos,introduced=10.0,deprecated=10.8,message="Not supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=6.0,message="Not supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Not supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Not supported")));
 
-extern "C" BOOL NSShouldRetainWithZone(id anObject, NSZone * _Nullable requestedZone) __attribute__((unavailable("not available in automatic reference counting mode")));
+extern "C" BOOL NSShouldRetainWithZone(id anObject, NSZone * _Nullable requestedZone) ;
 
-extern "C" void NSIncrementExtraRefCount(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
+extern "C" void NSIncrementExtraRefCount(id object) ;
 
-extern "C" BOOL NSDecrementExtraRefCountWasZero(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
+extern "C" BOOL NSDecrementExtraRefCountWasZero(id object) ;
 
-extern "C" NSUInteger NSExtraRefCount(id object) __attribute__((unavailable("not available in automatic reference counting mode")));
-
-
-
-
+extern "C" NSUInteger NSExtraRefCount(id object) ;
 static __inline__ __attribute__((always_inline)) __attribute__((cf_returns_retained)) CFTypeRef _Nullable CFBridgingRetain(id _Nullable X) {
-    return (__bridge_retained CFTypeRef)X;
+    return X ? CFRetain((CFTypeRef)X) : __null;
 }
+
 
 static __inline__ __attribute__((always_inline)) id _Nullable CFBridgingRelease(CFTypeRef __attribute__((cf_consumed)) _Nullable X) {
-    return (__bridge_transfer id)X;
+    return ((id (*)(id, SEL))(void *)objc_msgSend)((id)CFMakeCollectable(X), sel_registerName("autorelease"));
 }
+#pragma clang assume_nonnull end
 
 
 
@@ -11281,6 +11331,8 @@ typedef struct objc_object NSArray;
 typedef struct {} _objc_exc_NSArray;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef struct {
     unsigned long state;
     id __attribute__((objc_ownership(none))) _Nullable * _Nullable itemsPtr;
@@ -11318,6 +11370,7 @@ struct NSEnumerator_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -11342,7 +11395,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSValue
@@ -11470,6 +11523,7 @@ struct NSNumber_IMPL {
 // - (void)getValue:(void *)value;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSString;
@@ -11480,7 +11534,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef struct _NSRange {
     NSUInteger location;
@@ -11520,6 +11574,7 @@ extern "C" NSRange NSRangeFromString(NSString *aString);
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSData;
@@ -11550,7 +11605,7 @@ typedef struct {} _objc_exc_NSURL;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSArray
@@ -11740,15 +11795,16 @@ struct NSMutableArray_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
+#pragma clang assume_nonnull begin
 
 
-__attribute__((unavailable("not available in automatic reference counting mode")))
 
 #ifndef _REWRITER_typedef_NSAutoreleasePool
 #define _REWRITER_typedef_NSAutoreleasePool
@@ -11773,6 +11829,7 @@ struct NSAutoreleasePool_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -11783,6 +11840,8 @@ typedef unsigned short unichar;
 
 
 
+
+#pragma clang assume_nonnull begin
 
 // @class NSItemProvider;
 #ifndef _REWRITER_typedef_NSItemProvider
@@ -12039,6 +12098,7 @@ typedef NSInteger NSItemProviderErrorCode; enum {
     NSItemProviderUnexpectedValueClassError = -1100,
     NSItemProviderUnavailableCoercionError __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = -1200
 } __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
 
 
 // @class NSData;
@@ -12085,7 +12145,7 @@ typedef struct {} _objc_exc_NSLocale;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -12597,6 +12657,7 @@ struct NSConstantString_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -12633,7 +12694,7 @@ typedef struct {} _objc_exc_NSURL;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSDictionary
@@ -12809,6 +12870,7 @@ struct NSMutableDictionary_IMPL {
 // - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(K __attribute__((objc_ownership(none))) _Nullable [_Nonnull])buffer count:(NSUInteger)len;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -12838,7 +12900,7 @@ typedef struct {} _objc_exc_NSString;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSSet
@@ -12960,7 +13022,7 @@ typedef struct {} _objc_exc_NSCountedSet;
 
 struct NSCountedSet_IMPL {
 	struct NSMutableSet_IMPL NSMutableSet_IVARS;
-	__strong id _table;
+	id _table;
 	void *_reserved;
 };
 
@@ -12978,6 +13040,7 @@ struct NSCountedSet_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSDictionary;
 #ifndef _REWRITER_typedef_NSDictionary
 #define _REWRITER_typedef_NSDictionary
@@ -13025,6 +13088,8 @@ typedef struct {} _objc_exc_NSLock;
 typedef NSString * NSProgressKind __attribute__((swift_wrapper(struct)));
 typedef NSString * NSProgressUserInfoKey __attribute__((swift_wrapper(struct)));
 typedef NSString * NSProgressFileOperationKind __attribute__((swift_wrapper(struct)));
+
+#pragma clang assume_nonnull begin
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_9)))
 
 #ifndef _REWRITER_typedef_NSProgress
@@ -13037,23 +13102,23 @@ struct NSProgress_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSProgress *__weak _parent;
 	int64_t _reserved4;
-	__strong id _values;
+	id _values;
 	void (*_resumingHandler)();
 	void (*_cancellationHandler)();
 	void (*_pausingHandler)();
 	void (*_prioritizationHandler)();
 	uint64_t _flags;
-	__strong id _userInfoProxy;
-	NSString *__strong _publisherID;
-	__strong id _reserved5;
+	id _userInfoProxy;
+	NSString *_publisherID;
+	id _reserved5;
 	NSInteger _reserved6;
 	NSInteger _reserved7;
 	NSInteger _reserved8;
-	NSMutableDictionary *__strong _acknowledgementHandlersByLowercaseBundleID;
-	NSMutableDictionary *__strong _lastNotificationTimesByKey;
-	NSMutableDictionary *__strong _userInfoLastNotificationTimesByKey;
-	NSLock *__strong _lock;
-	NSMutableSet *__strong _children;
+	NSMutableDictionary *_acknowledgementHandlersByLowercaseBundleID;
+	NSMutableDictionary *_lastNotificationTimesByKey;
+	NSMutableDictionary *_userInfoLastNotificationTimesByKey;
+	NSLock *_lock;
+	NSMutableSet *_children;
 };
 
 
@@ -13287,6 +13352,7 @@ extern "C" NSProgressUserInfoKey const NSProgressFileAnimationImageOriginalRectK
 
 
 extern "C" NSProgressUserInfoKey const NSProgressFileIconKey __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+#pragma clang assume_nonnull end
 
 
 
@@ -13315,7 +13381,7 @@ typedef struct {} _objc_exc_NSOperationQueue;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -13385,6 +13451,7 @@ struct NSNotificationCenter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
@@ -13424,7 +13491,7 @@ typedef struct {} _objc_exc_NSNumber;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -13438,13 +13505,13 @@ typedef struct {} _objc_exc_NSBundle;
 struct NSBundle_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _flags;
-	__strong id _cfBundle;
+	id _cfBundle;
 	NSUInteger _reserved2;
-	__unsafe_unretained Class _principalClass;
-	__strong id _initialPath;
-	__strong id _resolvedPath;
-	__strong id _reserved3;
-	__strong id _lock;
+	Class _principalClass;
+	id _initialPath;
+	id _resolvedPath;
+	id _reserved3;
+	id _lock;
 };
 
 
@@ -13636,6 +13703,7 @@ extern "C" NSNotificationName const NSBundleResourceRequestLowDiskSpaceNotificat
 
 
 extern "C" double const NSBundleResourceRequestLoadingPriorityUrgent __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(macos,unavailable)));
+#pragma clang assume_nonnull end
 
 
 
@@ -13850,7 +13918,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 extern "C" NSNotificationName const NSSystemClockDidChangeNotification __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 
@@ -13918,6 +13986,7 @@ struct NSDate_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -13952,6 +14021,8 @@ typedef struct objc_object NSArray;
 typedef struct {} _objc_exc_NSArray;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSString * NSCalendarIdentifier __attribute__((swift_wrapper(struct)));
 
 extern "C" NSCalendarIdentifier const NSCalendarIdentifierGregorian __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=4.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -14323,6 +14394,7 @@ struct NSDateComponents_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSData;
 #ifndef _REWRITER_typedef_NSData
 #define _REWRITER_typedef_NSData
@@ -14331,7 +14403,7 @@ typedef struct {} _objc_exc_NSData;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 enum {
     NSOpenStepUnicodeReservedBase = 0xF400
@@ -14427,6 +14499,7 @@ struct NSMutableCharacterSet_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -14453,7 +14526,7 @@ typedef struct {} _objc_exc_NSSet;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -14509,8 +14582,8 @@ struct NSCoder_IMPL {
 // - (nullable id)decodePropertyList;
 
 
-// - (void)setObjectZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
-// - (nullable NSZone *)objectZone __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (void)setObjectZone:(nullable NSZone *)zone ;
+// - (nullable NSZone *)objectZone ;
 
 // @property (readonly) unsigned int systemVersion;
 
@@ -14596,6 +14669,7 @@ extern "C" NSObject * _Nullable NXReadNSObjectFromCoder(NSCoder *decoder) __attr
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -14623,7 +14697,7 @@ typedef struct {} _objc_exc_NSError;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -14851,6 +14925,17 @@ struct NSPurgeableData_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)))
 
@@ -14897,6 +14982,7 @@ struct NSDateInterval_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -14906,6 +14992,16 @@ struct NSDateInterval_IMPL {
 
 
 
+
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 typedef NSString * NSAttributedStringKey __attribute__((swift_wrapper(struct)));
 
@@ -14992,6 +15088,7 @@ struct NSMutableAttributedString_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
@@ -15015,7 +15112,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSFormattingContext; enum {
 
@@ -15077,6 +15174,7 @@ struct NSFormatter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSLocale;
@@ -15129,6 +15227,8 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
+#pragma clang assume_nonnull begin
+
 #ifndef _REWRITER_typedef_NSDateFormatter
 #define _REWRITER_typedef_NSDateFormatter
 typedef struct objc_object NSDateFormatter;
@@ -15137,7 +15237,7 @@ typedef struct {} _objc_exc_NSDateFormatter;
 
 struct NSDateFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSMutableDictionary *__strong _attributes;
+	NSMutableDictionary *_attributes;
 	CFDateFormatterRef _formatter;
 	NSUInteger _counter;
 };
@@ -15228,6 +15328,7 @@ typedef NSUInteger NSDateFormatterBehavior; enum {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -15261,7 +15362,7 @@ typedef struct {} _objc_exc_NSDate;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSDateIntervalFormatterStyle; enum {
     NSDateIntervalFormatterNoStyle = 0,
@@ -15284,17 +15385,17 @@ typedef struct {} _objc_exc_NSDateIntervalFormatter;
 
 struct NSDateIntervalFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSLocale *__strong _locale;
-	NSCalendar *__strong _calendar;
-	NSTimeZone *__strong _timeZone;
-	NSString *__strong _dateTemplate;
-	NSString *__strong _dateTemplateFromStyles;
+	NSLocale *_locale;
+	NSCalendar *_calendar;
+	NSTimeZone *_timeZone;
+	NSString *_dateTemplate;
+	NSString *_dateTemplateFromStyles;
 	void *_formatter;
 	NSDateIntervalFormatterStyle _dateStyle;
 	NSDateIntervalFormatterStyle _timeStyle;
 	BOOL _modified;
 	BOOL _useTemplate;
-	__strong dispatch_semaphore_t _lock;
+	dispatch_semaphore_t _lock;
 	void *_reserved[4];
 };
 
@@ -15310,6 +15411,17 @@ struct NSDateIntervalFormatter_IMPL {
 // - (nullable NSString *)stringFromDateInterval:(NSDateInterval *)dateInterval __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
 
 /* @end */
+
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
@@ -15374,7 +15486,7 @@ typedef struct {} _objc_exc_NSISO8601DateFormatter;
 struct NSISO8601DateFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
 	CFDateFormatterRef _formatter;
-	NSTimeZone *__strong _timeZone;
+	NSTimeZone *_timeZone;
 	NSISO8601DateFormatOptions _formatOptions;
 };
 
@@ -15396,6 +15508,7 @@ struct NSISO8601DateFormatter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -15410,7 +15523,7 @@ typedef struct {} _objc_exc_NSNumberFormatter;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSMassFormatterUnit; enum {
     NSMassFormatterUnitGram = 11,
@@ -15456,13 +15569,14 @@ struct NSMassFormatter_IMPL {
 // - (BOOL)getObjectValue:(out id _Nullable * _Nullable)obj forString:(NSString *)string errorDescription:(out NSString * _Nullable * _Nullable)error;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSLengthFormatterUnit; enum {
     NSLengthFormatterUnitMillimeter = 8,
@@ -15511,13 +15625,14 @@ struct NSLengthFormatter_IMPL {
 // - (BOOL)getObjectValue:(out id _Nullable * _Nullable)obj forString:(NSString *)string errorDescription:(out NSString * _Nullable * _Nullable)error;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSEnergyFormatterUnit; enum {
     NSEnergyFormatterUnitJoule = 11,
@@ -15561,8 +15676,23 @@ struct NSEnergyFormatter_IMPL {
 // - (BOOL)getObjectValue:(out id _Nullable * _Nullable)obj forString:(NSString *)string errorDescription:(out NSString * _Nullable * _Nullable)error;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 
 
@@ -15632,7 +15762,7 @@ typedef struct {} _objc_exc_NSUnit;
 
 struct NSUnit_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _symbol;
+	NSString *_symbol;
 };
 
 
@@ -15660,7 +15790,7 @@ typedef struct {} _objc_exc_NSDimension;
 struct NSDimension_IMPL {
 	struct NSUnit_IMPL NSUnit_IVARS;
 	NSUInteger _reserved;
-	NSUnitConverter *__strong _converter;
+	NSUnitConverter *_converter;
 };
 
 
@@ -16264,8 +16394,9 @@ struct NSUnitVolume_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_12)))
 
@@ -16277,7 +16408,7 @@ typedef struct {} _objc_exc_NSMeasurement;
 
 struct NSMeasurement_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong UnitType _unit;
+	UnitType _unit;
 	double _doubleValue;
 };
 
@@ -16311,6 +16442,7 @@ struct NSMeasurement_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -16364,7 +16496,7 @@ typedef struct {} _objc_exc_NSCache;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSNumberFormatterBehavior; enum {
     NSNumberFormatterBehaviorDefault = 0,
@@ -16383,11 +16515,11 @@ typedef struct {} _objc_exc_NSNumberFormatter;
 
 struct NSNumberFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	NSMutableDictionary *__strong _attributes;
+	NSMutableDictionary *_attributes;
 	CFNumberFormatterRef _formatter;
 	NSUInteger _counter;
 	NSNumberFormatterBehavior _behavior;
-	NSRecursiveLock *__strong _lock;
+	NSRecursiveLock *_lock;
 	unsigned long _stateBitMask;
 	NSInteger _cacheGeneration;
 	void *_reserved[8];
@@ -16537,6 +16669,7 @@ typedef struct {} _objc_exc_NSDecimalNumberHandler;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -16578,7 +16711,7 @@ typedef struct {} _objc_exc_NSString;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSLocale
@@ -16734,8 +16867,9 @@ extern "C" NSString * const NSRepublicOfChinaCalendar __attribute__((availabilit
 extern "C" NSString * const NSPersianCalendar __attribute__((availability(macosx,introduced=10_6,deprecated=10_10,message="" "Use NSCalendarIdentifierPersian instead")));
 extern "C" NSString * const NSIndianCalendar __attribute__((availability(macosx,introduced=10_6,deprecated=10_10,message="" "Use NSCalendarIdentifierIndian instead")));
 extern "C" NSString * const NSISO8601Calendar __attribute__((availability(macosx,introduced=10_6,deprecated=10_10,message="" "Use NSCalendarIdentifierISO8601 instead")));
+#pragma clang assume_nonnull end
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSMeasurementFormatterUnitOptions; enum {
     NSMeasurementFormatterUnitOptionsProvidedUnit = (1UL << 0),
@@ -16783,6 +16917,16 @@ struct NSMeasurementFormatter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_11)))
 
 #ifndef _REWRITER_typedef_NSPersonNameComponents
@@ -16793,7 +16937,7 @@ typedef struct {} _objc_exc_NSPersonNameComponents;
 
 struct NSPersonNameComponents_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private;
+	id _private;
 };
 
 
@@ -16823,6 +16967,16 @@ struct NSPersonNameComponents_IMPL {
 // @property (copy, nullable) NSPersonNameComponents *phoneticRepresentation;
 
 /* @end */
+
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSPersonNameComponentsFormatterStyle; enum {
     NSPersonNameComponentsFormatterStyleDefault = 0,
@@ -16860,7 +17014,7 @@ typedef struct {} _objc_exc_NSPersonNameComponentsFormatter;
 
 struct NSPersonNameComponentsFormatter_IMPL {
 	struct NSFormatter_IMPL NSFormatter_IVARS;
-	__strong id _private;
+	id _private;
 };
 
 
@@ -16916,6 +17070,7 @@ extern "C" NSString * const NSPersonNameComponentNickname __attribute__((availab
 
 
 extern "C" NSString * const NSPersonNameComponentDelimiter __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
 
 
 
@@ -16930,6 +17085,8 @@ typedef struct objc_object NSDictionary;
 typedef struct {} _objc_exc_NSDictionary;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSRoundingMode; enum {
     NSRoundPlain,
     NSRoundDown,
@@ -16996,6 +17153,7 @@ extern "C" NSCalculationError NSDecimalPower(NSDecimal *result, const NSDecimal 
 extern "C" NSCalculationError NSDecimalMultiplyByPowerOf10(NSDecimal *result, const NSDecimal *number, short power, NSRoundingMode roundingMode);
 
 extern "C" NSString *NSDecimalString(const NSDecimal *dcm, id _Nullable locale);
+#pragma clang assume_nonnull end
 
 
 
@@ -17027,7 +17185,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScanner
@@ -17079,6 +17237,7 @@ struct NSScanner_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSString;
@@ -17107,7 +17266,7 @@ typedef struct {} _objc_exc_NSNumber;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -17144,10 +17303,10 @@ typedef struct {} _objc_exc_NSException;
 
 struct NSException_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong name;
-	NSString *__strong reason;
-	NSDictionary *__strong userInfo;
-	__strong id reserved;
+	NSString *name;
+	NSString *reason;
+	NSDictionary *userInfo;
+	id reserved;
 };
 
 
@@ -17207,8 +17366,9 @@ struct NSAssertionHandler_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -17381,6 +17541,7 @@ struct NSDecimalNumberHandler_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -17411,7 +17572,7 @@ typedef struct {} _objc_exc_NSString;
 
 typedef NSString *NSErrorDomain;
 
-
+#pragma clang assume_nonnull begin
 
 
 extern "C" NSErrorDomain const NSCocoaErrorDomain;
@@ -17452,8 +17613,8 @@ struct NSError_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_reserved;
 	NSInteger _code;
-	NSString *__strong _domain;
-	NSDictionary *__strong _userInfo;
+	NSString *_domain;
+	NSDictionary *_userInfo;
 };
 
 
@@ -17514,6 +17675,7 @@ struct NSError_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -17549,7 +17711,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 extern "C" NSRunLoopMode const NSDefaultRunLoopMode;
 extern "C" NSRunLoopMode const NSRunLoopCommonModes __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -17563,11 +17725,11 @@ typedef struct {} _objc_exc_NSRunLoop;
 
 struct NSRunLoop_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _rl;
-	__strong id _dperf;
-	__strong id _perft;
-	__strong id _info;
-	__strong id _ports;
+	id _rl;
+	id _dperf;
+	id _perft;
+	id _info;
+	id _ports;
 	void *_reserved[6];
 };
 
@@ -17632,6 +17794,7 @@ struct NSRunLoop_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
@@ -17653,7 +17816,7 @@ typedef struct {} _objc_exc_NSError;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSFileHandle
@@ -17767,12 +17930,22 @@ struct NSPipe_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 // @interface NSString (NSStringPathExtensions)
 
@@ -17863,6 +18036,7 @@ typedef NSUInteger NSSearchPathDomainMask; enum {
 };
 
 extern "C" NSArray<NSString *> *NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde);
+#pragma clang assume_nonnull end
 
 
 
@@ -17953,8 +18127,8 @@ typedef struct {} _objc_exc_NSURLHandle;
 
 struct NSURLHandle_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSMutableArray *__strong _clients;
-	__strong id _data;
+	NSMutableArray *_clients;
+	id _data;
 	NSURLHandleStatus _status;
 	NSInteger _reserved;
 };
@@ -18029,7 +18203,7 @@ typedef struct {} _objc_exc_NSDictionary;
 
 typedef NSString * NSURLResourceKey __attribute__((swift_wrapper(struct)));
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -18043,8 +18217,8 @@ typedef struct {} _objc_exc_NSURL;
 
 struct NSURL_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _urlString;
-	NSURL *__strong _baseURL;
+	NSString *_urlString;
+	NSURL *_baseURL;
 	void *_clients;
 	void *_reserved;
 };
@@ -18465,8 +18639,8 @@ typedef struct {} _objc_exc_NSURLQueryItem;
 
 struct NSURLQueryItem_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _name;
-	NSString *__strong _value;
+	NSString *_name;
+	NSString *_value;
 };
 
 // - (instancetype)initWithName:(NSString *)name value:(nullable NSString *)value __attribute__((objc_designated_initializer));
@@ -18660,6 +18834,7 @@ struct NSFileSecurity_IMPL {
 // - (nullable NSURLHandle *)URLHandleUsingCache:(BOOL)shouldUseCache __attribute__((availability(macos,introduced=10.0,deprecated=10.4,message="Use NSURLConnection instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=2.0,message="Use NSURLConnection instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=2.0,message="Use NSURLConnection instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=9.0,message="Use NSURLConnection instead")));
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -18726,7 +18901,7 @@ typedef NSString * NSFileProtectionType __attribute__((swift_wrapper(enum)));
 
 typedef NSString * NSFileProviderServiceName __attribute__((swift_wrapper(struct)));
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -19160,9 +19335,9 @@ typedef struct {} _objc_exc_NSFileProviderService;
 
 struct NSFileProviderService_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong NSFileProviderServiceName _name;
-	__strong id _endpointCreatingProxy;
-	__strong dispatch_group_t _requestFinishedGroup;
+	NSFileProviderServiceName _name;
+	id _endpointCreatingProxy;
+	dispatch_group_t _requestFinishedGroup;
 };
 
 // - (void)getFileProviderConnectionWithCompletionHandler:(void (^)(NSXPCConnection * _Nullable connection, NSError * _Nullable error))completionHandler;
@@ -19227,11 +19402,13 @@ extern "C" NSFileAttributeKey const NSFileSystemFreeNodes;
 // - (nullable NSNumber *)fileGroupOwnerAccountID;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSPointerFunctionsOptions; enum {
 
 
@@ -19291,6 +19468,7 @@ struct NSPointerFunctions_IMPL {
     __attribute__((availability(macosx,introduced=10.5,deprecated=10.12,message="Garbage collection no longer supported"))) __attribute__((availability(ios,introduced=2.0,deprecated=10.0,message="Garbage collection no longer supported"))) __attribute__((availability(watchos,introduced=2.0,deprecated=3.0,message="Garbage collection no longer supported"))) __attribute__((availability(tvos,introduced=9.0,deprecated=10.0,message="Garbage collection no longer supported")));
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -19317,7 +19495,7 @@ typedef struct {} _objc_exc_NSHashTable;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -19389,6 +19567,16 @@ struct NSHashTable_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 typedef struct {NSUInteger _pi; NSUInteger _si; void * _Nullable _bs;} NSHashEnumerator;
 
 extern "C" void NSFreeHashTable(NSHashTable *table);
@@ -19430,6 +19618,7 @@ extern "C" const NSHashTableCallBacks NSOwnedObjectIdentityHashCallBacks;
 extern "C" const NSHashTableCallBacks NSOwnedPointerHashCallBacks;
 extern "C" const NSHashTableCallBacks NSPointerToStructHashCallBacks;
 extern "C" const NSHashTableCallBacks NSIntHashCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -19475,7 +19664,7 @@ typedef struct {} _objc_exc_NSURL;
 
 typedef NSString * NSHTTPCookiePropertyKey __attribute__((swift_wrapper(struct)));
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -19572,7 +19761,7 @@ typedef struct {} _objc_exc_NSHTTPCookie;
 
 struct NSHTTPCookie_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSHTTPCookieInternal *__strong _cookiePrivate;
+	NSHTTPCookieInternal *_cookiePrivate;
 };
 
 // - (nullable instancetype)initWithProperties:(NSDictionary<NSHTTPCookiePropertyKey, id> *)properties;
@@ -19619,6 +19808,7 @@ struct NSHTTPCookie_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -19661,6 +19851,8 @@ typedef struct objc_object NSSortDescriptor;
 typedef struct {} _objc_exc_NSSortDescriptor;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSHTTPCookieAcceptPolicy; enum {
     NSHTTPCookieAcceptPolicyAlways,
     NSHTTPCookieAcceptPolicyNever,
@@ -19684,7 +19876,7 @@ typedef struct {} _objc_exc_NSHTTPCookieStorage;
 
 struct NSHTTPCookieStorage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSHTTPCookieStorageInternal *__strong _internal;
+	NSHTTPCookieStorageInternal *_internal;
 };
 
 @property(class, readonly, strong) NSHTTPCookieStorage *sharedHTTPCookieStorage;
@@ -19754,6 +19946,16 @@ extern "C" NSNotificationName const NSHTTPCookieManagerAcceptPolicyChangedNotifi
 
 
 extern "C" NSNotificationName const NSHTTPCookieManagerCookiesChangedNotification;
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
 
 #ifndef _REWRITER_typedef_NSIndexPath
 #define _REWRITER_typedef_NSIndexPath
@@ -19795,6 +19997,9 @@ struct NSIndexPath_IMPL {
 // - (void)getIndexes:(NSUInteger *)indexes;
 /* @end */
 
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 
 #ifndef _REWRITER_typedef_NSIndexSet
 #define _REWRITER_typedef_NSIndexSet
@@ -19819,8 +20024,8 @@ struct NSIndexSet_IMPL {
 	} _singleRange;
 
 	struct  {
-	void *_data;
-	void *_reserved;
+	void * _Nonnull _data;
+	void * _Nonnull _reserved;
 	} _multipleRanges;
 	} _internal;
 };
@@ -19911,6 +20116,7 @@ struct NSMutableIndexSet_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -19926,7 +20132,7 @@ typedef struct {} _objc_exc_NSMethodSignature;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(swift, unavailable, message="NSInvocation and related APIs not available")))
 
@@ -19940,8 +20146,8 @@ struct NSInvocation_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_frame;
 	void *_retdata;
-	__strong id _signature;
-	__strong id _container;
+	id _signature;
+	id _container;
 	uint8_t _retainedArgs;
 	uint8_t _reserved[15];
 };
@@ -19968,6 +20174,7 @@ struct NSInvocation_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -20001,7 +20208,7 @@ typedef struct {} _objc_exc_NSData;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSJSONReadingOptions; enum {
     NSJSONReadingMutableContainers = (1UL << 0),
@@ -20050,6 +20257,7 @@ struct NSJSONSerialization_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -20085,7 +20293,7 @@ typedef struct {} _objc_exc_NSString;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_7)))
 
@@ -20265,6 +20473,7 @@ struct NSMutableOrderedSet_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -20280,6 +20489,15 @@ typedef struct {} _objc_exc_NSError;
 typedef struct objc_object NSString;
 typedef struct {} _objc_exc_NSString;
 #endif
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 
 extern "C" NSExceptionName const NSUndefinedKeyException;
 
@@ -20427,6 +20645,7 @@ extern "C" NSKeyValueOperator const NSUnionOfSetsKeyValueOperator;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSIndexSet;
 #ifndef _REWRITER_typedef_NSIndexSet
 #define _REWRITER_typedef_NSIndexSet
@@ -20441,7 +20660,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -20596,6 +20815,7 @@ extern "C" NSKeyValueChangeKey const NSKeyValueChangeNotificationIsPriorKey __at
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -20640,7 +20860,7 @@ typedef struct {} _objc_exc_NSOutputStream;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSPropertyListMutabilityOptions; enum {
     NSPropertyListImmutable = kCFPropertyListImmutable,
@@ -20701,6 +20921,7 @@ struct NSPropertyListSerialization_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -20713,6 +20934,9 @@ struct NSPropertyListSerialization_IMPL {
 
 typedef double CGFloat;
 typedef struct __attribute__((objc_bridge(id))) __IOSurface *IOSurfaceRef __attribute__((swift_name("IOSurfaceRef")));
+#pragma clang assume_nonnull begin
+
+
 struct
 CGPoint {
     CGFloat x;
@@ -21012,9 +21236,10 @@ __CGSizeEqualToSize(CGSize size1, CGSize size2)
 {
   return size1.width == size2.width && size1.height == size2.height;
 }
+#pragma clang assume_nonnull end
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -21254,6 +21479,7 @@ extern "C" NSRect NSRectFromString(NSString *aString);
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -21284,7 +21510,7 @@ typedef struct {} _objc_exc_NSString;
 
 // @protocol NSKeyedArchiverDelegate, NSKeyedUnarchiverDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 extern "C" NSExceptionName const NSInvalidArchiveOperationException;
 extern "C" NSExceptionName const NSInvalidUnarchiveOperationException;
@@ -21302,20 +21528,20 @@ struct NSKeyedArchiver_IMPL {
 	struct NSCoder_IMPL NSCoder_IVARS;
 	void *_stream;
 	NSUInteger _flags;
-	__strong id _delegate;
-	__strong id _containers;
-	__strong id _objects;
-	__strong id _objRefMap;
-	__strong id _replacementMap;
-	__strong id _classNameMap;
-	__strong id _conditionals;
-	__strong id _classes;
+	id _delegate;
+	id _containers;
+	id _objects;
+	id _objRefMap;
+	id _replacementMap;
+	id _classNameMap;
+	id _conditionals;
+	id _classes;
 	NSUInteger _genericKey;
 	void *_cache;
 	NSUInteger _cacheSize;
 	NSUInteger _estimatedCount;
 	void *_reserved2;
-	__strong id _visited;
+	id _visited;
 	void *_reserved0;
 };
 
@@ -21370,21 +21596,21 @@ typedef struct {} _objc_exc_NSKeyedUnarchiver;
 
 struct NSKeyedUnarchiver_IMPL {
 	struct NSCoder_IMPL NSCoder_IVARS;
-	__strong id _delegate;
+	id _delegate;
 	uint32_t _flags;
-	__strong id _objRefMap;
-	__strong id _replacementMap;
-	__strong id _nameClassMap;
-	__strong id _tmpRefObjMap;
-	__strong id _refObjMap;
+	id _objRefMap;
+	id _replacementMap;
+	id _nameClassMap;
+	id _tmpRefObjMap;
+	id _refObjMap;
 	int32_t _genericKey;
-	__strong id _data;
+	id _data;
 	void *_offsetData;
-	__strong id _containers;
-	__strong id _objects;
+	id _containers;
+	id _objects;
 	const uint8_t *_bytes;
 	uint64_t _len;
-	__strong id _helper;
+	id _helper;
 	void *_reserved0;
 };
 
@@ -21501,6 +21727,7 @@ struct NSKeyedUnarchiver_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -21516,7 +21743,7 @@ typedef struct {} _objc_exc_NSDate;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 // @protocol NSLocking
 
@@ -21621,6 +21848,7 @@ struct NSCondition_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -21639,6 +21867,15 @@ typedef struct {} _objc_exc_NSDictionary;
 typedef struct objc_object NSMapTable;
 typedef struct {} _objc_exc_NSMapTable;
 #endif
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 
 static const NSPointerFunctionsOptions NSMapTableStrongMemory __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = NSPointerFunctionsStrongMemory;
 
@@ -21698,6 +21935,16 @@ struct NSMapTable_IMPL {
 
 // - (NSDictionary<KeyType, ObjectType> *)dictionaryRepresentation;
 /* @end */
+
+#pragma clang assume_nonnull end
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
 
 typedef struct {NSUInteger _pi; NSUInteger _si; void * _Nullable _bs;} NSMapEnumerator;
 
@@ -21765,13 +22012,14 @@ extern "C" const NSMapTableValueCallBacks NSObjectMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSNonRetainedObjectMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSOwnedPointerMapValueCallBacks;
 extern "C" const NSMapTableValueCallBacks NSIntMapValueCallBacks __attribute__((availability(macos,introduced=10.0,deprecated=10.5,message="Not supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+#pragma clang assume_nonnull end
 
 
 
 
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(swift, unavailable, message="NSInvocation and related APIs not available")))
 
@@ -21803,6 +22051,7 @@ struct NSMethodSignature_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -21837,7 +22086,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSPostingStyle; enum {
     NSPostWhenIdle = 1,
@@ -21860,11 +22109,11 @@ typedef struct {} _objc_exc_NSNotificationQueue;
 
 struct NSNotificationQueue_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _notificationCenter;
-	__strong id _asapQueue;
-	__strong id _asapObs;
-	__strong id _idleQueue;
-	__strong id _idleObs;
+	id _notificationCenter;
+	id _asapQueue;
+	id _asapObs;
+	id _idleQueue;
+	id _idleObs;
 };
 
 @property (class, readonly, strong) NSNotificationQueue *defaultQueue;
@@ -21878,13 +22127,14 @@ struct NSNotificationQueue_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSNull
@@ -21902,6 +22152,7 @@ struct NSNull_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSArray;
@@ -21917,6 +22168,16 @@ typedef struct objc_object NSSet;
 typedef struct {} _objc_exc_NSSet;
 #endif
 
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_5)))
 
 #ifndef _REWRITER_typedef_NSOperation
@@ -21927,7 +22188,7 @@ typedef struct {} _objc_exc_NSOperation;
 
 struct NSOperation_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private;
+	id _private;
 	int32_t _private1;
 	int32_t _private1b;
 };
@@ -21985,7 +22246,7 @@ typedef struct {} _objc_exc_NSBlockOperation;
 
 struct NSBlockOperation_IMPL {
 	struct NSOperation_IMPL NSOperation_IVARS;
-	__strong id _private2;
+	id _private2;
 	void *_reserved2;
 };
 
@@ -22010,8 +22271,8 @@ typedef struct {} _objc_exc_NSInvocationOperation;
 
 struct NSInvocationOperation_IMPL {
 	struct NSOperation_IMPL NSOperation_IVARS;
-	__strong id _inv;
-	__strong id _exception;
+	id _inv;
+	id _exception;
 	void *_reserved2;
 };
 
@@ -22041,7 +22302,7 @@ typedef struct {} _objc_exc_NSOperationQueue;
 
 struct NSOperationQueue_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private;
+	id _private;
 	void *_reserved;
 };
 
@@ -22073,6 +22334,7 @@ struct NSOperationQueue_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -22100,7 +22362,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -22148,7 +22410,9 @@ struct NSOrthography_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
+#pragma clang assume_nonnull begin
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_5)))
 
 #ifndef _REWRITER_typedef_NSPointerArray
@@ -22205,6 +22469,7 @@ struct NSPointerArray_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -22257,7 +22522,7 @@ typedef struct {} _objc_exc_NSData;
 
 // @protocol NSPortDelegate, NSMachPortDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 extern "C" NSNotificationName const NSPortDidBecomeInvalidNotification;
 
@@ -22332,7 +22597,7 @@ typedef struct {} _objc_exc_NSMachPort;
 
 struct NSMachPort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
-	__strong id _delegate;
+	id _delegate;
 	NSUInteger _flags;
 	uint32_t _machPort;
 	NSUInteger _reserved;
@@ -22390,7 +22655,7 @@ typedef struct {} _objc_exc_NSMessagePort;
 struct NSMessagePort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
 	void *_port;
-	__strong id _delegate;
+	id _delegate;
 };
 
 
@@ -22412,12 +22677,12 @@ typedef struct {} _objc_exc_NSSocketPort;
 struct NSSocketPort_IMPL {
 	struct NSPort_IMPL NSPort_IVARS;
 	void *_receiver;
-	__strong id _connectors;
+	id _connectors;
 	void *_loops;
 	void *_data;
-	__strong id _signature;
-	__strong id _delegate;
-	__strong id _lock;
+	id _signature;
+	id _delegate;
+	id _lock;
 	NSUInteger _maxSize;
 	NSUInteger _useCount;
 	NSUInteger _reserved;
@@ -22439,6 +22704,17 @@ struct NSSocketPort_IMPL {
 // @property (readonly) NSSocketNativeHandle socket;
 
 /* @end */
+
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 enum {
     NSWindowsNTOperatingSystem = 1,
@@ -22485,10 +22761,10 @@ typedef struct {} _objc_exc_NSProcessInfo;
 
 struct NSProcessInfo_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSDictionary *__strong environment;
-	NSArray *__strong arguments;
-	NSString *__strong hostName;
-	NSString *__strong name;
+	NSDictionary *environment;
+	NSArray *arguments;
+	NSString *hostName;
+	NSString *name;
 	NSInteger automaticTerminationOptOutCounter;
 };
 
@@ -22634,6 +22910,7 @@ typedef NSInteger NSProcessInfoThermalState; enum {
 
 extern "C" NSNotificationName const NSProcessInfoThermalStateDidChangeNotification __attribute__((availability(macosx,introduced=10.10.3))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0))) __attribute__((availability(tvos,introduced=11.0)));
 extern "C" NSNotificationName const NSProcessInfoPowerStateDidChangeNotification __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(macos,unavailable)));
+#pragma clang assume_nonnull end
 
 
 
@@ -22655,7 +22932,7 @@ typedef struct {} _objc_exc_NSInvocation;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((objc_root_class))
 
@@ -22666,12 +22943,12 @@ typedef struct {} _objc_exc_NSProxy;
 #endif
 
 struct NSProxy_IMPL {
-	__unsafe_unretained Class isa;
+	Class isa;
 };
 
 
 // + (id)alloc;
-// + (id)allocWithZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
+// + (id)allocWithZone:(nullable NSZone *)zone ;
 // + (Class)class;
 
 // - (void)forwardInvocation:(NSInvocation *)invocation;
@@ -22689,6 +22966,7 @@ struct NSProxy_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -22754,7 +23032,7 @@ typedef struct {} _objc_exc_NSRegularExpression;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -22866,6 +23144,7 @@ extern "C" NSTextCheckingKey const NSTextCheckingFlightKey __attribute__((availa
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
@@ -22875,7 +23154,7 @@ typedef struct {} _objc_exc_NSArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -22900,10 +23179,10 @@ typedef struct {} _objc_exc_NSRegularExpression;
 
 struct NSRegularExpression_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _pattern;
+	NSString *_pattern;
 	NSUInteger _options;
 	void *_internal;
-	__strong id _reserved1;
+	id _reserved1;
 	int32_t _checkout;
 	int32_t _reserved2;
 };
@@ -22998,8 +23277,11 @@ struct NSDataDetector_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
+
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSSortDescriptor
@@ -23011,9 +23293,9 @@ typedef struct {} _objc_exc_NSSortDescriptor;
 struct NSSortDescriptor_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _sortDescriptorFlags;
-	NSString *__strong _key;
+	NSString *_key;
 	SEL _selector;
-	__strong id _selectorOrBlock;
+	id _selectorOrBlock;
 };
 
 
@@ -23079,6 +23361,7 @@ struct NSSortDescriptor_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -23145,7 +23428,7 @@ typedef struct {} _objc_exc_NSURL;
 
 typedef NSString * NSStreamPropertyKey __attribute__((swift_wrapper(struct)));
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSStreamStatus; enum {
     NSStreamStatusNotOpen = 0,
@@ -23355,6 +23638,7 @@ extern "C" NSStreamNetworkServiceTypeValue const NSStreamNetworkServiceTypeVideo
 extern "C" NSStreamNetworkServiceTypeValue const NSStreamNetworkServiceTypeBackground __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSStreamNetworkServiceTypeValue const NSStreamNetworkServiceTypeVoice __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSStreamNetworkServiceTypeValue const NSStreamNetworkServiceTypeCallSignaling __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
+#pragma clang assume_nonnull end
 
 
 
@@ -23397,7 +23681,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSThread
@@ -23408,7 +23692,7 @@ typedef struct {} _objc_exc_NSThread;
 
 struct NSThread_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private;
+	id _private;
 	uint8_t _bytes[44];
 };
 
@@ -23479,6 +23763,7 @@ extern "C" NSNotificationName const NSThreadWillExitNotification;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -23525,7 +23810,7 @@ typedef struct {} _objc_exc_NSLocale;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSTimeZone
@@ -23614,6 +23899,16 @@ typedef NSInteger NSTimeZoneNameStyle; enum {
 
 
 extern "C" NSNotificationName const NSSystemTimeZoneDidChangeNotification __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
 
 #ifndef _REWRITER_typedef_NSTimer
 #define _REWRITER_typedef_NSTimer
@@ -23670,6 +23965,7 @@ struct NSTimer_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSURLAuthenticationChallenge;
@@ -23707,6 +24003,8 @@ typedef struct objc_object NSError;
 typedef struct {} _objc_exc_NSError;
 #endif
 
+
+#pragma clang assume_nonnull begin
 // @protocol NSURLAuthenticationChallengeSender <NSObject>
 
 
@@ -23754,7 +24052,7 @@ typedef struct {} _objc_exc_NSURLAuthenticationChallenge;
 
 struct NSURLAuthenticationChallenge_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLAuthenticationChallengeInternal *__strong _internal;
+	NSURLAuthenticationChallengeInternal *_internal;
 };
 
 // - (instancetype)initWithProtectionSpace:(NSURLProtectionSpace *)space proposedCredential:(nullable NSURLCredential *)credential previousFailureCount:(NSInteger)previousFailureCount failureResponse:(nullable NSURLResponse *)response error:(nullable NSError *)error sender:(id<NSURLAuthenticationChallengeSender>)sender;
@@ -23784,6 +24082,8 @@ struct NSURLAuthenticationChallenge_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSURLCacheStoragePolicy; enum
 {
     NSURLCacheStorageAllowed,
@@ -23850,7 +24150,7 @@ typedef struct {} _objc_exc_NSCachedURLResponse;
 
 struct NSCachedURLResponse_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSCachedURLResponseInternal *__strong _internal;
+	NSCachedURLResponseInternal *_internal;
 };
 
 // - (instancetype)initWithResponse:(NSURLResponse *)response data:(NSData *)data;
@@ -23908,7 +24208,7 @@ typedef struct {} _objc_exc_NSURLCache;
 
 struct NSURLCache_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCacheInternal *__strong _internal;
+	NSURLCacheInternal *_internal;
 };
 
 @property (class, strong) NSURLCache *sharedURLCache;
@@ -23954,6 +24254,7 @@ struct NSURLCache_IMPL {
 // - (void)removeCachedResponseForDataTask:(NSURLSessionDataTask *)dataTask __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -24048,6 +24349,8 @@ typedef struct {} _objc_exc_NSOperationQueue;
 
 // @protocol NSURLConnectionDelegate;
 
+#pragma clang assume_nonnull begin
+
 #ifndef _REWRITER_typedef_NSURLConnection
 #define _REWRITER_typedef_NSURLConnection
 typedef struct objc_object NSURLConnection;
@@ -24056,7 +24359,7 @@ typedef struct {} _objc_exc_NSURLConnection;
 
 struct NSURLConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLConnectionInternal *__strong _internal;
+	NSURLConnectionInternal *_internal;
 };
 
 
@@ -24133,6 +24436,7 @@ struct NSURLConnection_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -24142,6 +24446,8 @@ struct NSURLConnection_IMPL {
 
 
 extern "C" {
+
+#pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) OpaqueSecCertificateRef *SecCertificateRef;
 
 
@@ -24268,6 +24574,7 @@ enum
 {
     errSecSuccess = 0,
     errSecUnimplemented = -4,
+    errSecDiskFull = -34,
     errSecDskFull = -34,
     errSecIO = -36,
     errSecOpWr = -49,
@@ -24343,7 +24650,6 @@ enum
     errSecAppleInvalidKeyEndDate = -67593,
     errSecConversionError = -67594,
     errSecAppleSSLv2Rollback = -67595,
-    errSecDiskFull = -34,
     errSecQuotaExceeded = -67596,
     errSecFileTooBig = -67597,
     errSecInvalidDatabaseBlob = -67598,
@@ -24648,7 +24954,7 @@ enum
     errSecTimestampRevocationWarning = -67897,
     errSecTimestampRevocationNotification = -67898,
 };
-
+#pragma clang assume_nonnull end
 
 
 
@@ -25361,7 +25667,7 @@ typedef struct cssm_acl_edit {
 
 
 
-typedef void ( *CSSM_PROC_ADDR) ();
+typedef void ( *CSSM_PROC_ADDR) (void);
 
 typedef CSSM_PROC_ADDR *CSSM_PROC_ADDR_PTR;
 
@@ -26906,6 +27212,15 @@ typedef struct cssm_x509_signed_crl {
 
 
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 CFTypeID SecCertificateGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.3)));
 _Nullable
@@ -27030,7 +27345,7 @@ CFDataRef SecCertificateCopyNormalizedIssuerContent(SecCertificateRef certificat
 _Nullable
 CFDataRef SecCertificateCopyNormalizedSubjectContent(SecCertificateRef certificate, CFErrorRef *error)
         __attribute__((availability(macosx,introduced=10.7,deprecated=10.12.4,message="SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead.")));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -27039,6 +27354,15 @@ CFDataRef SecCertificateCopyNormalizedSubjectContent(SecCertificateRef certifica
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 CFTypeID SecIdentityGetTypeID(void)
      __attribute__((availability(macosx,introduced=10.3)));
 OSStatus SecIdentityCreateWithCertificate(
@@ -27078,7 +27402,7 @@ extern const CFStringRef kSecIdentityDomainDefault __attribute__((availability(m
 
 
 extern const CFStringRef kSecIdentityDomainKerberosKDC __attribute__((availability(macosx,introduced=10.5)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -27086,13 +27410,23 @@ extern const CFStringRef kSecIdentityDomainKerberosKDC __attribute__((availabili
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 CFTypeID SecAccessControlGetTypeID(void)
 __attribute__((availability(macosx,introduced=10.10)));
-
 typedef CFOptionFlags SecAccessControlCreateFlags; enum {
-    kSecAccessControlUserPresence = 1 << 0,
-    kSecAccessControlTouchIDAny __attribute__((availability(macosx,introduced=10_12_1))) = 1u << 1,
-    kSecAccessControlTouchIDCurrentSet __attribute__((availability(macosx,introduced=10_12_1))) = 1u << 3,
+    kSecAccessControlUserPresence = 1u << 0,
+    kSecAccessControlBiometryAny __attribute__((availability(macosx,introduced=10_13_4))) = 1u << 1,
+    kSecAccessControlTouchIDAny __attribute__((availability(macos,introduced=10.12.1,deprecated=10.13.4,replacement="kSecAccessControlBiometryAny"))) __attribute__((availability(ios,introduced=9.0,deprecated=11.3,replacement="kSecAccessControlBiometryAny"))) = 1u << 1,
+    kSecAccessControlBiometryCurrentSet __attribute__((availability(macosx,introduced=10_13_4))) = 1u << 3,
+    kSecAccessControlTouchIDCurrentSet __attribute__((availability(macos,introduced=10.12.1,deprecated=10.13.4,replacement="kSecAccessControlBiometryCurrentSet"))) __attribute__((availability(ios,introduced=9.0,deprecated=11.3,replacement="kSecAccessControlBiometryCurrentSet"))) = 1u << 3,
     kSecAccessControlDevicePasscode __attribute__((availability(macosx,introduced=10_11))) = 1u << 4,
     kSecAccessControlOr __attribute__((availability(macosx,introduced=10_12_1))) = 1u << 14,
     kSecAccessControlAnd __attribute__((availability(macosx,introduced=10_12_1))) = 1u << 15,
@@ -27103,341 +27437,343 @@ _Nullable
 SecAccessControlRef SecAccessControlCreateWithFlags(CFAllocatorRef _Nullable allocator, CFTypeRef protection,
                                                     SecAccessControlCreateFlags flags, CFErrorRef *error)
 __attribute__((availability(macosx,introduced=10.10)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
 extern const CFStringRef kSecClass
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecClassInternetPassword
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecClassGenericPassword
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecClassCertificate
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecClassKey
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecClassIdentity
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAccessible
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccess
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrAccessControl
-    __attribute__((availability(macosx,introduced=10.10)));
+    __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 extern const CFStringRef kSecAttrAccessGroup
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=3.0)));
 extern const CFStringRef kSecAttrSynchronizable
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 extern const CFStringRef kSecAttrSynchronizableAny
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0)));
 extern const CFStringRef kSecAttrCreationDate
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrModificationDate
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrDescription
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrComment
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCreator
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrType
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrLabel
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIsInvisible
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIsNegative
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAccount
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrService
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrGeneric
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrSecurityDomain
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrServer
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocol
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationType
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrPort
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrPath
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrSubject
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIssuer
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrSerialNumber
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrSubjectKeyID
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrPublicKeyHash
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCertificateType
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCertificateEncoding
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyClass
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrApplicationLabel
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIsPermanent
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIsSensitive
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrIsExtractable
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrApplicationTag
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyType
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrPRF
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrSalt
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrRounds
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeySizeInBits
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrEffectiveKeySize
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanEncrypt
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanDecrypt
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanDerive
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanSign
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanVerify
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanWrap
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrCanUnwrap
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrSyncViewHint
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecAttrTokenID
-    __attribute__((availability(macosx,introduced=10.12)));
+    __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecAttrPersistantReference
-    __attribute__((availability(macosx,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0)));
 extern const CFStringRef kSecAttrPersistentReference
-__attribute__((availability(macosx,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0)));
+    __attribute__((availability(macos,introduced=10.13))) __attribute__((availability(ios,introduced=11.0))) __attribute__((availability(tvos,introduced=11.0))) __attribute__((availability(watchos,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleWhenUnlocked
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleAfterFirstUnlock
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleAlways
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
-    __attribute__((availability(macosx,introduced=10.10)));
+    __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 extern const CFStringRef kSecAttrAccessibleWhenUnlockedThisDeviceOnly
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrAccessibleAlwaysThisDeviceOnly
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrProtocolFTP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolFTPAccount
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolHTTP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolIRC
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolNNTP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolPOP3
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolSMTP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolSOCKS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolIMAP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolLDAP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolAppleTalk
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolAFP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolTelnet
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolSSH
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolFTPS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolHTTPS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolHTTPProxy
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolHTTPSProxy
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolFTPProxy
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolSMB
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolRTSP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolRTSPProxy
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolDAAP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolEPPC
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolIPP
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolNNTPS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolLDAPS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolTelnetS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolIMAPS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolIRCS
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrProtocolPOP3S
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeNTLM
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeMSN
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeDPA
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeRPA
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeHTTPBasic
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeHTTPDigest
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeHTMLForm
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrAuthenticationTypeDefault
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyClassPublic
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyClassPrivate
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyClassSymmetric
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyTypeRSA
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecAttrKeyTypeDSA
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeAES
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeDES
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyType3DES
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeRC4
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeRC2
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeCAST
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeECDSA
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrKeyTypeEC
-    __attribute__((availability(macosx,introduced=10.9)));
+    __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=4.0)));
 extern const CFStringRef kSecAttrKeyTypeECSECPrimeRandom
-    __attribute__((availability(macosx,introduced=10.12)));
+    __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA1
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA224
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA256
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA384
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecAttrPRFHmacAlgSHA512
-      __attribute__((availability(macosx,introduced=10.7)));
+      __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchPolicy
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchItemList
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchSearchList
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchIssuers
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchEmailAddressIfPresent
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchSubjectContains
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchSubjectStartsWith
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchSubjectEndsWith
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchSubjectWholeString
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchCaseInsensitive
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchDiacriticInsensitive
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchWidthInsensitive
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecMatchTrustedOnly
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchValidOnDate
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchLimit
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchLimitOne
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecMatchLimitAll
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecReturnData
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecReturnAttributes
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecReturnRef
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecReturnPersistentRef
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecValueData
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecValueRef
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecValuePersistentRef
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecUseItemList
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecUseKeychain
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecUseOperationPrompt
-    __attribute__((availability(macosx,introduced=10.10)));
+    __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0)));
 extern const CFStringRef kSecUseNoAuthenticationUI
-    __attribute__((availability(macosx,introduced=10.10,deprecated=10.11,message="Use a kSecUseAuthenticationUI instead.")));
+    __attribute__((availability(macos,introduced=10.10,deprecated=10.11,message="Use kSecUseAuthenticationUI instead."))) __attribute__((availability(ios,introduced=8.0,deprecated=9.0,message="Use kSecUseAuthenticationUI instead.")));
 extern const CFStringRef kSecUseAuthenticationUI
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecUseAuthenticationContext
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecUseAuthenticationUIAllow
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecUseAuthenticationUIFail
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecUseAuthenticationUISkip
-    __attribute__((availability(macosx,introduced=10.11)));
+    __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecAttrTokenIDSecureEnclave
-    __attribute__((availability(macosx,introduced=10.12)));
+    __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=9.0)));
 extern const CFStringRef kSecAttrAccessGroupToken
-    __attribute__((availability(macosx,introduced=10.12)));
+    __attribute__((availability(macos,introduced=10.12))) __attribute__((availability(ios,introduced=10.0)));
 OSStatus SecItemCopyMatching(CFDictionaryRef query, CFTypeRef * _Nullable __attribute__((cf_returns_retained)) result)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 OSStatus SecItemAdd(CFDictionaryRef attributes, CFTypeRef * _Nullable __attribute__((cf_returns_retained)) result)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 OSStatus SecItemUpdate(CFDictionaryRef query, CFDictionaryRef attributesToUpdate)
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 OSStatus SecItemDelete(CFDictionaryRef query)
-    __attribute__((availability(macosx,introduced=10.6)));
-
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
+#pragma clang assume_nonnull end
 
 
 
@@ -27445,7 +27781,7 @@ OSStatus SecItemDelete(CFDictionaryRef query)
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 
 typedef UInt32 SecAccessOwnerType;
@@ -27532,7 +27868,7 @@ OSStatus SecAccessCopySelectedACLList(SecAccessRef accessRef, CSSM_ACL_AUTHORIZA
 _Nullable
 CFArrayRef SecAccessCopyMatchingACLList(SecAccessRef accessRef, CFTypeRef authorizationTag)
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -27542,6 +27878,8 @@ CFArrayRef SecAccessCopyMatchingACLList(SecAccessRef accessRef, CFTypeRef author
 
 
 extern "C" {
+
+#pragma clang assume_nonnull begin
 enum
 {
     kSecKeyKeyClass = 0,
@@ -27946,12 +28284,14 @@ typedef CFIndex SecKeyOperationType; enum {
 } __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(tvos,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0)));
 Boolean SecKeyIsAlgorithmSupported(SecKeyRef key, SecKeyOperationType operation, SecKeyAlgorithm algorithm)
 __attribute__((availability(macosx,introduced=10.12))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(tvos,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
 extern const CFStringRef kSecPolicyAppleX509Basic
     __attribute__((availability(macosx,introduced=10.7)));
 extern const CFStringRef kSecPolicyAppleSSL
@@ -28033,6 +28373,8 @@ _Nullable
 SecPolicyRef SecPolicyCreateWithProperties(CFTypeRef policyIdentifier,
                                            CFDictionaryRef _Nullable properties)
     __attribute__((availability(macosx,introduced=10.9)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 extern const CFStringRef kSecPolicyKU_DigitalSignature
     __attribute__((availability(macosx,introduced=10.7)));
 extern const CFStringRef kSecPolicyKU_NonRepudiation
@@ -28065,7 +28407,7 @@ OSStatus SecPolicySetProperties(SecPolicyRef policyRef,
     __attribute__((availability(macosx,introduced=10.7,deprecated=10.9)));
 OSStatus SecPolicyGetTPHandle(SecPolicyRef policyRef, CSSM_TP_HANDLE *tpHandle)
     __attribute__((availability(macosx,introduced=10.2,deprecated=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -28073,6 +28415,14 @@ OSStatus SecPolicyGetTPHandle(SecPolicyRef policyRef, CSSM_TP_HANDLE *tpHandle)
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 typedef const struct __SecRandom * SecRandomRef;
 
 
@@ -28089,7 +28439,7 @@ extern const SecRandomRef kSecRandomDefault
 int SecRandomCopyBytes(SecRandomRef _Nullable rnd, size_t count, void *bytes)
     __attribute__ ((warn_unused_result))
     __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -28129,16 +28479,11 @@ enum {
 
 
 enum {
- CSSMERR_CSSM_INVALID_ADDIN_HANDLE =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 1,
- CSSMERR_CSSM_NOT_INITIALIZED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 2,
- CSSMERR_CSSM_INVALID_HANDLE_USAGE =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 3,
- CSSMERR_CSSM_PVC_REFERENT_NOT_FOUND =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 4,
- CSSMERR_CSSM_FUNCTION_INTEGRITY_FAIL =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 5
+ CSSMERR_CSSM_INVALID_ADDIN_HANDLE = -2147417855,
+ CSSMERR_CSSM_NOT_INITIALIZED = -2147417854,
+ CSSMERR_CSSM_INVALID_HANDLE_USAGE = -2147417853,
+ CSSMERR_CSSM_PVC_REFERENT_NOT_FOUND = -2147417852,
+ CSSMERR_CSSM_FUNCTION_INTEGRITY_FAIL = -2147417851,
 };
 
 
@@ -28215,155 +28560,102 @@ enum {
 
 
 enum {
- CSSMERR_CSSM_INTERNAL_ERROR =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_CSSM_MEMORY_ERROR =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_CSSM_MDS_ERROR =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_CSSM_INVALID_POINTER =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_CSSM_INVALID_INPUT_POINTER =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_CSSM_INVALID_OUTPUT_POINTER =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_CSSM_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_CSSM_SELF_CHECK_FAILED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_CSSM_OS_ACCESS_DENIED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_CSSM_FUNCTION_FAILED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED,
- CSSMERR_CSSM_MODULE_MANIFEST_VERIFY_FAILED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_MODULE_MANIFEST_VERIFY_FAILED,
- CSSMERR_CSSM_INVALID_GUID =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INVALID_GUID
+ CSSMERR_CSSM_INTERNAL_ERROR = -2147418111,
+ CSSMERR_CSSM_MEMORY_ERROR = -2147418110,
+ CSSMERR_CSSM_MDS_ERROR = -2147418109,
+ CSSMERR_CSSM_INVALID_POINTER = -2147418108,
+ CSSMERR_CSSM_INVALID_INPUT_POINTER = -2147418107,
+ CSSMERR_CSSM_INVALID_OUTPUT_POINTER = -2147418106,
+ CSSMERR_CSSM_FUNCTION_NOT_IMPLEMENTED = -2147418105,
+ CSSMERR_CSSM_SELF_CHECK_FAILED = -2147418104,
+ CSSMERR_CSSM_OS_ACCESS_DENIED = -2147418103,
+ CSSMERR_CSSM_FUNCTION_FAILED = -2147418102,
+ CSSMERR_CSSM_MODULE_MANIFEST_VERIFY_FAILED = -2147418101,
+ CSSMERR_CSSM_INVALID_GUID = -2147418100,
 };
 
 
 enum {
- CSSMERR_CSSM_INVALID_CONTEXT_HANDLE =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INVALID_CONTEXT_HANDLE,
- CSSMERR_CSSM_INCOMPATIBLE_VERSION =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INCOMPATIBLE_VERSION,
- CSSMERR_CSSM_PRIVILEGE_NOT_GRANTED =
-  CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_PRIVILEGE_NOT_GRANTED
+ CSSMERR_CSSM_INVALID_CONTEXT_HANDLE = -2147418048,
+ CSSMERR_CSSM_INCOMPATIBLE_VERSION = -2147418047,
+ CSSMERR_CSSM_PRIVILEGE_NOT_GRANTED = -2147418037,
 };
 
 
 enum {
  CSSM_CSSM_BASE_CSSM_ERROR =
   CSSM_CSSM_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT + 0x10,
- CSSMERR_CSSM_SCOPE_NOT_SUPPORTED = CSSM_CSSM_BASE_CSSM_ERROR + 1,
- CSSMERR_CSSM_PVC_ALREADY_CONFIGURED = CSSM_CSSM_BASE_CSSM_ERROR + 2,
- CSSMERR_CSSM_INVALID_PVC = CSSM_CSSM_BASE_CSSM_ERROR + 3,
- CSSMERR_CSSM_EMM_LOAD_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 4,
- CSSMERR_CSSM_EMM_UNLOAD_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 5,
- CSSMERR_CSSM_ADDIN_LOAD_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 6,
- CSSMERR_CSSM_INVALID_KEY_HIERARCHY = CSSM_CSSM_BASE_CSSM_ERROR + 7,
- CSSMERR_CSSM_ADDIN_UNLOAD_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 8,
- CSSMERR_CSSM_LIB_REF_NOT_FOUND = CSSM_CSSM_BASE_CSSM_ERROR + 9,
- CSSMERR_CSSM_INVALID_ADDIN_FUNCTION_TABLE = CSSM_CSSM_BASE_CSSM_ERROR + 10,
- CSSMERR_CSSM_EMM_AUTHENTICATE_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 11,
- CSSMERR_CSSM_ADDIN_AUTHENTICATE_FAILED = CSSM_CSSM_BASE_CSSM_ERROR + 12,
- CSSMERR_CSSM_INVALID_SERVICE_MASK = CSSM_CSSM_BASE_CSSM_ERROR + 13,
- CSSMERR_CSSM_MODULE_NOT_LOADED = CSSM_CSSM_BASE_CSSM_ERROR + 14,
- CSSMERR_CSSM_INVALID_SUBSERVICEID = CSSM_CSSM_BASE_CSSM_ERROR + 15,
- CSSMERR_CSSM_BUFFER_TOO_SMALL = CSSM_CSSM_BASE_CSSM_ERROR + 16,
- CSSMERR_CSSM_INVALID_ATTRIBUTE = CSSM_CSSM_BASE_CSSM_ERROR + 17,
- CSSMERR_CSSM_ATTRIBUTE_NOT_IN_CONTEXT = CSSM_CSSM_BASE_CSSM_ERROR + 18,
- CSSMERR_CSSM_MODULE_MANAGER_INITIALIZE_FAIL = CSSM_CSSM_BASE_CSSM_ERROR + 19,
- CSSMERR_CSSM_MODULE_MANAGER_NOT_FOUND = CSSM_CSSM_BASE_CSSM_ERROR + 20,
- CSSMERR_CSSM_EVENT_NOTIFICATION_CALLBACK_NOT_FOUND = CSSM_CSSM_BASE_CSSM_ERROR + 21
+ CSSMERR_CSSM_SCOPE_NOT_SUPPORTED = -2147417839,
+ CSSMERR_CSSM_PVC_ALREADY_CONFIGURED = -2147417838,
+ CSSMERR_CSSM_INVALID_PVC = -2147417837,
+ CSSMERR_CSSM_EMM_LOAD_FAILED = -2147417836,
+ CSSMERR_CSSM_EMM_UNLOAD_FAILED = -2147417835,
+ CSSMERR_CSSM_ADDIN_LOAD_FAILED = -2147417834,
+ CSSMERR_CSSM_INVALID_KEY_HIERARCHY = -2147417833,
+ CSSMERR_CSSM_ADDIN_UNLOAD_FAILED = -2147417832,
+ CSSMERR_CSSM_LIB_REF_NOT_FOUND = -2147417831,
+ CSSMERR_CSSM_INVALID_ADDIN_FUNCTION_TABLE = -2147417830,
+ CSSMERR_CSSM_EMM_AUTHENTICATE_FAILED = -2147417829,
+ CSSMERR_CSSM_ADDIN_AUTHENTICATE_FAILED = -2147417828,
+ CSSMERR_CSSM_INVALID_SERVICE_MASK = -2147417827,
+ CSSMERR_CSSM_MODULE_NOT_LOADED = -2147417826,
+ CSSMERR_CSSM_INVALID_SUBSERVICEID = -2147417825,
+ CSSMERR_CSSM_BUFFER_TOO_SMALL = -2147417824,
+ CSSMERR_CSSM_INVALID_ATTRIBUTE = -2147417823,
+ CSSMERR_CSSM_ATTRIBUTE_NOT_IN_CONTEXT = -2147417822,
+ CSSMERR_CSSM_MODULE_MANAGER_INITIALIZE_FAIL = -2147417821,
+ CSSMERR_CSSM_MODULE_MANAGER_NOT_FOUND = -2147417820,
+ CSSMERR_CSSM_EVENT_NOTIFICATION_CALLBACK_NOT_FOUND = -2147417819,
 };
 
 
 enum {
- CSSMERR_CSP_INTERNAL_ERROR =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_CSP_MEMORY_ERROR =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_CSP_MDS_ERROR =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_CSP_INVALID_POINTER =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_CSP_INVALID_INPUT_POINTER =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_CSP_INVALID_OUTPUT_POINTER =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_CSP_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_CSP_SELF_CHECK_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_CSP_OS_ACCESS_DENIED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_CSP_FUNCTION_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED
+ CSSMERR_CSP_INTERNAL_ERROR = -2147416063,
+ CSSMERR_CSP_MEMORY_ERROR = -2147416062,
+ CSSMERR_CSP_MDS_ERROR = -2147416061,
+    CSSMERR_CSP_INVALID_POINTER = -2147416060,
+ CSSMERR_CSP_INVALID_INPUT_POINTER = -2147416059,
+ CSSMERR_CSP_INVALID_OUTPUT_POINTER = -2147416058,
+ CSSMERR_CSP_FUNCTION_NOT_IMPLEMENTED = -2147416057,
+ CSSMERR_CSP_SELF_CHECK_FAILED = -2147416056,
+ CSSMERR_CSP_OS_ACCESS_DENIED = -2147416055,
+ CSSMERR_CSP_FUNCTION_FAILED = -2147416054,
 };
 
 
 enum {
- CSSMERR_CSP_OPERATION_AUTH_DENIED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OPERATION_AUTH_DENIED,
- CSSMERR_CSP_OBJECT_USE_AUTH_DENIED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OBJECT_USE_AUTH_DENIED,
- CSSMERR_CSP_OBJECT_MANIP_AUTH_DENIED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OBJECT_MANIP_AUTH_DENIED,
- CSSMERR_CSP_OBJECT_ACL_NOT_SUPPORTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OBJECT_ACL_NOT_SUPPORTED,
- CSSMERR_CSP_OBJECT_ACL_REQUIRED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_OBJECT_ACL_REQUIRED,
- CSSMERR_CSP_INVALID_ACCESS_CREDENTIALS =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACCESS_CREDENTIALS,
- CSSMERR_CSP_INVALID_ACL_BASE_CERTS =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_BASE_CERTS,
- CSSMERR_CSP_ACL_BASE_CERTS_NOT_SUPPORTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_BASE_CERTS_NOT_SUPPORTED,
- CSSMERR_CSP_INVALID_SAMPLE_VALUE =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_SAMPLE_VALUE,
- CSSMERR_CSP_SAMPLE_VALUE_NOT_SUPPORTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_SAMPLE_VALUE_NOT_SUPPORTED,
- CSSMERR_CSP_INVALID_ACL_SUBJECT_VALUE =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_SUBJECT_VALUE,
- CSSMERR_CSP_ACL_SUBJECT_TYPE_NOT_SUPPORTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_SUBJECT_TYPE_NOT_SUPPORTED,
- CSSMERR_CSP_INVALID_ACL_CHALLENGE_CALLBACK =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_CHALLENGE_CALLBACK,
- CSSMERR_CSP_ACL_CHALLENGE_CALLBACK_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_CHALLENGE_CALLBACK_FAILED,
- CSSMERR_CSP_INVALID_ACL_ENTRY_TAG =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_ENTRY_TAG,
- CSSMERR_CSP_ACL_ENTRY_TAG_NOT_FOUND =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_ENTRY_TAG_NOT_FOUND,
- CSSMERR_CSP_INVALID_ACL_EDIT_MODE =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_EDIT_MODE,
- CSSMERR_CSP_ACL_CHANGE_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_CHANGE_FAILED,
- CSSMERR_CSP_INVALID_NEW_ACL_ENTRY =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_NEW_ACL_ENTRY,
- CSSMERR_CSP_INVALID_NEW_ACL_OWNER =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_NEW_ACL_OWNER,
- CSSMERR_CSP_ACL_DELETE_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_DELETE_FAILED,
- CSSMERR_CSP_ACL_REPLACE_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_REPLACE_FAILED,
- CSSMERR_CSP_ACL_ADD_FAILED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_ACL_ADD_FAILED
+ CSSMERR_CSP_OPERATION_AUTH_DENIED = -2147416032,
+ CSSMERR_CSP_OBJECT_USE_AUTH_DENIED = -2147416031,
+ CSSMERR_CSP_OBJECT_MANIP_AUTH_DENIED = -2147416030,
+ CSSMERR_CSP_OBJECT_ACL_NOT_SUPPORTED = -2147416029,
+ CSSMERR_CSP_OBJECT_ACL_REQUIRED = -2147416028,
+ CSSMERR_CSP_INVALID_ACCESS_CREDENTIALS = -2147416027,
+ CSSMERR_CSP_INVALID_ACL_BASE_CERTS = -2147416026,
+ CSSMERR_CSP_ACL_BASE_CERTS_NOT_SUPPORTED = -2147416025,
+ CSSMERR_CSP_INVALID_SAMPLE_VALUE = -2147416024,
+ CSSMERR_CSP_SAMPLE_VALUE_NOT_SUPPORTED = -2147416023,
+ CSSMERR_CSP_INVALID_ACL_SUBJECT_VALUE = -2147416022,
+ CSSMERR_CSP_ACL_SUBJECT_TYPE_NOT_SUPPORTED = -2147416021,
+ CSSMERR_CSP_INVALID_ACL_CHALLENGE_CALLBACK = -2147416020,
+ CSSMERR_CSP_ACL_CHALLENGE_CALLBACK_FAILED = -2147416019,
+ CSSMERR_CSP_INVALID_ACL_ENTRY_TAG = -2147416018,
+ CSSMERR_CSP_ACL_ENTRY_TAG_NOT_FOUND = -2147416017,
+ CSSMERR_CSP_INVALID_ACL_EDIT_MODE = -2147416016,
+ CSSMERR_CSP_ACL_CHANGE_FAILED = -2147416015,
+ CSSMERR_CSP_INVALID_NEW_ACL_ENTRY = -2147416014,
+ CSSMERR_CSP_INVALID_NEW_ACL_OWNER = -2147416013,
+ CSSMERR_CSP_ACL_DELETE_FAILED = -2147416012,
+ CSSMERR_CSP_ACL_REPLACE_FAILED = -2147416011,
+ CSSMERR_CSP_ACL_ADD_FAILED = -2147416010,
 };
 
 
 enum {
- CSSMERR_CSP_INVALID_CONTEXT_HANDLE =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_CONTEXT_HANDLE,
- CSSMERR_CSP_PRIVILEGE_NOT_GRANTED =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_PRIVILEGE_NOT_GRANTED,
- CSSMERR_CSP_INVALID_DATA =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_DATA,
- CSSMERR_CSP_INVALID_PASSTHROUGH_ID =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_PASSTHROUGH_ID,
- CSSMERR_CSP_INVALID_CRYPTO_DATA =
-  CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INVALID_CRYPTO_DATA
+ CSSMERR_CSP_INVALID_CONTEXT_HANDLE = -2147416000,
+ CSSMERR_CSP_PRIVILEGE_NOT_GRANTED = -2147415989,
+ CSSMERR_CSP_INVALID_DATA = -2147415994,
+ CSSMERR_CSP_INVALID_PASSTHROUGH_ID = -2147415978,
+ CSSMERR_CSP_INVALID_CRYPTO_DATA = -2147415976,
 };
 
 
@@ -28371,488 +28663,375 @@ enum {
 
  CSSM_CSP_BASE_CSP_ERROR =
   CSSM_CSP_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT,
- CSSMERR_CSP_INPUT_LENGTH_ERROR = CSSM_CSP_BASE_CSP_ERROR + 1,
- CSSMERR_CSP_OUTPUT_LENGTH_ERROR = CSSM_CSP_BASE_CSP_ERROR + 2,
- CSSMERR_CSP_PRIVILEGE_NOT_SUPPORTED = CSSM_CSP_BASE_CSP_ERROR + 3,
- CSSMERR_CSP_DEVICE_ERROR = CSSM_CSP_BASE_CSP_ERROR + 4,
- CSSMERR_CSP_DEVICE_MEMORY_ERROR = CSSM_CSP_BASE_CSP_ERROR + 5,
- CSSMERR_CSP_ATTACH_HANDLE_BUSY = CSSM_CSP_BASE_CSP_ERROR + 6,
- CSSMERR_CSP_NOT_LOGGED_IN = CSSM_CSP_BASE_CSP_ERROR + 7,
- CSSMERR_CSP_INVALID_KEY = CSSM_CSP_BASE_CSP_ERROR + 16,
- CSSMERR_CSP_INVALID_KEY_REFERENCE = CSSM_CSP_BASE_CSP_ERROR + 17,
- CSSMERR_CSP_INVALID_KEY_CLASS = CSSM_CSP_BASE_CSP_ERROR + 18,
- CSSMERR_CSP_ALGID_MISMATCH = CSSM_CSP_BASE_CSP_ERROR + 19,
- CSSMERR_CSP_KEY_USAGE_INCORRECT = CSSM_CSP_BASE_CSP_ERROR + 20,
- CSSMERR_CSP_KEY_BLOB_TYPE_INCORRECT = CSSM_CSP_BASE_CSP_ERROR + 21,
- CSSMERR_CSP_KEY_HEADER_INCONSISTENT = CSSM_CSP_BASE_CSP_ERROR + 22,
- CSSMERR_CSP_UNSUPPORTED_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 23,
- CSSMERR_CSP_UNSUPPORTED_KEY_SIZE = CSSM_CSP_BASE_CSP_ERROR + 24,
- CSSMERR_CSP_INVALID_KEY_POINTER = CSSM_CSP_BASE_CSP_ERROR + 25,
- CSSMERR_CSP_INVALID_KEYUSAGE_MASK = CSSM_CSP_BASE_CSP_ERROR + 26,
- CSSMERR_CSP_UNSUPPORTED_KEYUSAGE_MASK = CSSM_CSP_BASE_CSP_ERROR + 27,
- CSSMERR_CSP_INVALID_KEYATTR_MASK = CSSM_CSP_BASE_CSP_ERROR + 28,
- CSSMERR_CSP_UNSUPPORTED_KEYATTR_MASK = CSSM_CSP_BASE_CSP_ERROR + 29,
- CSSMERR_CSP_INVALID_KEY_LABEL = CSSM_CSP_BASE_CSP_ERROR + 30,
- CSSMERR_CSP_UNSUPPORTED_KEY_LABEL = CSSM_CSP_BASE_CSP_ERROR + 31,
- CSSMERR_CSP_INVALID_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 32,
+ CSSMERR_CSP_INPUT_LENGTH_ERROR = -2147415807,
+ CSSMERR_CSP_OUTPUT_LENGTH_ERROR = -2147415806,
+ CSSMERR_CSP_PRIVILEGE_NOT_SUPPORTED = -2147415805,
+ CSSMERR_CSP_DEVICE_ERROR = -2147415804,
+ CSSMERR_CSP_DEVICE_MEMORY_ERROR = -2147415803,
+ CSSMERR_CSP_ATTACH_HANDLE_BUSY = -2147415802,
+ CSSMERR_CSP_NOT_LOGGED_IN = -2147415801,
+ CSSMERR_CSP_INVALID_KEY = -2147415792,
+ CSSMERR_CSP_INVALID_KEY_REFERENCE = -2147415791,
+ CSSMERR_CSP_INVALID_KEY_CLASS = -2147415790,
+ CSSMERR_CSP_ALGID_MISMATCH = -2147415789,
+ CSSMERR_CSP_KEY_USAGE_INCORRECT = -2147415788,
+ CSSMERR_CSP_KEY_BLOB_TYPE_INCORRECT = -2147415787,
+ CSSMERR_CSP_KEY_HEADER_INCONSISTENT = -2147415786,
+ CSSMERR_CSP_UNSUPPORTED_KEY_FORMAT = -2147415785,
+ CSSMERR_CSP_UNSUPPORTED_KEY_SIZE = -2147415784,
+ CSSMERR_CSP_INVALID_KEY_POINTER = -2147415783,
+ CSSMERR_CSP_INVALID_KEYUSAGE_MASK = -2147415782,
+ CSSMERR_CSP_UNSUPPORTED_KEYUSAGE_MASK = -2147415781,
+ CSSMERR_CSP_INVALID_KEYATTR_MASK = -2147415780,
+ CSSMERR_CSP_UNSUPPORTED_KEYATTR_MASK = -2147415779,
+ CSSMERR_CSP_INVALID_KEY_LABEL = -2147415778,
+ CSSMERR_CSP_UNSUPPORTED_KEY_LABEL = -2147415777,
+ CSSMERR_CSP_INVALID_KEY_FORMAT = -2147415776,
 
+ CSSMERR_CSP_INVALID_DATA_COUNT = -2147415768,
+ CSSMERR_CSP_VECTOR_OF_BUFS_UNSUPPORTED = -2147415767,
+ CSSMERR_CSP_INVALID_INPUT_VECTOR = -2147415766,
+ CSSMERR_CSP_INVALID_OUTPUT_VECTOR = -2147415765,
 
- CSSMERR_CSP_INVALID_DATA_COUNT = CSSM_CSP_BASE_CSP_ERROR + 40,
- CSSMERR_CSP_VECTOR_OF_BUFS_UNSUPPORTED = CSSM_CSP_BASE_CSP_ERROR + 41,
- CSSMERR_CSP_INVALID_INPUT_VECTOR = CSSM_CSP_BASE_CSP_ERROR + 42,
- CSSMERR_CSP_INVALID_OUTPUT_VECTOR = CSSM_CSP_BASE_CSP_ERROR + 43,
+ CSSMERR_CSP_INVALID_CONTEXT = -2147415760,
+ CSSMERR_CSP_INVALID_ALGORITHM = -2147415759,
+ CSSMERR_CSP_INVALID_ATTR_KEY = -2147415754,
+ CSSMERR_CSP_MISSING_ATTR_KEY = -2147415753,
+ CSSMERR_CSP_INVALID_ATTR_INIT_VECTOR = -2147415752,
+ CSSMERR_CSP_MISSING_ATTR_INIT_VECTOR = -2147415751,
+ CSSMERR_CSP_INVALID_ATTR_SALT = -2147415750,
+ CSSMERR_CSP_MISSING_ATTR_SALT = -2147415749,
+ CSSMERR_CSP_INVALID_ATTR_PADDING = -2147415748,
+ CSSMERR_CSP_MISSING_ATTR_PADDING = -2147415747,
+ CSSMERR_CSP_INVALID_ATTR_RANDOM = -2147415746,
+ CSSMERR_CSP_MISSING_ATTR_RANDOM = -2147415745,
+ CSSMERR_CSP_INVALID_ATTR_SEED = -2147415744,
+ CSSMERR_CSP_MISSING_ATTR_SEED = -2147415743,
+ CSSMERR_CSP_INVALID_ATTR_PASSPHRASE = -2147415742,
+ CSSMERR_CSP_MISSING_ATTR_PASSPHRASE = -2147415741,
+ CSSMERR_CSP_INVALID_ATTR_KEY_LENGTH = -2147415740,
+ CSSMERR_CSP_MISSING_ATTR_KEY_LENGTH = -2147415739,
+ CSSMERR_CSP_INVALID_ATTR_BLOCK_SIZE = -2147415738,
+ CSSMERR_CSP_MISSING_ATTR_BLOCK_SIZE = -2147415737,
+ CSSMERR_CSP_INVALID_ATTR_OUTPUT_SIZE = -2147415708,
+ CSSMERR_CSP_MISSING_ATTR_OUTPUT_SIZE = -2147415707,
+ CSSMERR_CSP_INVALID_ATTR_ROUNDS = -2147415706,
+ CSSMERR_CSP_MISSING_ATTR_ROUNDS = -2147415705,
+ CSSMERR_CSP_INVALID_ATTR_ALG_PARAMS = -2147415704,
+ CSSMERR_CSP_MISSING_ATTR_ALG_PARAMS = -2147415703,
+ CSSMERR_CSP_INVALID_ATTR_LABEL = -2147415702,
+ CSSMERR_CSP_MISSING_ATTR_LABEL = -2147415701,
+ CSSMERR_CSP_INVALID_ATTR_KEY_TYPE = -2147415700,
+ CSSMERR_CSP_MISSING_ATTR_KEY_TYPE = -2147415699,
+ CSSMERR_CSP_INVALID_ATTR_MODE = -2147415698,
+ CSSMERR_CSP_MISSING_ATTR_MODE = -2147415697,
+ CSSMERR_CSP_INVALID_ATTR_EFFECTIVE_BITS = -2147415696,
+ CSSMERR_CSP_MISSING_ATTR_EFFECTIVE_BITS = -2147415695,
+ CSSMERR_CSP_INVALID_ATTR_START_DATE = -2147415694,
+ CSSMERR_CSP_MISSING_ATTR_START_DATE = -2147415693,
+ CSSMERR_CSP_INVALID_ATTR_END_DATE = -2147415692,
+ CSSMERR_CSP_MISSING_ATTR_END_DATE = -2147415691,
+ CSSMERR_CSP_INVALID_ATTR_VERSION = -2147415690,
+ CSSMERR_CSP_MISSING_ATTR_VERSION = -2147415689,
+ CSSMERR_CSP_INVALID_ATTR_PRIME = -2147415688,
+ CSSMERR_CSP_MISSING_ATTR_PRIME = -2147415687,
+ CSSMERR_CSP_INVALID_ATTR_BASE = -2147415686,
+ CSSMERR_CSP_MISSING_ATTR_BASE = -2147415685,
+ CSSMERR_CSP_INVALID_ATTR_SUBPRIME = -2147415684,
+ CSSMERR_CSP_MISSING_ATTR_SUBPRIME = -2147415683,
+ CSSMERR_CSP_INVALID_ATTR_ITERATION_COUNT = -2147415682,
+ CSSMERR_CSP_MISSING_ATTR_ITERATION_COUNT = -2147415681,
+ CSSMERR_CSP_INVALID_ATTR_DL_DB_HANDLE = -2147415680,
+ CSSMERR_CSP_MISSING_ATTR_DL_DB_HANDLE = -2147415679,
+ CSSMERR_CSP_INVALID_ATTR_ACCESS_CREDENTIALS = -2147415678,
+ CSSMERR_CSP_MISSING_ATTR_ACCESS_CREDENTIALS = -2147415677,
+ CSSMERR_CSP_INVALID_ATTR_PUBLIC_KEY_FORMAT = -2147415676,
+ CSSMERR_CSP_MISSING_ATTR_PUBLIC_KEY_FORMAT = -2147415675,
+ CSSMERR_CSP_INVALID_ATTR_PRIVATE_KEY_FORMAT = -2147415674,
+ CSSMERR_CSP_MISSING_ATTR_PRIVATE_KEY_FORMAT = -2147415673,
+ CSSMERR_CSP_INVALID_ATTR_SYMMETRIC_KEY_FORMAT = -2147415672,
+ CSSMERR_CSP_MISSING_ATTR_SYMMETRIC_KEY_FORMAT = -2147415671,
+ CSSMERR_CSP_INVALID_ATTR_WRAPPED_KEY_FORMAT = -2147415670,
+ CSSMERR_CSP_MISSING_ATTR_WRAPPED_KEY_FORMAT = -2147415669,
 
-
- CSSMERR_CSP_INVALID_CONTEXT = CSSM_CSP_BASE_CSP_ERROR + 48,
- CSSMERR_CSP_INVALID_ALGORITHM = CSSM_CSP_BASE_CSP_ERROR + 49,
- CSSMERR_CSP_INVALID_ATTR_KEY = CSSM_CSP_BASE_CSP_ERROR + 54,
- CSSMERR_CSP_MISSING_ATTR_KEY = CSSM_CSP_BASE_CSP_ERROR + 55,
- CSSMERR_CSP_INVALID_ATTR_INIT_VECTOR = CSSM_CSP_BASE_CSP_ERROR + 56,
- CSSMERR_CSP_MISSING_ATTR_INIT_VECTOR = CSSM_CSP_BASE_CSP_ERROR + 57,
- CSSMERR_CSP_INVALID_ATTR_SALT = CSSM_CSP_BASE_CSP_ERROR + 58,
- CSSMERR_CSP_MISSING_ATTR_SALT = CSSM_CSP_BASE_CSP_ERROR + 59,
- CSSMERR_CSP_INVALID_ATTR_PADDING = CSSM_CSP_BASE_CSP_ERROR + 60,
- CSSMERR_CSP_MISSING_ATTR_PADDING = CSSM_CSP_BASE_CSP_ERROR + 61,
- CSSMERR_CSP_INVALID_ATTR_RANDOM = CSSM_CSP_BASE_CSP_ERROR + 62,
- CSSMERR_CSP_MISSING_ATTR_RANDOM = CSSM_CSP_BASE_CSP_ERROR + 63,
- CSSMERR_CSP_INVALID_ATTR_SEED = CSSM_CSP_BASE_CSP_ERROR + 64,
- CSSMERR_CSP_MISSING_ATTR_SEED = CSSM_CSP_BASE_CSP_ERROR + 65,
- CSSMERR_CSP_INVALID_ATTR_PASSPHRASE = CSSM_CSP_BASE_CSP_ERROR + 66,
- CSSMERR_CSP_MISSING_ATTR_PASSPHRASE = CSSM_CSP_BASE_CSP_ERROR + 67,
- CSSMERR_CSP_INVALID_ATTR_KEY_LENGTH = CSSM_CSP_BASE_CSP_ERROR + 68,
- CSSMERR_CSP_MISSING_ATTR_KEY_LENGTH = CSSM_CSP_BASE_CSP_ERROR + 69,
- CSSMERR_CSP_INVALID_ATTR_BLOCK_SIZE = CSSM_CSP_BASE_CSP_ERROR + 70,
- CSSMERR_CSP_MISSING_ATTR_BLOCK_SIZE = CSSM_CSP_BASE_CSP_ERROR + 71,
- CSSMERR_CSP_INVALID_ATTR_OUTPUT_SIZE = CSSM_CSP_BASE_CSP_ERROR + 100,
- CSSMERR_CSP_MISSING_ATTR_OUTPUT_SIZE = CSSM_CSP_BASE_CSP_ERROR + 101,
- CSSMERR_CSP_INVALID_ATTR_ROUNDS = CSSM_CSP_BASE_CSP_ERROR + 102,
- CSSMERR_CSP_MISSING_ATTR_ROUNDS = CSSM_CSP_BASE_CSP_ERROR + 103,
- CSSMERR_CSP_INVALID_ATTR_ALG_PARAMS = CSSM_CSP_BASE_CSP_ERROR + 104,
- CSSMERR_CSP_MISSING_ATTR_ALG_PARAMS = CSSM_CSP_BASE_CSP_ERROR + 105,
- CSSMERR_CSP_INVALID_ATTR_LABEL = CSSM_CSP_BASE_CSP_ERROR + 106,
- CSSMERR_CSP_MISSING_ATTR_LABEL = CSSM_CSP_BASE_CSP_ERROR + 107,
- CSSMERR_CSP_INVALID_ATTR_KEY_TYPE = CSSM_CSP_BASE_CSP_ERROR + 108,
- CSSMERR_CSP_MISSING_ATTR_KEY_TYPE = CSSM_CSP_BASE_CSP_ERROR + 109,
- CSSMERR_CSP_INVALID_ATTR_MODE = CSSM_CSP_BASE_CSP_ERROR + 110,
- CSSMERR_CSP_MISSING_ATTR_MODE = CSSM_CSP_BASE_CSP_ERROR + 111,
- CSSMERR_CSP_INVALID_ATTR_EFFECTIVE_BITS = CSSM_CSP_BASE_CSP_ERROR + 112,
- CSSMERR_CSP_MISSING_ATTR_EFFECTIVE_BITS = CSSM_CSP_BASE_CSP_ERROR + 113,
- CSSMERR_CSP_INVALID_ATTR_START_DATE = CSSM_CSP_BASE_CSP_ERROR + 114,
- CSSMERR_CSP_MISSING_ATTR_START_DATE = CSSM_CSP_BASE_CSP_ERROR + 115,
- CSSMERR_CSP_INVALID_ATTR_END_DATE = CSSM_CSP_BASE_CSP_ERROR + 116,
- CSSMERR_CSP_MISSING_ATTR_END_DATE = CSSM_CSP_BASE_CSP_ERROR + 117,
- CSSMERR_CSP_INVALID_ATTR_VERSION = CSSM_CSP_BASE_CSP_ERROR + 118,
- CSSMERR_CSP_MISSING_ATTR_VERSION = CSSM_CSP_BASE_CSP_ERROR + 119,
- CSSMERR_CSP_INVALID_ATTR_PRIME = CSSM_CSP_BASE_CSP_ERROR + 120,
- CSSMERR_CSP_MISSING_ATTR_PRIME = CSSM_CSP_BASE_CSP_ERROR + 121,
- CSSMERR_CSP_INVALID_ATTR_BASE = CSSM_CSP_BASE_CSP_ERROR + 122,
- CSSMERR_CSP_MISSING_ATTR_BASE = CSSM_CSP_BASE_CSP_ERROR + 123,
- CSSMERR_CSP_INVALID_ATTR_SUBPRIME = CSSM_CSP_BASE_CSP_ERROR + 124,
- CSSMERR_CSP_MISSING_ATTR_SUBPRIME = CSSM_CSP_BASE_CSP_ERROR + 125,
- CSSMERR_CSP_INVALID_ATTR_ITERATION_COUNT = CSSM_CSP_BASE_CSP_ERROR + 126,
- CSSMERR_CSP_MISSING_ATTR_ITERATION_COUNT = CSSM_CSP_BASE_CSP_ERROR + 127,
- CSSMERR_CSP_INVALID_ATTR_DL_DB_HANDLE = CSSM_CSP_BASE_CSP_ERROR + 128,
- CSSMERR_CSP_MISSING_ATTR_DL_DB_HANDLE = CSSM_CSP_BASE_CSP_ERROR + 129,
- CSSMERR_CSP_INVALID_ATTR_ACCESS_CREDENTIALS = CSSM_CSP_BASE_CSP_ERROR + 130,
- CSSMERR_CSP_MISSING_ATTR_ACCESS_CREDENTIALS = CSSM_CSP_BASE_CSP_ERROR + 131,
- CSSMERR_CSP_INVALID_ATTR_PUBLIC_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 132,
- CSSMERR_CSP_MISSING_ATTR_PUBLIC_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 133,
- CSSMERR_CSP_INVALID_ATTR_PRIVATE_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 134,
- CSSMERR_CSP_MISSING_ATTR_PRIVATE_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 135,
- CSSMERR_CSP_INVALID_ATTR_SYMMETRIC_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 136,
- CSSMERR_CSP_MISSING_ATTR_SYMMETRIC_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 137,
- CSSMERR_CSP_INVALID_ATTR_WRAPPED_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 138,
- CSSMERR_CSP_MISSING_ATTR_WRAPPED_KEY_FORMAT = CSSM_CSP_BASE_CSP_ERROR + 139,
-
-
- CSSMERR_CSP_STAGED_OPERATION_IN_PROGRESS = CSSM_CSP_BASE_CSP_ERROR + 72,
- CSSMERR_CSP_STAGED_OPERATION_NOT_STARTED = CSSM_CSP_BASE_CSP_ERROR + 73,
- CSSMERR_CSP_VERIFY_FAILED = CSSM_CSP_BASE_CSP_ERROR + 74,
- CSSMERR_CSP_INVALID_SIGNATURE = CSSM_CSP_BASE_CSP_ERROR + 75,
- CSSMERR_CSP_QUERY_SIZE_UNKNOWN = CSSM_CSP_BASE_CSP_ERROR + 76,
- CSSMERR_CSP_BLOCK_SIZE_MISMATCH = CSSM_CSP_BASE_CSP_ERROR + 77,
- CSSMERR_CSP_PRIVATE_KEY_NOT_FOUND = CSSM_CSP_BASE_CSP_ERROR + 78,
- CSSMERR_CSP_PUBLIC_KEY_INCONSISTENT = CSSM_CSP_BASE_CSP_ERROR + 79,
- CSSMERR_CSP_DEVICE_VERIFY_FAILED = CSSM_CSP_BASE_CSP_ERROR + 80,
- CSSMERR_CSP_INVALID_LOGIN_NAME = CSSM_CSP_BASE_CSP_ERROR + 81,
- CSSMERR_CSP_ALREADY_LOGGED_IN = CSSM_CSP_BASE_CSP_ERROR + 82,
- CSSMERR_CSP_PRIVATE_KEY_ALREADY_EXISTS = CSSM_CSP_BASE_CSP_ERROR + 83,
- CSSMERR_CSP_KEY_LABEL_ALREADY_EXISTS = CSSM_CSP_BASE_CSP_ERROR + 84,
- CSSMERR_CSP_INVALID_DIGEST_ALGORITHM = CSSM_CSP_BASE_CSP_ERROR + 85,
- CSSMERR_CSP_CRYPTO_DATA_CALLBACK_FAILED = CSSM_CSP_BASE_CSP_ERROR + 86
+ CSSMERR_CSP_STAGED_OPERATION_IN_PROGRESS = -2147415736,
+ CSSMERR_CSP_STAGED_OPERATION_NOT_STARTED = -2147415735,
+ CSSMERR_CSP_VERIFY_FAILED = -2147415734,
+ CSSMERR_CSP_INVALID_SIGNATURE = -2147415733,
+ CSSMERR_CSP_QUERY_SIZE_UNKNOWN = -2147415732,
+ CSSMERR_CSP_BLOCK_SIZE_MISMATCH = -2147415731,
+ CSSMERR_CSP_PRIVATE_KEY_NOT_FOUND = -2147415730,
+ CSSMERR_CSP_PUBLIC_KEY_INCONSISTENT = -2147415729,
+ CSSMERR_CSP_DEVICE_VERIFY_FAILED = -2147415728,
+ CSSMERR_CSP_INVALID_LOGIN_NAME = -2147415727,
+ CSSMERR_CSP_ALREADY_LOGGED_IN = -2147415726,
+ CSSMERR_CSP_PRIVATE_KEY_ALREADY_EXISTS = -2147415725,
+ CSSMERR_CSP_KEY_LABEL_ALREADY_EXISTS = -2147415724,
+ CSSMERR_CSP_INVALID_DIGEST_ALGORITHM = -2147415723,
+ CSSMERR_CSP_CRYPTO_DATA_CALLBACK_FAILED = -2147415722,
 };
 
 
 
 enum {
- CSSMERR_TP_INTERNAL_ERROR =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_TP_MEMORY_ERROR =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_TP_MDS_ERROR =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_TP_INVALID_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_TP_INVALID_INPUT_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_TP_INVALID_OUTPUT_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_TP_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_TP_SELF_CHECK_FAILED =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_TP_OS_ACCESS_DENIED =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_TP_FUNCTION_FAILED =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED,
- CSSMERR_TP_INVALID_CONTEXT_HANDLE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CONTEXT_HANDLE,
- CSSMERR_TP_INVALID_DATA =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_DATA,
- CSSMERR_TP_INVALID_DB_LIST =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_LIST,
- CSSMERR_TP_INVALID_CERTGROUP_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CERTGROUP_POINTER,
- CSSMERR_TP_INVALID_CERT_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CERT_POINTER,
- CSSMERR_TP_INVALID_CRL_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CRL_POINTER,
- CSSMERR_TP_INVALID_FIELD_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_FIELD_POINTER,
- CSSMERR_TP_INVALID_NETWORK_ADDR =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_NETWORK_ADDR,
- CSSMERR_TP_CRL_ALREADY_SIGNED =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_CRL_ALREADY_SIGNED,
- CSSMERR_TP_INVALID_NUMBER_OF_FIELDS =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_NUMBER_OF_FIELDS,
- CSSMERR_TP_VERIFICATION_FAILURE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_VERIFICATION_FAILURE,
- CSSMERR_TP_INVALID_DB_HANDLE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_HANDLE,
- CSSMERR_TP_UNKNOWN_FORMAT =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_UNKNOWN_FORMAT,
- CSSMERR_TP_UNKNOWN_TAG =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_UNKNOWN_TAG,
- CSSMERR_TP_INVALID_PASSTHROUGH_ID =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_PASSTHROUGH_ID,
- CSSMERR_TP_INVALID_CSP_HANDLE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CSP_HANDLE,
- CSSMERR_TP_INVALID_DL_HANDLE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_DL_HANDLE,
- CSSMERR_TP_INVALID_CL_HANDLE =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_CL_HANDLE,
- CSSMERR_TP_INVALID_DB_LIST_POINTER =
-  CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_LIST_POINTER
+ CSSMERR_TP_INTERNAL_ERROR = -2147409919,
+ CSSMERR_TP_MEMORY_ERROR = -2147409918,
+ CSSMERR_TP_MDS_ERROR = -2147409917,
+ CSSMERR_TP_INVALID_POINTER = -2147409916,
+ CSSMERR_TP_INVALID_INPUT_POINTER = -2147409915,
+ CSSMERR_TP_INVALID_OUTPUT_POINTER = -2147409914,
+ CSSMERR_TP_FUNCTION_NOT_IMPLEMENTED = -2147409913,
+ CSSMERR_TP_SELF_CHECK_FAILED = -2147409912,
+ CSSMERR_TP_OS_ACCESS_DENIED = -2147409911,
+ CSSMERR_TP_FUNCTION_FAILED = -2147409910,
+ CSSMERR_TP_INVALID_CONTEXT_HANDLE = -2147409856,
+ CSSMERR_TP_INVALID_DATA = -2147409850,
+ CSSMERR_TP_INVALID_DB_LIST = -2147409844,
+ CSSMERR_TP_INVALID_CERTGROUP_POINTER = -2147409854,
+ CSSMERR_TP_INVALID_CERT_POINTER = -2147409853,
+ CSSMERR_TP_INVALID_CRL_POINTER = -2147409852,
+ CSSMERR_TP_INVALID_FIELD_POINTER = -2147409851,
+ CSSMERR_TP_INVALID_NETWORK_ADDR = -2147409833,
+ CSSMERR_TP_CRL_ALREADY_SIGNED = -2147409849,
+ CSSMERR_TP_INVALID_NUMBER_OF_FIELDS = -2147409848,
+ CSSMERR_TP_VERIFICATION_FAILURE = -2147409847,
+ CSSMERR_TP_INVALID_DB_HANDLE = -2147409846,
+ CSSMERR_TP_UNKNOWN_FORMAT = -2147409842,
+ CSSMERR_TP_UNKNOWN_TAG = -2147409841,
+ CSSMERR_TP_INVALID_PASSTHROUGH_ID = -2147409834,
+ CSSMERR_TP_INVALID_CSP_HANDLE = -2147409840,
+ CSSMERR_TP_INVALID_DL_HANDLE = -2147409839,
+ CSSMERR_TP_INVALID_CL_HANDLE = -2147409838,
+ CSSMERR_TP_INVALID_DB_LIST_POINTER = -2147409843,
 };
 
 
 enum {
  CSSM_TP_BASE_TP_ERROR =
   CSSM_TP_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT,
- CSSMERR_TP_INVALID_CALLERAUTH_CONTEXT_POINTER = CSSM_TP_BASE_TP_ERROR + 1,
- CSSMERR_TP_INVALID_IDENTIFIER_POINTER = CSSM_TP_BASE_TP_ERROR + 2,
- CSSMERR_TP_INVALID_KEYCACHE_HANDLE = CSSM_TP_BASE_TP_ERROR + 3,
- CSSMERR_TP_INVALID_CERTGROUP = CSSM_TP_BASE_TP_ERROR + 4,
- CSSMERR_TP_INVALID_CRLGROUP = CSSM_TP_BASE_TP_ERROR + 5,
- CSSMERR_TP_INVALID_CRLGROUP_POINTER = CSSM_TP_BASE_TP_ERROR + 6,
- CSSMERR_TP_AUTHENTICATION_FAILED = CSSM_TP_BASE_TP_ERROR + 7,
- CSSMERR_TP_CERTGROUP_INCOMPLETE = CSSM_TP_BASE_TP_ERROR + 8,
- CSSMERR_TP_CERTIFICATE_CANT_OPERATE = CSSM_TP_BASE_TP_ERROR + 9,
- CSSMERR_TP_CERT_EXPIRED = CSSM_TP_BASE_TP_ERROR + 10,
- CSSMERR_TP_CERT_NOT_VALID_YET = CSSM_TP_BASE_TP_ERROR + 11,
- CSSMERR_TP_CERT_REVOKED = CSSM_TP_BASE_TP_ERROR + 12,
- CSSMERR_TP_CERT_SUSPENDED = CSSM_TP_BASE_TP_ERROR + 13,
- CSSMERR_TP_INSUFFICIENT_CREDENTIALS = CSSM_TP_BASE_TP_ERROR + 14,
- CSSMERR_TP_INVALID_ACTION = CSSM_TP_BASE_TP_ERROR + 15,
- CSSMERR_TP_INVALID_ACTION_DATA = CSSM_TP_BASE_TP_ERROR + 16,
- CSSMERR_TP_INVALID_ANCHOR_CERT = CSSM_TP_BASE_TP_ERROR + 18,
- CSSMERR_TP_INVALID_AUTHORITY = CSSM_TP_BASE_TP_ERROR + 19,
- CSSMERR_TP_VERIFY_ACTION_FAILED = CSSM_TP_BASE_TP_ERROR + 20,
- CSSMERR_TP_INVALID_CERTIFICATE = CSSM_TP_BASE_TP_ERROR + 21,
- CSSMERR_TP_INVALID_CERT_AUTHORITY = CSSM_TP_BASE_TP_ERROR + 22,
- CSSMERR_TP_INVALID_CRL_AUTHORITY = CSSM_TP_BASE_TP_ERROR + 23,
- CSSMERR_TP_INVALID_CRL_ENCODING = CSSM_TP_BASE_TP_ERROR + 24,
- CSSMERR_TP_INVALID_CRL_TYPE = CSSM_TP_BASE_TP_ERROR + 25,
- CSSMERR_TP_INVALID_CRL = CSSM_TP_BASE_TP_ERROR + 26,
- CSSMERR_TP_INVALID_FORM_TYPE = CSSM_TP_BASE_TP_ERROR + 27,
- CSSMERR_TP_INVALID_ID = CSSM_TP_BASE_TP_ERROR + 28,
- CSSMERR_TP_INVALID_IDENTIFIER = CSSM_TP_BASE_TP_ERROR + 29,
- CSSMERR_TP_INVALID_INDEX = CSSM_TP_BASE_TP_ERROR + 30,
- CSSMERR_TP_INVALID_NAME = CSSM_TP_BASE_TP_ERROR + 31,
- CSSMERR_TP_INVALID_POLICY_IDENTIFIERS = CSSM_TP_BASE_TP_ERROR + 32,
- CSSMERR_TP_INVALID_TIMESTRING = CSSM_TP_BASE_TP_ERROR + 33,
- CSSMERR_TP_INVALID_REASON = CSSM_TP_BASE_TP_ERROR + 34,
- CSSMERR_TP_INVALID_REQUEST_INPUTS = CSSM_TP_BASE_TP_ERROR + 35,
- CSSMERR_TP_INVALID_RESPONSE_VECTOR = CSSM_TP_BASE_TP_ERROR + 36,
- CSSMERR_TP_INVALID_SIGNATURE = CSSM_TP_BASE_TP_ERROR + 37,
- CSSMERR_TP_INVALID_STOP_ON_POLICY = CSSM_TP_BASE_TP_ERROR + 38,
- CSSMERR_TP_INVALID_CALLBACK = CSSM_TP_BASE_TP_ERROR + 39,
- CSSMERR_TP_INVALID_TUPLE = CSSM_TP_BASE_TP_ERROR + 40,
- CSSMERR_TP_NOT_SIGNER = CSSM_TP_BASE_TP_ERROR + 41,
- CSSMERR_TP_NOT_TRUSTED = CSSM_TP_BASE_TP_ERROR + 42,
- CSSMERR_TP_NO_DEFAULT_AUTHORITY = CSSM_TP_BASE_TP_ERROR + 43,
- CSSMERR_TP_REJECTED_FORM = CSSM_TP_BASE_TP_ERROR + 44,
- CSSMERR_TP_REQUEST_LOST = CSSM_TP_BASE_TP_ERROR + 45,
- CSSMERR_TP_REQUEST_REJECTED = CSSM_TP_BASE_TP_ERROR + 46,
- CSSMERR_TP_UNSUPPORTED_ADDR_TYPE = CSSM_TP_BASE_TP_ERROR + 47,
- CSSMERR_TP_UNSUPPORTED_SERVICE = CSSM_TP_BASE_TP_ERROR + 48,
- CSSMERR_TP_INVALID_TUPLEGROUP_POINTER = CSSM_TP_BASE_TP_ERROR + 49,
- CSSMERR_TP_INVALID_TUPLEGROUP = CSSM_TP_BASE_TP_ERROR + 50
+ CSSMERR_TP_INVALID_CALLERAUTH_CONTEXT_POINTER = -2147409663,
+ CSSMERR_TP_INVALID_IDENTIFIER_POINTER = -2147409662,
+ CSSMERR_TP_INVALID_KEYCACHE_HANDLE = -2147409661,
+ CSSMERR_TP_INVALID_CERTGROUP = -2147409660,
+ CSSMERR_TP_INVALID_CRLGROUP = -2147409659,
+ CSSMERR_TP_INVALID_CRLGROUP_POINTER = -2147409658,
+ CSSMERR_TP_AUTHENTICATION_FAILED = -2147409657,
+ CSSMERR_TP_CERTGROUP_INCOMPLETE = -2147409656,
+ CSSMERR_TP_CERTIFICATE_CANT_OPERATE = -2147409655,
+ CSSMERR_TP_CERT_EXPIRED = -2147409654,
+ CSSMERR_TP_CERT_NOT_VALID_YET = -2147409653,
+ CSSMERR_TP_CERT_REVOKED = -2147409652,
+ CSSMERR_TP_CERT_SUSPENDED = -2147409651,
+ CSSMERR_TP_INSUFFICIENT_CREDENTIALS = -2147409650,
+ CSSMERR_TP_INVALID_ACTION = -2147409649,
+ CSSMERR_TP_INVALID_ACTION_DATA = -2147409648,
+ CSSMERR_TP_INVALID_ANCHOR_CERT = -2147409646,
+ CSSMERR_TP_INVALID_AUTHORITY = -2147409645,
+ CSSMERR_TP_VERIFY_ACTION_FAILED = -2147409644,
+ CSSMERR_TP_INVALID_CERTIFICATE = -2147409643,
+ CSSMERR_TP_INVALID_CERT_AUTHORITY = -2147409642,
+ CSSMERR_TP_INVALID_CRL_AUTHORITY = -2147409641,
+ CSSMERR_TP_INVALID_CRL_ENCODING = -2147409640,
+ CSSMERR_TP_INVALID_CRL_TYPE = -2147409639,
+ CSSMERR_TP_INVALID_CRL = -2147409638,
+ CSSMERR_TP_INVALID_FORM_TYPE = -2147409637,
+ CSSMERR_TP_INVALID_ID = -2147409636,
+ CSSMERR_TP_INVALID_IDENTIFIER = -2147409635,
+ CSSMERR_TP_INVALID_INDEX = -2147409634,
+ CSSMERR_TP_INVALID_NAME = -2147409633,
+ CSSMERR_TP_INVALID_POLICY_IDENTIFIERS = -2147409632,
+ CSSMERR_TP_INVALID_TIMESTRING = -2147409631,
+ CSSMERR_TP_INVALID_REASON = -2147409630,
+ CSSMERR_TP_INVALID_REQUEST_INPUTS = -2147409629,
+ CSSMERR_TP_INVALID_RESPONSE_VECTOR = -2147409628,
+ CSSMERR_TP_INVALID_SIGNATURE = -2147409627,
+ CSSMERR_TP_INVALID_STOP_ON_POLICY = -2147409626,
+ CSSMERR_TP_INVALID_CALLBACK = -2147409625,
+ CSSMERR_TP_INVALID_TUPLE = -2147409624,
+ CSSMERR_TP_NOT_SIGNER = -2147409623,
+ CSSMERR_TP_NOT_TRUSTED = -2147409622,
+ CSSMERR_TP_NO_DEFAULT_AUTHORITY = -2147409621,
+ CSSMERR_TP_REJECTED_FORM = -2147409620,
+ CSSMERR_TP_REQUEST_LOST = -2147409619,
+ CSSMERR_TP_REQUEST_REJECTED = -2147409618,
+ CSSMERR_TP_UNSUPPORTED_ADDR_TYPE = -2147409617,
+ CSSMERR_TP_UNSUPPORTED_SERVICE = -2147409616,
+ CSSMERR_TP_INVALID_TUPLEGROUP_POINTER = -2147409615,
+ CSSMERR_TP_INVALID_TUPLEGROUP = -2147409614,
 };
 
 
 enum {
- CSSMERR_AC_INTERNAL_ERROR =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_AC_MEMORY_ERROR =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_AC_MDS_ERROR =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_AC_INVALID_POINTER =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_AC_INVALID_INPUT_POINTER =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_AC_INVALID_OUTPUT_POINTER =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_AC_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_AC_SELF_CHECK_FAILED =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_AC_OS_ACCESS_DENIED =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_AC_FUNCTION_FAILED =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED,
- CSSMERR_AC_INVALID_CONTEXT_HANDLE =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_CONTEXT_HANDLE,
- CSSMERR_AC_INVALID_DATA =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_DATA,
- CSSMERR_AC_INVALID_DB_LIST =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_LIST,
- CSSMERR_AC_INVALID_PASSTHROUGH_ID =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_PASSTHROUGH_ID,
- CSSMERR_AC_INVALID_DL_HANDLE =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_DL_HANDLE,
- CSSMERR_AC_INVALID_CL_HANDLE =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_CL_HANDLE,
- CSSMERR_AC_INVALID_TP_HANDLE =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_TP_HANDLE,
- CSSMERR_AC_INVALID_DB_HANDLE =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_HANDLE,
- CSSMERR_AC_INVALID_DB_LIST_POINTER =
-  CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_LIST_POINTER
+ CSSMERR_AC_INTERNAL_ERROR = -2147405823,
+ CSSMERR_AC_MEMORY_ERROR = -2147405822,
+ CSSMERR_AC_MDS_ERROR = -2147405821,
+ CSSMERR_AC_INVALID_POINTER = -2147405820,
+ CSSMERR_AC_INVALID_INPUT_POINTER = -2147405819,
+ CSSMERR_AC_INVALID_OUTPUT_POINTER = -2147405818,
+ CSSMERR_AC_FUNCTION_NOT_IMPLEMENTED = -2147405817,
+ CSSMERR_AC_SELF_CHECK_FAILED = -2147405816,
+ CSSMERR_AC_OS_ACCESS_DENIED = -2147405815,
+ CSSMERR_AC_FUNCTION_FAILED = -2147405814,
+ CSSMERR_AC_INVALID_CONTEXT_HANDLE = -2147405760,
+ CSSMERR_AC_INVALID_DATA = -2147405754,
+ CSSMERR_AC_INVALID_DB_LIST = -2147405748,
+ CSSMERR_AC_INVALID_PASSTHROUGH_ID = -2147405738,
+ CSSMERR_AC_INVALID_DL_HANDLE = -2147405743,
+ CSSMERR_AC_INVALID_CL_HANDLE = -2147405742,
+ CSSMERR_AC_INVALID_TP_HANDLE = -2147405741,
+ CSSMERR_AC_INVALID_DB_HANDLE = -2147405750,
+ CSSMERR_AC_INVALID_DB_LIST_POINTER = -2147405747,
 };
 
 
 enum {
  CSSM_AC_BASE_AC_ERROR =
   CSSM_AC_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT,
- CSSMERR_AC_INVALID_BASE_ACLS = CSSM_AC_BASE_AC_ERROR + 1,
- CSSMERR_AC_INVALID_TUPLE_CREDENTIALS = CSSM_AC_BASE_AC_ERROR + 2,
- CSSMERR_AC_INVALID_ENCODING = CSSM_AC_BASE_AC_ERROR + 3,
- CSSMERR_AC_INVALID_VALIDITY_PERIOD = CSSM_AC_BASE_AC_ERROR + 4,
- CSSMERR_AC_INVALID_REQUESTOR = CSSM_AC_BASE_AC_ERROR + 5,
- CSSMERR_AC_INVALID_REQUEST_DESCRIPTOR = CSSM_AC_BASE_AC_ERROR + 6
+ CSSMERR_AC_INVALID_BASE_ACLS = -2147405567,
+ CSSMERR_AC_INVALID_TUPLE_CREDENTIALS = -2147405566,
+ CSSMERR_AC_INVALID_ENCODING = -2147405565,
+ CSSMERR_AC_INVALID_VALIDITY_PERIOD = -2147405564,
+ CSSMERR_AC_INVALID_REQUESTOR = -2147405563,
+ CSSMERR_AC_INVALID_REQUEST_DESCRIPTOR = -2147405562,
 };
 
 
 enum {
- CSSMERR_CL_INTERNAL_ERROR =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_CL_MEMORY_ERROR =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_CL_MDS_ERROR =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_CL_INVALID_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_CL_INVALID_INPUT_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_CL_INVALID_OUTPUT_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_CL_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_CL_SELF_CHECK_FAILED =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_CL_OS_ACCESS_DENIED =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_CL_FUNCTION_FAILED =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED,
- CSSMERR_CL_INVALID_CONTEXT_HANDLE =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_CONTEXT_HANDLE,
- CSSMERR_CL_INVALID_CERTGROUP_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_CERTGROUP_POINTER,
- CSSMERR_CL_INVALID_CERT_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_CERT_POINTER,
- CSSMERR_CL_INVALID_CRL_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_CRL_POINTER,
- CSSMERR_CL_INVALID_FIELD_POINTER =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_FIELD_POINTER,
- CSSMERR_CL_INVALID_DATA =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_DATA,
- CSSMERR_CL_CRL_ALREADY_SIGNED =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_CRL_ALREADY_SIGNED,
- CSSMERR_CL_INVALID_NUMBER_OF_FIELDS =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_NUMBER_OF_FIELDS,
- CSSMERR_CL_VERIFICATION_FAILURE =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_VERIFICATION_FAILURE,
- CSSMERR_CL_UNKNOWN_FORMAT =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_UNKNOWN_FORMAT,
- CSSMERR_CL_UNKNOWN_TAG =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_UNKNOWN_TAG,
- CSSMERR_CL_INVALID_PASSTHROUGH_ID =
-  CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INVALID_PASSTHROUGH_ID
+ CSSMERR_CL_INTERNAL_ERROR = -2147411967,
+ CSSMERR_CL_MEMORY_ERROR = -2147411966,
+ CSSMERR_CL_MDS_ERROR = -2147411965,
+ CSSMERR_CL_INVALID_POINTER = -2147411964,
+ CSSMERR_CL_INVALID_INPUT_POINTER = -2147411963,
+ CSSMERR_CL_INVALID_OUTPUT_POINTER = -2147411962,
+ CSSMERR_CL_FUNCTION_NOT_IMPLEMENTED = -2147411961,
+ CSSMERR_CL_SELF_CHECK_FAILED = -2147411960,
+ CSSMERR_CL_OS_ACCESS_DENIED = -2147411959,
+ CSSMERR_CL_FUNCTION_FAILED = -2147411958,
+ CSSMERR_CL_INVALID_CONTEXT_HANDLE = -2147411904,
+ CSSMERR_CL_INVALID_CERTGROUP_POINTER = -2147411902,
+ CSSMERR_CL_INVALID_CERT_POINTER = -2147411901,
+ CSSMERR_CL_INVALID_CRL_POINTER = -2147411900,
+ CSSMERR_CL_INVALID_FIELD_POINTER = -2147411899,
+ CSSMERR_CL_INVALID_DATA = -2147411898,
+ CSSMERR_CL_CRL_ALREADY_SIGNED = -2147411897,
+ CSSMERR_CL_INVALID_NUMBER_OF_FIELDS = -2147411896,
+ CSSMERR_CL_VERIFICATION_FAILURE = -2147411895,
+ CSSMERR_CL_UNKNOWN_FORMAT = -2147411890,
+ CSSMERR_CL_UNKNOWN_TAG = -2147411889,
+ CSSMERR_CL_INVALID_PASSTHROUGH_ID = -2147411882,
 };
 
 
 enum {
  CSSM_CL_BASE_CL_ERROR =
   CSSM_CL_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT,
- CSSMERR_CL_INVALID_BUNDLE_POINTER = CSSM_CL_BASE_CL_ERROR + 1,
- CSSMERR_CL_INVALID_CACHE_HANDLE = CSSM_CL_BASE_CL_ERROR + 2,
- CSSMERR_CL_INVALID_RESULTS_HANDLE = CSSM_CL_BASE_CL_ERROR + 3,
- CSSMERR_CL_INVALID_BUNDLE_INFO = CSSM_CL_BASE_CL_ERROR + 4,
- CSSMERR_CL_INVALID_CRL_INDEX = CSSM_CL_BASE_CL_ERROR + 5,
- CSSMERR_CL_INVALID_SCOPE = CSSM_CL_BASE_CL_ERROR + 6,
- CSSMERR_CL_NO_FIELD_VALUES = CSSM_CL_BASE_CL_ERROR + 7,
- CSSMERR_CL_SCOPE_NOT_SUPPORTED = CSSM_CL_BASE_CL_ERROR + 8
+ CSSMERR_CL_INVALID_BUNDLE_POINTER = -2147411711,
+ CSSMERR_CL_INVALID_CACHE_HANDLE = -2147411710,
+ CSSMERR_CL_INVALID_RESULTS_HANDLE = -2147411709,
+ CSSMERR_CL_INVALID_BUNDLE_INFO = -2147411708,
+ CSSMERR_CL_INVALID_CRL_INDEX = -2147411707,
+ CSSMERR_CL_INVALID_SCOPE = -2147411706,
+ CSSMERR_CL_NO_FIELD_VALUES = -2147411705,
+ CSSMERR_CL_SCOPE_NOT_SUPPORTED = -2147411704,
 };
 
 
 enum {
- CSSMERR_DL_INTERNAL_ERROR =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INTERNAL_ERROR,
- CSSMERR_DL_MEMORY_ERROR =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_MEMORY_ERROR,
- CSSMERR_DL_MDS_ERROR =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_MDS_ERROR,
- CSSMERR_DL_INVALID_POINTER =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_POINTER,
- CSSMERR_DL_INVALID_INPUT_POINTER =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_INPUT_POINTER,
- CSSMERR_DL_INVALID_OUTPUT_POINTER =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_OUTPUT_POINTER,
- CSSMERR_DL_FUNCTION_NOT_IMPLEMENTED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_FUNCTION_NOT_IMPLEMENTED,
- CSSMERR_DL_SELF_CHECK_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_SELF_CHECK_FAILED,
- CSSMERR_DL_OS_ACCESS_DENIED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OS_ACCESS_DENIED,
- CSSMERR_DL_FUNCTION_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_FUNCTION_FAILED,
- CSSMERR_DL_INVALID_CSP_HANDLE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_CSP_HANDLE,
- CSSMERR_DL_INVALID_DL_HANDLE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_DL_HANDLE,
- CSSMERR_DL_INVALID_CL_HANDLE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_CL_HANDLE,
- CSSMERR_DL_INVALID_DB_LIST_POINTER =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_LIST_POINTER
+ CSSMERR_DL_INTERNAL_ERROR = -2147414015,
+ CSSMERR_DL_MEMORY_ERROR = -2147414014,
+ CSSMERR_DL_MDS_ERROR = -2147414013,
+ CSSMERR_DL_INVALID_POINTER = -2147414012,
+ CSSMERR_DL_INVALID_INPUT_POINTER = -2147414011,
+ CSSMERR_DL_INVALID_OUTPUT_POINTER = -2147414010,
+ CSSMERR_DL_FUNCTION_NOT_IMPLEMENTED = -2147414009,
+ CSSMERR_DL_SELF_CHECK_FAILED = -2147414008,
+ CSSMERR_DL_OS_ACCESS_DENIED = -2147414007,
+ CSSMERR_DL_FUNCTION_FAILED = -2147414006,
+ CSSMERR_DL_INVALID_CSP_HANDLE = -2147413936,
+ CSSMERR_DL_INVALID_DL_HANDLE = -2147413935,
+ CSSMERR_DL_INVALID_CL_HANDLE = -2147413934,
+ CSSMERR_DL_INVALID_DB_LIST_POINTER = -2147413939,
 };
 
 
 enum {
- CSSMERR_DL_OPERATION_AUTH_DENIED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OPERATION_AUTH_DENIED,
- CSSMERR_DL_OBJECT_USE_AUTH_DENIED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OBJECT_USE_AUTH_DENIED,
- CSSMERR_DL_OBJECT_MANIP_AUTH_DENIED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OBJECT_MANIP_AUTH_DENIED,
- CSSMERR_DL_OBJECT_ACL_NOT_SUPPORTED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OBJECT_ACL_NOT_SUPPORTED,
- CSSMERR_DL_OBJECT_ACL_REQUIRED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_OBJECT_ACL_REQUIRED,
- CSSMERR_DL_INVALID_ACCESS_CREDENTIALS =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACCESS_CREDENTIALS,
- CSSMERR_DL_INVALID_ACL_BASE_CERTS =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_BASE_CERTS,
- CSSMERR_DL_ACL_BASE_CERTS_NOT_SUPPORTED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_BASE_CERTS_NOT_SUPPORTED,
- CSSMERR_DL_INVALID_SAMPLE_VALUE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_SAMPLE_VALUE,
- CSSMERR_DL_SAMPLE_VALUE_NOT_SUPPORTED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_SAMPLE_VALUE_NOT_SUPPORTED,
- CSSMERR_DL_INVALID_ACL_SUBJECT_VALUE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_SUBJECT_VALUE,
- CSSMERR_DL_ACL_SUBJECT_TYPE_NOT_SUPPORTED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_SUBJECT_TYPE_NOT_SUPPORTED,
- CSSMERR_DL_INVALID_ACL_CHALLENGE_CALLBACK =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_CHALLENGE_CALLBACK,
- CSSMERR_DL_ACL_CHALLENGE_CALLBACK_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_CHALLENGE_CALLBACK_FAILED,
- CSSMERR_DL_INVALID_ACL_ENTRY_TAG =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_ENTRY_TAG,
- CSSMERR_DL_ACL_ENTRY_TAG_NOT_FOUND =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_ENTRY_TAG_NOT_FOUND,
- CSSMERR_DL_INVALID_ACL_EDIT_MODE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_ACL_EDIT_MODE,
- CSSMERR_DL_ACL_CHANGE_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_CHANGE_FAILED,
- CSSMERR_DL_INVALID_NEW_ACL_ENTRY =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_NEW_ACL_ENTRY,
- CSSMERR_DL_INVALID_NEW_ACL_OWNER =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_NEW_ACL_OWNER,
- CSSMERR_DL_ACL_DELETE_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_DELETE_FAILED,
- CSSMERR_DL_ACL_REPLACE_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_REPLACE_FAILED,
- CSSMERR_DL_ACL_ADD_FAILED =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_ACL_ADD_FAILED
+ CSSMERR_DL_OPERATION_AUTH_DENIED = -2147413984,
+ CSSMERR_DL_OBJECT_USE_AUTH_DENIED = -2147413983,
+ CSSMERR_DL_OBJECT_MANIP_AUTH_DENIED = -2147413982,
+ CSSMERR_DL_OBJECT_ACL_NOT_SUPPORTED = -2147413981,
+ CSSMERR_DL_OBJECT_ACL_REQUIRED = -2147413980,
+ CSSMERR_DL_INVALID_ACCESS_CREDENTIALS = -2147413979,
+ CSSMERR_DL_INVALID_ACL_BASE_CERTS = -2147413978,
+ CSSMERR_DL_ACL_BASE_CERTS_NOT_SUPPORTED = -2147413977,
+ CSSMERR_DL_INVALID_SAMPLE_VALUE = -2147413976,
+ CSSMERR_DL_SAMPLE_VALUE_NOT_SUPPORTED = -2147413975,
+ CSSMERR_DL_INVALID_ACL_SUBJECT_VALUE = -2147413974,
+ CSSMERR_DL_ACL_SUBJECT_TYPE_NOT_SUPPORTED = -2147413973,
+ CSSMERR_DL_INVALID_ACL_CHALLENGE_CALLBACK = -2147413972,
+ CSSMERR_DL_ACL_CHALLENGE_CALLBACK_FAILED = -2147413971,
+ CSSMERR_DL_INVALID_ACL_ENTRY_TAG = -2147413970,
+ CSSMERR_DL_ACL_ENTRY_TAG_NOT_FOUND = -2147413969,
+ CSSMERR_DL_INVALID_ACL_EDIT_MODE = -2147413968,
+ CSSMERR_DL_ACL_CHANGE_FAILED = -2147413967,
+ CSSMERR_DL_INVALID_NEW_ACL_ENTRY = -2147413966,
+ CSSMERR_DL_INVALID_NEW_ACL_OWNER = -2147413965,
+ CSSMERR_DL_ACL_DELETE_FAILED = -2147413964,
+ CSSMERR_DL_ACL_REPLACE_FAILED = -2147413963,
+ CSSMERR_DL_ACL_ADD_FAILED = -2147413962,
 };
 
 
 enum {
- CSSMERR_DL_INVALID_DB_HANDLE =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_DB_HANDLE,
- CSSMERR_DL_INVALID_PASSTHROUGH_ID =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_PASSTHROUGH_ID,
- CSSMERR_DL_INVALID_NETWORK_ADDR =
-  CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INVALID_NETWORK_ADDR
+ CSSMERR_DL_INVALID_DB_HANDLE = -2147413942,
+ CSSMERR_DL_INVALID_PASSTHROUGH_ID = -2147413930,
+ CSSMERR_DL_INVALID_NETWORK_ADDR = -2147413929,
 };
 
 
 enum {
  CSSM_DL_BASE_DL_ERROR =
   CSSM_DL_BASE_ERROR + CSSM_ERRORCODE_COMMON_EXTENT,
- CSSMERR_DL_DATABASE_CORRUPT = CSSM_DL_BASE_DL_ERROR + 1,
- CSSMERR_DL_INVALID_RECORD_INDEX = CSSM_DL_BASE_DL_ERROR + 8,
- CSSMERR_DL_INVALID_RECORDTYPE = CSSM_DL_BASE_DL_ERROR + 9,
- CSSMERR_DL_INVALID_FIELD_NAME = CSSM_DL_BASE_DL_ERROR + 10,
- CSSMERR_DL_UNSUPPORTED_FIELD_FORMAT = CSSM_DL_BASE_DL_ERROR + 11,
- CSSMERR_DL_UNSUPPORTED_INDEX_INFO = CSSM_DL_BASE_DL_ERROR + 12,
- CSSMERR_DL_UNSUPPORTED_LOCALITY = CSSM_DL_BASE_DL_ERROR + 13,
- CSSMERR_DL_UNSUPPORTED_NUM_ATTRIBUTES = CSSM_DL_BASE_DL_ERROR + 14,
- CSSMERR_DL_UNSUPPORTED_NUM_INDEXES = CSSM_DL_BASE_DL_ERROR + 15,
- CSSMERR_DL_UNSUPPORTED_NUM_RECORDTYPES = CSSM_DL_BASE_DL_ERROR + 16,
- CSSMERR_DL_UNSUPPORTED_RECORDTYPE = CSSM_DL_BASE_DL_ERROR + 17,
- CSSMERR_DL_FIELD_SPECIFIED_MULTIPLE = CSSM_DL_BASE_DL_ERROR + 18,
- CSSMERR_DL_INCOMPATIBLE_FIELD_FORMAT = CSSM_DL_BASE_DL_ERROR + 19,
- CSSMERR_DL_INVALID_PARSING_MODULE = CSSM_DL_BASE_DL_ERROR + 20,
- CSSMERR_DL_INVALID_DB_NAME = CSSM_DL_BASE_DL_ERROR + 22,
- CSSMERR_DL_DATASTORE_DOESNOT_EXIST = CSSM_DL_BASE_DL_ERROR + 23,
- CSSMERR_DL_DATASTORE_ALREADY_EXISTS = CSSM_DL_BASE_DL_ERROR + 24,
- CSSMERR_DL_DB_LOCKED = CSSM_DL_BASE_DL_ERROR + 25,
- CSSMERR_DL_DATASTORE_IS_OPEN = CSSM_DL_BASE_DL_ERROR + 26,
- CSSMERR_DL_RECORD_NOT_FOUND = CSSM_DL_BASE_DL_ERROR + 27,
- CSSMERR_DL_MISSING_VALUE = CSSM_DL_BASE_DL_ERROR + 28,
- CSSMERR_DL_UNSUPPORTED_QUERY = CSSM_DL_BASE_DL_ERROR + 29,
- CSSMERR_DL_UNSUPPORTED_QUERY_LIMITS = CSSM_DL_BASE_DL_ERROR + 30,
- CSSMERR_DL_UNSUPPORTED_NUM_SELECTION_PREDS = CSSM_DL_BASE_DL_ERROR + 31,
- CSSMERR_DL_UNSUPPORTED_OPERATOR = CSSM_DL_BASE_DL_ERROR + 33,
- CSSMERR_DL_INVALID_RESULTS_HANDLE = CSSM_DL_BASE_DL_ERROR + 34,
- CSSMERR_DL_INVALID_DB_LOCATION = CSSM_DL_BASE_DL_ERROR + 35,
- CSSMERR_DL_INVALID_ACCESS_REQUEST = CSSM_DL_BASE_DL_ERROR + 36,
- CSSMERR_DL_INVALID_INDEX_INFO = CSSM_DL_BASE_DL_ERROR + 37,
- CSSMERR_DL_INVALID_SELECTION_TAG = CSSM_DL_BASE_DL_ERROR + 38,
- CSSMERR_DL_INVALID_NEW_OWNER = CSSM_DL_BASE_DL_ERROR + 39,
- CSSMERR_DL_INVALID_RECORD_UID = CSSM_DL_BASE_DL_ERROR + 40,
- CSSMERR_DL_INVALID_UNIQUE_INDEX_DATA = CSSM_DL_BASE_DL_ERROR + 41,
- CSSMERR_DL_INVALID_MODIFY_MODE = CSSM_DL_BASE_DL_ERROR + 42,
- CSSMERR_DL_INVALID_OPEN_PARAMETERS = CSSM_DL_BASE_DL_ERROR + 43,
- CSSMERR_DL_RECORD_MODIFIED = CSSM_DL_BASE_DL_ERROR + 44,
- CSSMERR_DL_ENDOFDATA = CSSM_DL_BASE_DL_ERROR + 45,
- CSSMERR_DL_INVALID_QUERY = CSSM_DL_BASE_DL_ERROR + 46,
- CSSMERR_DL_INVALID_VALUE = CSSM_DL_BASE_DL_ERROR + 47,
- CSSMERR_DL_MULTIPLE_VALUES_UNSUPPORTED = CSSM_DL_BASE_DL_ERROR + 48,
- CSSMERR_DL_STALE_UNIQUE_RECORD = CSSM_DL_BASE_DL_ERROR + 49
+ CSSMERR_DL_DATABASE_CORRUPT = -2147413759,
+ CSSMERR_DL_INVALID_RECORD_INDEX = -2147413752,
+ CSSMERR_DL_INVALID_RECORDTYPE = -2147413751,
+ CSSMERR_DL_INVALID_FIELD_NAME = -2147413750,
+ CSSMERR_DL_UNSUPPORTED_FIELD_FORMAT = -2147413749,
+ CSSMERR_DL_UNSUPPORTED_INDEX_INFO = -2147413748,
+ CSSMERR_DL_UNSUPPORTED_LOCALITY = -2147413747,
+ CSSMERR_DL_UNSUPPORTED_NUM_ATTRIBUTES = -2147413746,
+ CSSMERR_DL_UNSUPPORTED_NUM_INDEXES = -2147413745,
+ CSSMERR_DL_UNSUPPORTED_NUM_RECORDTYPES = -2147413744,
+ CSSMERR_DL_UNSUPPORTED_RECORDTYPE = -2147413743,
+ CSSMERR_DL_FIELD_SPECIFIED_MULTIPLE = -2147413742,
+ CSSMERR_DL_INCOMPATIBLE_FIELD_FORMAT = -2147413741,
+ CSSMERR_DL_INVALID_PARSING_MODULE = -2147413740,
+ CSSMERR_DL_INVALID_DB_NAME = -2147413738,
+ CSSMERR_DL_DATASTORE_DOESNOT_EXIST = -2147413737,
+ CSSMERR_DL_DATASTORE_ALREADY_EXISTS = -2147413736,
+ CSSMERR_DL_DB_LOCKED = -2147413735,
+ CSSMERR_DL_DATASTORE_IS_OPEN = -2147413734,
+ CSSMERR_DL_RECORD_NOT_FOUND = -2147413733,
+ CSSMERR_DL_MISSING_VALUE = -2147413732,
+ CSSMERR_DL_UNSUPPORTED_QUERY = -2147413731,
+ CSSMERR_DL_UNSUPPORTED_QUERY_LIMITS = -2147413730,
+ CSSMERR_DL_UNSUPPORTED_NUM_SELECTION_PREDS = -2147413729,
+ CSSMERR_DL_UNSUPPORTED_OPERATOR = -2147413727,
+ CSSMERR_DL_INVALID_RESULTS_HANDLE = -2147413726,
+ CSSMERR_DL_INVALID_DB_LOCATION = -2147413725,
+ CSSMERR_DL_INVALID_ACCESS_REQUEST = -2147413724,
+ CSSMERR_DL_INVALID_INDEX_INFO = -2147413723,
+ CSSMERR_DL_INVALID_SELECTION_TAG = -2147413722,
+ CSSMERR_DL_INVALID_NEW_OWNER = -2147413721,
+ CSSMERR_DL_INVALID_RECORD_UID = -2147413720,
+ CSSMERR_DL_INVALID_UNIQUE_INDEX_DATA = -2147413719,
+ CSSMERR_DL_INVALID_MODIFY_MODE = -2147413718,
+ CSSMERR_DL_INVALID_OPEN_PARAMETERS = -2147413717,
+ CSSMERR_DL_RECORD_MODIFIED = -2147413716,
+ CSSMERR_DL_ENDOFDATA = -2147413715,
+ CSSMERR_DL_INVALID_QUERY = -2147413714,
+ CSSMERR_DL_INVALID_VALUE = -2147413713,
+ CSSMERR_DL_MULTIPLE_VALUES_UNSUPPORTED = -2147413712,
+ CSSMERR_DL_STALE_UNIQUE_RECORD = -2147413711,
 };
 
 
@@ -29354,77 +29533,76 @@ enum
 };
 
 enum {
- CSSMERR_CSSM_NO_USER_INTERACTION = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
- CSSMERR_AC_NO_USER_INTERACTION = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
- CSSMERR_CSP_NO_USER_INTERACTION = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
- CSSMERR_CL_NO_USER_INTERACTION = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
- CSSMERR_DL_NO_USER_INTERACTION = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
- CSSMERR_TP_NO_USER_INTERACTION = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_NO_USER_INTERACTION,
+ CSSMERR_CSSM_NO_USER_INTERACTION = -2147417888,
+ CSSMERR_AC_NO_USER_INTERACTION = -2147405600,
+ CSSMERR_CSP_NO_USER_INTERACTION = -2147415840,
+ CSSMERR_CL_NO_USER_INTERACTION = -2147411744,
+ CSSMERR_DL_NO_USER_INTERACTION = -2147413792,
+ CSSMERR_TP_NO_USER_INTERACTION = -2147409696,
 
- CSSMERR_CSSM_USER_CANCELED = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
- CSSMERR_AC_USER_CANCELED = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
- CSSMERR_CSP_USER_CANCELED = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
- CSSMERR_CL_USER_CANCELED = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
- CSSMERR_DL_USER_CANCELED = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
- CSSMERR_TP_USER_CANCELED = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_USER_CANCELED,
+ CSSMERR_CSSM_USER_CANCELED = -2147417887,
+ CSSMERR_AC_USER_CANCELED = -2147405599,
+ CSSMERR_CSP_USER_CANCELED = -2147415839,
+ CSSMERR_CL_USER_CANCELED = -2147411743,
+ CSSMERR_DL_USER_CANCELED = -2147413791,
+ CSSMERR_TP_USER_CANCELED = -2147409695,
 
- CSSMERR_CSSM_SERVICE_NOT_AVAILABLE = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
- CSSMERR_AC_SERVICE_NOT_AVAILABLE = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
- CSSMERR_CSP_SERVICE_NOT_AVAILABLE = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
- CSSMERR_CL_SERVICE_NOT_AVAILABLE = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
- CSSMERR_DL_SERVICE_NOT_AVAILABLE = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
- CSSMERR_TP_SERVICE_NOT_AVAILABLE = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_SERVICE_NOT_AVAILABLE,
+ CSSMERR_CSSM_SERVICE_NOT_AVAILABLE = -2147417886,
+ CSSMERR_AC_SERVICE_NOT_AVAILABLE = -2147405598,
+ CSSMERR_CSP_SERVICE_NOT_AVAILABLE = -2147415838,
+ CSSMERR_CL_SERVICE_NOT_AVAILABLE = -2147411742,
+ CSSMERR_DL_SERVICE_NOT_AVAILABLE = -2147413790,
+ CSSMERR_TP_SERVICE_NOT_AVAILABLE = -2147409694,
 
- CSSMERR_CSSM_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
- CSSMERR_AC_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
- CSSMERR_CSP_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
- CSSMERR_CL_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
- CSSMERR_DL_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
- CSSMERR_TP_INSUFFICIENT_CLIENT_IDENTIFICATION = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_INSUFFICIENT_CLIENT_IDENTIFICATION,
+ CSSMERR_CSSM_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147417885,
+ CSSMERR_AC_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147405597,
+ CSSMERR_CSP_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147415837,
+ CSSMERR_CL_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147411741,
+ CSSMERR_DL_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147413789,
+ CSSMERR_TP_INSUFFICIENT_CLIENT_IDENTIFICATION = -2147409693,
 
- CSSMERR_CSSM_DEVICE_RESET = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
- CSSMERR_AC_DEVICE_RESET = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
- CSSMERR_CSP_DEVICE_RESET = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
- CSSMERR_CL_DEVICE_RESET = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
- CSSMERR_DL_DEVICE_RESET = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
- CSSMERR_TP_DEVICE_RESET = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_DEVICE_RESET,
+ CSSMERR_CSSM_DEVICE_RESET = -2147417884,
+ CSSMERR_AC_DEVICE_RESET = -2147405596,
+ CSSMERR_CSP_DEVICE_RESET = -2147415836,
+ CSSMERR_CL_DEVICE_RESET = -2147411740,
+ CSSMERR_DL_DEVICE_RESET = -2147413788,
+ CSSMERR_TP_DEVICE_RESET = -2147409692,
 
- CSSMERR_CSSM_DEVICE_FAILED = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
- CSSMERR_AC_DEVICE_FAILED = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
- CSSMERR_CSP_DEVICE_FAILED = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
- CSSMERR_CL_DEVICE_FAILED = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
- CSSMERR_DL_DEVICE_FAILED = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
- CSSMERR_TP_DEVICE_FAILED = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_DEVICE_FAILED,
+ CSSMERR_CSSM_DEVICE_FAILED = -2147417883,
+ CSSMERR_AC_DEVICE_FAILED = -2147405595,
+ CSSMERR_CSP_DEVICE_FAILED = -2147415835,
+ CSSMERR_CL_DEVICE_FAILED = -2147411739,
+ CSSMERR_DL_DEVICE_FAILED = -2147413787,
+ CSSMERR_TP_DEVICE_FAILED = -2147409691,
 
- CSSMERR_CSSM_IN_DARK_WAKE = CSSM_CSSM_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE,
- CSSMERR_AC_IN_DARK_WAKE = CSSM_AC_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE,
- CSSMERR_CSP_IN_DARK_WAKE = CSSM_CSP_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE,
- CSSMERR_CL_IN_DARK_WAKE = CSSM_CL_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE,
- CSSMERR_DL_IN_DARK_WAKE = CSSM_DL_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE,
- CSSMERR_TP_IN_DARK_WAKE = CSSM_TP_BASE_ERROR + CSSM_ERRCODE_IN_DARK_WAKE
+ CSSMERR_CSSM_IN_DARK_WAKE = -2147417882,
+ CSSMERR_AC_IN_DARK_WAKE = -2147405594,
+ CSSMERR_CSP_IN_DARK_WAKE = -2147415834,
+ CSSMERR_CL_IN_DARK_WAKE = -2147411738,
+ CSSMERR_DL_IN_DARK_WAKE = -2147413786,
+ CSSMERR_TP_IN_DARK_WAKE = -2147409690,
 };
 
 
 enum {
- CSSMERR_CSP_APPLE_ADD_APPLICATION_ACL_SUBJECT = CSSM_CSP_PRIVATE_ERROR + 0,
+ CSSMERR_CSP_APPLE_ADD_APPLICATION_ACL_SUBJECT = -2147415040,
 
 
+ CSSMERR_CSP_APPLE_PUBLIC_KEY_INCOMPLETE = -2147415039,
 
 
- CSSMERR_CSP_APPLE_PUBLIC_KEY_INCOMPLETE = CSSM_CSP_PRIVATE_ERROR + 1,
+ CSSMERR_CSP_APPLE_SIGNATURE_MISMATCH = -2147415038,
 
 
- CSSMERR_CSP_APPLE_SIGNATURE_MISMATCH = CSSM_CSP_PRIVATE_ERROR + 2,
+ CSSMERR_CSP_APPLE_INVALID_KEY_START_DATE = -2147415037,
+
+ CSSMERR_CSP_APPLE_INVALID_KEY_END_DATE = -2147415036,
 
 
- CSSMERR_CSP_APPLE_INVALID_KEY_START_DATE = CSSM_CSP_PRIVATE_ERROR + 3,
- CSSMERR_CSP_APPLE_INVALID_KEY_END_DATE = CSSM_CSP_PRIVATE_ERROR + 4,
+ CSSMERR_CSPDL_APPLE_DL_CONVERSION_ERROR = -2147415035,
 
 
- CSSMERR_CSPDL_APPLE_DL_CONVERSION_ERROR = CSSM_CSP_PRIVATE_ERROR + 5,
-
-
- CSSMERR_CSP_APPLE_SSLv2_ROLLBACK = CSSM_CSP_PRIVATE_ERROR + 6
+ CSSMERR_CSP_APPLE_SSLv2_ROLLBACK = -2147415034,
 };
 
 
@@ -29483,182 +29661,188 @@ enum
 
 
 
- CSSMERR_APPLEDL_INVALID_OPEN_PARAMETERS = CSSM_DL_PRIVATE_ERROR + 0,
+ CSSMERR_APPLEDL_INVALID_OPEN_PARAMETERS = -2147412992,
 
 
- CSSMERR_APPLEDL_DISK_FULL = CSSM_DL_PRIVATE_ERROR + 1,
+ CSSMERR_APPLEDL_DISK_FULL = -2147412991,
 
 
- CSSMERR_APPLEDL_QUOTA_EXCEEDED = CSSM_DL_PRIVATE_ERROR + 2,
+ CSSMERR_APPLEDL_QUOTA_EXCEEDED = -2147412990,
 
 
- CSSMERR_APPLEDL_FILE_TOO_BIG = CSSM_DL_PRIVATE_ERROR + 3,
+ CSSMERR_APPLEDL_FILE_TOO_BIG = -2147412989,
 
 
-    CSSMERR_APPLEDL_INVALID_DATABASE_BLOB = CSSM_DL_PRIVATE_ERROR + 4,
-    CSSMERR_APPLEDL_INVALID_KEY_BLOB = CSSM_DL_PRIVATE_ERROR + 5,
+    CSSMERR_APPLEDL_INVALID_DATABASE_BLOB = -2147412988,
 
 
-    CSSMERR_APPLEDL_INCOMPATIBLE_DATABASE_BLOB = CSSM_DL_PRIVATE_ERROR + 6,
-    CSSMERR_APPLEDL_INCOMPATIBLE_KEY_BLOB = CSSM_DL_PRIVATE_ERROR + 7,
+    CSSMERR_APPLEDL_INVALID_KEY_BLOB = -2147412987,
+
+
+    CSSMERR_APPLEDL_INCOMPATIBLE_DATABASE_BLOB = -2147412986,
+
+
+    CSSMERR_APPLEDL_INCOMPATIBLE_KEY_BLOB = -2147412985,
 };
 
 
 enum
 {
 
- CSSMERR_APPLETP_HOSTNAME_MISMATCH = CSSM_TP_PRIVATE_ERROR + 0,
+ CSSMERR_APPLETP_HOSTNAME_MISMATCH = -2147408896,
 
- CSSMERR_APPLETP_UNKNOWN_CRITICAL_EXTEN = CSSM_TP_PRIVATE_ERROR + 1,
+ CSSMERR_APPLETP_UNKNOWN_CRITICAL_EXTEN = -2147408895,
 
- CSSMERR_APPLETP_NO_BASIC_CONSTRAINTS = CSSM_TP_PRIVATE_ERROR + 2,
+ CSSMERR_APPLETP_NO_BASIC_CONSTRAINTS = -2147408894,
 
- CSSMERR_APPLETP_INVALID_CA = CSSM_TP_PRIVATE_ERROR + 3,
+ CSSMERR_APPLETP_INVALID_CA = -2147408893,
 
- CSSMERR_APPLETP_INVALID_AUTHORITY_ID = CSSM_TP_PRIVATE_ERROR + 4,
+ CSSMERR_APPLETP_INVALID_AUTHORITY_ID = -2147408892,
 
- CSSMERR_APPLETP_INVALID_SUBJECT_ID = CSSM_TP_PRIVATE_ERROR + 5,
+ CSSMERR_APPLETP_INVALID_SUBJECT_ID = -2147408891,
 
- CSSMERR_APPLETP_INVALID_KEY_USAGE = CSSM_TP_PRIVATE_ERROR + 6,
+ CSSMERR_APPLETP_INVALID_KEY_USAGE = -2147408890,
 
- CSSMERR_APPLETP_INVALID_EXTENDED_KEY_USAGE = CSSM_TP_PRIVATE_ERROR + 7,
+ CSSMERR_APPLETP_INVALID_EXTENDED_KEY_USAGE = -2147408889,
 
- CSSMERR_APPLETP_INVALID_ID_LINKAGE = CSSM_TP_PRIVATE_ERROR + 8,
+ CSSMERR_APPLETP_INVALID_ID_LINKAGE = -2147408888,
 
- CSSMERR_APPLETP_PATH_LEN_CONSTRAINT = CSSM_TP_PRIVATE_ERROR + 9,
+ CSSMERR_APPLETP_PATH_LEN_CONSTRAINT = -2147408887,
 
- CSSMERR_APPLETP_INVALID_ROOT = CSSM_TP_PRIVATE_ERROR + 10,
+ CSSMERR_APPLETP_INVALID_ROOT = -2147408886,
 
- CSSMERR_APPLETP_CRL_EXPIRED = CSSM_TP_PRIVATE_ERROR + 11,
- CSSMERR_APPLETP_CRL_NOT_VALID_YET = CSSM_TP_PRIVATE_ERROR + 12,
+ CSSMERR_APPLETP_CRL_EXPIRED = -2147408885,
 
- CSSMERR_APPLETP_CRL_NOT_FOUND = CSSM_TP_PRIVATE_ERROR + 13,
+ CSSMERR_APPLETP_CRL_NOT_VALID_YET = -2147408884,
 
- CSSMERR_APPLETP_CRL_SERVER_DOWN = CSSM_TP_PRIVATE_ERROR + 14,
+ CSSMERR_APPLETP_CRL_NOT_FOUND = -2147408883,
 
- CSSMERR_APPLETP_CRL_BAD_URI = CSSM_TP_PRIVATE_ERROR + 15,
+ CSSMERR_APPLETP_CRL_SERVER_DOWN = -2147408882,
 
- CSSMERR_APPLETP_UNKNOWN_CERT_EXTEN = CSSM_TP_PRIVATE_ERROR + 16,
- CSSMERR_APPLETP_UNKNOWN_CRL_EXTEN = CSSM_TP_PRIVATE_ERROR + 17,
+ CSSMERR_APPLETP_CRL_BAD_URI = -2147408881,
 
- CSSMERR_APPLETP_CRL_NOT_TRUSTED = CSSM_TP_PRIVATE_ERROR + 18,
+ CSSMERR_APPLETP_UNKNOWN_CERT_EXTEN = -2147408880,
 
- CSSMERR_APPLETP_CRL_INVALID_ANCHOR_CERT = CSSM_TP_PRIVATE_ERROR + 19,
+ CSSMERR_APPLETP_UNKNOWN_CRL_EXTEN = -2147408879,
 
- CSSMERR_APPLETP_CRL_POLICY_FAIL = CSSM_TP_PRIVATE_ERROR + 20,
+ CSSMERR_APPLETP_CRL_NOT_TRUSTED = -2147408878,
 
- CSSMERR_APPLETP_IDP_FAIL = CSSM_TP_PRIVATE_ERROR + 21,
+ CSSMERR_APPLETP_CRL_INVALID_ANCHOR_CERT = -2147408877,
 
- CSSMERR_APPLETP_CERT_NOT_FOUND_FROM_ISSUER = CSSM_TP_PRIVATE_ERROR + 22,
+ CSSMERR_APPLETP_CRL_POLICY_FAIL = -2147408876,
 
- CSSMERR_APPLETP_BAD_CERT_FROM_ISSUER = CSSM_TP_PRIVATE_ERROR + 23,
+ CSSMERR_APPLETP_IDP_FAIL = -2147408875,
 
- CSSMERR_APPLETP_SMIME_EMAIL_ADDRS_NOT_FOUND = CSSM_TP_PRIVATE_ERROR + 24,
+ CSSMERR_APPLETP_CERT_NOT_FOUND_FROM_ISSUER = -2147408874,
 
- CSSMERR_APPLETP_SMIME_BAD_EXT_KEY_USE = CSSM_TP_PRIVATE_ERROR + 25,
+ CSSMERR_APPLETP_BAD_CERT_FROM_ISSUER = -2147408873,
 
- CSSMERR_APPLETP_SMIME_BAD_KEY_USE = CSSM_TP_PRIVATE_ERROR + 26,
+ CSSMERR_APPLETP_SMIME_EMAIL_ADDRS_NOT_FOUND = -2147408872,
 
- CSSMERR_APPLETP_SMIME_KEYUSAGE_NOT_CRITICAL = CSSM_TP_PRIVATE_ERROR + 27,
+ CSSMERR_APPLETP_SMIME_BAD_EXT_KEY_USE = -2147408871,
+
+ CSSMERR_APPLETP_SMIME_BAD_KEY_USE = -2147408870,
+
+ CSSMERR_APPLETP_SMIME_KEYUSAGE_NOT_CRITICAL = -2147408869,
 
 
- CSSMERR_APPLETP_SMIME_NO_EMAIL_ADDRS = CSSM_TP_PRIVATE_ERROR + 28,
+ CSSMERR_APPLETP_SMIME_NO_EMAIL_ADDRS = -2147408868,
 
 
- CSSMERR_APPLETP_SMIME_SUBJ_ALT_NAME_NOT_CRIT = CSSM_TP_PRIVATE_ERROR + 29,
+ CSSMERR_APPLETP_SMIME_SUBJ_ALT_NAME_NOT_CRIT = -2147408867,
 
- CSSMERR_APPLETP_SSL_BAD_EXT_KEY_USE = CSSM_TP_PRIVATE_ERROR + 30,
+ CSSMERR_APPLETP_SSL_BAD_EXT_KEY_USE = -2147408866,
 
- CSSMERR_APPLETP_OCSP_BAD_RESPONSE = CSSM_TP_PRIVATE_ERROR + 31,
+ CSSMERR_APPLETP_OCSP_BAD_RESPONSE = -2147408865,
 
- CSSMERR_APPLETP_OCSP_BAD_REQUEST = CSSM_TP_PRIVATE_ERROR + 32,
+ CSSMERR_APPLETP_OCSP_BAD_REQUEST = -2147408864,
 
- CSSMERR_APPLETP_OCSP_UNAVAILABLE = CSSM_TP_PRIVATE_ERROR + 33,
+ CSSMERR_APPLETP_OCSP_UNAVAILABLE = -2147408863,
 
- CSSMERR_APPLETP_OCSP_STATUS_UNRECOGNIZED = CSSM_TP_PRIVATE_ERROR + 34,
+ CSSMERR_APPLETP_OCSP_STATUS_UNRECOGNIZED = -2147408862,
 
- CSSMERR_APPLETP_INCOMPLETE_REVOCATION_CHECK = CSSM_TP_PRIVATE_ERROR + 35,
+ CSSMERR_APPLETP_INCOMPLETE_REVOCATION_CHECK = -2147408861,
 
- CSSMERR_APPLETP_NETWORK_FAILURE = CSSM_TP_PRIVATE_ERROR + 36,
+ CSSMERR_APPLETP_NETWORK_FAILURE = -2147408860,
 
- CSSMERR_APPLETP_OCSP_NOT_TRUSTED = CSSM_TP_PRIVATE_ERROR + 37,
+ CSSMERR_APPLETP_OCSP_NOT_TRUSTED = -2147408859,
 
- CSSMERR_APPLETP_OCSP_INVALID_ANCHOR_CERT = CSSM_TP_PRIVATE_ERROR + 38,
+ CSSMERR_APPLETP_OCSP_INVALID_ANCHOR_CERT = -2147408858,
 
- CSSMERR_APPLETP_OCSP_SIG_ERROR = CSSM_TP_PRIVATE_ERROR + 39,
+ CSSMERR_APPLETP_OCSP_SIG_ERROR = -2147408857,
 
- CSSMERR_APPLETP_OCSP_NO_SIGNER = CSSM_TP_PRIVATE_ERROR + 40,
+ CSSMERR_APPLETP_OCSP_NO_SIGNER = -2147408856,
 
- CSSMERR_APPLETP_OCSP_RESP_MALFORMED_REQ = CSSM_TP_PRIVATE_ERROR + 41,
+ CSSMERR_APPLETP_OCSP_RESP_MALFORMED_REQ = -2147408855,
 
- CSSMERR_APPLETP_OCSP_RESP_INTERNAL_ERR = CSSM_TP_PRIVATE_ERROR + 42,
+ CSSMERR_APPLETP_OCSP_RESP_INTERNAL_ERR = -2147408854,
 
- CSSMERR_APPLETP_OCSP_RESP_TRY_LATER = CSSM_TP_PRIVATE_ERROR + 43,
+ CSSMERR_APPLETP_OCSP_RESP_TRY_LATER = -2147408853,
 
- CSSMERR_APPLETP_OCSP_RESP_SIG_REQUIRED = CSSM_TP_PRIVATE_ERROR + 44,
+ CSSMERR_APPLETP_OCSP_RESP_SIG_REQUIRED = -2147408852,
 
- CSSMERR_APPLETP_OCSP_RESP_UNAUTHORIZED = CSSM_TP_PRIVATE_ERROR + 45,
+ CSSMERR_APPLETP_OCSP_RESP_UNAUTHORIZED = -2147408851,
 
- CSSMERR_APPLETP_OCSP_NONCE_MISMATCH = CSSM_TP_PRIVATE_ERROR + 46,
+ CSSMERR_APPLETP_OCSP_NONCE_MISMATCH = -2147408850,
 
- CSSMERR_APPLETP_CS_BAD_CERT_CHAIN_LENGTH = CSSM_TP_PRIVATE_ERROR + 47,
+ CSSMERR_APPLETP_CS_BAD_CERT_CHAIN_LENGTH = -2147408849,
 
- CSSMERR_APPLETP_CS_NO_BASIC_CONSTRAINTS = CSSM_TP_PRIVATE_ERROR + 48,
+ CSSMERR_APPLETP_CS_NO_BASIC_CONSTRAINTS = -2147408848,
 
- CSSMERR_APPLETP_CS_BAD_PATH_LENGTH = CSSM_TP_PRIVATE_ERROR + 49,
+ CSSMERR_APPLETP_CS_BAD_PATH_LENGTH = -2147408847,
 
- CSSMERR_APPLETP_CS_NO_EXTENDED_KEY_USAGE = CSSM_TP_PRIVATE_ERROR + 50,
+ CSSMERR_APPLETP_CS_NO_EXTENDED_KEY_USAGE = -2147408846,
 
- CSSMERR_APPLETP_CODE_SIGN_DEVELOPMENT = CSSM_TP_PRIVATE_ERROR + 51,
+ CSSMERR_APPLETP_CODE_SIGN_DEVELOPMENT = -2147408845,
 
- CSSMERR_APPLETP_RS_BAD_CERT_CHAIN_LENGTH = CSSM_TP_PRIVATE_ERROR + 52,
+ CSSMERR_APPLETP_RS_BAD_CERT_CHAIN_LENGTH = -2147408844,
 
- CSSMERR_APPLETP_RS_BAD_EXTENDED_KEY_USAGE = CSSM_TP_PRIVATE_ERROR + 53,
+ CSSMERR_APPLETP_RS_BAD_EXTENDED_KEY_USAGE = -2147408843,
 
- CSSMERR_APPLETP_TRUST_SETTING_DENY = CSSM_TP_PRIVATE_ERROR + 54,
+ CSSMERR_APPLETP_TRUST_SETTING_DENY = -2147408842,
 
- CSSMERR_APPLETP_INVALID_EMPTY_SUBJECT = CSSM_TP_PRIVATE_ERROR + 55,
+ CSSMERR_APPLETP_INVALID_EMPTY_SUBJECT = -2147408841,
 
- CSSMERR_APPLETP_UNKNOWN_QUAL_CERT_STATEMENT = CSSM_TP_PRIVATE_ERROR + 56,
+ CSSMERR_APPLETP_UNKNOWN_QUAL_CERT_STATEMENT = -2147408840,
 
- CSSMERR_APPLETP_MISSING_REQUIRED_EXTENSION = CSSM_TP_PRIVATE_ERROR + 57,
+ CSSMERR_APPLETP_MISSING_REQUIRED_EXTENSION = -2147408839,
 
- CSSMERR_APPLETP_EXT_KEYUSAGE_NOT_CRITICAL = CSSM_TP_PRIVATE_ERROR + 58,
+ CSSMERR_APPLETP_EXT_KEYUSAGE_NOT_CRITICAL = -2147408838,
 
- CSSMERR_APPLETP_IDENTIFIER_MISSING = CSSM_TP_PRIVATE_ERROR + 59,
+ CSSMERR_APPLETP_IDENTIFIER_MISSING = -2147408837,
 
- CSSMERR_APPLETP_CA_PIN_MISMATCH = CSSM_TP_PRIVATE_ERROR + 60
+ CSSMERR_APPLETP_CA_PIN_MISMATCH = -2147408836,
 };
 
 
 enum
 {
 
- CSSMERR_APPLE_DOTMAC_REQ_QUEUED = CSSM_TP_PRIVATE_ERROR + 100,
+ CSSMERR_APPLE_DOTMAC_REQ_QUEUED = -2147408796,
 
- CSSMERR_APPLE_DOTMAC_REQ_REDIRECT = CSSM_TP_PRIVATE_ERROR + 101,
+ CSSMERR_APPLE_DOTMAC_REQ_REDIRECT = -2147408795,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_ERR = CSSM_TP_PRIVATE_ERROR + 102,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_ERR = -2147408794,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_PARAM = CSSM_TP_PRIVATE_ERROR + 103,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_PARAM = -2147408793,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_AUTH = CSSM_TP_PRIVATE_ERROR + 104,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_AUTH = -2147408792,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_UNIMPL = CSSM_TP_PRIVATE_ERROR + 105,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_UNIMPL = -2147408791,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_NOT_AVAIL = CSSM_TP_PRIVATE_ERROR + 106,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_NOT_AVAIL = -2147408790,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_ALREADY_EXIST = CSSM_TP_PRIVATE_ERROR + 107,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_ALREADY_EXIST = -2147408789,
 
- CSSMERR_APPLE_DOTMAC_REQ_SERVER_SERVICE_ERROR = CSSM_TP_PRIVATE_ERROR + 108,
+ CSSMERR_APPLE_DOTMAC_REQ_SERVER_SERVICE_ERROR = -2147408788,
 
- CSSMERR_APPLE_DOTMAC_REQ_IS_PENDING = CSSM_TP_PRIVATE_ERROR + 109,
+ CSSMERR_APPLE_DOTMAC_REQ_IS_PENDING = -2147408787,
 
- CSSMERR_APPLE_DOTMAC_NO_REQ_PENDING = CSSM_TP_PRIVATE_ERROR + 110,
+ CSSMERR_APPLE_DOTMAC_NO_REQ_PENDING = -2147408786,
 
- CSSMERR_APPLE_DOTMAC_CSR_VERIFY_FAIL = CSSM_TP_PRIVATE_ERROR + 111,
+ CSSMERR_APPLE_DOTMAC_CSR_VERIFY_FAIL = -2147408785,
 
- CSSMERR_APPLE_DOTMAC_FAILED_CONSISTENCY_CHECK = CSSM_TP_PRIVATE_ERROR + 112
+ CSSMERR_APPLE_DOTMAC_FAILED_CONSISTENCY_CHECK = -2147408784,
 };
 
 enum
@@ -30126,6 +30310,17 @@ const CSSM_OID *cssmAlgToOid(CSSM_ALGORITHMS algId);
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 enum
 {
     kSecUnlockStateStatus = 1,
@@ -30361,7 +30556,7 @@ OSStatus SecKeychainCopyAccess(SecKeychainRef _Nullable keychain, SecAccessRef *
  __attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
 OSStatus SecKeychainSetAccess(SecKeychainRef _Nullable keychain, SecAccessRef access)
  __attribute__((availability(macosx,introduced=10.2,deprecated=10.13)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -30370,6 +30565,14 @@ OSStatus SecKeychainSetAccess(SecKeychainRef _Nullable keychain, SecAccessRef ac
 
 
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 typedef uint32_t SecExternalFormat; enum
 {
 
@@ -30510,7 +30713,7 @@ OSStatus SecItemExport(
      SecItemImportExportFlags flags,
      const SecItemImportExportKeyParameters * _Nullable keyParams,
      CFDataRef * _Nonnull __attribute__((cf_returns_retained)) exportedData)
-          __attribute__((availability(macosx,introduced=10.7)));
+          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 OSStatus SecKeychainItemImport(
      CFDataRef importedData,
      CFStringRef _Nullable fileNameOrExtension,
@@ -30530,32 +30733,34 @@ OSStatus SecItemImport(
      const SecItemImportExportKeyParameters * _Nullable keyParams,
      SecKeychainRef _Nullable importKeychain,
      CFArrayRef * _Nullable __attribute__((cf_returns_retained)) outItems)
-          __attribute__((availability(macosx,introduced=10.7)));
+          __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecImportExportPassphrase
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportExportKeychain
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecImportExportAccess
-    __attribute__((availability(macosx,introduced=10.7)));
+    __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=NA))) __attribute__((availability(bridgeos,introduced=NA)));
 extern const CFStringRef kSecImportItemLabel
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportItemKeyID
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportItemTrust
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportItemCertChain
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 extern const CFStringRef kSecImportItemIdentity
-    __attribute__((availability(macosx,introduced=10.6)));
+    __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
 OSStatus SecPKCS12Import(CFDataRef pkcs12_data, CFDictionaryRef options, CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) items)
-     __attribute__((availability(macosx,introduced=10.6)));
-
+     __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=2.0)));
+#pragma clang assume_nonnull end
 
 
 
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
 typedef uint32_t SecTrustResultType; enum {
     kSecTrustResultInvalid __attribute__((availability(macosx,introduced=10_3))) = 0,
     kSecTrustResultProceed __attribute__((availability(macosx,introduced=10_3))) = 1,
@@ -30649,6 +30854,8 @@ CFDictionaryRef SecTrustCopyResult(SecTrustRef trust)
     __attribute__((availability(macosx,introduced=10.9)));
 OSStatus SecTrustSetOCSPResponse(SecTrustRef trust, CFTypeRef _Nullable responseData)
     __attribute__((availability(macosx,introduced=10.9)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 typedef SecTrustResultType SecTrustUserSetting
     __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
 typedef uint32_t SecTrustOptionFlags; enum {
@@ -30679,7 +30886,7 @@ OSStatus SecTrustGetTPHandle(SecTrustRef trust, CSSM_TP_HANDLE *handle)
     __attribute__((availability(macosx,introduced=10.2,deprecated=10.7)));
 OSStatus SecTrustCopyAnchorCertificates(CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) anchors)
     __attribute__((availability(macosx,introduced=10.3)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -30693,6 +30900,9 @@ OSStatus SecTrustCopyAnchorCertificates(CFArrayRef * _Nonnull __attribute__((cf_
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 enum {
  errAuthorizationSuccess = 0,
  errAuthorizationInvalidSet = -60001,
@@ -30814,7 +31024,7 @@ OSStatus AuthorizationExecuteWithPrivileges(AuthorizationRef authorization,
  FILE * _Nullable * _Nullable communicationsPipe) __attribute__((availability(macosx,introduced=10.1,deprecated=10.7)));
 OSStatus AuthorizationCopyPrivilegedReference(AuthorizationRef _Nullable * _Nonnull authorization,
  AuthorizationFlags flags) __attribute__((availability(macosx,introduced=10.1,deprecated=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -30822,6 +31032,9 @@ OSStatus AuthorizationCopyPrivilegedReference(AuthorizationRef _Nullable * _Nonn
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 typedef UInt32 SecuritySessionId;
 enum {
     noSecuritySession = 0,
@@ -30864,15 +31077,15 @@ enum {
     errSessionAuthorizationDenied = -60502,
     errSessionValueNotSet = -60503,
 
-    errSessionInternal = errAuthorizationInternal,
- errSessionInvalidFlags = errAuthorizationInvalidFlags
+    errSessionInternal = -60008,
+ errSessionInvalidFlags = -60011,
 };
 OSStatus SessionGetInfo(SecuritySessionId session,
     SecuritySessionId * _Nullable sessionId,
     SessionAttributeBits * _Nullable attributes);
 OSStatus SessionCreate(SessionCreationFlags flags,
     SessionAttributeBits attributes);
-
+#pragma clang assume_nonnull end
 
 
 
@@ -33296,39 +33509,6 @@ typedef struct cssm_upcalls {
          uint32 NumFunctions);
 } CSSM_UPCALLS __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_UPCALLS_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
-CSSM_RETURN
-CSSM_SPI_ModuleLoad (const CSSM_GUID *CssmGuid,
-                     const CSSM_GUID *ModuleGuid,
-                     CSSM_SPI_ModuleEventHandler CssmNotifyCallback,
-                     void *CssmNotifyCallbackCtx)
-     __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_SPI_ModuleUnload (const CSSM_GUID *CssmGuid,
-                       const CSSM_GUID *ModuleGuid,
-                       CSSM_SPI_ModuleEventHandler CssmNotifyCallback,
-                       void *CssmNotifyCallbackCtx)
-     __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_SPI_ModuleAttach (const CSSM_GUID *ModuleGuid,
-                       const CSSM_VERSION *Version,
-                       uint32 SubserviceID,
-                       CSSM_SERVICE_TYPE SubServiceType,
-                       CSSM_ATTACH_FLAGS AttachFlags,
-                       CSSM_MODULE_HANDLE ModuleHandle,
-                       CSSM_KEY_HIERARCHY KeyHierarchy,
-                       const CSSM_GUID *CssmGuid,
-                       const CSSM_GUID *ModuleManagerGuid,
-                       const CSSM_GUID *CallerGuid,
-                       const CSSM_UPCALLS *Upcalls,
-                       CSSM_MODULE_FUNCS_PTR *FuncTbl)
-     __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_SPI_ModuleDetach (CSSM_MODULE_HANDLE ModuleHandle)
- __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
 #pragma clang diagnostic pop
 
 
@@ -33864,138 +34044,6 @@ typedef struct cssm_kr_policy_info {
 } CSSM_KR_POLICY_INFO __attribute__((availability(macosx,introduced=10.0,deprecated=10.7))), *CSSM_KR_POLICY_INFO_PTR __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 
 
-
-
-CSSM_RETURN
-CSSM_KR_SetEnterpriseRecoveryPolicy (const CSSM_DATA *RecoveryPolicyFileName,
-                                     const CSSM_ACCESS_CREDENTIALS *OldPassPhrase,
-                                     const CSSM_ACCESS_CREDENTIALS *NewPassPhrase)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
-
-CSSM_RETURN
-CSSM_KR_CreateRecoveryRegistrationContext (CSSM_KRSP_HANDLE KRSPHandle,
-                                           CSSM_CC_HANDLE *NewContext)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_CreateRecoveryEnablementContext (CSSM_KRSP_HANDLE KRSPHandle,
-                                         const CSSM_KR_PROFILE *LocalProfile,
-                                         const CSSM_KR_PROFILE *RemoteProfile,
-                                         CSSM_CC_HANDLE *NewContext)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_CreateRecoveryRequestContext (CSSM_KRSP_HANDLE KRSPHandle,
-                                      const CSSM_KR_PROFILE *LocalProfile,
-                                      CSSM_CC_HANDLE *NewContext)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_GetPolicyInfo (CSSM_CC_HANDLE CCHandle,
-                       CSSM_KR_POLICY_FLAGS *EncryptionProhibited,
-                       uint32 *WorkFactor)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
-
-CSSM_RETURN
-CSSM_KR_RegistrationRequest (CSSM_CC_HANDLE RecoveryRegistrationContext,
-                             const CSSM_DATA *KRInData,
-                             const CSSM_ACCESS_CREDENTIALS *AccessCredentials,
-                             CSSM_KR_POLICY_FLAGS KRFlags,
-                             sint32 *EstimatedTime,
-                             CSSM_HANDLE_PTR ReferenceHandle)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_RegistrationRetrieve (CSSM_KRSP_HANDLE KRSPHandle,
-                              CSSM_HANDLE ReferenceHandle,
-                              const CSSM_ACCESS_CREDENTIALS *AccessCredentials,
-                              sint32 *EstimatedTime,
-                              CSSM_KR_PROFILE_PTR KRProfile)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
-
-CSSM_RETURN
-CSSM_KR_GenerateRecoveryFields (CSSM_CC_HANDLE KeyRecoveryContext,
-                                CSSM_CC_HANDLE CCHandle,
-                                const CSSM_DATA *KRSPOptions,
-                                CSSM_KR_POLICY_FLAGS KRFlags,
-                                CSSM_DATA_PTR KRFields,
-                                CSSM_CC_HANDLE *NewCCHandle)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_ProcessRecoveryFields (CSSM_CC_HANDLE KeyRecoveryContext,
-                               CSSM_CC_HANDLE CryptoContext,
-                               const CSSM_DATA *KRSPOptions,
-                               CSSM_KR_POLICY_FLAGS KRFlags,
-                               const CSSM_DATA *KRFields,
-                               CSSM_CC_HANDLE *NewCryptoContext)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
-
-CSSM_RETURN
-CSSM_KR_RecoveryRequest (CSSM_CC_HANDLE RecoveryRequestContext,
-                         const CSSM_DATA *KRInData,
-                         const CSSM_ACCESS_CREDENTIALS *AccessCredentials,
-                         sint32 *EstimatedTime,
-                         CSSM_HANDLE_PTR ReferenceHandle)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_RecoveryRetrieve (CSSM_KRSP_HANDLE KRSPHandle,
-                          CSSM_HANDLE ReferenceHandle,
-                          const CSSM_ACCESS_CREDENTIALS *AccessCredentials,
-                          sint32 *EstimatedTime,
-                          CSSM_HANDLE_PTR CacheHandle,
-                          uint32 *NumberOfRecoveredKeys)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_GetRecoveredObject (CSSM_KRSP_HANDLE KRSPHandle,
-                            CSSM_HANDLE CacheHandle,
-                            uint32 IndexInResults,
-                            CSSM_CSP_HANDLE CSPHandle,
-                            const CSSM_RESOURCE_CONTROL_CONTEXT *CredAndAclEntry,
-                            uint32 Flags,
-                            CSSM_KEY_PTR RecoveredKey,
-                            CSSM_DATA_PTR OtherInfo)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_RecoveryRequestAbort (CSSM_KRSP_HANDLE KRSPHandle,
-                              CSSM_HANDLE CacheHandle)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-CSSM_RETURN
-CSSM_KR_QueryPolicyInfo (CSSM_KRSP_HANDLE KRSPHandle,
-                         CSSM_ALGORITHMS AlgorithmID,
-                         CSSM_ENCRYPT_MODE Mode,
-                         CSSM_CONTEXT_TYPE Class,
-                         CSSM_KR_POLICY_INFO_PTR *PolicyInfoData)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
-
-
-
-CSSM_RETURN
-CSSM_KR_PassThrough (CSSM_KRSP_HANDLE KRSPHandle,
-                     CSSM_CC_HANDLE KeyRecoveryContext,
-                     CSSM_CC_HANDLE CryptoContext,
-                     uint32 PassThroughId,
-                     const void *InputParams,
-                     void **OutputParams)
-  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
 #pragma clang diagnostic pop
 
 
@@ -34311,13 +34359,6 @@ enum {
  CSSM_HINT_ADDRESS_SP = 1 << 1
 };
 
-CSSM_RETURN
-ModuleManagerAuthenticate (CSSM_KEY_HIERARCHY KeyHierarchy,
-                           const CSSM_GUID *CssmGuid,
-                           const CSSM_GUID *AppGuid,
-                           CSSM_MANAGER_REGISTRATION_INFO_PTR FunctionTable)
-      __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
 #pragma clang diagnostic pop
 
 
@@ -34454,6 +34495,10 @@ typedef CSSM_DATA SecAsn1Item;
 typedef CSSM_OID SecAsn1Oid;
 typedef CSSM_X509_ALGORITHM_IDENTIFIER SecAsn1AlgId;
 typedef CSSM_X509_SUBJECT_PUBLIC_KEY_INFO SecAsn1PubKeyInfo;
+
+
+
+#pragma clang assume_nonnull begin
 typedef struct SecAsn1Template_struct {
 
 
@@ -34485,7 +34530,7 @@ typedef const SecAsn1Template * SecAsn1TemplateChooser(
  void *dest);
 
 typedef SecAsn1TemplateChooser * SecAsn1TemplateChooserPtr;
-
+#pragma clang assume_nonnull end
 
 
 #pragma clang diagnostic pop
@@ -35033,7 +35078,7 @@ extern const CSSM_OID
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -35114,7 +35159,7 @@ extern "C" {
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
  OSStatus SecACLUpdateAuthorizations(SecACLRef acl, CFArrayRef authorizations)
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -35123,7 +35168,7 @@ extern "C" {
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 extern const CFStringRef kSecOIDADC_CERT_POLICY __attribute__((availability(macosx,introduced=10.7)));
 extern const CFStringRef kSecOIDAPPLE_CERT_POLICY __attribute__((availability(macosx,introduced=10.7)));
@@ -35247,12 +35292,20 @@ extern const CFStringRef kSecOIDX509V3CertificateNumberOfExtensions __attribute_
 extern const CFStringRef kSecOIDX509V3SignedCertificate __attribute__((availability(macosx,introduced=10.7)));
 extern const CFStringRef kSecOIDX509V3SignedCertificateCStruct __attribute__((availability(macosx,introduced=10.7)));
 extern const CFStringRef kSecOIDSRVName __attribute__((availability(macosx,introduced=10.8)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 typedef struct __attribute__((objc_bridge(id))) OpaqueSecIdentitySearchRef *SecIdentitySearchRef;
 
 
@@ -35267,13 +35320,16 @@ OSStatus SecIdentitySearchCreate(CFTypeRef _Nullable keychainOrArray, CSSM_KEYUS
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecIdentitySearchCopyNext(SecIdentitySearchRef searchRef, SecIdentityRef * _Nullable __attribute__((cf_returns_retained)) identity)
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 typedef FourCharCode SecItemClass; enum
 {
     kSecInternetPasswordItemClass = 'inet',
@@ -35363,24 +35419,42 @@ OSStatus SecKeychainItemGetUniqueRecordID(SecKeychainItemRef itemRef, const CSSM
  __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecKeychainItemCopyAccess(SecKeychainItemRef itemRef, SecAccessRef * _Nonnull __attribute__((cf_returns_retained)) access);
 OSStatus SecKeychainItemSetAccess(SecKeychainItemRef itemRef, SecAccessRef access);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 CFTypeID SecKeychainSearchGetTypeID(void)
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecKeychainSearchCreateFromAttributes(CFTypeRef _Nullable keychainOrArray, SecItemClass itemClass, const SecKeychainAttributeList * _Nullable attrList, SecKeychainSearchRef * _Nonnull __attribute__((cf_returns_retained)) searchRef)
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecKeychainSearchCopyNext(SecKeychainSearchRef searchRef, SecKeychainItemRef * _Nonnull __attribute__((cf_returns_retained)) itemRef)
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 typedef struct __attribute__((objc_bridge(id))) OpaquePolicySearchRef *SecPolicySearchRef;
 
 
@@ -35395,22 +35469,34 @@ OSStatus SecPolicySearchCreate(CSSM_CERT_TYPE certType, const CSSM_OID *policyOI
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
 OSStatus SecPolicySearchCopyNext(SecPolicySearchRef searchRef, SecPolicyRef * _Nonnull __attribute__((cf_returns_retained)) policyRef)
   __attribute__((availability(macosx,introduced=10.0,deprecated=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 CFTypeID SecTrustedApplicationGetTypeID(void);
 OSStatus SecTrustedApplicationCreateFromPath(const char * _Nullable path, SecTrustedApplicationRef * _Nonnull __attribute__((cf_returns_retained)) app);
 OSStatus SecTrustedApplicationCopyData(SecTrustedApplicationRef appRef, CFDataRef * _Nonnull __attribute__((cf_returns_retained)) data);
 OSStatus SecTrustedApplicationSetData(SecTrustedApplicationRef appRef, CFDataRef data);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 typedef uint32_t SecTrustSettingsKeyUsage; enum {
 
      kSecTrustSettingsKeyUseSignature = 0x00000001,
@@ -35500,7 +35586,7 @@ OSStatus SecTrustSettingsCreateExternalRepresentation(
 OSStatus SecTrustSettingsImportExternalRepresentation(
      SecTrustSettingsDomain domain,
      CFDataRef trustSettings);
-
+#pragma clang assume_nonnull end
 
 
 
@@ -35509,6 +35595,17 @@ OSStatus SecTrustSettingsImportExternalRepresentation(
 
 
 extern "C" {
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 enum {
  errSecCSUnimplemented = -67072,
  errSecCSInvalidObjectRef = -67071,
@@ -35551,8 +35648,8 @@ enum {
  errSecCSStaticCodeChanged = -67034,
  errSecCSDBDenied = -67033,
  errSecCSDBAccess = -67032,
- errSecCSSigDBDenied = errSecCSDBDenied,
- errSecCSSigDBAccess = errSecCSDBAccess,
+ errSecCSSigDBDenied = -67033,
+ errSecCSSigDBAccess = -67032,
  errSecCSHostProtocolInvalidAttribute = -67031,
  errSecCSInfoPlistFailed = -67030,
  errSecCSNoMainExecutable = -67029,
@@ -35667,7 +35764,7 @@ typedef uint32_t SecCSDigestAlgorithm; enum {
  kSecCodeSignatureHashSHA256Truncated = 3,
  kSecCodeSignatureHashSHA384 = 4,
 };
-
+#pragma clang assume_nonnull end
 
 
 
@@ -35675,6 +35772,14 @@ typedef uint32_t SecCSDigestAlgorithm; enum {
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 CFTypeID SecStaticCodeGetTypeID(void);
 OSStatus SecStaticCodeCreateWithPath(CFURLRef path, SecCSFlags flags, SecStaticCodeRef * _Nonnull __attribute__((cf_returns_retained)) staticCode);
 
@@ -35704,12 +35809,20 @@ OSStatus SecStaticCodeCheckValidity(SecStaticCodeRef staticCode, SecCSFlags flag
 
 OSStatus SecStaticCodeCheckValidityWithErrors(SecStaticCodeRef staticCode, SecCSFlags flags,
  SecRequirementRef _Nullable requirement, CFErrorRef *errors);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 CFTypeID SecCodeGetTypeID(void);
 OSStatus SecCodeCopySelf(SecCSFlags flags, SecCodeRef * _Nonnull __attribute__((cf_returns_retained)) self);
 enum {
@@ -35776,12 +35889,15 @@ extern const CFStringRef kSecCodeInfoCdHashes;
 OSStatus SecCodeCopySigningInformation(SecStaticCodeRef code, SecCSFlags flags,
  CFDictionaryRef * _Nonnull __attribute__((cf_returns_retained)) information);
 OSStatus SecCodeMapMemory(SecStaticCodeRef code, SecCSFlags flags);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 enum {
  kSecCSDedicatedHost = 1 << 0,
  kSecCSGenerateGuestHash = 1 << 1,
@@ -35797,12 +35913,20 @@ OSStatus SecHostSetGuestStatus(SecGuestRef guestRef,
  uint32_t status, CFDictionaryRef _Nullable attributes,
  SecCSFlags flags);
 OSStatus SecHostSetHostingPort(mach_port_t hostingPort, SecCSFlags flags);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 CFTypeID SecRequirementGetTypeID(void);
 OSStatus SecRequirementCreateWithData(CFDataRef data, SecCSFlags flags,
  SecRequirementRef * _Nonnull __attribute__((cf_returns_retained)) requirement);
@@ -35815,12 +35939,20 @@ OSStatus SecRequirementCopyData(SecRequirementRef requirement, SecCSFlags flags,
  CFDataRef * _Nonnull __attribute__((cf_returns_retained)) data);
 OSStatus SecRequirementCopyString(SecRequirementRef requirement, SecCSFlags flags,
  CFStringRef * _Nonnull __attribute__((cf_returns_retained)) text);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 typedef struct __attribute__((objc_bridge(id))) __SecTask *SecTaskRef;
 
 
@@ -35839,11 +35971,15 @@ _Nullable
 CFDictionaryRef SecTaskCopyValuesForEntitlements(SecTaskRef task, CFArrayRef entitlements, CFErrorRef *error);
 _Nullable
 CFStringRef SecTaskCopySigningIdentifier(SecTaskRef task, CFErrorRef *error);
+#pragma clang assume_nonnull end
 }
 
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 OSStatus AuthorizationRightGet(const char *rightName,
  CFDictionaryRef * _Nullable __attribute__((cf_returns_retained)) rightDefinition);
 OSStatus AuthorizationRightSet(AuthorizationRef authRef,
@@ -35854,7 +35990,7 @@ OSStatus AuthorizationRightSet(AuthorizationRef authRef,
  CFStringRef _Nullable localeTableName);
 OSStatus AuthorizationRightRemove(AuthorizationRef authRef,
  const char *rightName);
-
+#pragma clang assume_nonnull end
 
 
 
@@ -35862,6 +35998,15 @@ OSStatus AuthorizationRightRemove(AuthorizationRef authRef,
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 typedef struct __attribute__((objc_bridge(id))) _CMSDecoder *CMSDecoderRef;
 
 CFTypeID CMSDecoderGetTypeID(void);
@@ -36005,12 +36150,21 @@ OSStatus CMSDecoderCopySignerTimestampCertificates(
  size_t signerIndex,
  CFArrayRef * _Nonnull __attribute__((cf_returns_retained)) certificateRefs)
     __attribute__((availability(macosx,introduced=10.8)));
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 typedef struct __attribute__((objc_bridge(id))) _CMSEncoder *CMSEncoderRef;
 
 CFTypeID CMSEncoderGetTypeID(void)
@@ -36130,7 +36284,8 @@ typedef uint32_t CMSSignedAttributes; enum {
 
 
 
-    kCMSAttrAppleCodesigningHashAgility = 0x0010
+    kCMSAttrAppleCodesigningHashAgility = 0x0010,
+    kCMSAttrAppleCodesigningHashAgilityV2 = 0x0020,
 };
 
 
@@ -36220,7 +36375,7 @@ OSStatus CMSEncoderCopySignerTimestampWithPolicy(
     size_t signerIndex,
     CFAbsoluteTime *timestamp)
     __attribute__((availability(macosx,introduced=10.10)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -36445,6 +36600,16 @@ enum
     SSL_NO_SUCH_CIPHERSUITE = 0xFFFF
 };
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 struct SSLContext;
 typedef struct __attribute__((objc_bridge(id))) SSLContext *SSLContextRef;
 
@@ -36629,6 +36794,26 @@ enum {
 
 
     errSSLClientHelloReceived = -9851,
+
+
+    errSSLTransportReset = -9852,
+    errSSLNetworkTimeout = -9853,
+
+
+    errSSLConfigurationFailed = -9854,
+
+
+    errSSLUnsupportedExtension = -9855,
+    errSSLUnexpectedMessage = -9856,
+    errSSLDecompressFail = -9857,
+    errSSLHandshakeFail = -9858,
+    errSSLDecodeError = -9859,
+    errSSLInappropriateFallback = -9860,
+    errSSLMissingExtension = -9861,
+    errSSLBadCertificateStatusResponse = -9862,
+    errSSLCertificateRequired = -9863,
+    errSSLUnknownPSKIdentity = -9864,
+    errSSLUnrecognizedName = -9865,
 };
 typedef int SSLProtocolSide; enum
 {
@@ -37180,7 +37365,7 @@ OSStatus
 SSLSetError (SSLContextRef context,
                              OSStatus status)
     __attribute__((availability(macosx,introduced=10.13)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -37189,6 +37374,7 @@ SSLSetError (SSLContextRef context,
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 extern const CFStringRef kSecTransformErrorDomain;
 extern const CFStringRef kSecTransformPreviousErrorKey;
 
@@ -37304,11 +37490,13 @@ void SecTransformExecuteAsync(SecTransformRef transformRef,
        dispatch_queue_t deliveryQueue,
        SecMessageBlock deliveryBlock)
          __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
+
+#pragma clang assume_nonnull begin
 typedef CFIndex SecTransformMetaAttributeType; enum
 {
     kSecTransformMetaAttributeValue,
@@ -37390,12 +37578,20 @@ SecTransformRef SecTransformCreate(CFStringRef name, CFErrorRef *error)
                             __attribute__((availability(macosx,introduced=10.7)));
 extern
 CFTypeRef SecTransformNoData(void);
-
+#pragma clang assume_nonnull end
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 extern const CFStringRef kSecBase64Encoding;
 
 
@@ -37427,7 +37623,7 @@ SecTransformRef SecEncodeTransformCreate(CFTypeRef encodeType,
            CFErrorRef* error
            )
 __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -37436,19 +37632,39 @@ __attribute__((availability(macosx,introduced=10.7)));
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
  extern const CFStringRef kSecDecodeTypeAttribute;
  _Nullable
  SecTransformRef SecDecodeTransformCreate(CFTypeRef DecodeType,
             CFErrorRef* error
             )
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
 
 }
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 extern const CFStringRef kSecDigestMD2;
 
 
@@ -37513,9 +37729,9 @@ SecTransformRef SecDigestTransformCreate(CFTypeRef _Nullable digestType,
            CFErrorRef* error
            )
            __attribute__((availability(macosx,introduced=10.7)));
-CFTypeID SecDigestTransformGetTypeID()
+    CFTypeID SecDigestTransformGetTypeID(void)
            __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -37525,7 +37741,7 @@ CFTypeID SecDigestTransformGetTypeID()
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -37584,7 +37800,7 @@ extern "C" {
 
 
 
- CFTypeID SecDecryptTransformGetTypeID()
+    CFTypeID SecDecryptTransformGetTypeID(void)
  __attribute__((availability(macosx,introduced=10.7)));
 
 
@@ -37593,9 +37809,9 @@ extern "C" {
 
 
 
- CFTypeID SecEncryptTransformGetTypeID()
+    CFTypeID SecEncryptTransformGetTypeID(void)
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -37604,7 +37820,7 @@ extern "C" {
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 
  extern const CFStringRef kSecKeyAttributeName, kSecSignatureAttributeName, kSecInputIsAttributeName;
@@ -37621,16 +37837,21 @@ extern "C" {
             CFErrorRef* error
             )
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
 
 };
 extern "C" {
+
+
+
+
+#pragma clang assume_nonnull begin
 SecTransformRef SecTransformCreateReadTransformWithReadStream(CFReadStreamRef inputStream)
  __attribute__((availability(macosx,introduced=10.7)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -37640,6 +37861,9 @@ SecTransformRef SecTransformCreateReadTransformWithReadStream(CFReadStreamRef in
 
 
 extern "C" {
+
+
+
 
 
 
@@ -37654,6 +37878,7 @@ typedef struct {
     DERByte *data;
     DERSize length;
 } DERItem;
+
 
 
 extern const DERItem
@@ -37769,6 +37994,8 @@ typedef struct objc_object NSArray;
 typedef struct {} _objc_exc_NSArray;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSURLCredentialPersistence; enum {
     NSURLCredentialPersistenceNone,
     NSURLCredentialPersistenceForSession,
@@ -37798,7 +38025,7 @@ typedef struct {} _objc_exc_NSURLCredential;
 
 struct NSURLCredential_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCredentialInternal *__strong _internal;
+	NSURLCredentialInternal *_internal;
 };
 
 
@@ -37869,6 +38096,7 @@ struct NSURLCredential_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -37899,7 +38127,7 @@ typedef struct {} _objc_exc_NSData;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -38014,7 +38242,7 @@ typedef struct {} _objc_exc_NSURLProtectionSpace;
 
 struct NSURLProtectionSpace_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLProtectionSpaceInternal *__strong _internal;
+	NSURLProtectionSpaceInternal *_internal;
 };
 
 // - (instancetype)initWithHost:(NSString *)host port:(NSInteger)port protocol:(nullable NSString *)protocol realm:(nullable NSString *)realm authenticationMethod:(nullable NSString *)authenticationMethod;
@@ -38093,6 +38321,7 @@ struct NSURLProtectionSpace_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSDictionary;
@@ -38132,6 +38361,14 @@ typedef struct {} _objc_exc_NSURLCredentialStorageInternal;
 #endif
 
 
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 #ifndef _REWRITER_typedef_NSURLCredentialStorage
 #define _REWRITER_typedef_NSURLCredentialStorage
 typedef struct objc_object NSURLCredentialStorage;
@@ -38140,7 +38377,7 @@ typedef struct {} _objc_exc_NSURLCredentialStorage;
 
 struct NSURLCredentialStorage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLCredentialStorageInternal *__strong _internal;
+	NSURLCredentialStorageInternal *_internal;
 };
 
 
@@ -38204,6 +38441,7 @@ extern "C" NSNotificationName const NSURLCredentialStorageChangedNotification;
 
 
 extern "C" NSString *const NSURLCredentialStorageRemoveSynchronizableCredentials __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
 #pragma pack(push, 2)
 
 
@@ -49428,6 +49666,9 @@ IOCatalogueReset(
 }
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) __DASession * DASessionRef;
 
 
@@ -49457,7 +49698,7 @@ extern CFTypeID DAApprovalSessionGetTypeID( void ) __attribute__((availability(s
 extern DAApprovalSessionRef _Nullable DAApprovalSessionCreate( CFAllocatorRef _Nullable allocator ) __attribute__((availability(swift, unavailable, message="Use DASessionCreate instead")));
 extern void DAApprovalSessionScheduleWithRunLoop( DAApprovalSessionRef session, CFRunLoopRef runLoop, CFStringRef runLoopMode ) __attribute__((availability(swift, unavailable, message="Use DASessionSetDispatchQueue instead")));
 extern void DAApprovalSessionUnscheduleFromRunLoop( DAApprovalSessionRef session, CFRunLoopRef runLoop, CFStringRef runLoopMode ) __attribute__((availability(swift, unavailable, message="Use DASessionSetDispatchQueue instead")));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -49470,7 +49711,7 @@ extern void DAApprovalSessionUnscheduleFromRunLoop( DAApprovalSessionRef session
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 
 extern const CFStringRef kDADiskDescriptionVolumeKindKey;
@@ -49526,7 +49767,7 @@ extern const char * _Nullable DADiskGetBSDName( DADiskRef disk );
 extern io_service_t DADiskCopyIOMedia( DADiskRef disk );
 extern CFDictionaryRef _Nullable DADiskCopyDescription( DADiskRef disk );
 extern DADiskRef _Nullable DADiskCopyWholeDisk( DADiskRef disk );
-
+#pragma clang assume_nonnull end
 
 
 
@@ -53908,7 +54149,7 @@ _mm_sad_pu8(__m64 __a, __m64 __b)
 
 extern "C" {
 unsigned int _mm_getcsr(void);
-void _mm_setcsr(unsigned int);
+void _mm_setcsr(unsigned int __i);
 
 
 }
@@ -54441,7 +54682,6 @@ _mm_loadu_pd(double const *__dp)
   } __attribute__((__packed__, __may_alias__));
   return ((struct __loadu_pd*)__dp)->__v;
 }
-
 static __inline__ __m128i __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_loadu_si64(void const *__a)
 {
@@ -54451,7 +54691,6 @@ _mm_loadu_si64(void const *__a)
   long long __u = ((struct __loadu_si64*)__a)->__v;
   return (__m128i){__u, 0L};
 }
-
 static __inline__ __m128d __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_load_sd(double const *__dp)
 {
@@ -54495,6 +54734,11 @@ _mm_set1_pd(double __w)
   return (__m128d){ __w, __w };
 }
 static __inline__ __m128d __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
+_mm_set_pd1(double __w)
+{
+  return _mm_set1_pd(__w);
+}
+static __inline__ __m128d __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_set_pd(double __w, double __x)
 {
   return (__m128d){ __x, __w };
@@ -54522,13 +54766,11 @@ _mm_store_sd(double *__dp, __m128d __a)
   } __attribute__((__packed__, __may_alias__));
   ((struct __mm_store_sd_struct*)__dp)->__u = __a[0];
 }
-
 static __inline__ void __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_store_pd(double *__dp, __m128d __a)
 {
   *(__m128d*)__dp = __a;
 }
-
 static __inline__ void __attribute__((__always_inline__, __nodebug__, __target__("sse2")))
 _mm_store1_pd(double *__dp, __m128d __a)
 {
@@ -55075,7 +55317,7 @@ _mm_stream_si64(long long *__p, long long __a)
 
 
 extern "C" {
-void _mm_clflush(void const *);
+void _mm_clflush(void const * __p);
 void _mm_lfence(void);
 void _mm_mfence(void);
 
@@ -59334,7 +59576,7 @@ enum {
 
 
 
-
+ keyAppleEventAttributesAttr = 'attr',
 
 };
 
@@ -61638,6 +61880,7 @@ AESendMessage(
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 extern const CFStringRef kCFErrorDomainCFNetwork __attribute__((availability(macosx,introduced=10_5)));
 extern const CFStringRef kCFErrorDomainWinSock __attribute__((availability(macosx,introduced=10_5)));
 typedef int CFNetworkErrors; enum {
@@ -61748,7 +61991,7 @@ extern const CFStringRef kCFSOCKSVersionKey __attribute__((availability(macosx,i
 extern const CFStringRef kCFSOCKSNegotiationMethodKey __attribute__((availability(macosx,introduced=10_5)));
 extern const CFStringRef kCFDNSServiceFailureKey __attribute__((availability(macosx,introduced=10_5)));
 extern const CFStringRef kCFFTPStatusCodeKey __attribute__((availability(macosx,introduced=10_5)));
-
+#pragma clang assume_nonnull end
 
 
 }
@@ -61756,7 +61999,7 @@ extern const CFStringRef kCFFTPStatusCodeKey __attribute__((availability(macosx,
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 #pragma pack(push, 2)
 
@@ -61849,14 +62092,14 @@ CFHostUnscheduleFromRunLoop(CFHostRef theHost, CFRunLoopRef runLoop, CFStringRef
 
 
 #pragma pack(pop)
-
+#pragma clang assume_nonnull end
 
 }
 
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 #pragma pack(push, 2)
 typedef struct __CFNetService* CFNetServiceRef;
@@ -62072,7 +62315,7 @@ CFNetServiceSetProtocolSpecificInformation(CFNetServiceRef theService, CFStringR
 
 
 #pragma pack(pop)
-
+#pragma clang assume_nonnull end
 
 }
 
@@ -62084,6 +62327,7 @@ CFNetServiceSetProtocolSpecificInformation(CFNetServiceRef theService, CFStringR
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 extern const CFStringRef kCFStreamPropertySSLContext __attribute__((availability(macosx,introduced=10_9)));
 extern const CFStringRef kCFStreamPropertySSLPeerTrust __attribute__((availability(macosx,introduced=10_5)));
 extern const CFStringRef kCFStreamSSLValidatesCertificateChain __attribute__((availability(macosx,introduced=10_4)));
@@ -62184,7 +62428,7 @@ extern const CFStringRef kCFStreamPropertySSLPeerCertificates __attribute__((ava
 extern const CFStringRef kCFStreamSSLAllowsExpiredCertificates __attribute__((availability(macosx,introduced=10_4,deprecated=10_6,message="" )));
 extern const CFStringRef kCFStreamSSLAllowsExpiredRoots __attribute__((availability(macosx,introduced=10_4,deprecated=10_6,message="" )));
 extern const CFStringRef kCFStreamSSLAllowsAnyRoot __attribute__((availability(macosx,introduced=10_4,deprecated=10_6,message="" )));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -62196,6 +62440,15 @@ extern const CFStringRef kCFStreamSSLAllowsAnyRoot __attribute__((availability(m
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 extern const SInt32 kCFStreamErrorDomainFTP __attribute__((availability(macosx,introduced=10_3)));
 extern const CFStringRef kCFStreamPropertyFTPUserName __attribute__((availability(macosx,introduced=10_3,deprecated=10_11,message="" "Use NSURLSessionAPI for ftp requests")));
 extern const CFStringRef kCFStreamPropertyFTPPassword __attribute__((availability(macosx,introduced=10_3,deprecated=10_11,message="" "Use NSURLSessionAPI for ftp requests")));
@@ -62233,7 +62486,7 @@ extern CFIndex
 CFFTPCreateParsedResourceListing(CFAllocatorRef _Nullable alloc, const UInt8 *buffer, CFIndex bufferLength, CFDictionaryRef _Nullable * _Nullable parsed) __attribute__((availability(macosx,introduced=10_3,deprecated=10_11,message="" "Use NSURLSessionAPI for ftp requests")));
 extern CFWriteStreamRef
 CFWriteStreamCreateWithFTPURL(CFAllocatorRef _Nullable alloc, CFURLRef ftpURL) __attribute__((availability(macosx,introduced=10_3,deprecated=10_11,message="" "Use NSURLSessionAPI for ftp requests")));
-
+#pragma clang assume_nonnull end
 
 
 }
@@ -62245,6 +62498,15 @@ CFWriteStreamCreateWithFTPURL(CFAllocatorRef _Nullable alloc, CFURLRef ftpURL) _
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 extern const CFStringRef kCFHTTPVersion1_0 __attribute__((availability(macosx,introduced=10_1)));
 extern const CFStringRef kCFHTTPVersion1_1 __attribute__((availability(macosx,introduced=10_1)));
 extern const CFStringRef kCFHTTPVersion2_0 __attribute__((availability(macosx,introduced=10_10)));
@@ -62307,7 +62569,7 @@ extern CFIndex
 CFHTTPMessageGetResponseStatusCode(CFHTTPMessageRef response) __attribute__((availability(macosx,introduced=10_1)));
 extern _Nullable CFStringRef
 CFHTTPMessageCopyResponseStatusLine(CFHTTPMessageRef response) __attribute__((availability(macosx,introduced=10_1)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -62316,6 +62578,7 @@ CFHTTPMessageCopyResponseStatusLine(CFHTTPMessageRef response) __attribute__((av
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 extern const SInt32 kCFStreamErrorDomainHTTP __attribute__((availability(macosx,introduced=10_1)));
 
 
@@ -62358,11 +62621,28 @@ extern CFReadStreamRef
 CFReadStreamCreateForStreamedHTTPRequest(CFAllocatorRef _Nullable alloc, CFHTTPMessageRef requestHeaders, CFReadStreamRef requestBody) __attribute__((availability(macosx,introduced=10_2,deprecated=10_11,message="" "Use NSURLSession API for http requests")));
 extern void
 CFHTTPReadStreamSetRedirectsAutomatically(CFReadStreamRef httpStream, Boolean shouldAutoRedirect) __attribute__((availability(macosx,introduced=10_1,deprecated=10_3,message="" )));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
 }
 
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 typedef struct _CFHTTPAuthentication* CFHTTPAuthenticationRef;
 typedef int CFStreamErrorHTTPAuthentication; enum {
 
@@ -62420,7 +62700,7 @@ extern Boolean
 CFHTTPAuthenticationRequiresUserNameAndPassword(CFHTTPAuthenticationRef auth) __attribute__((availability(macosx,introduced=10_3)));
 extern Boolean
 CFHTTPAuthenticationRequiresAccountDomain(CFHTTPAuthenticationRef auth) __attribute__((availability(macosx,introduced=10_4)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -62429,6 +62709,15 @@ CFHTTPAuthenticationRequiresAccountDomain(CFHTTPAuthenticationRef auth) __attrib
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 typedef struct __CFNetDiagnostic* CFNetDiagnosticRef;
 
 
@@ -62472,7 +62761,7 @@ extern CFNetDiagnosticStatus
 CFNetDiagnosticDiagnoseProblemInteractively(CFNetDiagnosticRef details) __attribute__((availability(macosx,introduced=10_4,deprecated=10_13,message="" )));
 extern CFNetDiagnosticStatus
 CFNetDiagnosticCopyNetworkStatusPassively(CFNetDiagnosticRef details, CFStringRef _Nullable * _Nullable description) __attribute__((availability(macosx,introduced=10_4,deprecated=10_13,message="" )));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -62485,6 +62774,7 @@ CFNetDiagnosticCopyNetworkStatusPassively(CFNetDiagnosticRef details, CFStringRe
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 extern _Nullable CFDictionaryRef
 CFNetworkCopySystemProxySettings(void) __attribute__((availability(macosx,introduced=10_6)));
 extern CFArrayRef
@@ -62579,7 +62869,7 @@ extern const CFStringRef kCFNetworkProxiesProxyAutoConfigEnable __attribute__((a
 extern const CFStringRef kCFNetworkProxiesProxyAutoConfigURLString __attribute__((availability(macosx,introduced=10_6)));
 extern const CFStringRef kCFNetworkProxiesProxyAutoConfigJavaScript __attribute__((availability(macosx,introduced=10_7)));
 extern const CFStringRef kCFNetworkProxiesProxyAutoDiscoveryEnable __attribute__((availability(macosx,introduced=10_6)));
-
+#pragma clang assume_nonnull end
 
 
 }
@@ -62587,7 +62877,7 @@ extern const CFStringRef kCFNetworkProxiesProxyAutoDiscoveryEnable __attribute__
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -62598,7 +62888,7 @@ extern CFRange DCSGetTermRangeInString( DCSDictionaryRef _Nullable dictionary, C
  __attribute__((availability(macosx,introduced=10.5)));
 extern CFStringRef _Nullable DCSCopyTextDefinition( DCSDictionaryRef _Nullable dictionary, CFStringRef textString, CFRange range )
  __attribute__((availability(macosx,introduced=10.5)));
-
+#pragma clang assume_nonnull end
 
 }
 
@@ -64453,6 +64743,17 @@ extern "C" {
 
 
 #pragma pack(push, 2)
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 enum {
   kLSAppInTrashErr = -10660,
   kLSExecutableIncorrectFormat = -10661,
@@ -64550,7 +64851,7 @@ extern OSStatus
 LSSetDefaultHandlerForURLScheme(
   CFStringRef inURLScheme,
   CFStringRef inHandlerBundleID) __attribute__((availability(macosx,introduced=10.4)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -64754,6 +65055,17 @@ extern "C" {
 
 
 #pragma pack(push, 2)
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 typedef OptionBits LSLaunchFlags; enum {
   kLSLaunchDefaults = 0x00000001,
   kLSLaunchAndPrint = 0x00000002,
@@ -64782,7 +65094,7 @@ extern OSStatus
 LSOpenFromURLSpec(
   const LSLaunchURLSpec * inLaunchSpec,
   _Nullable CFURLRef *_Nullable outLaunchedURL) __attribute__((availability(macosx,introduced=10.0)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -64879,6 +65191,7 @@ LSOpenURLsWithRole(
 
 
 
+#pragma clang assume_nonnull begin
 extern const CFStringRef kLSQuarantineAgentNameKey __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineAgentBundleIdentifierKey __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineTimeStampKey __attribute__((availability(macosx,introduced=10.5)));
@@ -64891,10 +65204,16 @@ extern const CFStringRef kLSQuarantineTypeCalendarEventAttachment __attribute__(
 extern const CFStringRef kLSQuarantineTypeOtherAttachment __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineOriginURLKey __attribute__((availability(macosx,introduced=10.5)));
 extern const CFStringRef kLSQuarantineDataURLKey __attribute__((availability(macosx,introduced=10.5)));
+#pragma clang assume_nonnull end
 
 
 
 extern "C" {
+
+
+
+
+#pragma clang assume_nonnull begin
 extern const CFStringRef kUTTypeItem __attribute__((availability(macosx,introduced=10.4)));
 extern const CFStringRef kUTTypeContent __attribute__((availability(macosx,introduced=10.4)));
 extern const CFStringRef kUTTypeCompositeContent __attribute__((availability(macosx,introduced=10.4)));
@@ -65027,11 +65346,24 @@ extern const CFStringRef kUTTypePKCS12 __attribute__((availability(macosx,introd
 extern const CFStringRef kUTTypeX509Certificate __attribute__((availability(macosx,introduced=10.10)));
 extern const CFStringRef kUTTypeElectronicPublication __attribute__((availability(macosx,introduced=10.10)));
 extern const CFStringRef kUTTypeLog __attribute__((availability(macosx,introduced=10.10)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
 }
 
 
 
 extern "C" {
+
+
+
+
+#pragma clang assume_nonnull begin
 extern const CFStringRef kUTExportedTypeDeclarationsKey __attribute__((availability(macosx,introduced=10.3)));
 
 
@@ -65118,6 +65450,14 @@ extern CFStringRef
 UTCreateStringForOSType(OSType inOSType) __attribute__((availability(macosx,introduced=10.3)));
 extern OSType
 UTGetOSTypeFromString(CFStringRef inString) __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
 }
 
 
@@ -66079,7 +66419,7 @@ SKSummaryGetParagraphSummaryInfo(
 extern "C" {
 
 
-
+#pragma clang assume_nonnull begin
 
 #pragma pack(push, 2)
 typedef UInt32 FSEventStreamCreateFlags;
@@ -66345,7 +66685,7 @@ FSEventStreamSetExclusionPaths(FSEventStreamRef streamRef, CFArrayRef pathsToExc
 
 
 #pragma pack(pop)
-
+#pragma clang assume_nonnull end
 
 
 
@@ -66494,7 +66834,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -66610,6 +66950,7 @@ enum
     NSURLErrorBackgroundSessionInUseByAnotherProcess __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) = -996,
     NSURLErrorBackgroundSessionWasDisconnected __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)))= -997,
 };
+#pragma clang assume_nonnull end
 
 // @class NSCachedURLResponse;
 #ifndef _REWRITER_typedef_NSCachedURLResponse
@@ -66681,6 +67022,8 @@ typedef struct objc_object NSURLSessionTask;
 typedef struct {} _objc_exc_NSURLSessionTask;
 #endif
 
+
+#pragma clang assume_nonnull begin
 // @protocol NSURLProtocolClient <NSObject>
 // - (void)URLProtocol:(NSURLProtocol *)protocol wasRedirectedToRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse;
 // - (void)URLProtocol:(NSURLProtocol *)protocol cachedResponseIsValid:(NSCachedURLResponse *)cachedResponse;
@@ -66716,7 +67059,7 @@ typedef struct {} _objc_exc_NSURLProtocol;
 
 struct NSURLProtocol_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLProtocolInternal *__strong _internal;
+	NSURLProtocolInternal *_internal;
 };
 
 // - (instancetype)initWithRequest:(NSURLRequest *)request cachedResponse:(nullable NSCachedURLResponse *)cachedResponse client:(nullable id <NSURLProtocolClient>)client __attribute__((objc_designated_initializer));
@@ -66766,6 +67109,7 @@ struct NSURLProtocol_IMPL {
 // @property (nullable, readonly, copy) NSURLSessionTask *task __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSData;
 #ifndef _REWRITER_typedef_NSData
 #define _REWRITER_typedef_NSData
@@ -66808,6 +67152,8 @@ typedef struct objc_object NSURLRequestInternal;
 typedef struct {} _objc_exc_NSURLRequestInternal;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSURLRequestCachePolicy; enum
 {
     NSURLRequestUseProtocolCachePolicy = 0,
@@ -66839,7 +67185,7 @@ typedef struct {} _objc_exc_NSURLRequest;
 
 struct NSURLRequest_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLRequestInternal *__strong _internal;
+	NSURLRequestInternal *_internal;
 };
 
 // + (instancetype)requestWithURL:(NSURL *)URL;
@@ -66979,6 +67325,7 @@ struct NSMutableURLRequest_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSDictionary;
 #ifndef _REWRITER_typedef_NSDictionary
 #define _REWRITER_typedef_NSDictionary
@@ -67015,6 +67362,8 @@ typedef struct {} _objc_exc_NSURLResponseInternal;
 #endif
 
 
+#pragma clang assume_nonnull begin
+
 #ifndef _REWRITER_typedef_NSURLResponse
 #define _REWRITER_typedef_NSURLResponse
 typedef struct objc_object NSURLResponse;
@@ -67023,7 +67372,7 @@ typedef struct {} _objc_exc_NSURLResponse;
 
 struct NSURLResponse_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLResponseInternal *__strong _internal;
+	NSURLResponseInternal *_internal;
 };
 
 // - (instancetype)initWithURL:(NSURL *)URL MIMEType:(nullable NSString *)MIMEType expectedContentLength:(NSInteger)length textEncodingName:(nullable NSString *)name __attribute__((objc_designated_initializer));
@@ -67059,7 +67408,7 @@ typedef struct {} _objc_exc_NSHTTPURLResponse;
 
 struct NSHTTPURLResponse_IMPL {
 	struct NSURLResponse_IMPL NSURLResponse_IVARS;
-	NSHTTPURLResponseInternal *__strong _httpInternal;
+	NSHTTPURLResponseInternal *_httpInternal;
 };
 
 // - (nullable instancetype)initWithURL:(NSURL *)url statusCode:(NSInteger)statusCode HTTPVersion:(nullable NSString *)HTTPVersion headerFields:(nullable NSDictionary<NSString *, NSString *> *)headerFields __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -67074,6 +67423,7 @@ struct NSHTTPURLResponse_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -67119,7 +67469,7 @@ typedef struct {} _objc_exc_NSURL;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 extern "C" NSString * const NSGlobalDomain;
@@ -67136,7 +67486,7 @@ typedef struct {} _objc_exc_NSUserDefaults;
 
 struct NSUserDefaults_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _kvo_;
+	id _kvo_;
 	CFStringRef _identifier_;
 	CFStringRef _container_;
 	void *_reserved[2];
@@ -67318,6 +67668,7 @@ extern "C" NSString * const NSInternationalCurrencyString __attribute__((availab
 extern "C" NSString * const NSShortDateFormatString __attribute__((availability(macosx,introduced=10_0,deprecated=10_5,message="" )));
 extern "C" NSString * const NSPositiveCurrencyFormatString __attribute__((availability(macosx,introduced=10_0,deprecated=10_5,message="" )));
 extern "C" NSString * const NSNegativeCurrencyFormatString __attribute__((availability(macosx,introduced=10_0,deprecated=10_5,message="" )));
+#pragma clang assume_nonnull end
 
 
 
@@ -67339,7 +67690,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSString *NSValueTransformerName __attribute__((swift_wrapper(struct)));
 
@@ -67377,6 +67728,7 @@ struct NSValueTransformer_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -67429,7 +67781,7 @@ typedef struct {} _objc_exc_NSSet;
 
 // @protocol NSXMLParserDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)))
 typedef NSUInteger NSXMLParserExternalEntityResolvingPolicy; enum {
@@ -67448,11 +67800,11 @@ typedef struct {} _objc_exc_NSXMLParser;
 
 struct NSXMLParser_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _reserved0;
-	__strong id _delegate;
-	__strong id _reserved1;
-	__strong id _reserved2;
-	__strong id _reserved3;
+	id _reserved0;
+	id _delegate;
+	id _reserved1;
+	id _reserved2;
+	id _reserved3;
 };
 
 // - (nullable instancetype)initWithContentsOfURL:(NSURL *)url;
@@ -67656,6 +68008,7 @@ typedef NSInteger NSXMLParserError; enum {
     NSXMLParserNoDTDError = 94,
     NSXMLParserDelegateAbortedParseError = 512
 };
+#pragma clang assume_nonnull end
 
 
 
@@ -67881,7 +68234,7 @@ typedef struct {} _objc_exc_NSXPCListenerEndpoint;
 
 // @protocol NSXPCListenerDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 
 // @protocol NSXPCProxyCreating
@@ -67920,23 +68273,23 @@ typedef struct {} _objc_exc_NSXPCConnection;
 struct NSXPCConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_xconnection;
-	__strong id _repliesExpected;
-	__strong dispatch_queue_t _userQueue;
+	id _repliesExpected;
+	dispatch_queue_t _userQueue;
 	uint32_t _state;
 	uint32_t _state2;
 	void (*_interruptionHandler)();
 	void (*_invalidationHandler)();
-	__strong id _exportInfo;
-	__strong id _repliesRequested;
-	__strong id _importInfo;
+	id _exportInfo;
+	id _repliesRequested;
+	id _importInfo;
 	id _otherInfo;
-	__strong id _reserved1;
-	__strong id _lock;
-	NSXPCInterface *__strong _remoteObjectInterface;
-	NSString *__strong _serviceName;
-	NSXPCListenerEndpoint *__strong _endpoint;
-	__strong id _eCache;
-	__strong id _dCache;
+	id _reserved1;
+	id _lock;
+	NSXPCInterface *_remoteObjectInterface;
+	NSString *_serviceName;
+	NSXPCListenerEndpoint *_endpoint;
+	id _eCache;
+	id _dCache;
 };
 
 
@@ -68008,13 +68361,13 @@ typedef struct {} _objc_exc_NSXPCListener;
 struct NSXPCListener_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	void *_xconnection;
-	__strong dispatch_queue_t _userQueue;
+	dispatch_queue_t _userQueue;
 	void *reserved0;
 	id _delegate;
-	NSString *__strong _serviceName;
+	NSString *_serviceName;
 	uint64_t _state;
-	__strong id _reserved1;
-	__strong id _reserved2;
+	id _reserved1;
+	id _reserved2;
 };
 
 
@@ -68066,9 +68419,9 @@ typedef struct {} _objc_exc_NSXPCInterface;
 
 struct NSXPCInterface_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	Protocol *__strong _protocol;
+	Protocol *_protocol;
 	void *_reserved2;
-	__strong id _reserved1;
+	id _reserved1;
 };
 
 
@@ -68108,6 +68461,7 @@ struct NSXPCListenerEndpoint_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 enum {
@@ -68227,7 +68581,7 @@ enum {
 
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSByteCountFormatterUnits; enum {
 
@@ -68323,6 +68677,7 @@ struct NSByteCountFormatter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -68338,7 +68693,7 @@ typedef struct {} _objc_exc_NSString;
 
 // @protocol NSCacheDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_6)))
 
@@ -68350,7 +68705,7 @@ typedef struct {} _objc_exc_NSCache;
 
 struct NSCache_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _delegate;
+	id _delegate;
 	void *_private[5];
 	void *_reserved;
 };
@@ -68379,6 +68734,7 @@ struct NSCache_IMPL {
 // - (void)cache:(NSCache *)cache willEvictObject:(id)obj;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -68397,7 +68753,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -68479,8 +68835,9 @@ struct NSPredicate_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
-
+#pragma clang assume_nonnull begin
 
 
 typedef NSUInteger NSComparisonPredicateOptions; enum {
@@ -68543,9 +68900,9 @@ typedef struct {} _objc_exc_NSComparisonPredicate;
 struct NSComparisonPredicate_IMPL {
 	struct NSPredicate_IMPL NSPredicate_IVARS;
 	void *_reserved2;
-	NSPredicateOperator *__strong _predicateOperator;
-	NSExpression *__strong _lhs;
-	NSExpression *__strong _rhs;
+	NSPredicateOperator *_predicateOperator;
+	NSExpression *_lhs;
+	NSExpression *_rhs;
 };
 
 
@@ -68565,6 +68922,7 @@ struct NSComparisonPredicate_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -68579,7 +68937,7 @@ typedef struct {} _objc_exc_NSArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -68601,7 +68959,7 @@ struct NSCompoundPredicate_IMPL {
 	struct NSPredicate_IMPL NSPredicate_IVARS;
 	void *_reserved2;
 	NSUInteger _type;
-	NSArray *__strong _subpredicates;
+	NSArray *_subpredicates;
 };
 
 
@@ -68617,6 +68975,17 @@ struct NSCompoundPredicate_IMPL {
 // + (NSCompoundPredicate *)notPredicateWithSubpredicate:(NSPredicate *)predicate __attribute__((swift_name("init(notPredicateWithSubpredicate:)")));
 
 /* @end */
+
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)))
 typedef NSInteger NSDateComponentsFormatterUnitsStyle; enum {
@@ -68656,10 +69025,10 @@ struct NSDateComponentsFormatter_IMPL {
 	pthread_mutex_t _lock;
 	void *_fmt;
 	void *_unused;
-	NSString *__strong _fmtLocaleIdent;
-	NSCalendar *__strong _calendar;
-	NSDate *__strong _referenceDate;
-	NSNumberFormatter *__strong _unitFormatter;
+	NSString *_fmtLocaleIdent;
+	NSCalendar *_calendar;
+	NSDate *_referenceDate;
+	NSNumberFormatter *_unitFormatter;
 	NSCalendarUnit _allowedUnits;
 	NSFormattingContext _formattingContext;
 	NSDateComponentsFormatterUnitsStyle _unitsStyle;
@@ -68743,6 +69112,7 @@ struct NSDateComponentsFormatter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -68778,7 +69148,7 @@ typedef struct {} _objc_exc_NSPredicate;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -68869,6 +69239,9 @@ struct NSExpression_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_10)))
 
 #ifndef _REWRITER_typedef_NSExtensionContext
@@ -68911,6 +69284,9 @@ extern "C" NSString * _Null_unspecified const NSExtensionHostWillResignActiveNot
 
 
 extern "C" NSString * _Null_unspecified const NSExtensionHostDidBecomeActiveNotification __attribute__((availability(ios,introduced=8.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(macos,unavailable)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_10)))
 
 #ifndef _REWRITER_typedef_NSExtensionItem
@@ -68943,6 +69319,16 @@ struct NSExtensionItem_IMPL {
 extern "C" NSString * _Null_unspecified const NSExtensionItemAttributedTitleKey __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSString * _Null_unspecified const NSExtensionItemAttributedContentTextKey __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern "C" NSString * _Null_unspecified const NSExtensionItemAttachmentsKey __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
 // @class NSExtensionContext;
 #ifndef _REWRITER_typedef_NSExtensionContext
 #define _REWRITER_typedef_NSExtensionContext
@@ -68961,6 +69347,7 @@ typedef struct {} _objc_exc_NSExtensionContext;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -68995,7 +69382,7 @@ typedef struct {} _objc_exc_NSSet;
 
 // @protocol NSFilePresenter;
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSFileCoordinatorReadingOptions; enum {
 
@@ -69057,7 +69444,7 @@ typedef struct {} _objc_exc_NSFileAccessIntent;
 
 struct NSFileAccessIntent_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *__strong _url;
+	NSURL *_url;
 	BOOL _isRead;
 	NSInteger _options;
 };
@@ -69079,13 +69466,13 @@ typedef struct {} _objc_exc_NSFileCoordinator;
 
 struct NSFileCoordinator_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _accessArbiter;
-	__strong id _fileReactor;
-	__strong id _purposeID;
-	NSURL *__strong _recentFilePresenterURL;
-	__strong id _accessClaimIDOrIDs;
+	id _accessArbiter;
+	id _fileReactor;
+	id _purposeID;
+	NSURL *_recentFilePresenterURL;
+	id _accessClaimIDOrIDs;
 	BOOL _isCancelled;
-	NSMutableDictionary *__strong _movedItems;
+	NSMutableDictionary *_movedItems;
 };
 
 
@@ -69127,6 +69514,7 @@ struct NSFileCoordinator_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSError;
 #ifndef _REWRITER_typedef_NSError
 #define _REWRITER_typedef_NSError
@@ -69151,6 +69539,15 @@ typedef struct {} _objc_exc_NSOperationQueue;
 typedef struct objc_object NSSet;
 typedef struct {} _objc_exc_NSSet;
 #endif
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 
 // @protocol NSFilePresenter<NSObject>
 
@@ -69253,6 +69650,7 @@ typedef struct {} _objc_exc_NSSet;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -69305,7 +69703,7 @@ typedef struct {} _objc_exc_NSPersonNameComponents;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSFileVersionAddingOptions; enum {
 
@@ -69335,19 +69733,19 @@ typedef struct {} _objc_exc_NSFileVersion;
 
 struct NSFileVersion_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *__strong _fileURL;
-	__strong id _addition;
-	__strong id _deadVersionIdentifier;
-	__strong id _nonLocalVersion;
-	NSURL *__strong _contentsURL;
+	NSURL *_fileURL;
+	id _addition;
+	id _deadVersionIdentifier;
+	id _nonLocalVersion;
+	NSURL *_contentsURL;
 	BOOL _isBackup;
-	NSString *__strong _localizedName;
-	NSString *__strong _localizedComputerName;
-	NSDate *__strong _modificationDate;
+	NSString *_localizedName;
+	NSString *_localizedComputerName;
+	NSDate *_modificationDate;
 	BOOL _isResolved;
 	BOOL _contentsURLIsAccessed;
-	__strong id _reserved;
-	NSString *__strong _name;
+	id _reserved;
+	NSString *_name;
 };
 
 
@@ -69454,6 +69852,7 @@ struct NSFileVersion_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -69493,7 +69892,7 @@ typedef struct {} _objc_exc_NSURL;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSFileWrapperReadingOptions; enum {
 
@@ -69529,12 +69928,12 @@ typedef struct {} _objc_exc_NSFileWrapper;
 
 struct NSFileWrapper_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSDictionary *__strong _fileAttributes;
-	NSString *__strong _preferredFileName;
-	NSString *__strong _fileName;
-	__strong id _contents;
-	__strong id _icon;
-	__strong id _moreVars;
+	NSDictionary *_fileAttributes;
+	NSString *_preferredFileName;
+	NSString *_fileName;
+	id _contents;
+	id _icon;
+	id _moreVars;
 };
 
 
@@ -69663,6 +70062,7 @@ struct NSFileWrapper_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -69691,7 +70091,7 @@ typedef struct {} _objc_exc_NSValue;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -69778,11 +70178,11 @@ typedef struct {} _objc_exc_NSLinguisticTagger;
 
 struct NSLinguisticTagger_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSArray *__strong _schemes;
+	NSArray *_schemes;
 	NSUInteger _options;
-	NSString *__strong _string;
-	__strong id _orthographyArray;
-	__strong id _tokenArray;
+	NSString *_string;
+	id _orthographyArray;
+	id _tokenArray;
 	void *_reserved;
 };
 
@@ -69858,6 +70258,7 @@ struct NSLinguisticTagger_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -69876,7 +70277,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -70090,6 +70491,7 @@ extern "C" NSString * const NSMetadataItemExecutablePlatformKey __attribute__((a
 extern "C" NSString * const NSMetadataItemApplicationCategoriesKey __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
 extern "C" NSString * const NSMetadataItemIsApplicationManagedKey __attribute__((availability(macos,introduced=10.9))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+#pragma clang assume_nonnull end
 
 
 
@@ -70159,7 +70561,7 @@ typedef struct {} _objc_exc_NSMetadataQueryResultGroup;
 
 // @protocol NSMetadataQueryDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_4)))
 
@@ -70173,7 +70575,7 @@ struct NSMetadataQuery_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
 	NSUInteger _flags;
 	NSTimeInterval _interval;
-	id __strong _private[11];
+	id _private[11];
 	void *_reserved;
 };
 
@@ -70275,7 +70677,7 @@ typedef struct {} _objc_exc_NSMetadataItem;
 
 struct NSMetadataItem_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _item;
+	id _item;
 	void *_reserved;
 };
 
@@ -70300,8 +70702,8 @@ typedef struct {} _objc_exc_NSMetadataQueryAttributeValueTuple;
 
 struct NSMetadataQueryAttributeValueTuple_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _attr;
-	__strong id _value;
+	id _attr;
+	id _value;
 	NSUInteger _count;
 	void *_reserved;
 };
@@ -70324,7 +70726,7 @@ typedef struct {} _objc_exc_NSMetadataQueryResultGroup;
 
 struct NSMetadataQueryResultGroup_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	id __strong _private[9];
+	id _private[9];
 	NSUInteger _private2[1];
 	void *_reserved;
 };
@@ -70342,6 +70744,7 @@ struct NSMetadataQueryResultGroup_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
@@ -70394,7 +70797,7 @@ typedef struct {} _objc_exc_NSString;
 
 // @protocol NSNetServiceDelegate, NSNetServiceBrowserDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -70461,9 +70864,9 @@ typedef struct {} _objc_exc_NSNetService;
 
 struct NSNetService_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _netService;
-	__strong id _delegate;
-	__strong id _reserved;
+	id _netService;
+	id _delegate;
+	id _reserved;
 };
 
 
@@ -70583,8 +70986,8 @@ typedef struct {} _objc_exc_NSNetServiceBrowser;
 
 struct NSNetServiceBrowser_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _netServiceBrowser;
-	__strong id _delegate;
+	id _netServiceBrowser;
+	id _delegate;
 	void *_reserved;
 };
 
@@ -70701,6 +71104,7 @@ __attribute__((availability(watchos,unavailable)))
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -70736,7 +71140,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_7))) __attribute__((availability(watchos,unavailable)))
 
@@ -70748,9 +71152,9 @@ typedef struct {} _objc_exc_NSUbiquitousKeyValueStore;
 
 struct NSUbiquitousKeyValueStore_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private1;
-	__strong id _private2;
-	__strong id _private3;
+	id _private1;
+	id _private2;
+	id _private3;
 	void *_private4;
 	void *_reserved[3];
 	int _daemonWakeToken;
@@ -70796,6 +71200,7 @@ enum {
     NSUbiquitousKeyValueStoreQuotaViolationChange __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))),
     NSUbiquitousKeyValueStoreAccountChange __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)))
 };
+#pragma clang assume_nonnull end
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
 #define _REWRITER_typedef_NSArray
@@ -70811,7 +71216,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 static const NSUInteger NSUndoCloseGroupingRunLoopOrdering = 350000;
@@ -70826,12 +71231,12 @@ typedef struct {} _objc_exc_NSUndoManager;
 
 struct NSUndoManager_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _undoStack;
-	__strong id _redoStack;
-	NSArray *__strong _runLoopModes;
+	id _undoStack;
+	id _redoStack;
+	NSArray *_runLoopModes;
 	uint64_t _NSUndoManagerPrivate1;
-	__strong id _target;
-	__strong id _proxy;
+	id _target;
+	id _proxy;
 	void *_NSUndoManagerPrivate2;
 	void *_NSUndoManagerPrivate3;
 };
@@ -70963,6 +71368,7 @@ extern "C" NSNotificationName const NSUndoManagerWillCloseUndoGroupNotification 
 
 
 extern "C" NSNotificationName const NSUndoManagerDidCloseUndoGroupNotification __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,introduced=5.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
 // @class NSString;
 #ifndef _REWRITER_typedef_NSString
 #define _REWRITER_typedef_NSString
@@ -71176,6 +71582,8 @@ typedef struct objc_object NSDateInterval;
 typedef struct {} _objc_exc_NSDateInterval;
 #endif
 
+
+#pragma clang assume_nonnull begin
 extern "C" const int64_t NSURLSessionTransferSizeUnknown __attribute__((availability(macosx,introduced=10_9)));
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_9)))
@@ -72009,6 +72417,7 @@ struct NSURLSessionTaskMetrics_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72068,7 +72477,7 @@ typedef struct {} _objc_exc_NSError;
 
 // @protocol NSUserActivityDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -72189,6 +72598,9 @@ __attribute__((availability(macos,introduced=10.10))) __attribute__((availabilit
 
 /* @end */
 
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_8)))
 
 #ifndef _REWRITER_typedef_NSUUID
@@ -72222,6 +72634,7 @@ struct NSUUID_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72265,7 +72678,7 @@ typedef struct {} _objc_exc_NSMutableArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -72330,18 +72743,18 @@ struct NSUnarchiver_IMPL {
 	char unused2;
 	void *pointerTable;
 	void *stringTable;
-	__strong id classVersions;
+	id classVersions;
 	NSInteger lastLabel;
 	void *map;
 	void *allUnarchivedObjects;
-	__strong id reserved;
+	id reserved;
 };
 
 
 // - (nullable instancetype)initForReadingWithData:(NSData *)data __attribute__((objc_designated_initializer));
 
-// - (void)setObjectZone:(nullable NSZone *)zone __attribute__((unavailable("not available in automatic reference counting mode")));
-// - (nullable NSZone *)objectZone __attribute__((unavailable("not available in automatic reference counting mode")));
+// - (void)setObjectZone:(nullable NSZone *)zone ;
+// - (nullable NSZone *)objectZone ;
 
 // @property (getter=isAtEnd, readonly) BOOL atEnd;
 
@@ -72376,6 +72789,18 @@ extern "C" NSExceptionName const NSInconsistentArchiveException;
 
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
 typedef NSInteger NSBackgroundActivityResult; enum {
 
     NSBackgroundActivityResultFinished = 1,
@@ -72402,9 +72827,9 @@ typedef struct {} _objc_exc_NSBackgroundActivityScheduler;
 
 struct NSBackgroundActivityScheduler_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _private1;
-	__strong id _private2;
-	__strong id _private3;
+	id _private1;
+	id _private2;
+	id _private3;
 	int64_t _flags;
 };
 
@@ -72454,6 +72879,7 @@ struct NSBackgroundActivityScheduler_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72479,6 +72905,8 @@ typedef struct objc_object NSTimeZone;
 typedef struct {} _objc_exc_NSTimeZone;
 #endif
 
+
+#pragma clang assume_nonnull begin
 __attribute__((availability(macosx,introduced=10_4,deprecated=10_10,message="" "Use NSCalendar and NSDateComponents and NSDateFormatter instead")))
 __attribute__((availability(swift, unavailable, message="Use NSCalendar and NSDateComponents and NSDateFormatter instead")))
 
@@ -72492,8 +72920,8 @@ struct NSCalendarDate_IMPL {
 	struct NSDate_IMPL NSDate_IVARS;
 	NSUInteger refCount;
 	NSTimeInterval _timeIntervalSinceReferenceDate;
-	NSTimeZone *__strong _timeZone;
-	NSString *__strong _formatString;
+	NSTimeZone *_timeZone;
+	NSString *_formatString;
 	void *_reserved;
 };
 
@@ -72548,6 +72976,7 @@ struct NSCalendarDate_IMPL {
 // - (nullable id)initWithString:(NSString *)description __attribute__((availability(macosx,introduced=10_4,deprecated=10_10,message="" )));
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72633,7 +73062,7 @@ typedef struct {} _objc_exc_NSDistantObjectRequest;
 // @protocol NSConnectionDelegate;
 
 __attribute__((objc_arc_weak_reference_unavailable))
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macosx,introduced=10.0,deprecated=10.13,message="Use NSXPCConnection instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="Use NSXPCConnection instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=4.0,message="Use NSXPCConnection instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=11.0,message="Use NSXPCConnection instead")))
 __attribute__((availability(swift, unavailable, message="Use NSXPCConnection instead")))
@@ -72656,28 +73085,28 @@ typedef struct {} _objc_exc_NSConnection;
 	} ;
 struct NSConnection_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id receivePort;
-	__strong id sendPort;
-	__strong id delegate;
+	id receivePort;
+	id sendPort;
+	id delegate;
 	int32_t busy;
 	int32_t localProxyCount;
 	int32_t waitCount;
-	__strong id delayedRL;
-	__strong id statistics;
+	id delayedRL;
+	id statistics;
 	unsigned char isDead;
 	unsigned char isValid;
 	unsigned char wantsInvalid;
 	struct NSConnection__T_1 NSConnection__GRBF_1;
-	__strong id ___1;
-	__strong id ___2;
-	__strong id runLoops;
-	__strong id requestModes;
-	__strong id rootObject;
+	id ___1;
+	id ___2;
+	id runLoops;
+	id requestModes;
+	id rootObject;
 	void *registerInfo;
-	__strong id replMode;
-	__strong id classInfoImported;
-	__strong id releasedProxies;
-	__strong id reserved;
+	id replMode;
+	id classInfoImported;
+	id releasedProxies;
+	id reserved;
 };
 
 
@@ -72792,6 +73221,7 @@ struct NSDistantObjectRequest_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72818,7 +73248,7 @@ typedef struct {} _objc_exc_NSCoder;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macosx,introduced=10.0,deprecated=10.13,message="Use NSXPCConnection instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="Use NSXPCConnection instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=4.0,message="Use NSXPCConnection instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=11.0,message="Use NSXPCConnection instead")))
 __attribute__((availability(swift, unavailable, message="Use NSXPCConnection instead")))
@@ -72831,14 +73261,14 @@ typedef struct {} _objc_exc_NSDistantObject;
 
 struct NSDistantObject_IMPL {
 	struct NSProxy_IMPL NSProxy_IVARS;
-	__strong id _knownSelectors;
+	id _knownSelectors;
 	NSUInteger _wireCount;
 	NSUInteger _refCount;
-	__strong id _proto;
+	id _proto;
 	uint16_t ___2;
 	uint8_t ___1;
 	uint8_t _wireType;
-	__strong id _remoteClass;
+	id _remoteClass;
 };
 
 
@@ -72858,6 +73288,7 @@ struct NSDistantObject_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72878,7 +73309,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSString * NSDistributedNotificationCenterType __attribute__((swift_wrapper(struct)));
 
@@ -72947,6 +73378,7 @@ struct NSDistributedNotificationCenter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -72974,7 +73406,7 @@ typedef struct {} _objc_exc_NSArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macosx,introduced=10.0,deprecated=10.13,message="Use NSXPCConnection instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="Use NSXPCConnection instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=4.0,message="Use NSXPCConnection instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=11.0,message="Use NSXPCConnection instead")))
 __attribute__((availability(swift, unavailable, message="Use NSXPCConnection instead")))
@@ -73012,6 +73444,7 @@ struct NSPortCoder_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -73044,7 +73477,7 @@ typedef struct {} _objc_exc_NSMutableArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSPortMessage
@@ -73055,9 +73488,9 @@ typedef struct {} _objc_exc_NSPortMessage;
 
 struct NSPortMessage_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSPort *__strong localPort;
-	NSPort *__strong remotePort;
-	NSMutableArray *__strong components;
+	NSPort *localPort;
+	NSPort *remotePort;
+	NSMutableArray *components;
 	uint32_t msgid;
 	void *reserved2;
 	void *reserved;
@@ -73075,6 +73508,7 @@ struct NSPortMessage_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -73095,7 +73529,7 @@ typedef struct {} _objc_exc_NSPort;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(macosx,introduced=10.0,deprecated=10.13,message="Use NSXPCConnection instead"))) __attribute__((availability(ios,introduced=2.0,deprecated=11.0,message="Use NSXPCConnection instead"))) __attribute__((availability(watchos,introduced=2.0,deprecated=4.0,message="Use NSXPCConnection instead"))) __attribute__((availability(tvos,introduced=9.0,deprecated=11.0,message="Use NSXPCConnection instead")))
 __attribute__((availability(swift, unavailable, message="Use NSXPCConnection instead")))
@@ -73220,6 +73654,16 @@ struct NSSocketPortNameServer_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
 
 #ifndef _REWRITER_typedef_NSProtocolChecker
 #define _REWRITER_typedef_NSProtocolChecker
@@ -73245,6 +73689,7 @@ struct NSProtocolChecker_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -73272,7 +73717,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSInteger NSTaskTerminationReason; enum {
     NSTaskTerminationReasonExit = 1,
@@ -73353,6 +73798,7 @@ struct NSTask_IMPL {
 
 
 extern "C" NSNotificationName const NSTaskDidTerminateNotification;
+#pragma clang assume_nonnull end
 
 
 
@@ -73466,7 +73912,7 @@ typedef struct {} _objc_exc_NSXMLDocument;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -73499,8 +73945,8 @@ typedef struct {} _objc_exc_NSXMLNode;
 	} ;
 struct NSXMLNode_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSXMLNode *__strong _parent;
-	__strong id _objectValue;
+	NSXMLNode *_parent;
+	id _objectValue;
 	struct NSXMLNode__T_1 NSXMLNode__GRBF_1;
 	int32_t _private;
 };
@@ -73743,6 +74189,7 @@ struct NSXMLNode_IMPL {
 // - (nullable NSArray *)objectsForXQuery:(NSString *)xquery error:(NSError **)error;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 // @class NSArray;
 #ifndef _REWRITER_typedef_NSArray
@@ -73771,7 +74218,7 @@ typedef struct {} _objc_exc_NSXMLDTDNode;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -73786,17 +74233,17 @@ typedef struct {} _objc_exc_NSXMLDTD;
 
 struct NSXMLDTD_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *__strong _name;
-	NSString *__strong _publicID;
-	NSString *__strong _systemID;
-	NSArray *__strong _children;
+	NSString *_name;
+	NSString *_publicID;
+	NSString *_systemID;
+	NSArray *_children;
 	BOOL _childrenHaveMutated;
 	uint8_t _padding3[3];
-	NSMutableDictionary *__strong _entities;
-	NSMutableDictionary *__strong _elements;
-	NSMutableDictionary *__strong _notations;
-	NSMutableDictionary *__strong _attributes;
-	NSString *__strong _original;
+	NSMutableDictionary *_entities;
+	NSMutableDictionary *_elements;
+	NSMutableDictionary *_notations;
+	NSMutableDictionary *_attributes;
+	NSString *_original;
 	BOOL _modified;
 	uint8_t _padding2[3];
 };
@@ -73880,6 +74327,19 @@ struct NSXMLDTD_IMPL {
 // + (nullable NSXMLDTDNode *)predefinedEntityDeclarationForName:(NSString *)name;
 /* @end */
 
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 typedef NSUInteger NSXMLDTDNodeKind; enum {
  NSXMLEntityGeneralKind = 1,
  NSXMLEntityParsedKind,
@@ -73914,10 +74374,10 @@ typedef struct {} _objc_exc_NSXMLDTDNode;
 struct NSXMLDTDNode_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
 	NSXMLDTDNodeKind _DTDKind;
-	NSString *__strong _name;
-	NSString *__strong _notationName;
-	NSString *__strong _publicID;
-	NSString *__strong _systemID;
+	NSString *_name;
+	NSString *_notationName;
+	NSString *_publicID;
+	NSString *_systemID;
 };
 
 
@@ -73958,6 +74418,7 @@ struct NSXMLDTDNode_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -73995,6 +74456,8 @@ typedef struct objc_object NSArray;
 typedef struct {} _objc_exc_NSArray;
 #endif
 
+
+#pragma clang assume_nonnull begin
 typedef NSUInteger NSXMLDocumentContentKind; enum {
  NSXMLDocumentXMLKind = 0,
  NSXMLDocumentXHTMLKind,
@@ -74016,16 +74479,16 @@ typedef struct {} _objc_exc_NSXMLDocument;
 
 struct NSXMLDocument_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *__strong _encoding;
-	NSString *__strong _version;
-	NSXMLDTD *__strong _docType;
-	NSArray *__strong _children;
+	NSString *_encoding;
+	NSString *_version;
+	NSXMLDTD *_docType;
+	NSArray *_children;
 	BOOL _childrenHaveMutated;
 	BOOL _standalone;
 	int8_t padding[2];
-	NSXMLElement *__strong _rootElement;
-	NSString *__strong _URI;
-	__strong id _extraIvars;
+	NSXMLElement *_rootElement;
+	NSString *_URI;
+	id _extraIvars;
 	NSUInteger _fidelityMask;
 	NSXMLDocumentContentKind _contentKind;
 };
@@ -74164,6 +74627,7 @@ struct NSXMLDocument_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -74202,6 +74666,14 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 #ifndef _REWRITER_typedef_NSXMLElement
 #define _REWRITER_typedef_NSXMLElement
 typedef struct objc_object NSXMLElement;
@@ -74210,15 +74682,15 @@ typedef struct {} _objc_exc_NSXMLElement;
 
 struct NSXMLElement_IMPL {
 	struct NSXMLNode_IMPL NSXMLNode_IVARS;
-	NSString *__strong _name;
-	__strong id _attributes;
-	__strong id _namespaces;
-	NSArray *__strong _children;
+	NSString *_name;
+	id _attributes;
+	id _namespaces;
+	NSArray *_children;
 	BOOL _childrenHaveMutated;
 	BOOL _zeroOrOneAttributes;
 	BOOL _zeroOrOneNamespaces;
 	uint8_t _padding;
-	NSString *__strong _URI;
+	NSString *_URI;
 	NSInteger _prefixIndex;
 };
 
@@ -74365,6 +74837,7 @@ struct NSXMLElement_IMPL {
 // - (void)setAttributesAsDictionary:(NSDictionary *)attributes;
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 // @class NSError;
@@ -74425,6 +74898,8 @@ typedef struct {} _objc_exc_NSURLProtectionSpace;
 
 // @protocol NSURLDownloadDelegate;
 
+#pragma clang assume_nonnull begin
+
 #ifndef _REWRITER_typedef_NSURLDownload
 #define _REWRITER_typedef_NSURLDownload
 typedef struct objc_object NSURLDownload;
@@ -74433,7 +74908,7 @@ typedef struct {} _objc_exc_NSURLDownload;
 
 struct NSURLDownload_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURLDownloadInternal *__strong _internal;
+	NSURLDownloadInternal *_internal;
 };
 
 // + (BOOL)canResumeDownloadDecodedWithEncodingMIMEType:(NSString *)MIMEType;
@@ -74509,6 +74984,7 @@ struct NSURLDownload_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -74656,7 +75132,7 @@ __CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t)
   return s;
 }
 
-
+#pragma clang assume_nonnull begin
 
 typedef struct {
     CGFloat m11, m12, m21, m22;
@@ -74710,6 +75186,7 @@ struct NSAffineTransform_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -78510,6 +78987,18 @@ typedef struct __attribute__((objc_bridge(id))) CGColorSpace *CGColorSpaceRef;
 
 
 typedef struct __attribute__((objc_bridge(id))) CGDataProvider *CGDataProviderRef;
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
 typedef size_t (*CGDataProviderGetBytesCallback)(void * _Nullable info,
     void * buffer, size_t count);
 
@@ -78641,6 +79130,7 @@ extern "C" CFDataRef _Nullable CGDataProviderCopyData(
 
 extern "C" void* _Nullable CGDataProviderGetInfo(CGDataProviderRef _Nullable provider)
     __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
 
 
 
@@ -78666,6 +79156,16 @@ typedef int32_t CGColorSpaceModel; enum {
     kCGColorSpaceModelIndexed,
     kCGColorSpaceModelPattern
 };
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 extern "C" const CFStringRef kCGColorSpaceGenericGray
   __attribute__((availability(macosx,introduced=10.4)));
 
@@ -78902,10 +79402,17 @@ extern "C" CGColorSpaceRef _Nullable CGColorSpaceCreateWithICCProfile(CFDataRef 
 
 extern "C" CFDataRef _Nullable CGColorSpaceCopyICCProfile(CGColorSpaceRef _Nullable space)
   __attribute__((availability(macosx,introduced=10.5,deprecated=10.13)));
+#pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGPattern *CGPatternRef;
 
 
 
+
+
+
+
+
+#pragma clang assume_nonnull begin
 typedef int32_t CGPatternTiling; enum {
     kCGPatternTilingNoDistortion,
     kCGPatternTilingConstantSpacingMinimalDistortion,
@@ -78946,6 +79453,16 @@ extern "C" CGPatternRef _Nullable CGPatternRetain(CGPatternRef _Nullable pattern
 
 extern "C" void CGPatternRelease(CGPatternRef _Nullable pattern)
     __attribute__((availability(macosx,introduced=10.0)));
+#pragma clang assume_nonnull end
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 extern "C" CGColorRef _Nullable CGColorCreate(CGColorSpaceRef _Nullable space,
   const CGFloat * _Nullable components)
   __attribute__((availability(macosx,introduced=10.3)));
@@ -79052,6 +79569,7 @@ extern "C" const CFStringRef kCGColorBlack
 
 extern "C" const CFStringRef kCGColorClear
   __attribute__((availability(macosx,introduced=10.5)));
+#pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGFont *CGFontRef;
 
@@ -79073,6 +79591,9 @@ typedef int32_t CGFontPostScriptFormat; enum {
     kCGFontPostScriptFormatType3 = 3,
     kCGFontPostScriptFormatType42 = 42
 };
+#pragma clang assume_nonnull begin
+
+
 static const CGFontIndex kCGFontIndexMax = ((1 << 16) - 2);
 
 
@@ -79317,6 +79838,7 @@ typedef int32_t CGGlyphDeprecatedEnum; enum {
   CGGlyphMin __attribute__((deprecated)),
   CGGlyphMax __attribute__((deprecated))
 };
+#pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGGradient *CGGradientRef;
 
 typedef uint32_t CGGradientDrawingOptions; enum {
@@ -79327,6 +79849,10 @@ typedef uint32_t CGGradientDrawingOptions; enum {
 
 
 
+
+
+
+#pragma clang assume_nonnull begin
 extern "C" CFTypeID CGGradientGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.5)));
 extern "C" CGGradientRef _Nullable CGGradientCreateWithColorComponents(
@@ -79350,7 +79876,17 @@ extern "C" CGGradientRef _Nullable CGGradientRetain(
 
 extern "C" void CGGradientRelease(CGGradientRef _Nullable gradient)
     __attribute__((availability(macosx,introduced=10.5)));
+#pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGImage *CGImageRef;
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
 typedef uint32_t CGImageAlphaInfo; enum {
     kCGImageAlphaNone,
     kCGImageAlphaPremultipliedLast,
@@ -79364,11 +79900,12 @@ typedef uint32_t CGImageAlphaInfo; enum {
 
 typedef uint32_t CGImageByteOrderInfo; enum {
     kCGImageByteOrderMask = 0x7000,
+    kCGImageByteOrderDefault = (0 << 12),
     kCGImageByteOrder16Little = (1 << 12),
     kCGImageByteOrder32Little = (2 << 12),
     kCGImageByteOrder16Big = (3 << 12),
     kCGImageByteOrder32Big = (4 << 12)
-} __attribute__((availability(macosx,introduced=10.12)));
+} __attribute__((availability(macosx,introduced=10.0)));
 
 typedef uint32_t CGBitmapInfo; enum {
     kCGBitmapAlphaInfoMask = 0x1F,
@@ -79377,7 +79914,7 @@ typedef uint32_t CGBitmapInfo; enum {
     kCGBitmapFloatComponents = (1 << 8),
 
     kCGBitmapByteOrderMask = kCGImageByteOrderMask,
-    kCGBitmapByteOrderDefault = (0 << 12),
+    kCGBitmapByteOrderDefault = kCGImageByteOrderDefault,
     kCGBitmapByteOrder16Little = kCGImageByteOrder16Little,
     kCGBitmapByteOrder32Little = kCGImageByteOrder32Little,
     kCGBitmapByteOrder16Big = kCGImageByteOrder16Big,
@@ -79524,8 +80061,20 @@ extern "C" CGBitmapInfo CGImageGetBitmapInfo(CGImageRef _Nullable image)
 
 extern "C" CFStringRef _Nullable CGImageGetUTType(_Nullable CGImageRef image)
     __attribute__((availability(macosx,introduced=10.11)));
+#pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGPath *CGMutablePathRef;
 typedef const struct __attribute__((objc_bridge(id))) CGPath *CGPathRef;
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 typedef int32_t CGLineJoin; enum {
     kCGLineJoinMiter,
     kCGLineJoinRound,
@@ -79791,6 +80340,7 @@ typedef void (*CGPathApplyBlock)(const CGPathElement * element);
 
 extern "C" void CGPathApplyWithBlock(CGPathRef path, CGPathApplyBlock __attribute__((noescape)) block)
     __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGPDFDocument *CGPDFDocumentRef;
 
@@ -79805,6 +80355,10 @@ typedef struct CGPDFDictionary *CGPDFDictionaryRef;
 
 
 typedef struct CGPDFArray *CGPDFArrayRef;
+
+
+#pragma clang assume_nonnull begin
+
 
 
 typedef unsigned char CGPDFBoolean;
@@ -79842,6 +80396,7 @@ extern "C" CGPDFObjectType CGPDFObjectGetType(CGPDFObjectRef _Nullable object)
 extern "C" bool CGPDFObjectGetValue(CGPDFObjectRef _Nullable object,
     CGPDFObjectType type, void * _Nullable value)
     __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
 
 
 
@@ -79865,7 +80420,7 @@ typedef int32_t CGPDFDataFormat; enum {
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -79879,7 +80434,19 @@ extern "C" CFDataRef _Nullable CGPDFStreamCopyData(
     CGPDFStreamRef _Nullable stream,
     CGPDFDataFormat * _Nullable format)
     __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
 typedef struct CGPDFString *CGPDFStringRef;
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 extern "C" size_t CGPDFStringGetLength(CGPDFStringRef _Nullable string)
     __attribute__((availability(macosx,introduced=10.3)));
 
@@ -79903,10 +80470,11 @@ extern "C" CFStringRef _Nullable CGPDFStringCopyTextString(
 extern "C" CFDateRef _Nullable CGPDFStringCopyDate(
     CGPDFStringRef _Nullable string)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -79982,6 +80550,17 @@ extern "C" bool CGPDFArrayGetDictionary(CGPDFArrayRef _Nullable array,
 extern "C" bool CGPDFArrayGetStream(CGPDFArrayRef _Nullable array,
     size_t index, CGPDFStreamRef _Nullable * _Nullable value)
     __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 extern "C" size_t CGPDFDictionaryGetCount(CGPDFDictionaryRef _Nullable dict)
     __attribute__((availability(macosx,introduced=10.3)));
 
@@ -80066,10 +80645,11 @@ typedef void (*CGPDFDictionaryApplierFunction)(const char * key,
 extern "C" void CGPDFDictionaryApplyFunction(CGPDFDictionaryRef _Nullable dict,
     CGPDFDictionaryApplierFunction _Nullable function, void * _Nullable info)
     __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
 
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef int32_t CGPDFBox; enum {
   kCGPDFMediaBox = 0,
@@ -80131,6 +80711,12 @@ extern "C" CGPDFDictionaryRef _Nullable CGPDFPageGetDictionary(
 
 extern "C" CFTypeID CGPDFPageGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
+
+
+
+
+#pragma clang assume_nonnull begin
 typedef uint32_t CGPDFAccessPermissions; enum {
     kCGPDFAllowsLowQualityPrinting = (1 << 0),
     kCGPDFAllowsHighQualityPrinting = (1 << 1),
@@ -80324,12 +80910,27 @@ extern "C" CGRect CGPDFDocumentGetArtBox(CGPDFDocumentRef _Nullable document,
 extern "C" int CGPDFDocumentGetRotationAngle(CGPDFDocumentRef _Nullable document,
     int page)
     __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
+#pragma clang assume_nonnull end
 typedef struct __attribute__((objc_bridge(id))) CGShading *CGShadingRef;
 
 
 
 
 typedef struct __attribute__((objc_bridge(id))) CGFunction *CGFunctionRef;
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
 typedef void (*CGFunctionEvaluateCallback)(void * _Nullable info,
   const CGFloat * in, CGFloat * out);
 
@@ -80366,6 +80967,16 @@ extern "C" CGFunctionRef _Nullable CGFunctionRetain(
 
 extern "C" void CGFunctionRelease(CGFunctionRef _Nullable function)
     __attribute__((availability(macosx,introduced=10.2)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 extern "C" CFTypeID CGShadingGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.2)));
 extern "C" CGShadingRef _Nullable CGShadingCreateAxial(
@@ -80389,10 +81000,11 @@ extern "C" CGShadingRef _Nullable CGShadingRetain(CGShadingRef _Nullable shading
 
 extern "C" void CGShadingRelease(CGShadingRef _Nullable shading)
     __attribute__((availability(macosx,introduced=10.2)));
+#pragma clang assume_nonnull end
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -81242,6 +81854,18 @@ extern "C" void CGContextShowGlyphsWithAdvances(CGContextRef _Nullable c,
 extern "C" void CGContextDrawPDFDocument(CGContextRef _Nullable c, CGRect rect,
     CGPDFDocumentRef _Nullable document, int page)
     __attribute__((availability(macosx,introduced=10.0,deprecated=10.5)));
+#pragma clang assume_nonnull end
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
 typedef void (*CGBitmapContextReleaseDataCallback)(void * _Nullable releaseInfo,
     void * _Nullable data);
 extern "C" CGContextRef _Nullable CGBitmapContextCreateWithData(
@@ -81314,12 +81938,13 @@ extern "C" CGBitmapInfo CGBitmapContextGetBitmapInfo(
 extern "C" CGImageRef _Nullable CGBitmapContextCreateImage(
     CGContextRef _Nullable context)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 typedef const struct __attribute__((objc_bridge(id))) CGColorConversionInfo* CGColorConversionInfoRef;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 extern "C" CFTypeID CGColorConversionInfoGetTypeID(void);
 
@@ -81355,9 +81980,21 @@ extern "C" CGColorConversionInfoRef _Nullable CGColorConversionInfoCreateFromLis
 extern "C" const CFStringRef kCGColorConversionBlackPointCompensation __attribute__((availability(macosx,introduced=10.12)));
 
 extern "C" const CFStringRef kCGColorConversionTRCSize __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
 
 
 typedef struct __attribute__((objc_bridge(id))) CGDataConsumer *CGDataConsumerRef;
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
 typedef size_t (*CGDataConsumerPutBytesCallback)(void * _Nullable info,
     const void * buffer, size_t count);
 
@@ -81412,6 +82049,7 @@ extern "C" CGDataConsumerRef _Nullable CGDataConsumerRetain(
 
 extern "C" void CGDataConsumerRelease(_Nullable CGDataConsumerRef consumer)
     __attribute__((availability(macosx,introduced=10.0)));
+#pragma clang assume_nonnull end
 
 typedef int32_t CGError; enum {
   kCGErrorSuccess = 0,
@@ -81432,6 +82070,19 @@ typedef int32_t CGError; enum {
 
 
 typedef struct __attribute__((objc_bridge(id))) CGLayer *CGLayerRef;
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 extern "C" CGLayerRef _Nullable CGLayerCreateWithContext(
     CGContextRef _Nullable context,
     CGSize size, CFDictionaryRef _Nullable auxiliaryInfo)
@@ -81479,6 +82130,7 @@ extern "C" void CGContextDrawLayerAtPoint(CGContextRef _Nullable context,
 
 extern "C" CFTypeID CGLayerGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 
 
@@ -81488,6 +82140,15 @@ extern "C" CFTypeID CGLayerGetTypeID(void)
 
 
 typedef struct CGPDFContentStream *CGPDFContentStreamRef;
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 extern "C" CGPDFContentStreamRef CGPDFContentStreamCreateWithPage(
   CGPDFPageRef page) __attribute__((availability(macosx,introduced=10.4)));
 
@@ -81520,6 +82181,8 @@ extern "C" CFArrayRef _Nullable CGPDFContentStreamGetStreams(CGPDFContentStreamR
 extern "C" CGPDFObjectRef _Nullable CGPDFContentStreamGetResource(
   CGPDFContentStreamRef cs, const char *category, const char *name)
   __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 extern "C" CGContextRef _Nullable CGPDFContextCreate(CGDataConsumerRef _Nullable consumer,
   const CGRect *_Nullable mediaBox, CFDictionaryRef _Nullable auxiliaryInfo)
   __attribute__((availability(macosx,introduced=10.0)));
@@ -81719,6 +82382,7 @@ extern "C" const CFStringRef kCGPDFContextAccessPermissions
 
 extern "C" void CGPDFContextSetOutline(CGContextRef context, _Nullable CFDictionaryRef outline)
   __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
 
 
 
@@ -81732,7 +82396,7 @@ typedef struct CGPDFScanner *CGPDFScannerRef;
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -81827,10 +82491,11 @@ extern "C" bool CGPDFScannerPopDictionary(CGPDFScannerRef scanner,
 extern "C" bool CGPDFScannerPopStream(CGPDFScannerRef scanner,
     CGPDFStreamRef _Nullable * _Nullable value)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef void (*CGPDFOperatorCallback)(CGPDFScannerRef scanner,
                                       void * _Nullable info);
@@ -81858,6 +82523,7 @@ extern "C" void CGPDFOperatorTableSetCallback(
     CGPDFOperatorTableRef _Nullable table,
     const char * _Nullable name, CGPDFOperatorCallback _Nullable callback)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 
 
@@ -81881,6 +82547,15 @@ typedef uint32_t CGWindowBackingType; enum {
     kCGBackingStoreNonretained = 1,
     kCGBackingStoreBuffered = 2
 };
+
+
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 extern "C" const CFStringRef kCGWindowNumber
     __attribute__((availability(macosx,introduced=10.5)));
 
@@ -82049,6 +82724,7 @@ extern "C" CGImageRef _Nullable CGWindowListCreateImageFromArray(
     CGRect screenBounds, CFArrayRef windowArray,
     CGWindowImageOption imageOption)
     __attribute__((availability(macosx,introduced=10.5)));
+#pragma clang assume_nonnull end
 typedef int32_t CGWindowLevelKey; enum {
     kCGBaseWindowLevelKey = 0,
     kCGMinimumWindowLevelKey,
@@ -82088,6 +82764,16 @@ typedef uint32_t CGOpenGLDisplayMask;
 typedef double CGRefreshRate;
 
 typedef struct __attribute__((objc_bridge(id))) CGDisplayMode *CGDisplayModeRef;
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
 extern "C" CGDirectDisplayID CGMainDisplayID(void)
     __attribute__((availability(macosx,introduced=10.2)));
 extern "C" CGError CGGetDisplaysWithPoint(CGPoint point, uint32_t maxDisplays,
@@ -82428,12 +83114,14 @@ extern "C" CFDictionaryRef _Nullable CGDisplayCurrentMode(
 extern "C" CGError CGDisplaySwitchToMode(CGDirectDisplayID display,
     CFDictionaryRef _Nullable mode)
     __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+#pragma clang assume_nonnull end
 struct CGDeviceColor {
   float red;
   float green;
   float blue;
 };
 typedef struct CGDeviceColor CGDeviceColor;
+#pragma clang assume_nonnull begin
 typedef struct _CGDisplayConfigRef *CGDisplayConfigRef;
 
 
@@ -82634,6 +83322,16 @@ extern "C" CGColorSpaceRef CGDisplayCopyColorSpace(
 extern "C" CGError CGConfigureDisplayMode(CGDisplayConfigRef _Nullable config,
     CGDirectDisplayID display, CFDictionaryRef _Nullable mode)
     __attribute__((availability(macosx,introduced=10.0,deprecated=10.6)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 typedef uint32_t CGDisplayFadeReservationToken;
 
 
@@ -82665,6 +83363,8 @@ extern "C" CGError CGDisplayFade(CGDisplayFadeReservationToken token,
 
 extern "C" boolean_t CGDisplayFadeOperationInProgress(void)
     __attribute__((availability(macosx,introduced=10.2,deprecated=10.9)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) CGDisplayStream *CGDisplayStreamRef;
 typedef const struct __attribute__((objc_bridge(id))) CGDisplayStreamUpdate *CGDisplayStreamUpdateRef;
 typedef int32_t CGDisplayStreamUpdateRectType; enum {
@@ -82770,6 +83470,9 @@ extern "C" CGError CGDisplayStreamStop(CGDisplayStreamRef _Nullable displayStrea
     __attribute__((availability(macosx,introduced=10.8)));
 extern "C" CFRunLoopSourceRef _Nullable CGDisplayStreamGetRunLoopSource(CGDisplayStreamRef _Nullable displayStream)
     __attribute__((availability(macosx,introduced=10.8)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
+
 typedef CGError CGEventErr;
 
 
@@ -82924,6 +83627,7 @@ extern "C" CGError CGSetLocalEventsSuppressionInterval(CFTimeInterval seconds)
 extern "C" CFMachPortRef _Nullable CGWindowServerCFMachPort(void) __attribute__((cf_returns_retained))
     __attribute__((availability(macosx,introduced=10.1,deprecated=10.8)));
 typedef uint32_t CGRectCount;
+#pragma clang assume_nonnull end
 extern "C" {
 typedef int64_t __attribute__((__aligned__((sizeof(int64_t)))))
   OSAtomic_int64_aligned64_t;
@@ -83304,6 +84008,8 @@ enum {
     kIOFBRedGammaScaleAttribute = 'gslr',
     kIOFBGreenGammaScaleAttribute = 'gslg',
     kIOFBBlueGammaScaleAttribute = 'gslb',
+
+    kIOFBHDRMetaDataAttribute = 'hdrm',
 };
 
 enum {
@@ -83312,6 +84018,29 @@ enum {
     kIOFBHDCPLimit_NoHDCP20Type0 = 1 << 1,
     kIOFBHDCPLimit_NoHDCP20Type1 = 1 << 2,
 };
+
+
+struct IOFBHDRMetaDataV1
+{
+    uint16_t displayPrimary_X0;
+    uint16_t displayPrimary_Y0;
+    uint16_t displayPrimary_X1;
+    uint16_t displayPrimary_Y1;
+    uint16_t displayPrimary_X2;
+    uint16_t displayPrimary_Y2;
+    uint16_t displayPrimary_X;
+    uint16_t displayPrimary_Y;
+    uint16_t desiredLuminance_Max;
+    uint16_t desiredLuminance_Min;
+    uint16_t desiredLightLevel_Avg;
+    uint16_t desiredLightLevel_Max;
+
+    uint64_t __reservedA[5];
+};
+typedef struct IOFBHDRMetaDataV1 IOFBHDRMetaDataV1;
+typedef union {
+    IOFBHDRMetaDataV1 v1;
+} IOFBHDRMetaData;
 
 
 
@@ -83326,6 +84055,7 @@ enum {
 
 
 enum {
+
     kIOWSAA_Unaccelerated = 0,
     kIOWSAA_Accelerated = 1,
     kIOWSAA_From_Accelerated = 2,
@@ -83333,10 +84063,13 @@ enum {
     kIOWSAA_Sleep = 4,
     kIOWSAA_Hibernate = kIOWSAA_Sleep,
     kIOWSAA_DriverOpen = 5,
+    kIOWSAA_StateMask = 0xF,
+
     kIOWSAA_Transactional = 0x10,
 
     kIOWSAA_DeferStart = 0x100,
     kIOWSAA_DeferEnd = 0x200,
+    kIOWSAA_NonConsoleDevice = 0x400,
     kIOWSAA_Reserved = 0xF0000000
 };
 
@@ -83411,7 +84144,12 @@ struct IODetailedTimingInformationV2 {
 
     UInt32 verticalBlankingExtension;
 
-    UInt32 __reservedB[6];
+    UInt16 pixelEncoding;
+    UInt16 bitsPerColorComponent;
+    UInt16 colorimetry;
+    UInt16 dynamicRange;
+
+    UInt32 __reservedB[4];
 };
 typedef struct IODetailedTimingInformationV2 IODetailedTimingInformationV2;
 typedef struct IODetailedTimingInformationV2 IODetailedTimingInformation;
@@ -83448,6 +84186,45 @@ enum {
     kIOScaleRotate270 = kIOScaleSwapAxes | kIOScaleInvertY
 };
 
+enum {
+    kIOPixelEncodingNotSupported = 0x0000,
+    kIOPixelEncodingRGB444 = 0x0001,
+    kIOPixelEncodingYCbCr444 = 0x0002,
+    kIOPixelEncodingYCbCr422 = 0x0004,
+    kIOPixelEncodingYCbCr420 = 0x0008
+};
+
+enum {
+    kIOBitsPerColorComponentNotSupported = 0x0000,
+    kIOBitsPerColorComponent6 = 0x0001,
+    kIOBitsPerColorComponent8 = 0x0002,
+    kIOBitsPerColorComponent10 = 0x0004,
+    kIOBitsPerColorComponent12 = 0x0008,
+    kIOBitsPerColorComponent16 = 0x0010
+};
+
+enum {
+    kIOColorimetryNotSupported = 0x0000,
+    kIOColorimetryNativeRGB = 0x0001,
+    kIOColorimetrysRGB = 0x0002,
+    kIOColorimetryDCIP3 = 0x0004,
+    kIOColorimetryAdobeRGB = 0x0008,
+    kIOColorimetryxvYCC = 0x0010,
+    kIOColorimetryWGRGB = 0x0020,
+    kIOColorimetryBT601 = 0x0040,
+    kIOColorimetryBT709 = 0x0080,
+    kIOColorimetryBT2020 = 0x0100,
+    kIOColorimetryBT2100 = 0x0200
+};
+
+enum {
+    kIODynamicRangeNotSupported = 0x0000,
+    kIODynamicRangeSDR = 0x0001,
+    kIODynamicRangeHDR10 = 0x0002,
+    kIODynamicRangeDolbyNormalMode = 0x0004,
+    kIODynamicRangeDolbyTunnelMode = 0x0008,
+    kIODynamicRangeTraditionalGammaHDR = 0x0010
+};
 
 #pragma pack(push, 4)
 struct IOFBDisplayModeDescription {
@@ -83533,9 +84310,58 @@ struct IODisplayTimingRange
     UInt32 minLink1PixelClock;
     UInt32 maxLink1PixelClock;
 
-    UInt32 __reservedF[3];
+    UInt16 supportedPixelEncoding;
+    UInt16 supportedBitsPerColorComponent;
+    UInt16 supportedColorimetryModes;
+    UInt16 supportedDynamicRangeModes;
+
+    UInt32 __reservedF[1];
 };
 typedef struct IODisplayTimingRange IODisplayTimingRange;
+
+enum {
+
+    kIORangePixelEncodingNotSupported = 0x0000,
+    kIORangePixelEncodingRGB444 = 0x0001,
+    kIORangePixelEncodingYCbCr444 = 0x0002,
+    kIORangePixelEncodingYCbCr422 = 0x0004,
+    kIORangePixelEncodingYCbCr420 = 0x0008,
+};
+
+enum {
+
+    kIORangeBitsPerColorComponentNotSupported = 0x0000,
+    kIORangeBitsPerColorComponent6 = 0x0001,
+    kIORangeBitsPerColorComponent8 = 0x0002,
+    kIORangeBitsPerColorComponent10 = 0x0004,
+    kIORangeBitsPerColorComponent12 = 0x0008,
+    kIORangeBitsPerColorComponent16 = 0x0010,
+};
+
+enum {
+
+    kIORangeColorimetryNotSupported = 0x0000,
+    kIORangeColorimetryNativeRGB = 0x0001,
+    kIORangeColorimetrysRGB = 0x0002,
+    kIORangeColorimetryDCIP3 = 0x0004,
+    kIORangeColorimetryAdobeRGB = 0x0008,
+    kIORangeColorimetryxvYCC = 0x0010,
+    kIORangeColorimetryWGRGB = 0x0020,
+    kIORangeColorimetryBT601 = 0x0040,
+    kIORangeColorimetryBT709 = 0x0080,
+    kIORangeColorimetryBT2020 = 0x0100,
+    kIORangeColorimetryBT2100 = 0x0200,
+};
+
+enum {
+
+    kIORangeDynamicRangeNotSupported = 0x0000,
+    kIORangeDynamicRangeSDR = 0x0001,
+    kIORangeDynamicRangeHDR10 = 0x0002,
+    kIORangeDynamicRangeDolbyNormalMode = 0x0004,
+    kIORangeDynamicRangeDolbyTunnelMode = 0x0008,
+    kIORangeDynamicRangeTraditionalGammaHDR = 0x0010
+};
 
 enum {
 
@@ -84244,6 +85070,8 @@ typedef struct _NXEventExt {
     NXEvent payload;
     NXEventExtension extension;
 } NXEventExt;
+
+#pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) __CGEvent *CGEventRef;
 
 
@@ -84642,10 +85470,11 @@ typedef int32_t CGEventSourceStateID; enum {
 
 
 typedef uint32_t CGEventSourceKeyboardType;
+#pragma clang assume_nonnull end
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -84843,6 +85672,8 @@ extern "C" CGError CGGetEventTapList(uint32_t maxNumberOfTaps,
     CGEventTapInformation * _Nullable tapList,
     uint32_t * _Nullable eventTapCount)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
+#pragma clang assume_nonnull begin
 extern "C" CFTypeID CGEventSourceGetTypeID(void)
     __attribute__((availability(macosx,introduced=10.4)));
 
@@ -84931,8 +85762,10 @@ extern "C" void CGEventSourceSetLocalEventsSuppressionInterval(
 extern "C" CFTimeInterval CGEventSourceGetLocalEventsSuppressionInterval(
     CGEventSourceRef _Nullable source)
     __attribute__((availability(macosx,introduced=10.4)));
+#pragma clang assume_nonnull end
 
 typedef struct __attribute__((objc_bridge(id))) CGPSConverter *CGPSConverterRef;
+#pragma clang assume_nonnull begin
 typedef void (*CGPSConverterBeginDocumentCallback)(void * _Nullable info);
 
 typedef void (*CGPSConverterEndDocumentCallback)(void * _Nullable info,
@@ -84997,9 +85830,17 @@ extern "C" bool CGPSConverterIsConverting(CGPSConverterRef converter)
 
 extern "C" CFTypeID CGPSConverterGetTypeID(void)
   __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
+
+#pragma clang assume_nonnull begin
+
+
+
+
 
 extern "C" CFDictionaryRef _Nullable CGSessionCopyCurrentDictionary(void)
   __attribute__((availability(macosx,introduced=10.3)));
+#pragma clang assume_nonnull end
 
 
 // @protocol MTLDevice;
@@ -85062,7 +85903,7 @@ typedef struct {} _objc_exc_NSTextTab;
 #endif
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -85159,10 +86000,11 @@ typedef uint32_t CTFontStylisticClass; enum {
     kCTFontScriptsClass = kCTFontClassScripts,
     kCTFontSymbolicClass = kCTFontClassSymbolic
 };
-
+#pragma clang assume_nonnull end
 
 }
 extern "C" {
+#pragma clang assume_nonnull begin
 typedef const struct __attribute__((objc_bridge(NSFontDescriptor))) __CTFontDescriptor * CTFontDescriptorRef;
 CFTypeID CTFontDescriptorGetTypeID( void ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTFontURLAttribute __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -85434,7 +86276,7 @@ CFTypeRef _Nullable CTFontDescriptorCopyLocalizedAttribute(
     CTFontDescriptorRef descriptor,
     CFStringRef attribute,
     CFStringRef _Nullable * _Nullable language ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 }
 
@@ -85444,6 +86286,7 @@ CFTypeRef _Nullable CTFontDescriptorCopyLocalizedAttribute(
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 typedef const struct __attribute__((objc_bridge(NSFont))) __CTFont * CTFontRef;
 
 
@@ -85975,10 +86818,11 @@ extern const CFStringRef kCTBaselineClassMath __attribute__((availability(macos,
 extern const CFStringRef kCTBaselineReferenceFont __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTBaselineOriginalFont __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFArrayRef _Nullable CTFontCopyDefaultCascadeListForLanguages( CTFontRef font, CFArrayRef _Nullable languagePrefList ) __attribute__((availability(macos,introduced=10.8))) __attribute__((availability(ios,introduced=6.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 }
 extern "C" {
+#pragma clang assume_nonnull begin
 typedef const struct __attribute__((objc_bridge(NSFontCollection))) __CTFontCollection * CTFontCollectionRef;
 typedef struct __attribute__((objc_bridge_mutable(NSMutableFontCollection))) __CTFontCollection * CTMutableFontCollectionRef;
 
@@ -86060,12 +86904,12 @@ CFArrayRef CTFontCollectionCopyFontAttributes(
     CTFontCollectionRef collection,
     CFSetRef attributeNames,
     CTFontCollectionCopyOptions options ) __attribute__((availability(macos,introduced=10.7))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
-
+#pragma clang assume_nonnull end
 
 }
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86090,7 +86934,7 @@ typedef CFIndex CTFontManagerError; enum {
     kCTFontManagerErrorInUse = 202,
     kCTFontManagerErrorSystemRequired = 203,
 };
-
+#pragma clang assume_nonnull end
 
 }
 
@@ -86100,6 +86944,7 @@ typedef CFIndex CTFontManagerError; enum {
 
 
 extern "C" {
+#pragma clang assume_nonnull begin
 CFArrayRef CTFontManagerCopyAvailablePostScriptNames( void ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=10.0))) __attribute__((availability(watchos,introduced=3.0))) __attribute__((availability(tvos,introduced=10.0)));
 
 
@@ -86162,7 +87007,7 @@ bool CTFontManagerIsSupportedFont(
     CFURLRef fontURL ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 CFRunLoopSourceRef _Nullable CTFontManagerCreateFontRequestRunLoopSource(
     CFIndex sourceOrder,
-    CFArrayRef (*createMatchesCallback)(CFDictionaryRef requestAttributes, pid_t requestingProcess)) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
+    CFArrayRef (^createMatchesCallback)(CFDictionaryRef requestAttributes, pid_t requestingProcess)) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 
 
 
@@ -86183,12 +87028,12 @@ void CTFontManagerSetAutoActivationSetting(
 CTFontManagerAutoActivationSetting CTFontManagerGetAutoActivationSetting(
     CFStringRef _Nullable bundleIdentifier ) __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 extern const CFStringRef kCTFontManagerRegisteredFontsChangedNotification __attribute__((availability(macos,introduced=10.6))) __attribute__((availability(ios,introduced=7.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 }
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86234,12 +87079,12 @@ void CTFrameGetLineOrigins(
 void CTFrameDraw(
  CTFrameRef frame,
  CGContextRef context ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86313,8 +87158,8 @@ CGFloat CTLineGetOffsetForStringIndex(
     CGFloat * _Nullable secondaryOffset ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 void CTLineEnumerateCaretOffsets(
     CTLineRef line,
-    void (*block)(double offset, CFIndex charIndex, bool leadingEdge, bool* stop) ) __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+    void (^block)(double offset, CFIndex charIndex, bool leadingEdge, bool* stop) ) __attribute__((availability(macos,introduced=10.11))) __attribute__((availability(ios,introduced=9.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
+#pragma clang assume_nonnull end
 
 
 
@@ -86323,7 +87168,7 @@ void CTLineEnumerateCaretOffsets(
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86389,14 +87234,14 @@ CFIndex CTTypesetterSuggestClusterBreak(
  CTTypesetterRef typesetter,
  CFIndex startIndex,
  double width ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86426,11 +87271,20 @@ CGSize CTFramesetterSuggestFrameSizeWithConstraints(
  CFDictionaryRef _Nullable frameAttributes,
  CGSize constraints,
  CFRange * _Nullable fitRange ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 typedef const struct __attribute__((objc_bridge(NSGlyphInfo))) __CTGlyphInfo * CTGlyphInfoRef;
 
 
@@ -86479,13 +87333,13 @@ CGFontIndex CTGlyphInfoGetCharacterIdentifier(
  CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CTCharacterCollection CTGlyphInfoGetCharacterCollection(
  CTGlyphInfoRef glyphInfo ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86570,12 +87424,12 @@ bool CTParagraphStyleGetValueForSpecifier(
     CTParagraphStyleSpecifier spec,
     size_t valueBufferSize,
     void * valueBuffer ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86638,12 +87492,12 @@ CGFloat CTRubyAnnotationGetSizeFactor(
 CFStringRef _Nullable CTRubyAnnotationGetTextForPosition(
     CTRubyAnnotationRef rubyAnnotation,
     CTRubyPosition position ) __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86713,12 +87567,12 @@ void CTRunDraw(
     CTRunRef run,
     CGContextRef context,
     CFRange range ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 
 
@@ -86757,11 +87611,12 @@ CTRunDelegateRef _Nullable CTRunDelegateCreate(
  void * _Nullable refCon ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 void * CTRunDelegateGetRefCon(
  CTRunDelegateRef runDelegate ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
+#pragma clang assume_nonnull begin
 extern const CFStringRef kCTFontAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTForegroundColorFromContextAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 extern const CFStringRef kCTKernAttributeName __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
@@ -86803,11 +87658,12 @@ enum {
     kCTWritingDirectionOverride = (1 << 1)
 };
 extern const CFStringRef kCTRubyAnnotationAttributeName __attribute__((availability(macos,introduced=10.10))) __attribute__((availability(ios,introduced=8.0))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
 extern "C" {
+#pragma clang assume_nonnull begin
 typedef const struct __attribute__((objc_bridge_related(NSTextTab,,))) __CTTextTab * CTTextTabRef;
 
 
@@ -86828,7 +87684,7 @@ double CTTextTabGetLocation(
  CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
 CFDictionaryRef _Nullable CTTextTabGetOptions(
  CTTextTabRef tab ) __attribute__((availability(macos,introduced=10.5))) __attribute__((availability(ios,introduced=3.2))) __attribute__((availability(watchos,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0)));
-
+#pragma clang assume_nonnull end
 
 
 }
@@ -89779,6 +90635,9 @@ enum {
 
 
 extern "C" {
+
+
+#pragma clang assume_nonnull begin
 typedef struct __attribute__((objc_bridge(id))) OpaquePasteboardRef* PasteboardRef;
 typedef void * PasteboardItemID;
 
@@ -89913,7 +90772,7 @@ PasteboardSetPromiseKeeper(
   void * _Nullable inContext) __attribute__((availability(macosx,introduced=10.3)));
 extern OSStatus
 PasteboardResolvePromises(PasteboardRef inPasteboard) __attribute__((availability(macosx,introduced=10.3)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -90069,6 +90928,11 @@ typedef CFIndex AXPriority; enum {
     kAXPriorityHigh = 90
 } __attribute__((availability(macosx,introduced=10_9)));
 extern "C" {
+
+
+
+
+#pragma clang assume_nonnull begin
 extern Boolean AXAPIEnabled (void) __attribute__((availability(macosx,introduced=10_0,deprecated=10_9,message="" )));
 extern Boolean AXIsProcessTrustedWithOptions (CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10_9)));
 
@@ -90134,13 +90998,19 @@ extern AXError AXObserverCreateWithInfoCallback (pid_t application, AXObserverCa
 extern AXError AXObserverAddNotification (AXObserverRef observer, AXUIElementRef element, CFStringRef notification, void * _Nullable refcon);
 extern AXError AXObserverRemoveNotification (AXObserverRef observer, AXUIElementRef element, CFStringRef notification);
 extern CFRunLoopSourceRef AXObserverGetRunLoopSource (AXObserverRef observer);
-
+#pragma clang assume_nonnull end
 
 
 
 
 }
 extern "C" {
+
+
+
+
+
+#pragma clang assume_nonnull begin
 typedef UInt32 AXValueType; enum {
     kAXValueTypeCGPoint __attribute__((availability(macosx,introduced=10_11))) = 1,
     kAXValueTypeCGSize __attribute__((availability(macosx,introduced=10_11))) = 2,
@@ -90162,13 +91032,24 @@ extern CFTypeID AXValueGetTypeID() __attribute__((availability(macosx,introduced
 extern AXValueRef _Nullable AXValueCreate (AXValueType theType, const void *valuePtr);
 extern AXValueType AXValueGetType(AXValueRef value);
 extern Boolean AXValueGetValue(AXValueRef value, AXValueType theType, void *valuePtr);
-
+#pragma clang assume_nonnull end
 
 
 
 
 }
 extern "C" {
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
 extern CFStringRef kAXFontTextAttribute __attribute__((availability(macosx,introduced=10.4)));
 
 
@@ -90300,7 +91181,7 @@ typedef UInt32 AXUnderlineStyle; enum {
 
 
 extern CFStringRef kAXForegoundColorTextAttribute __attribute__((availability(macosx,introduced=10.4)));
-
+#pragma clang assume_nonnull end
 
 
 }
@@ -90343,7 +91224,6 @@ UAZoomChangeFocus(
 typedef struct __attribute__((objc_bridge(id))) CGImageSource * CGImageSourceRef;
 
 
-
 typedef const struct __attribute__((objc_bridge(id))) CGImageMetadata *CGImageMetadataRef;
 
 
@@ -90377,11 +91257,19 @@ typedef struct __attribute__((objc_bridge(id))) CGImageMetadataTag *CGImageMetad
 
 
 extern "C" CFTypeID CGImageMetadataTagGetTypeID(void) __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
 extern "C" const CFStringRef kCGImageMetadataNamespaceExif __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceExifAux __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceExifEX __attribute__((availability(macosx,introduced=10.9)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceDublinCore __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCCore __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGImageMetadataNamespaceIPTCExtension __attribute__((availability(macosx,introduced=10.13.4)));
 extern "C" const CFStringRef kCGImageMetadataNamespacePhotoshop __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceTIFF __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataNamespaceXMPBasic __attribute__((availability(macosx,introduced=10.8)));
@@ -90391,10 +91279,12 @@ extern "C" const CFStringRef kCGImageMetadataPrefixExifAux __attribute__((availa
 extern "C" const CFStringRef kCGImageMetadataPrefixExifEX __attribute__((availability(macosx,introduced=10.9)));
 extern "C" const CFStringRef kCGImageMetadataPrefixDublinCore __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataPrefixIPTCCore __attribute__((availability(macosx,introduced=10.8)));
+extern "C" const CFStringRef kCGImageMetadataPrefixIPTCExtension __attribute__((availability(macosx,introduced=10.13.4)));
 extern "C" const CFStringRef kCGImageMetadataPrefixPhotoshop __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataPrefixTIFF __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataPrefixXMPBasic __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageMetadataPrefixXMPRights __attribute__((availability(macosx,introduced=10.8)));
+#pragma clang assume_nonnull end
 typedef int32_t CGImageMetadataType; enum {
     kCGImageMetadataTypeInvalid = -1,
     kCGImageMetadataTypeDefault = 0,
@@ -90479,6 +91369,16 @@ typedef int32_t CGImageSourceStatus; enum {
     kCGImageStatusIncomplete = -1,
     kCGImageStatusComplete = 0
 };
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 extern "C" const CFStringRef kCGImageSourceTypeIdentifierHint __attribute__((availability(macosx,introduced=10.4)));
 extern "C" const CFStringRef kCGImageSourceShouldCache __attribute__((availability(macosx,introduced=10.4)));
 
@@ -90512,7 +91412,7 @@ extern "C" const CFStringRef kCGImageSourceThumbnailMaxPixelSize __attribute__((
 
 extern "C" const CFStringRef kCGImageSourceCreateThumbnailWithTransform __attribute__((availability(macosx,introduced=10.4)));
 extern "C" const CFStringRef kCGImageSourceSubsampleFactor __attribute__((availability(macosx,introduced=10.11)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -90628,6 +91528,15 @@ extern "C" CGImageSourceStatus CGImageSourceGetStatusAtIndex(CGImageSourceRef _N
 extern "C" CFDictionaryRef _Nullable CGImageSourceCopyAuxiliaryDataInfoAtIndex(CGImageSourceRef _Nonnull isrc, size_t index, CFStringRef _Nonnull auxiliaryImageDataType ) __attribute__((availability(macosx,introduced=10.13)));
 
 typedef struct __attribute__((objc_bridge(id))) CGImageDestination * CGImageDestinationRef;
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
+
+
 extern "C" const CFStringRef kCGImageDestinationLossyCompressionQuality __attribute__((availability(macosx,introduced=10.4)));
 extern "C" const CFStringRef kCGImageDestinationBackgroundColor __attribute__((availability(macosx,introduced=10.4)));
 
@@ -90647,7 +91556,7 @@ extern "C" const CFStringRef kCGImageDestinationEmbedThumbnail __attribute__((av
 
 
 extern "C" const CFStringRef kCGImageDestinationOptimizeColorForSharing __attribute__((availability(macosx,introduced=10.12)));
-
+#pragma clang assume_nonnull end
 
 
 
@@ -90696,6 +91605,19 @@ extern "C" bool CGImageDestinationFinalize(CGImageDestinationRef _Nonnull idst) 
 
 
 extern "C" void CGImageDestinationAddImageAndMetadata(CGImageDestinationRef _Nonnull idst, CGImageRef _Nonnull image, CGImageMetadataRef _Nullable metadata, CFDictionaryRef _Nullable options) __attribute__((availability(macosx,introduced=10.8)));
+
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
+
+
+
+
 extern "C" const CFStringRef kCGImageDestinationMetadata __attribute__((availability(macosx,introduced=10.8)));
 extern "C" const CFStringRef kCGImageDestinationMergeMetadata __attribute__((availability(macosx,introduced=10.8)));
 
@@ -90727,8 +91649,15 @@ extern "C" const CFStringRef kCGImageDestinationDateTime __attribute__((availabi
 
 
 extern "C" const CFStringRef kCGImageDestinationOrientation __attribute__((availability(macosx,introduced=10.8)));
+#pragma clang assume_nonnull end
 extern "C" bool CGImageDestinationCopyImageSource(CGImageDestinationRef _Nonnull idst, CGImageSourceRef _Nonnull isrc, CFDictionaryRef _Nullable options, _Nullable CFErrorRef * _Nullable err) __attribute__((availability(macosx,introduced=10.8)));
 extern "C" void CGImageDestinationAddAuxiliaryDataInfo(CGImageDestinationRef _Nonnull idst, CFStringRef _Nonnull auxiliaryImageDataType, CFDictionaryRef _Nonnull auxiliaryDataInfoDictionary ) __attribute__((availability(macosx,introduced=10.13)));
+
+#pragma clang assume_nonnull begin
+
+
+
+
 
 extern "C" const CFStringRef kCGImagePropertyTIFFDictionary __attribute__((availability(macosx,introduced=10.4)));
 extern "C" const CFStringRef kCGImagePropertyGIFDictionary __attribute__((availability(macosx,introduced=10.4)));
@@ -91037,6 +91966,188 @@ extern "C" const CFStringRef kCGImagePropertyIPTCCreatorContactInfo __attribute_
 extern "C" const CFStringRef kCGImagePropertyIPTCRightsUsageTerms __attribute__((availability(macosx,introduced=10.6)));
 extern "C" const CFStringRef kCGImagePropertyIPTCScene __attribute__((availability(macosx,introduced=10.6)));
 
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTerm __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermCvId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAboutCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAddlModelInfo __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkOrObject __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCircaDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContentDescription __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkContributionDescription __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightNotice __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreator __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCreatorID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkCopyrightOwnerName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkLicensorName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkPhysicalDescription __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSource __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInventoryNo __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkSourceInvURL __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkStylePeriod __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtArtworkTitle __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrate __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioBitrateMode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtAudioChannelCount __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCircaDateCreated __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormat __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContainerFormatName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributor __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtContributorRole __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCopyrightYear __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreator __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtCreatorRole __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtControlledVocabularyTerm __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreen __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegion __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionD __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionH __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionText __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionUnit __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionW __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionX __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDataOnScreenRegionY __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalImageGUID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceFileType __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDigitalSourceType __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheet __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbdEncRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEpisodeNumber __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtEvent __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEvent __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtShownEventName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtExternalMetadataLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtFeedIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenre __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtGenreCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtHeadline __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtIPTCLastEdited __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExpr __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprType __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCreated __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCity __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryCode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationCountryName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSAltitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLatitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationGPSLongitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationLocationName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationProvinceState __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationSublocation __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationWorldRegion __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtLocationShown __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailHeight __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtMaxAvailWidth __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtModelAge __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageCode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtOrganisationInImageName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeard __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonHeardName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImage __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageWDetails __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCharacteristic __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermCvId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageDescription __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPersonInImageName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImage __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageDescription __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageGTIN __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtProductInImageName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEvent __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventDate __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtPublicationEventName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRating __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRatingRegion __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCity __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryCode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionCountryName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSAltitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLatitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionGPSLongitude __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionLocationName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionProvinceState __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionSublocation __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingRegionWorldRegion __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMaxValue __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingScaleMinValue __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingSourceLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValue __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRatingValueLogoLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryEntryRole __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryItemID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtRegistryOrganisationID __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtReleaseReady __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeason __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeasonNumber __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeries __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSeriesName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStorylineIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStreamReady __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtStylePeriod __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSource __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtSupplyChainSourceName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverage __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageFrom __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTemporalCoverageTo __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscript __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLink __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrate __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoBitrateMode __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoDisplayAspectRatio __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoEncodingProfile __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotType __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeIdentifier __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoShotTypeName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVideoStreamsCount __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtVisualColor __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTag __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermId __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermName __attribute__((availability(macosx,introduced=10.13.4)));
+extern "C" const CFStringRef kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout __attribute__((availability(macosx,introduced=10.13.4)));
+
+
 
 
 extern "C" const CFStringRef kCGImagePropertyIPTCContactInfoCity __attribute__((availability(macosx,introduced=10.6)));
@@ -91174,6 +92285,7 @@ extern "C" const CFStringRef kCGImagePropertyImages __attribute__((availability(
 extern "C" const CFStringRef kCGImagePropertyThumbnailImages __attribute__((availability(macosx,introduced=10.13)));
 extern "C" const CFStringRef kCGImagePropertyAuxiliaryData __attribute__((availability(macosx,introduced=10.13)));
 extern "C" const CFStringRef kCGImagePropertyAuxiliaryDataType __attribute__((availability(macosx,introduced=10.13)));
+#pragma clang assume_nonnull end
 
 
 
@@ -91787,6 +92899,9 @@ typedef enum PMDataFormat PMDataFormat;
 
 
 
+#pragma clang assume_nonnull begin
+
+
 extern "C" {
 extern OSStatus
 PMRetain(PMObject _Nullable object) ;
@@ -92289,6 +93404,7 @@ PMCGImageCreateWithEPSDataProvider(
 
 
 }
+#pragma clang assume_nonnull end
 
 
 
@@ -93572,7 +94688,7 @@ typedef struct LLCStyleInfo* ATSUStyleSettingRef;
 
 
 extern "C" {
-
+#pragma clang assume_nonnull begin
 
 #pragma pack(push, 2)
 
@@ -94084,7 +95200,7 @@ SpeechSynthesisUnregisterModuleURL(CFURLRef url) __attribute__((availability(mac
 
 
 #pragma pack(pop)
-
+#pragma clang assume_nonnull end
 
 }
 
@@ -94096,7 +95212,7 @@ typedef struct {} _objc_exc_NSData;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSAppleEventSendOptions; enum {
     NSAppleEventSendNoReply = kAENoReply,
@@ -94229,6 +95345,7 @@ struct NSAppleEventDescriptor_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 // @class NSAppleEventDescriptor;
 #ifndef _REWRITER_typedef_NSAppleEventDescriptor
 #define _REWRITER_typedef_NSAppleEventDescriptor
@@ -94237,7 +95354,7 @@ typedef struct {} _objc_exc_NSAppleEventDescriptor;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef const struct __NSAppleEventManagerSuspension* NSAppleEventManagerSuspensionID;
 
@@ -94296,6 +95413,7 @@ struct NSAppleEventManager_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94330,7 +95448,7 @@ typedef struct {} _objc_exc_NSURL;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 extern "C" NSString *const NSAppleScriptErrorMessage __attribute__((availability(macos,introduced=10.2))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
@@ -94348,7 +95466,7 @@ typedef struct {} _objc_exc_NSAppleScript;
 
 struct NSAppleScript_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _source;
+	NSString *_source;
 	unsigned int _compiledScriptID;
 	void *_reserved1;
 	void *_reserved2;
@@ -94378,6 +95496,7 @@ struct NSAppleScript_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94406,7 +95525,7 @@ typedef struct {} _objc_exc_NSDictionary;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSClassDescription
@@ -94444,6 +95563,7 @@ struct NSClassDescription_IMPL {
 
 
 extern "C" NSNotificationName NSClassDescriptionNeededForClassNotification;
+#pragma clang assume_nonnull end
 
 
 
@@ -94458,7 +95578,7 @@ typedef struct {} _objc_exc_NSDate;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSDistributedLock
@@ -94485,6 +95605,7 @@ struct NSDistributedLock_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94492,9 +95613,9 @@ struct NSDistributedLock_IMPL {
 
 
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_5,deprecated=10_10,message="" "Building Garbage Collected apps is no longer supported.")))
-__attribute__((unavailable("not available in automatic reference counting mode")))
 
 
+#pragma clang assume_nonnull begin
 
 __attribute__((availability(swift, unavailable, message="Garbage Collection is not supported")))
 
@@ -94527,6 +95648,7 @@ struct NSGarbageCollector_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94577,7 +95699,7 @@ typedef struct {} _objc_exc_NSMutableArray;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSHost
@@ -94588,9 +95710,9 @@ typedef struct {} _objc_exc_NSHost;
 
 struct NSHost_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSArray *__strong names;
-	NSArray *__strong addresses;
-	__strong id reserved;
+	NSArray *names;
+	NSArray *addresses;
+	id reserved;
 };
 
 
@@ -94614,6 +95736,7 @@ struct NSHost_IMPL {
 // + (void)flushHostCache __attribute__((availability(macos,introduced=10.0,deprecated=10.7,message="Caching no longer supported"))) __attribute__((availability(ios,unavailable))) __attribute__((availability(watchos,unavailable))) __attribute__((availability(tvos,unavailable)));
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94641,7 +95764,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 // @interface NSObject(NSScripting)
 
@@ -94661,6 +95784,7 @@ typedef struct {} _objc_exc_NSString;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94677,7 +95801,7 @@ typedef struct {} _objc_exc_NSScriptCommandDescription;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScriptClassDescription
@@ -94688,15 +95812,15 @@ typedef struct {} _objc_exc_NSScriptClassDescription;
 
 struct NSScriptClassDescription_IMPL {
 	struct NSClassDescription_IMPL NSClassDescription_IVARS;
-	NSString *__strong _suiteName;
-	NSString *__strong _objcClassName;
+	NSString *_suiteName;
+	NSString *_objcClassName;
 	FourCharCode _appleEventCode;
-	NSObject *__strong _superclassNameOrDescription;
-	NSArray *__strong _attributeDescriptions;
-	NSArray *__strong _toOneRelationshipDescriptions;
-	NSArray *__strong _toManyRelationshipDescriptions;
-	NSDictionary *__strong _commandMethodSelectorsByName;
-	__strong id _moreVars;
+	NSObject *_superclassNameOrDescription;
+	NSArray *_attributeDescriptions;
+	NSArray *_toOneRelationshipDescriptions;
+	NSArray *_toManyRelationshipDescriptions;
+	NSDictionary *_commandMethodSelectorsByName;
+	id _moreVars;
 };
 
 
@@ -94792,13 +95916,14 @@ struct NSScriptClassDescription_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
 
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScriptCoercionHandler
@@ -94809,7 +95934,7 @@ typedef struct {} _objc_exc_NSScriptCoercionHandler;
 
 struct NSScriptCoercionHandler_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _coercers;
+	id _coercers;
 };
 
 
@@ -94822,6 +95947,7 @@ struct NSScriptCoercionHandler_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94867,7 +95993,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 enum {
@@ -94893,19 +96019,19 @@ typedef struct {} _objc_exc_NSScriptCommand;
 
 struct NSScriptCommand_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptCommandDescription *__strong _commandDescription;
-	__strong id _directParameter;
-	NSScriptObjectSpecifier *__strong _receiversSpecifier;
-	__strong id _evaluatedReceivers;
-	NSDictionary *__strong _arguments;
-	NSMutableDictionary *__strong _evaluatedArguments;
+	NSScriptCommandDescription *_commandDescription;
+	id _directParameter;
+	NSScriptObjectSpecifier *_receiversSpecifier;
+	id _evaluatedReceivers;
+	NSDictionary *_arguments;
+	NSMutableDictionary *_evaluatedArguments;
 
 	struct  {
 	unsigned int hasEvaluatedReceivers : 1;
 	unsigned int hasEvaluatedArguments : 1;
 	unsigned int RESERVED : 30;
 	} _flags;
-	__strong id _moreVars;
+	id _moreVars;
 	void *_reserved;
 };
 
@@ -94964,6 +96090,7 @@ struct NSScriptCommand_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -94997,7 +96124,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScriptCommandDescription
@@ -95008,14 +96135,14 @@ typedef struct {} _objc_exc_NSScriptCommandDescription;
 
 struct NSScriptCommandDescription_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSString *__strong _suiteName;
-	NSString *__strong _plistCommandName;
+	NSString *_suiteName;
+	NSString *_plistCommandName;
 	FourCharCode _classAppleEventCode;
 	FourCharCode _idAppleEventCode;
-	NSString *__strong _objcClassName;
-	NSObject *__strong _resultTypeNameOrDescription;
+	NSString *_objcClassName;
+	NSObject *_resultTypeNameOrDescription;
 	FourCharCode _plistResultTypeAppleEventCode;
-	__strong id _moreVars;
+	id _moreVars;
 };
 
 
@@ -95072,6 +96199,7 @@ struct NSScriptCommandDescription_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95087,7 +96215,7 @@ typedef struct {} _objc_exc_NSConnection;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScriptExecutionContext
@@ -95098,10 +96226,10 @@ typedef struct {} _objc_exc_NSScriptExecutionContext;
 
 struct NSScriptExecutionContext_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _topLevelObject;
-	__strong id _objectBeingTested;
-	__strong id _rangeContainerObject;
-	__strong id _moreVars;
+	id _topLevelObject;
+	id _objectBeingTested;
+	id _rangeContainerObject;
+	id _moreVars;
 };
 
 
@@ -95113,6 +96241,7 @@ struct NSScriptExecutionContext_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95128,7 +96257,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 extern NSString *NSOperationNotSupportedForKeyException;
 
@@ -95162,6 +96291,7 @@ extern NSString *NSOperationNotSupportedForKeyException;
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95207,7 +96337,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 enum {
@@ -95255,14 +96385,14 @@ typedef struct {} _objc_exc_NSScriptObjectSpecifier;
 
 struct NSScriptObjectSpecifier_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptObjectSpecifier *__strong _container;
-	NSScriptObjectSpecifier *__strong _child;
-	NSString *__strong _key;
-	NSScriptClassDescription *__strong _containerClassDescription;
+	NSScriptObjectSpecifier *_container;
+	NSScriptObjectSpecifier *_child;
+	NSString *_key;
+	NSScriptClassDescription *_containerClassDescription;
 	BOOL _containerIsObjectBeingTested;
 	BOOL _containerIsRangeContainerObject;
 	char _padding[2];
-	NSAppleEventDescriptor *__strong _descriptor;
+	NSAppleEventDescriptor *_descriptor;
 	NSInteger _error;
 };
 
@@ -95377,7 +96507,7 @@ typedef struct {} _objc_exc_NSNameSpecifier;
 
 struct NSNameSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSString *__strong _name;
+	NSString *_name;
 };
 
 
@@ -95398,10 +96528,10 @@ typedef struct {} _objc_exc_NSPositionalSpecifier;
 
 struct NSPositionalSpecifier_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSScriptObjectSpecifier *__strong _specifier;
+	NSScriptObjectSpecifier *_specifier;
 	NSInsertionPosition _unadjustedPosition;
-	NSScriptClassDescription *__strong _insertionClassDescription;
-	__strong id _moreVars;
+	NSScriptClassDescription *_insertionClassDescription;
+	id _moreVars;
 	void *_reserved0;
 };
 
@@ -95482,8 +96612,8 @@ typedef struct {} _objc_exc_NSRangeSpecifier;
 
 struct NSRangeSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSScriptObjectSpecifier *__strong _startSpec;
-	NSScriptObjectSpecifier *__strong _endSpec;
+	NSScriptObjectSpecifier *_startSpec;
+	NSScriptObjectSpecifier *_endSpec;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -95507,7 +96637,7 @@ typedef struct {} _objc_exc_NSRelativeSpecifier;
 struct NSRelativeSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
 	NSRelativePosition _relativePosition;
-	NSScriptObjectSpecifier *__strong _baseSpecifier;
+	NSScriptObjectSpecifier *_baseSpecifier;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -95533,7 +96663,7 @@ typedef struct {} _objc_exc_NSUniqueIDSpecifier;
 
 struct NSUniqueIDSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	__strong id _uniqueID;
+	id _uniqueID;
 };
 
 // - (nullable instancetype)initWithCoder:(NSCoder *)inCoder __attribute__((objc_designated_initializer));
@@ -95552,7 +96682,7 @@ typedef struct {} _objc_exc_NSWhoseSpecifier;
 
 struct NSWhoseSpecifier_IMPL {
 	struct NSScriptObjectSpecifier_IMPL NSScriptObjectSpecifier_IVARS;
-	NSScriptWhoseTest *__strong _test;
+	NSScriptWhoseTest *_test;
 	NSWhoseSubelementIdentifier _startSubelementIdentifier;
 	NSInteger _startSubelementIndex;
 	NSWhoseSubelementIdentifier _endSubelementIdentifier;
@@ -95576,6 +96706,7 @@ struct NSWhoseSpecifier_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95612,7 +96743,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSSaveOptions; enum {
     NSSaveOptionsYes = 0,
@@ -95629,7 +96760,7 @@ typedef struct {} _objc_exc_NSCloneCommand;
 
 struct NSCloneCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *__strong _keySpecifier;
+	NSScriptObjectSpecifier *_keySpecifier;
 };
 
 
@@ -95686,7 +96817,7 @@ typedef struct {} _objc_exc_NSCreateCommand;
 
 struct NSCreateCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	__strong id _moreVars2;
+	id _moreVars2;
 };
 
 
@@ -95709,7 +96840,7 @@ typedef struct {} _objc_exc_NSDeleteCommand;
 
 struct NSDeleteCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *__strong _keySpecifier;
+	NSScriptObjectSpecifier *_keySpecifier;
 };
 
 
@@ -95763,7 +96894,7 @@ typedef struct {} _objc_exc_NSMoveCommand;
 
 struct NSMoveCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *__strong _keySpecifier;
+	NSScriptObjectSpecifier *_keySpecifier;
 };
 
 
@@ -95804,7 +96935,7 @@ typedef struct {} _objc_exc_NSSetCommand;
 
 struct NSSetCommand_IMPL {
 	struct NSScriptCommand_IMPL NSScriptCommand_IVARS;
-	NSScriptObjectSpecifier *__strong _keySpecifier;
+	NSScriptObjectSpecifier *_keySpecifier;
 };
 
 
@@ -95815,6 +96946,7 @@ struct NSSetCommand_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95879,7 +97011,7 @@ typedef struct {} _objc_exc_NSScriptCommandDescription;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 
 #ifndef _REWRITER_typedef_NSScriptSuiteRegistry
@@ -95894,16 +97026,16 @@ struct NSScriptSuiteRegistry_IMPL {
 	BOOL _isLoadingSecurityOverride;
 	BOOL _hasLoadedIntrinsics;
 	char _reserved1[1];
-	NSMutableSet *__strong _seenBundles;
-	NSMutableArray *__strong _suiteDescriptionsBeingCollected;
-	NSScriptClassDescription *__strong _classDescriptionNeedingRegistration;
-	NSMutableArray *__strong _suiteDescriptions;
-	NSScriptCommandDescription *__strong _commandDescriptionNeedingRegistration;
-	NSMutableDictionary *__strong _cachedClassDescriptionsByAppleEventCode;
-	NSMutableDictionary *__strong _cachedCommandDescriptionsByAppleEventCodes;
-	NSDictionary *__strong _cachedSuiteDescriptionsByName;
-	NSMutableDictionary *__strong _complexTypeDescriptionsByName;
-	NSMutableDictionary *__strong _listTypeDescriptionsByName;
+	NSMutableSet *_seenBundles;
+	NSMutableArray *_suiteDescriptionsBeingCollected;
+	NSScriptClassDescription *_classDescriptionNeedingRegistration;
+	NSMutableArray *_suiteDescriptions;
+	NSScriptCommandDescription *_commandDescriptionNeedingRegistration;
+	NSMutableDictionary *_cachedClassDescriptionsByAppleEventCode;
+	NSMutableDictionary *_cachedCommandDescriptionsByAppleEventCodes;
+	NSDictionary *_cachedSuiteDescriptionsByName;
+	NSMutableDictionary *_complexTypeDescriptionsByName;
+	NSMutableDictionary *_listTypeDescriptionsByName;
 	unsigned int _nextComplexTypeAppleEventCode;
 	void *_reserved2[4];
 };
@@ -95962,6 +97094,7 @@ struct NSScriptSuiteRegistry_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -95998,7 +97131,7 @@ typedef struct {} _objc_exc_NSString;
 #endif
 
 
-
+#pragma clang assume_nonnull begin
 
 typedef NSUInteger NSTestComparisonOperation; enum {
     NSEqualToComparison = 0,
@@ -96041,7 +97174,7 @@ typedef struct {} _objc_exc_NSLogicalTest;
 struct NSLogicalTest_IMPL {
 	struct NSScriptWhoseTest_IMPL NSScriptWhoseTest_IVARS;
 	int _operator;
-	__strong id _subTests;
+	id _subTests;
 };
 
 
@@ -96066,8 +97199,8 @@ typedef struct {} _objc_exc_NSSpecifierTest;
 struct NSSpecifierTest_IMPL {
 	struct NSScriptWhoseTest_IMPL NSScriptWhoseTest_IVARS;
 	NSTestComparisonOperation _comparisonOperator;
-	NSScriptObjectSpecifier *__strong _object1;
-	__strong id _object2;
+	NSScriptObjectSpecifier *_object1;
+	id _object2;
 };
 
 // - (instancetype)init __attribute__((unavailable));
@@ -96122,6 +97255,7 @@ struct NSSpecifierTest_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -96151,6 +97285,14 @@ typedef struct {} _objc_exc_NSOrthography;
 
 // @protocol NSSpellServerDelegate;
 
+
+
+
+
+
+#pragma clang assume_nonnull begin
+
+
 #ifndef _REWRITER_typedef_NSSpellServer
 #define _REWRITER_typedef_NSSpellServer
 typedef struct objc_object NSSpellServer;
@@ -96165,14 +97307,14 @@ typedef struct {} _objc_exc_NSSpellServer;
 	} ;
 struct NSSpellServer_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _delegate;
+	id _delegate;
 	NSInteger _caseSensitive;
-	__strong id _spellServerConnection;
-	__strong id _dictionaries;
-	NSArray *__strong _learnedDictionaries;
+	id _spellServerConnection;
+	id _dictionaries;
+	NSArray *_learnedDictionaries;
 
 	struct __ssFlags _ssFlags;
-	__strong id _checker;
+	id _checker;
 	void *_reservedSpellServer;
 };
 
@@ -96216,6 +97358,7 @@ extern "C" NSString *const NSGrammarCorrections __attribute__((availability(maco
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -96280,7 +97423,7 @@ typedef struct {} _objc_exc_NSUserNotificationAction;
 
 // @protocol NSUserNotificationCenterDelegate;
 
-
+#pragma clang assume_nonnull begin
 
 
 typedef NSInteger NSUserNotificationActivationType; enum {
@@ -96301,7 +97444,7 @@ typedef struct {} _objc_exc_NSUserNotification;
 
 struct NSUserNotification_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _internal;
+	id _internal;
 };
 
 
@@ -96414,7 +97557,7 @@ typedef struct {} _objc_exc_NSUserNotificationCenter;
 
 struct NSUserNotificationCenter_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	__strong id _internal;
+	id _internal;
 };
 
 
@@ -96462,6 +97605,7 @@ struct NSUserNotificationCenter_IMPL {
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -96518,6 +97662,8 @@ typedef struct objc_object NSXPCConnection;
 typedef struct {} _objc_exc_NSXPCConnection;
 #endif
 
+
+#pragma clang assume_nonnull begin
 __attribute__((visibility("default"))) __attribute__((availability(macosx,introduced=10_8)))
 
 #ifndef _REWRITER_typedef_NSUserScriptTask
@@ -96528,13 +97674,13 @@ typedef struct {} _objc_exc_NSUserScriptTask;
 
 struct NSUserScriptTask_IMPL {
 	struct NSObject_IMPL NSObject_IVARS;
-	NSURL *__strong _scriptURL;
-	NSXPCConnection *__strong _connection;
+	NSURL *_scriptURL;
+	NSXPCConnection *_connection;
 	BOOL _hasExeced;
 	BOOL _hasTerminated;
-	NSFileHandle *__strong _stdin;
-	NSFileHandle *__strong _stdout;
-	NSFileHandle *__strong _stderr;
+	NSFileHandle *_stdin;
+	NSFileHandle *_stdout;
+	NSFileHandle *_stderr;
 };
 
 
@@ -96615,7 +97761,7 @@ typedef struct {} _objc_exc_NSUserAutomatorTask;
 
 struct NSUserAutomatorTask_IMPL {
 	struct NSUserScriptTask_IMPL NSUserScriptTask_IVARS;
-	NSDictionary *__strong _variables;
+	NSDictionary *_variables;
 };
 
 
@@ -96628,6 +97774,7 @@ typedef void (*NSUserAutomatorTaskCompletionHandler)(id _Nullable result, NSErro
 
 /* @end */
 
+#pragma clang assume_nonnull end
 
 
 
@@ -96651,71 +97798,69 @@ struct MCBlock_IMPL {
 
 // @implementation MCBlock
 
-
-int global_var = 4;
-static int static_global_var = 5;
-
 struct __MCBlock__method_block_impl_0 {
   struct __block_impl impl;
   struct __MCBlock__method_block_desc_0* Desc;
-    // 截获局部变量的值
-  int var;
-    // 连同所有权修饰符一起截获
-  __unsafe_unretained id unsafe_obj;
-  __strong id strong_obj;
-    // 以指针形式截获局部变量
-  int *static_var;
-    // 对全局变量、静态全局变量不截获
-    
-  __MCBlock__method_block_impl_0(void *fp, struct __MCBlock__method_block_desc_0 *desc, int _var, __unsafe_unretained id _unsafe_obj, __strong id _strong_obj, int *_static_var, int flags=0) : var(_var), unsafe_obj(_unsafe_obj), strong_obj(_strong_obj), static_var(_static_var) {
+  int *multiplier;
+  __MCBlock__method_block_impl_0(void *fp, struct __MCBlock__method_block_desc_0 *desc, int *_multiplier, int flags=0) : multiplier(_multiplier) {
     impl.isa = &_NSConcreteStackBlock;
     impl.Flags = flags;
     impl.FuncPtr = fp;
     Desc = desc;
   }
 };
-static void __MCBlock__method_block_func_0(struct __MCBlock__method_block_impl_0 *__cself) {
-  int var = __cself->var; // bound by copy
-  __unsafe_unretained id unsafe_obj = __cself->unsafe_obj; // bound by copy
-  __strong id strong_obj = __cself->strong_obj; // bound by copy
-  int *static_var = __cself->static_var; // bound by copy
+static int __MCBlock__method_block_func_0(struct __MCBlock__method_block_impl_0 *__cself, int num) {
+  int *multiplier = __cself->multiplier; // bound by copy
 
-
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_0, var);
-
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_1, unsafe_obj);
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_2, strong_obj);
-
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_3, (*static_var));
-
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_4, global_var);
-        NSLog((NSString *)&__NSConstantStringImpl__var_folders_ch_9dscy_ws0wx5qxrkh9dhyrs40000gn_T_MCBlock_8f992f_mi_5, static_global_var);
+        return num * (*multiplier);
     }
-static void __MCBlock__method_block_copy_0(struct __MCBlock__method_block_impl_0*dst, struct __MCBlock__method_block_impl_0*src) {_Block_object_assign((void*)&dst->unsafe_obj, (void*)src->unsafe_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_assign((void*)&dst->strong_obj, (void*)src->strong_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);}
-
-static void __MCBlock__method_block_dispose_0(struct __MCBlock__method_block_impl_0*src) {_Block_object_dispose((void*)src->unsafe_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_dispose((void*)src->strong_obj, 3/*BLOCK_FIELD_IS_OBJECT*/);}
 
 static struct __MCBlock__method_block_desc_0 {
   size_t reserved;
   size_t Block_size;
-  void (*copy)(struct __MCBlock__method_block_impl_0*, struct __MCBlock__method_block_impl_0*);
-  void (*dispose)(struct __MCBlock__method_block_impl_0*);
-} __MCBlock__method_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__method_block_impl_0), __MCBlock__method_block_copy_0, __MCBlock__method_block_dispose_0};
+} __MCBlock__method_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__method_block_impl_0)};
 
 static void _I_MCBlock_method(MCBlock * self, SEL _cmd) {
+    static int multiplier = 6;
+    int(*Block)(int) = ((int (*)(int))&__MCBlock__method_block_impl_0((void *)__MCBlock__method_block_func_0, &__MCBlock__method_block_desc_0_DATA, &multiplier));
 
-    int var = 1;
-
-    __attribute__((objc_ownership(none))) id unsafe_obj = __null;
-    __attribute__((objc_ownership(strong))) id strong_obj = __null;
-
-
-    static int static_var = 3;
-
-    void(*Block)(void) = ((void (*)())&__MCBlock__method_block_impl_0((void *)__MCBlock__method_block_func_0, &__MCBlock__method_block_desc_0_DATA, var, unsafe_obj, strong_obj, &static_var, 570425344));
-
-    ((void (*)(__block_impl *))((__block_impl *)Block)->FuncPtr)((__block_impl *)Block);
+    ((int (*)(__block_impl *, int))((__block_impl *)Block)->FuncPtr)((__block_impl *)Block, 2);
 }
+
+
+
+struct __MCBlock__blockHowToRunInCpp_block_impl_0 {
+  struct __block_impl impl;
+  struct __MCBlock__blockHowToRunInCpp_block_desc_0* Desc;
+  int number;
+  __MCBlock__blockHowToRunInCpp_block_impl_0(void *fp, struct __MCBlock__blockHowToRunInCpp_block_desc_0 *desc, int _number, int flags=0) : number(_number) {
+    impl.isa = &_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+static int __MCBlock__blockHowToRunInCpp_block_func_0(struct __MCBlock__blockHowToRunInCpp_block_impl_0 *__cself, int num) {
+  int number = __cself->number; // bound by copy
+
+        return num * number;
+    }
+
+static struct __MCBlock__blockHowToRunInCpp_block_desc_0 {
+  size_t reserved;
+  size_t Block_size;
+} __MCBlock__blockHowToRunInCpp_block_desc_0_DATA = { 0, sizeof(struct __MCBlock__blockHowToRunInCpp_block_impl_0)};
+
+static void _I_MCBlock_blockHowToRunInCpp(MCBlock * self, SEL _cmd) {
+
+    int number = 1;
+
+    int (*testBlock) (int) = ((int (*)(int))&__MCBlock__blockHowToRunInCpp_block_impl_0((void *)__MCBlock__blockHowToRunInCpp_block_func_0, &__MCBlock__blockHowToRunInCpp_block_desc_0_DATA, number));
+
+    ((int (*)(__block_impl *, int))((__block_impl *)testBlock)->FuncPtr)((__block_impl *)testBlock, 5);
+}
+
+
 
 // @end
 
@@ -96790,11 +97935,12 @@ extern "C" __declspec(dllimport) struct objc_cache _objc_empty_cache;
 static struct /*_method_list_t*/ {
 	unsigned int entsize;  // sizeof(struct _objc_method)
 	unsigned int method_count;
-	struct _objc_method method_list[1];
+	struct _objc_method method_list[2];
 } _OBJC_$_INSTANCE_METHODS_MCBlock __attribute__ ((used, section ("__DATA,__objc_const"))) = {
 	sizeof(_objc_method),
-	1,
-	{{(struct objc_selector *)"method", "v16@0:8", (void *)_I_MCBlock_method}}
+	2,
+	{{(struct objc_selector *)"method", "v16@0:8", (void *)_I_MCBlock_method},
+	{(struct objc_selector *)"blockHowToRunInCpp", "v16@0:8", (void *)_I_MCBlock_blockHowToRunInCpp}}
 };
 
 static struct _class_ro_t _OBJC_METACLASS_RO_$_MCBlock __attribute__ ((used, section ("__DATA,__objc_const"))) = {

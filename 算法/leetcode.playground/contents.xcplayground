@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playground version='6.0' target-platform='macos' executeOnSourceChanges='false'>
     <pages>
+        <page name='1 两数之和'/>
         <page name='867 转置矩阵'/>
-        <page name='两数之和'/>
         <page name='859. 亲密字符串'/>
         <page name='4. 两个排序数组的中位数'/>
         <page name='384 字符串中第一个不同的字符'/>
@@ -11,6 +11,13 @@
         <page name='771. 宝石与石头'/>
         <page name='103. 二叉树的锯齿形层次遍历'/>
         <page name='Tree'/>
+        <page name='Link'/>
         <page name='15. 三数之和'/>
+        <page name='344. 反转字符串'/>
+        <page name='Test'/>
+        <page name='14. 最长公共前缀'/>
+        <page name='647. 回文子串'/>
+        <page name='8. 字符串转整数 (atoi)'/>
+        <page name='双链表实现栈'/>
     </pages>
 </playground>

@@ -22,8 +22,7 @@
 // 多读单写模型
 @implementation UserCenter
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         // 通过宏定义 DISPATCH_QUEUE_CONCURRENT 创建一个并发队列
@@ -31,7 +30,6 @@
         // 创建数据容器
         userCenterDic = [NSMutableDictionary dictionary];
     }
-    
     return self;
 }
 

@@ -1053,7 +1053,7 @@ unregisterActiveThread(NSThread *thread)
         NSStringFromSelector(_cmd)];
     }
 
-    //外界线程的启动函数
+    
   [_target performSelector: _selector withObject: _arg];
 }
 

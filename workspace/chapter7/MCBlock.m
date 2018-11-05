@@ -10,49 +10,55 @@
 
 @implementation MCBlock
 
-//// 全局变量
-//int global_var = 4;
-//// 静态全局变量
-//static int static_global_var = 5;
-//
-//- (void)method
-//{
+//- (void)method {
 //    static int multiplier = 6;
 //    int(^Block)(int) = ^int(int num)
 //    {
-////        __block
 //        return num * multiplier;
 //    };
-//    multiplier = 4;
-//    NSLog(@"result is %d", Block(2));
+//
+//    Block(2);
+//}
+//
+//
+//- (void)blockHowToRunInCpp {
+//    int  number = 1;
+//    int (^testBlock) (int) = ^int(int num) {
+//        return num * number;
+//    };
+//    testBlock(5);
 //}
 
+int global_var = 4;
 
+static int static_global_var = 5;
 
-
-- (void)method
-{
-    static int multiplier = 6;
-    int(^Block)(int) = ^int(int num)
-    {
-        return num * multiplier;
+- (void)blockVariableMethod {
+    int var = 1;
+    __unsafe_unretained id unsafe_obj = nil;
+    __strong id strong_obj = nil;
+    
+    static int static_var = 3;
+    void (^Block)(void) = ^{
+        NSLog(@"局部变量<基本数据类型>  var %d",var);
+        
+        NSLog(@"局部变量<__unsafe_unretained 对象类型>  var %@",unsafe_obj);
+        NSLog(@"局部变量__strong 对象类型>  var %@",strong_obj);
+        
+        NSLog(@"局部变量<静态变量>  var %d",static_var);
+        
+        NSLog(@"局部变量<全局变量>  var %d",global_var);
+        NSLog(@"局部变量<静态全局变量>  var %d",static_global_var);
     };
-  
-    Block(2);
+    
+    Block();
 }
 
 
-- (void)blockHowToRunInCpp {
-    
-    int  number = 1;
 
-    int (^testBlock) (int) = ^int(int num) {
-        return num * number;
-    };
-    
-    testBlock(5);
-}
+
 
 
 
 @end
+

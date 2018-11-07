@@ -10,7 +10,7 @@
 
 @interface GroupObject()
 {
-    dispatch_queue_t concurrent_queue;
+    dispatch_queue_t concurrent_queue;  //定义成并发队列
     NSMutableArray <NSURL *> *arrayURLs;
 }
 
@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        // 创建并发队列
+         // 创建并发队列
         concurrent_queue = dispatch_queue_create("concurrent_queue", DISPATCH_QUEUE_CONCURRENT);
         arrayURLs = [NSMutableArray array];
     }
@@ -34,15 +34,11 @@
 {
     // 创建一个group
     dispatch_group_t group = dispatch_group_create();
-    
     // for循环遍历各个元素执行操作
     for (NSURL *url in arrayURLs) {
-        
         // 异步组分派到并发队列当中
         dispatch_group_async(group, concurrent_queue, ^{
-            
             //根据url去下载图片
-            
             NSLog(@"url is %@", url);
         });
     }

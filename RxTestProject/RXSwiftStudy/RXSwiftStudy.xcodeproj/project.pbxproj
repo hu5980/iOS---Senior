@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E4EB71E83202E3354FE69C2 /* Pods_RXSwiftStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9720D7AFBA420496D7F49FB9 /* Pods_RXSwiftStudy.framework */; };
+		0E4EB71E83202E3354FE69C2 /* Pods_RXSwiftStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9720D7AFBA420496D7F49FB9 /* Pods_RXSwiftStudy.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		320AD22921944BF5007BF7FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320AD22821944BF5007BF7FF /* AppDelegate.swift */; };
 		320AD22B21944BF5007BF7FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320AD22A21944BF5007BF7FF /* ViewController.swift */; };
 		320AD22E21944BF5007BF7FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 320AD22C21944BF5007BF7FF /* Main.storyboard */; };
@@ -61,6 +61,7 @@
 		320AD22721944BF5007BF7FF /* RXSwiftStudy */ = {
 			isa = PBXGroup;
 			children = (
+				326EDC542194629C0081D498 /* playground */,
 				320AD22821944BF5007BF7FF /* AppDelegate.swift */,
 				320AD22A21944BF5007BF7FF /* ViewController.swift */,
 				320AD22C21944BF5007BF7FF /* Main.storyboard */,
@@ -69,6 +70,13 @@
 				320AD23421944BF7007BF7FF /* Info.plist */,
 			);
 			path = RXSwiftStudy;
+			sourceTree = "<group>";
+		};
+		326EDC542194629C0081D498 /* playground */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = playground;
 			sourceTree = "<group>";
 		};
 		7C9535B3603E9B25DED5894B /* Frameworks */ = {
@@ -188,19 +196,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RXSwiftStudy/Pods-RXSwiftStudy-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

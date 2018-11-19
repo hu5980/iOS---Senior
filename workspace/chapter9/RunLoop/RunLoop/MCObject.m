@@ -7,13 +7,10 @@
 //
 
 #import "MCObject.h"
-
 @implementation MCObject
-
 static NSThread *thread = nil;
 // 标记是否要继续事件循环
 static BOOL runAlways = YES;
-
 + (NSThread *)threadForDispatch{
     if (thread == nil) {
         @synchronized(self) {
@@ -29,8 +26,7 @@ static BOOL runAlways = YES;
     return thread;
 }
 
-+ (void)runRequest
-{
++ (void)runRequest {
     // 创建一个Source
     CFRunLoopSourceContext context = {0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
     CFRunLoopSourceRef source = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &context);
@@ -45,7 +41,6 @@ static BOOL runAlways = YES;
             CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, true);
         }
     }
-    
     // 某一时机 静态变量runAlways = NO时 可以保证跳出RunLoop，线程退出
     CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);
     CFRelease(source);

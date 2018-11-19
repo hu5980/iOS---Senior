@@ -3084,8 +3084,10 @@ void CFRunLoopAddTimer(CFRunLoopRef rl, CFRunLoopTimerRef rlt, CFStringRef modeN
     if (!__CFIsValid(rlt) || (NULL != rlt->_runLoop && rlt->_runLoop != rl)) return;
     __CFRunLoopLock(rl);
     if (modeName == kCFRunLoopCommonModes) {
+        //首先提取RunLoop 里面的_commonModes
 	CFSetRef set = rl->_commonModes ? CFSetCreateCopy(kCFAllocatorSystemDefault, rl->_commonModes) : NULL;
 	if (NULL == rl->_commonModeItems) {
+        //如果rl->_commonModeItems 为空会重新创建 rl->_commonModeItems 集合
 	    rl->_commonModeItems = CFSetCreateMutable(kCFAllocatorSystemDefault, 0, &kCFTypeSetCallBacks);
 	}
 	CFSetAddValue(rl->_commonModeItems, rlt);

@@ -585,20 +585,20 @@ attachCategories(Class cls, category_list *cats, bool flush_caches)
         [[method_t,method_t,...],[method_t],[method_t,method_t,method_t,...]]
      */
     
-    //方法列表二维数组
+    //方法列表二维数组内存分配
     method_list_t **mlists = (method_list_t **)
         malloc(cats->count * sizeof(*mlists));
-    //属性列表二维数组
+    //属性列表二维数组内存分配
     property_list_t **proplists = (property_list_t **)
         malloc(cats->count * sizeof(*proplists));
-    //协议列表二维数组
+    //协议列表二维数组内存分配
     protocol_list_t **protolists = (protocol_list_t **)
         malloc(cats->count * sizeof(*protolists));
 
     // Count backwards through cats to get newest categories first
     int mcount = 0;    //方法参数个数
-    int propcount = 0;  //属性参数
-    int protocount = 0;  //协议参数
+    int propcount = 0;  //属性参数个数
+    int protocount = 0;  //协议参数个数
     int i = cats->count;  //宿主类分类的总数
     bool fromBundle = NO;
     while (i--) { //这里是倒序遍历，最先访问最后编译的分类
@@ -742,8 +742,6 @@ static void remethodizeClass(Class cls)
     isMeta = cls->isMetaClass();
 
     // Re-methodizing: check for more categories
-    
-    
     // 获取class中未完成整合的所有分类
     if ((cats = unattachedCategoriesForClass(cls, false/*not realizing*/))) {
         if (PrintConnecting) {

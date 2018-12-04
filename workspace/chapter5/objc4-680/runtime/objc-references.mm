@@ -323,6 +323,8 @@ void _object_set_associative_reference(id object, void *key, id value, uintptr_t
             }
         }
     }
+    
+    
     // release the old value (outside of the lock).
     if (old_association.hasValue()) ReleaseValue()(old_association);
 }

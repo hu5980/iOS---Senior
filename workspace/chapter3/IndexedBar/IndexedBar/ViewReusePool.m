@@ -26,12 +26,11 @@
     return self;
 }
 
-- (UIView *)dequeueReusableView{
+- (UIView *)dequeueReusableView {
     UIView *view = [_waitUsedQueue anyObject];
     if (view == nil) {
         return nil;
-    }
-    else{
+    } else {
         // 进行队列移动
         [_waitUsedQueue removeObject:view];
         [_usingQueue addObject:view];
@@ -44,12 +43,11 @@
     if (view == nil) {
         return;
     }
-    
     // 添加视图到使用中的队列
-    [_usingQueue addObject:view];
+    [_usingQueue addObject:view];       
 }
 
-- (void)reset{
+- (void)reset {
     UIView *view = nil;
     while ((view = [_usingQueue anyObject])) {
         // 从使用中队列移除

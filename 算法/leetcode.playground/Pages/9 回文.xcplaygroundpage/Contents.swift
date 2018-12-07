@@ -3,6 +3,11 @@ import Foundation
 
 var str = "Hello, playground"
 
+var array = Array(str)
+
+
+
+
 func isPalindrome_1(_ x: Int) -> Bool {
     func reverseInt(_ x: Int) -> Int {
         var remain = x

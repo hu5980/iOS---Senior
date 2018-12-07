@@ -51,6 +51,8 @@ func delete<T> (_ root:ListNode<T>? ,data:T) -> ListNode<T>?{
         var temp = root
       
       
+        
+        
     }
     return nil
 }

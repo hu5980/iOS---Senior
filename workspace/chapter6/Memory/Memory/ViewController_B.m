@@ -29,15 +29,10 @@
     [self.view addSubview:button];
     
     self.timer = [NSTimer scheduledWeakTimerWithTimeInterval:1 target:self selector:@selector(test) userInfo:nil repeats:YES];
-   
-    
-    
     // Do any additional setup after loading the view.
 }
 
 - (void) buttonAction {
-  
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

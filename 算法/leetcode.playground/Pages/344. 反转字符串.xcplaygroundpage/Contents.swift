@@ -2,32 +2,35 @@
 
 import Foundation
 
-func reverseWords(_ s: String) -> String {
+fileprivate func reverse<T>(_ chars: inout [T], _ start: Int, _ end: Int) {
+    var start = start, end = end
     
-    func reverseString(_ s: String) -> String {
-        
-        var startIndex = 0
-        var endIndex = s.count-1
-        var array = s.cString(using:.utf8)!
-        while startIndex<endIndex {
-            let char = array[startIndex]
-            array[startIndex] = array[endIndex]
-            array[endIndex] = char
-            startIndex+=1
-            endIndex-=1
-        }
-        return String.init(utf8String: array)!
+    while start < end {
+        swap(&chars, start, end)
+        start += 1
+        end -= 1
     }
-    
-    let array =  s.components(separatedBy: " ")
-    var resultArray = [String]()
-    for i in 0..<array.count {
-        resultArray.append(reverseString(array[i]))
-    }
-    let result =  resultArray.joined(separator: " ")
-    return result
 }
 
-let result = reverseWords("A man, a plan, a canal")
+fileprivate func swap<T>(_ chars: inout [T], _ p: Int, _ q: Int) {
+    (chars[p], chars[q]) = (chars[q], chars[p])
+}
+
+func reverseWords(s: String?) -> String? {
+    guard let s = s else {
+        return nil
+    }
+    var chars = Array(s), start = 0
+    reverse(&chars, 0, chars.count - 1)
+    for i in 0 ..< chars.count {
+        if i == chars.count - 1 || chars[i + 1] == " " {
+            reverse(&chars, start, i)
+            start = i + 2
+        }
+    }
+    return String(chars)
+}
+
+let result = reverseWords(s: "i love world")
 
 

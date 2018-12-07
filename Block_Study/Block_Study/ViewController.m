@@ -8,15 +8,17 @@
 
 #import "ViewController.h"
 
-typedef void(^testBlock)(NSObject* obj);
+typedef void (^testBlock)(NSObject* obj);
 
 @interface ViewController ()
 
-
+@property (nonatomic,copy) testBlock block;
 
 @end
 
 @implementation ViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,23 +28,30 @@ typedef void(^testBlock)(NSObject* obj);
     button.backgroundColor = [UIColor redColor];
     [button addTarget:self action:@selector(Test) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
-    
-    
-   
-    // Do any additional setup after loading the view, typically from a nib.
-}
 
-
-
-
-
-- (void)Test {
-    void(^testBlock)(NSObject* obj) = ^(NSObject* obj){
-        NSLog(@"%@",obj);
+    self.block = ^(NSObject* obj) {
+        NSLog(@"obj = %@",obj);
+        NSLog(@"%@",button);
     };
     
-    testBlock([[NSNumber alloc]initWithInt:5]);
+    NSLog(@"self.block = %@",self.block);
+   
+    int i = 0;
+    
+    void (^stackBlock)(void) = ^(){
+        NSLog(@"%d",i);
+    };
+    
+    NSLog(@"stackBlock = %@",stackBlock);
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    
+}
+
+- (void)Test {
+    self.block([[NSNumber alloc]initWithInt:5]);
 }
 
 

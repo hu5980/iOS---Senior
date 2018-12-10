@@ -1545,7 +1545,9 @@ static void __CFRunLoopAddItemsToCommonMode(const void *value, void *ctx) {
 
 static void __CFRunLoopAddItemToCommonModes(const void *value, void *ctx) {
     CFStringRef modeName = (CFStringRef)value;
+    //runloop
     CFRunLoopRef rl = (CFRunLoopRef)(((CFTypeRef *)ctx)[0]);
+    // eg:timeer
     CFTypeRef item = (CFTypeRef)(((CFTypeRef *)ctx)[1]);
     if (CFGetTypeID(item) == __kCFRunLoopSourceTypeID) {
 	CFRunLoopAddSource(rl, (CFRunLoopSourceRef)item, modeName);
@@ -3126,40 +3128,7 @@ void CFRunLoopAddTimer(CFRunLoopRef rl, CFRunLoopTimerRef rlt, CFStringRef modeN
 	    CFSetApplyFunction(set, (__CFRunLoopAddItemToCommonModes), (void *)context);
 	    CFRelease(set);
 	}
-    } else {
-	CFRunLoopModeRef rlm = __CFRunLoopFindMode(rl, modeName, true);
-	if (NULL != rlm) {
-            if (NULL == rlm->_timers) {
-                CFArrayCallBacks cb = kCFTypeArrayCallBacks;
-                cb.equal = NULL;
-                rlm->_timers = CFArrayCreateMutable(kCFAllocatorSystemDefault, 0, &cb);
-            }
-	}
-	if (NULL != rlm && !CFSetContainsValue(rlt->_rlModes, rlm->_name)) {
-            __CFRunLoopTimerLock(rlt);
-            if (NULL == rlt->_runLoop) {
-		rlt->_runLoop = rl;
-  	    } else if (rl != rlt->_runLoop) {
-                __CFRunLoopTimerUnlock(rlt);
-	        __CFRunLoopModeUnlock(rlm);
-                __CFRunLoopUnlock(rl);
-		return;
-	    }
-  	    CFSetAddValue(rlt->_rlModes, rlm->_name);
-            __CFRunLoopTimerUnlock(rlt);
-            __CFRunLoopTimerFireTSRLock();
-            __CFRepositionTimerInMode(rlm, rlt, false);
-            __CFRunLoopTimerFireTSRUnlock();
-            if (!_CFExecutableLinkedOnOrAfter(CFSystemVersionLion)) {
-                // Normally we don't do this on behalf of clients, but for
-                // backwards compatibility due to the change in timer handling...
-                if (rl != CFRunLoopGetCurrent()) CFRunLoopWakeUp(rl);
-            }
-	}
-        if (NULL != rlm) {
-	    __CFRunLoopModeUnlock(rlm);
-	}
-    }
+    } else
     __CFRunLoopUnlock(rl);
 }
 

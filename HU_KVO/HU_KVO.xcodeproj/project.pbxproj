@@ -14,6 +14,8 @@
 		32487E6421B4CE2000A366FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32487E6221B4CE2000A366FC /* LaunchScreen.storyboard */; };
 		32487E6721B4CE2000A366FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32487E6621B4CE2000A366FC /* main.m */; };
 		32487E6F21B4CE4100A366FC /* NSObject+KVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 32487E6E21B4CE4100A366FC /* NSObject+KVO.m */; };
+		8D803D08225A5048008E80CC /* HURunTimeStudy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D803D07225A5048008E80CC /* HURunTimeStudy.m */; };
+		8DD5C883225AF61900BA49B1 /* JKTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5C882225AF61900BA49B1 /* JKTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,12 @@
 		32487E6621B4CE2000A366FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32487E6D21B4CE4100A366FC /* NSObject+KVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVO.h"; sourceTree = "<group>"; };
 		32487E6E21B4CE4100A366FC /* NSObject+KVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVO.m"; sourceTree = "<group>"; };
+		8D803D06225A5048008E80CC /* HURunTimeStudy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HURunTimeStudy.h; sourceTree = "<group>"; };
+		8D803D07225A5048008E80CC /* HURunTimeStudy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HURunTimeStudy.m; sourceTree = "<group>"; };
+		8DD5C880225AF5D500BA49B1 /* NSObject+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Test.h"; sourceTree = "<group>"; };
+		8DD5C881225AF61900BA49B1 /* JKTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKTest.h; sourceTree = "<group>"; };
+		8DD5C882225AF61900BA49B1 /* JKTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKTest.m; sourceTree = "<group>"; };
+		8DD5C884225AF63800BA49B1 /* JKTest+JKTestExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKTest+JKTestExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +73,12 @@
 				32487E5821B4CE1D00A366FC /* AppDelegate.m */,
 				32487E5A21B4CE1D00A366FC /* ViewController.h */,
 				32487E5B21B4CE1D00A366FC /* ViewController.m */,
+				8DD5C880225AF5D500BA49B1 /* NSObject+Test.h */,
+				8DD5C881225AF61900BA49B1 /* JKTest.h */,
+				8DD5C882225AF61900BA49B1 /* JKTest.m */,
+				8DD5C884225AF63800BA49B1 /* JKTest+JKTestExtension.h */,
+				8D803D06225A5048008E80CC /* HURunTimeStudy.h */,
+				8D803D07225A5048008E80CC /* HURunTimeStudy.m */,
 				32487E6D21B4CE4100A366FC /* NSObject+KVO.h */,
 				32487E6E21B4CE4100A366FC /* NSObject+KVO.m */,
 				32487E5D21B4CE1D00A366FC /* Main.storyboard */,
@@ -148,7 +162,9 @@
 			files = (
 				32487E6F21B4CE4100A366FC /* NSObject+KVO.m in Sources */,
 				32487E5C21B4CE1D00A366FC /* ViewController.m in Sources */,
+				8D803D08225A5048008E80CC /* HURunTimeStudy.m in Sources */,
 				32487E6721B4CE2000A366FC /* main.m in Sources */,
+				8DD5C883225AF61900BA49B1 /* JKTest.m in Sources */,
 				32487E5921B4CE1D00A366FC /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

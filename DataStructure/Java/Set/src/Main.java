@@ -3,54 +3,170 @@ import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
-        BST<Integer> bst = new BST<>();
-        int n = 1000;
-        Random random = new Random();
-        for (int i = 0; i < n ;i++) {
-            bst.add(random.nextInt(100000));
+    static public void bstSet() {
+
+        double startTime = System.nanoTime();
+
+        System.out.println("pride and prejudice");
+
+        ArrayList<String> words1 = new ArrayList<>();
+
+        FileOperation.readFile("pride-and-prejudice.txt",words1);
+
+        System.out.println("Total words:" +words1.size());
+
+
+        BSTSet<String> set1 = new BSTSet<>();
+
+        for (String word:words1){
+            set1.add(word);
         }
+        System.out.println("Total differwnt words :" + set1.getSize());
 
-        ArrayList<Integer> nums = new ArrayList<>();
-        while (!bst.isEmpty()){
-            nums.add(bst.removeMin());
+
+        System.out.println("a tale of two cities");
+
+        ArrayList<String> words2 = new ArrayList<>();
+
+        FileOperation.readFile("a-tale-of-two-cities.txt",words2);
+
+        System.out.println("Total words:" +words2.size());
+
+
+        BSTSet<String> set2 = new BSTSet<>();
+
+        for (String word:words2){
+            set2.add(word);
         }
-        System.out.println(nums);
+        System.out.println("Total differwnt words :" + set2.getSize());
 
+        double endTime = System.nanoTime();
 
-//        int [] nums = {5,3,6,8,4,2};
-//        for (int num:nums) {
-//            bst.add(num);
-//        }
-//        System.out.println("前序遍历");
-//        bst.preOrder();
-//        System.out.println();
-//        System.out.println("前序非递归遍历");
-//        bst.preOredrNO();
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println("非递归前序遍历");
-//        bst.preOredrNO();
-//
-//        System.out.println();
-//        System.out.println("中序遍历");
-//        //2分搜索树排序的结果 就是中序遍历
-//        bst.midOrder();
-//
-//        System.out.println();
-//        System.out.println("后序遍历");
-//        //2分搜索树排序的结果 就是中序遍历
-//        bst.postOrder();
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println("层序遍历");
-//        bst.floorOrder();
-//
-//        System.out.println("二叉树最小值");
-//        bst.miniNumNo();
-
-       // System.out.println(bst.toString());
+        System.out.println("二叉搜索树 花费的时间 " + (endTime - startTime) / 1000000000.0 + " s");
     }
+
+    static public void listedSet() {
+        double startTime = System.nanoTime();
+        System.out.println("pride and prejudice");
+
+        ArrayList<String> words1 = new ArrayList<>();
+
+        FileOperation.readFile("pride-and-prejudice.txt",words1);
+
+        System.out.println("Total words:" +words1.size());
+
+
+        LinkedListSet<String> set1 = new LinkedListSet<>();
+
+        for (String word:words1){
+            set1.add(word);
+        }
+        System.out.println("Total differwnt words :" + set1.getSize());
+
+
+        System.out.println("a tale of two cities");
+
+        ArrayList<String> words2 = new ArrayList<>();
+
+        FileOperation.readFile("a-tale-of-two-cities.txt",words2);
+
+        System.out.println("Total words:" +words2.size());
+
+
+        LinkedListSet<String> set2 = new LinkedListSet<>();
+
+        for (String word:words2){
+            set2.add(word);
+        }
+        System.out.println("Total differwnt words :" + set2.getSize());
+
+        double endTime = System.nanoTime();
+
+        System.out.println("链表 花费的时间 " + (endTime - startTime) / 1000000000.0 + " s");
+    }
+
+
+
+    static public void linkedMap() {
+
+        double startTime = System.nanoTime();
+
+        System.out.println("pride and prejudice");
+
+        ArrayList<String> words1 = new ArrayList<>();
+
+        FileOperation.readFile("pride-and-prejudice.txt",words1);
+
+        System.out.println("Total words:" +words1.size());
+
+
+        LinkedListMap<String,Integer> map = new LinkedListMap<>();
+
+        for (String word:words1){
+            if (map.contains(word))
+                map.set(word,map.get(word) + 1);
+            else
+                map.add(word,1);
+        }
+
+        System.out.println("Total differwnt words :" + map.getSize());
+        System.out.println("Total pride words :" + map.get("pride"));
+        System.out.println("Total pride words :" + map.get("like"));
+
+        double endTime = System.nanoTime();
+
+        System.out.println("链表 Map 执行时间 " + (endTime - startTime) / 1000000000.0 + " s");
+    }
+
+
+    static public void BSTMap() {
+
+        double startTime = System.nanoTime();
+
+        System.out.println("pride and prejudice");
+
+        ArrayList<String> words1 = new ArrayList<>();
+
+        FileOperation.readFile("pride-and-prejudice.txt",words1);
+
+        System.out.println("Total words:" +words1.size());
+
+
+
+        BSTMap<String,Integer> map = new BSTMap<>();
+
+        for (String word:words1){
+            if (map.contains(word))
+                map.set(word,map.get(word) + 1);
+            else
+                map.add(word,1);
+        }
+
+        System.out.println("Total differwnt words :" + map.getSize());
+        System.out.println("Total pride words :" + map.get("pride"));
+        System.out.println("Total pride words :" + map.get("like"));
+
+        double endTime = System.nanoTime();
+
+        System.out.println("树 Map 执行时间 " + (endTime - startTime) / 1000000000.0 + " s");
+    }
+
+
+
+    public static void main(String[] args) {
+//        System.out.println("使用二叉搜索树 进行插入");
+//        bstSet();
+//
+//        System.out.println("使用链表 进行插入");
+//        listedSet();
+
+
+        System.out.println("使用链表 进行插入");
+        linkedMap();
+
+        System.out.println("使用二叉树 进行插入");
+        BSTMap();
+    }
+
+
 }

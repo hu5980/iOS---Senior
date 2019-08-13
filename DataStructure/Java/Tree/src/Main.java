@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
-        int n = 1000;
+        int n = 10;
         Random random = new Random();
         for (int i = 0; i < n ;i++) {
             bst.add(random.nextInt(100000));
@@ -44,8 +44,8 @@ public class Main {
 //
 //        System.out.println();
 //        System.out.println();
-//        System.out.println("层序遍历");
-//        bst.floorOrder();
+          System.out.println("层序遍历");
+          bst.floorOrder();
 //
 //        System.out.println("二叉树最小值");
 //        bst.miniNumNo();
